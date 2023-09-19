@@ -4,7 +4,7 @@ SWP391-Project Group5
 
 ## Member
 
-1. Doan Thanh Chung
+1. Doan Thanh Chung - HE176077
 2. Nguyen Phi Tuan Anh
 3. Vuong Viet Nam - HE172838
 4. Dao Ngoc Minh - HE176110
