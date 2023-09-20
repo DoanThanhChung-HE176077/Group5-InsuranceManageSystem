@@ -17,6 +17,7 @@
     <body>
         <!-- navbar -->
         <header id="my-header">
+            
             <a href="#" class="my-logo">
                 <i class='bx bxs-check-shield'>
                     G5insurance_
@@ -71,7 +72,7 @@
             <!-- pro5 -->
             <div class="my-profile">
                 <!--show pro5 when log-->
-                <img src="img/chung_avatar.jpg" alt="">
+                <img src="Image/chung_avatar.jpg" alt="">
                 <span id="my-username">Doan Thanh Chung</span>
                 <i class="bx bx-caret-down"></i>
                 
@@ -83,6 +84,27 @@
             </div>
 
         </header>
+
+        <script>
+            // Get the "option" link element
+            var optionLink = document.querySelector('.my-navbar li:nth-child(5) a');
+
+            // Get the dropdown menu element
+            var dropdownMenu = document.querySelector('.dropdown-menu');
+
+            // Add a click event listener to the "option" link
+            optionLink.addEventListener('click', function (e) {
+              // Prevent the default link behavior (e.g., navigating to a new page)
+              e.preventDefault();
+
+              // Toggle the display of the dropdown menu
+              if (dropdownMenu.style.display === 'block') {
+                dropdownMenu.style.display = 'none';
+              } else {
+                dropdownMenu.style.display = 'block';
+              }
+            });
+        </script>
 
     </body>
 </html>

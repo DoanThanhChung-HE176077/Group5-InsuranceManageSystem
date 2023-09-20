@@ -44,6 +44,7 @@
         
     </head>
     <body>
+        <!--header-->
         <jsp:include page="Part/header.jsp"></jsp:include>
         
         <!-- body -->
@@ -55,14 +56,14 @@
         <div class="items bg-card">
             <div class="card">
                 <a href="">
-                    <img class="fixed-img card-img-top" src="img/jerrryTest.jpg" alt="Card image cap">
+                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
 
                 </a>
             </div>
 
             <div class="card">
                 <a href="">
-                    <img class="fixed-img card-img-top" src="img/jerrryTest.jpg" alt="Card image cap">
+                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
 
                 </a>
             </div>
@@ -70,42 +71,42 @@
 
             <div class="card">
                 <a href="">
-                    <img class="fixed-img card-img-top" src="img/jerrryTest.jpg" alt="Card image cap">
+                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
 
                 </a>
             </div>
 
             <div class="card">
                 <a href="">
-                    <img class="fixed-img card-img-top" src="img/jerrryTest.jpg" alt="Card image cap">
+                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
 
                 </a>
             </div>
 
             <div class="card">
                 <a href="">
-                    <img class="fixed-img card-img-top" src="img/jerrryTest.jpg" alt="Card image cap">
+                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
 
                 </a>
             </div>
 
             <div class="card">
                 <a href="">
-                    <img class="fixed-img card-img-top" src="img/jerrryTest.jpg" alt="Card image cap">
+                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
 
                 </a>
             </div>
 
             <div class="card">
                 <a href="">
-                    <img class="fixed-img card-img-top" src="img/jerrryTest.jpg" alt="Card image cap">
+                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
 
                 </a>
             </div>
 
             <div class="card">
                 <a href="">
-                    <img class="fixed-img card-img-top" src="img/jerrryTest.jpg" alt="Card image cap">
+                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
 
                 </a>
             </div>
@@ -116,11 +117,11 @@
             <h3 class="text-center">Nhóm sản phẩm</h3>
             <div class="row">
                 <a onclick="" class="col-lg-6 col-sm-6 text-center">
-                    <img src="img/accident.png" alt="">
+                    <img src="Image/accident.png" alt="">
                     <span class="d-block mt-3">BẢO HIỂM TNDS</span>
                 </a>
                 <a onclick="" class="col-lg-6 col-sm-6 text-center">
-                    <img src="img/motorcycle.png" alt="">
+                    <img src="Image/motorcycle.png" alt="">
                     <span class="d-block mt-3">BẢO HIỂM VẬT CHẤT</span>
                 </a>
 
@@ -129,49 +130,7 @@
         </section>
 
         <!-- foooter -->
-        <footer class="footer">
-            <div class="footer-container">
-                <div class="row">
-                    <div class="footer-col">
-                        <h4>company</h4>
-                        <ul>
-                            <li><a href="#">about us</a></li>
-                            <li><a href="#">our services</a></li>
-                            <li><a href="#">privacy policy</a></li>
-                            <li><a href="#">affiliate program</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>get help</h4>
-                        <ul>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">shipping</a></li>
-                            <li><a href="#">returns</a></li>
-                            <li><a href="#">order status</a></li>
-                            <li><a href="#">payment options</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>product</h4>
-                        <ul>
-                            <li><a href="#">insurance</a></li>
-                            <li><a href="#">insurance</a></li>
-                            <li><a href="#">insurance</a></li>
-                            <li><a href="#">insurance</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>follow us</h4>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <jsp:include page="Part/footer.jsp"></jsp:include>
 
 
 

@@ -11,19 +11,12 @@
     scroll-behavior: smooth;
 }
 /* some variables */
-:root{
-    --green-color: #3cb815;
-    --light-green—color: #c0eb7b;
-    --orange-color: #ff7e00;
-    --light-orange-color: #f75f1d;
-    --text—color: #3cb815;
-    --bg-color: #fff;
-}
+
 img{
     width: 100%;
 }
-body{
-    color: var(--text—color);
+my-navbar{
+    color:#3cb815;
 }
 #my-header{
     position: fixed;
@@ -34,7 +27,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--bg-color);
+    background: #fff;
     box-shadow: 0 8px 11px rgb(14 55 54 / 15%);
     padding: 20px 100px;
     transition: 0.3s;
@@ -65,12 +58,12 @@ body{
     align-items: center;
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--text—color);
+    color: #3cb815;
     column-gap: 0.5rem;
 }
 .my-logo .bx{
     font-size: 24px;
-    color: var(--orange-color);
+    color: #ff7e00;
 }
 .my-navbar{
     display: flex;
@@ -81,14 +74,14 @@ body{
 .my-navbar li a {
     font-size: 1rem;
     font-weight: 500;
-    color: var(--text—color);
+    color: #3cb815;
     padding: 0.5rem 1rem;
 
 }
 .my-navbar a:hover, .nav #homeactive{
-    background-color: var(--green-color);
+    background-color: #3cb815;
     border-radius: 5rem;
-    color: var(--bg-color);
+    color: #fff;
     
     transition: background 0.5s;
 }
@@ -100,3 +93,29 @@ body{
     display: none;
 }
 
+
+
+/*dropdown*/
+/* Hide the dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Style the individual dropdown items */
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Style the dropdown items on hover */
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
