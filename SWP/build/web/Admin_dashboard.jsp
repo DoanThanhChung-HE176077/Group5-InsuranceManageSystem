@@ -67,16 +67,16 @@
             </div>
             
             <div class="brand-name">
-                <h1>Brand</h1>
+                <h1><i class='bx bxs-book-content' ></i>&nbsp; <span>Dashboard</span> </h1>
             </div>
             <ul class="sideitem">
-                <li><img src="dashboard (2).png"alt="">&nbsp; <span>Dashboard</span> </li>
+                <li></li>
                 <li href="#"><i class='bx bxs-user'></i>&nbsp;<span>Users</span> </li>
                 <li><i class='bx bxs-contact' ></i>&nbsp;<span>Contact</span> </li>
-                <li><img src="Image/staff.png" width="75px" height="75px" alt="">&nbsp;<span>Staff</span> </li>
+                <li><i class='bx bx-user-pin'></i>&nbsp;<span>Staff</span> </li>
                 <li><i class='bx bx-dollar'></i>&nbsp;<span>Income</span> </li>
-                <li><img src="help-web-button.png" alt="">&nbsp; <span>Help</span></li>
-                <li><img src="settings.png" alt="">&nbsp;<span>Settings</span> </li>
+                <li><i class='bx bxs-hand' ></i>&nbsp; <span>Help</span></li>
+                <li><i class='bx bxs-cog' ></i>&nbsp;<span>Settings</span> </li>
             </ul>
         </div>
         <div class="container">
