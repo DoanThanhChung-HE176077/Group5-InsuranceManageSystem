@@ -1,4 +1,4 @@
-/* gg font */
+ gg font 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;900&display=swap');
 *{
     font-family: 'Poppins', sans-serif;
@@ -10,7 +10,7 @@
     scroll-padding-top: 2rem;
     scroll-behavior: smooth;
 }
-/* some variables */
+ some variables 
 
 img{
     width: 100%;
@@ -95,8 +95,8 @@ my-navbar{
 
 
 
-/*dropdown*/
-/* Hide the dropdown menu */
+dropdown
+ Hide the dropdown menu 
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -107,7 +107,7 @@ my-navbar{
   z-index: 1;
 }
 
-/* Style the individual dropdown items */
+ Style the individual dropdown items 
 .dropdown-menu a {
   display: block;
   padding: 10px;
@@ -115,7 +115,7 @@ my-navbar{
   color: #333;
 }
 
-/* Style the dropdown items on hover */
+ Style the dropdown items on hover 
 .dropdown-menu a:hover {
   background-color: #f1f1f1;
 }
