@@ -202,21 +202,37 @@
     }
    function sentRequest() {
     let inputs = document.querySelectorAll('.form-info input');
+    let inputEmail = document.querySelector('.form-info input[type="email"]');
     let isEmpty = false;
 
     for (let i = 0; i < inputs.length; i++) {
+        // Nếu input rỗng, thêm thuộc tính 'required'
         if (inputs[i].value.trim() === '') {
             isEmpty = true;
             inputs[i].setAttribute('required', true);
-        } 
+        } else {
+            inputs[i].removeAttribute('required');
+        }
     }
 
+    // Kiểm tra xem có ô input email trống không
     if (isEmpty) {
         alert('Vui lòng điền đầy đủ thông tin trước khi gửi.');
     } else {
-        window.location.href = 'https://www.google.com';
+        let emailValue = inputEmail.value.trim();
+        if (validateEmail(emailValue)) {
+            window.location.href = 'https://www.google.com';
+        } else {
+            alert('Email không hợp lệ.');
+        }
     }
 }
+
+function validateEmail(email) {
+    let regex = /^[a-zA-Z0-9.-_]+@gmail\.com$/;
+    return regex.test(email);
+}
+
         </script>
         <!--end info user-->
 
