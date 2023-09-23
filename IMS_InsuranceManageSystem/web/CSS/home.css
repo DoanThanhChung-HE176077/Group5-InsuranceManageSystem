@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body{
+	line-height: 1.5;
+	font-family: 'Poppins', sans-serif;
+}
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+.navbar{
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    width: 100%;
+    
+}
+.navbar-brand{
+    margin-left: 150px;
+}
+#navbarSupportedContent{
+    margin-left: 100px;
+    margin-right: 10px;
+    
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+	padding-right: 1.5rem;
+	padding-left: 1.5rem;
+}
+	
+.dropdown-item i {
+    width: 20px; /* Đặt chiều rộng cố định */
+    height: 20px; /* Đặt chiều cao cố định */
+    margin-right: 5px; /* Tạo khoảng cách giữa biểu tượng và văn bản */
+    vertical-align: middle; /* Căn giữa theo chiều dọc */
+  }
+  
+
+#avatar-user{
+    width: 32px; 
+    height: 32px;
+}
+body {
+    padding-top: 70px; 
+}
+
+#banner{
+    background-image:url(../Image/banner_home.jpg) ;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    width: 100%;
+    height: 50vh;
+    position: relative;
+    cursor: pointer;
+    
+}
+
+.items {
+    width: 80%;
+    margin: 0px auto;
+    margin-top: -90px;
+	margin-bottom: 20px;
+	/* border: solid;
+	border-radius: 1000px; */
+}
+
+.bg-card {
+	background-color: #ffffff;
+	border-radius: 5px;
+	border: 0.5px solid #c4c4c4;
+	padding-left: 5px;
+	
+}
+
+.slick-slide {
+    margin: 10px;
+}
+
+.slick-slide img {
+    width: 100%;
+    border: 0px solid #fff;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: red !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* fix size img in slick */
+.fixed-img {
+    width: 200px; /* Set your desired fixed width */
+    height: 200px; /* Set your desired fixed height */
+    object-fit: cover; /* This property ensures the image covers the specified dimensions */
+}
+
+.products {
+	margin-bottom: 20px;
+}
+
+.product a {
+	text-decoration: none;
+}
+
+.products img {
+	max-width: 40%;
+	object-fit: contain;
+	border-radius: 50%;
+
+}
+
+
+
+
+
+
+
