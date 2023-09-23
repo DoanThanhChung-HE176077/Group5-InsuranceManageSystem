@@ -5,24 +5,32 @@
         <servlet-class>Controller.blog.blog_add</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>admin_user_list</servlet-name>
-        <servlet-class>Controller.admin.admin_user_list</servlet-class>
+        <servlet-name>admin_IP_list</servlet-name>
+        <servlet-class>Controller.admin.admin_IP_list</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_IP_add</servlet-name>
         <servlet-class>Controller.admin.admin_IP_add</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>admin_user_list</servlet-name>
+        <servlet-class>admin_user_list</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>admin_user_list</servlet-name>
-        <url-pattern>/admin_user_list</url-pattern>
+        <servlet-name>admin_IP_list</servlet-name>
+        <url-pattern>/admin_IP_list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>admin_IP_add</servlet-name>
         <url-pattern>/admin_IP_add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admin_user_list</servlet-name>
+        <url-pattern>/admin_user_list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
