@@ -160,11 +160,12 @@
                                                 dropdownMenu.style.display = 'block';
                                                 }
                                                         });
+                                                        </script>
+                                                        
+  <script>
 <!--info user-->
 
-                            function fetchData() 
-
-                            
+                            function fetchData()
                                                 {
                                                         var xhr = new XMLHttpRequest();
                                                         xhr.open("GET", "Info_user", true);
@@ -197,8 +198,25 @@
         let btn_edit = document.getElementById('btn-edit');
         btn_edit.style.display = 'none';
         let btn_sentRequest = document.getElementById('btn-sentRequest');
-        btn_sentRequest.innerHTML = '<button type="button" onclick="editInfo()" class="btn btn-primary">Sent request</button>'; 
+        btn_sentRequest.innerHTML = '<button type="submit" onclick="sentRequest()" class="btn btn-primary">Sent request</button>'; 
     }
+   function sentRequest() {
+    let inputs = document.querySelectorAll('.form-info input');
+    let isEmpty = false;
+
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value.trim() === '') {
+            isEmpty = true;
+            inputs[i].setAttribute('required', true);
+        } 
+    }
+
+    if (isEmpty) {
+        alert('Vui lòng điền đầy đủ thông tin trước khi gửi.');
+    } else {
+        window.location.href = 'https://www.google.com';
+    }
+}
         </script>
         <!--end info user-->
 
