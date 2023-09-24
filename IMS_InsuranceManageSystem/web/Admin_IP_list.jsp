@@ -11,6 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="CSS/admin_dashboard.css"/>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>JSP Page</title>
         
         <style>
@@ -74,7 +79,6 @@
                 <li href="#"><i class='bx bxs-user'></i>&nbsp;<span>Users</span> </li>
                 <li><i class='bx bxs-contact' ></i>&nbsp;<span>Insurance Product</span> </li>
                 <li><i class='bx bx-user-pin'></i>&nbsp;<span>Staff</span> </li>
-
             </ul>
         </div>
         <div class="container">
@@ -122,88 +126,25 @@
                 <div class="content-2">
                     <div class="recent-payments">
                         <div class="title">
-                            <h2>Recent Payments</h2>
-                            <a href="#" class="btn">View All</a>
+                            <h2>Insurance Product List</h2>
+                            <a href="#" class="btn">Add</a>
+                            <a href="#" class="btn">Search</a>
                         </div>
                         <table>
                             <tr>
+                                <th>ID</th>
                                 <th>Name</th>
-                                <th>School</th>
-                                <th>Amount</th>
-                                <th>Option</th>
                             </tr>
+                            <c:forEach items="${list}" var="o">
                             <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
+                                <td>${o.ip_id}</td>
+                                <td>${o.ip_name}</td>
+                                <td>
+                                    <a href="load?pid=${o.ip_id}"  class="update" data-toggle="modal"><i class="material-icons"  data-toggle="tooltip" title="Update">&#xE254;</i></a>
+                                    <a href="delete?pid=${o.ip_id}" class="delete" data-toggle="modal"><i class="material-icons" style="color: red" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
-                            <tr>
-                                <td>John Doe</td>
-                                <td>St. James College</td>
-                                <td>$120</td>
-                                <td><a href="#" class="btn">View</a></td>
-                            </tr>
+                             </c:forEach>
                         </table>
                     </div>
                     <div class="new-students">

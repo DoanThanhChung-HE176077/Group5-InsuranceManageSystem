@@ -28,6 +28,7 @@ public class InsuranceProduct extends DBContext{
         this.ip_id= ip_id;
         this.ip_type = ip_type;
         this.ip_name = ip_name;
+         connect();
     }
     
     public int getIp_id() {
@@ -66,17 +67,11 @@ public class InsuranceProduct extends DBContext{
         this.ip_name = ip_name;
     }
 
-    public void setCnn(Connection cnn) {
-        this.cnn = cnn;
+    @Override
+    public String toString() {
+        return "InsuranceProduct{" + "ip_id=" + ip_id + ", ip_type=" + ip_type + ", ip_name=" + ip_name + '}';
     }
-
-    public void setPstm(Statement pstm) {
-        this.pstm = pstm;
-    }
-
-    public void setRs(ResultSet rs) {
-        this.rs = rs;
-    }
+ 
     
     
     
@@ -134,6 +129,8 @@ public class InsuranceProduct extends DBContext{
         }
         return list;
     }
+
 }
+
 
 
