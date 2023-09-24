@@ -71,9 +71,9 @@
             </div>
             <ul class="sideitem">
                 <li></li>
-                <li href="#"><i class='bx bxs-user'></i>&nbsp;<span>Users</span> </li>
-                <li><i class='bx bxs-contact' ></i>&nbsp;<span>Insurance Product</span> </li>
-                <li><i class='bx bx-user-pin'></i>&nbsp;<span>Staff</span> </li>
+                <li><i class='bx bxs-user'></i>&nbsp;<span>Users</span> </li>
+                <li> <a href="admin_IP_list"><i class='bx bxs-contact' ></i>&nbsp;<span>Insurance Product</span></a></li>
+                <li> <a href="#"><i class='bx bx-user-pin'></i>&nbsp;<span>Staff</span></a> </li>
 
             </ul>
         </div>
@@ -123,7 +123,7 @@
                     <div class="recent-payments">
                         <div class="title">
                             <h2>Recent Payments</h2>
-                            <a href="#" class="btn">View All</a>
+                            <a href="admin_IP_list" class="btn">View All</a>
                         </div>
                         <table>
                             <tr>

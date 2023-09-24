@@ -4,6 +4,7 @@
     Author     : chun
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,7 +13,7 @@
         <link rel="stylesheet" href="CSS/admin_dashboard.css"/>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -127,60 +128,27 @@
                     <div class="recent-payments">
                         <div class="title">
                             <h2>Insurance Product List</h2>
-                            <a href="#" class="btn">Add</a>
-                            <a href="#" class="btn">Search</a>
+                            <a href="admin_IP_add" class="btn">Add</a>
                         </div>
                         <table>
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
                             </tr>
-                            <c:forEach items="${list}" var="o">
+                            <c:forEach items="${listIP}" var="o">
                             <tr>
-                                <td>${o.ip_id}</td>
-                                <td>${o.ip_name}</td>
+                                <td>${o.getIp_id()}</td>
+                                <td>${o.getIp_name()}</td>
                                 <td>
-                                    <a href="load?pid=${o.ip_id}"  class="update" data-toggle="modal"><i class="material-icons"  data-toggle="tooltip" title="Update">&#xE254;</i></a>
-                                    <a href="delete?pid=${o.ip_id}" class="delete" data-toggle="modal"><i class="material-icons" style="color: red" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a href="load?pid=${o.ip_id}" class="btn">Update</a>
+                                    <a href="delete?pid=${o.ip_id}" class="btn">Delete</a>
+                                    <a href="detail?pid=${o.ip_id}" class="btn">Detail</a>
                                 </td>
                             </tr>
                              </c:forEach>
                         </table>
                     </div>
-                    <div class="new-students">
-                        <div class="title">
-                            <h2>New Students</h2>
-                            <a href="#" class="btn">View All</a>
-                        </div>
-                        <table>
-                            <tr>
-                                <th>Profile</th>
-                                <th>Name</th>
-                                <th>option</th>
-                            </tr>
-                            <tr>
-                                <td><img src="user.png" alt=""></td>
-                                <td>John Steve Doe</td>
-                                <td><img src="info.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="user.png" alt=""></td>
-                                <td>John Steve Doe</td>
-                                <td><img src="info.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="user.png" alt=""></td>
-                                <td>John Steve Doe</td>
-                                <td><img src="info.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="user.png" alt=""></td>
-                                <td>John Steve Doe</td>
-                                <td><img src="info.png" alt=""></td>
-                            </tr>
-
-                        </table>
-                    </div>
+                    
                 </div>
             </div>
         </div>

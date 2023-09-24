@@ -32,20 +32,9 @@ public class admin_IP_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        InsuranceProduct IP = new InsuranceProduct();
-        ArrayList<InsuranceProduct> list = IP.getALLIP();
-//         for(InsuranceProduct o :list){
-//            System.out.println(o);
-//        }
-        if (list.isEmpty()){
-            System.out.println("rong");
-        }else{
-            System.out.println("ko rong");
-        }
-        // Init
-        
-        //b2: set data to jsp
-        request.setAttribute("list", list);
+        InsuranceProduct ip = new InsuranceProduct();
+        ArrayList<InsuranceProduct> list = ip.getALLIP();
+        request.setAttribute("listIP", list);
         request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
     } 
 

@@ -35,10 +35,8 @@ public class admin_IP_add extends HttpServlet {
         String ip_type = request.getParameter("ip_type");
         String ip_name = request.getParameter("ip_name");
         Model.InsuranceProduct IP = new InsuranceProduct();
-        ArrayList<InsuranceProduct> list = IP.getALLIP();
         IP.addIP(ip_id, ip_type, ip_name);
-//        (name, image, price, title, description,String.valueOf(list.size()+1));
-        response.sendRedirect("Admin_dashboard.jsp");
+        response.sendRedirect("Admin_IP_list.jsp");
         }
      
 
