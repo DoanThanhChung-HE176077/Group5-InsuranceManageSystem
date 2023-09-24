@@ -31,12 +31,12 @@ public class admin_IP_add extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int ip_id = parseInt(request.getParameter("ip_id"));
         String ip_type = request.getParameter("ip_type");
         String ip_name = request.getParameter("ip_name");
-        Model.InsuranceProduct IP = new InsuranceProduct();
-        IP.addIP(ip_id, ip_type, ip_name);
-        response.sendRedirect("Admin_IP_list.jsp");
+        InsuranceProduct IP = new InsuranceProduct();
+        ArrayList<InsuranceProduct> list = IP.getALLIP();
+        IP.addIP(parseInt(String.valueOf(list.size()+1)), ip_type, ip_name);
+        response.sendRedirect("admin_IP_list");
         }
      
 
