@@ -11,106 +11,112 @@ import java.sql.Date;
  * @author Dell
  */
 public class User {
-        private String user_id;
-         private String fullName;
-          private String email;
-           private String password;
-           private Date  dob;
-           private String address;
-           private String phoneNumber;
-           private String image;
-           private int role;
 
-    public User(String user_id, String fullName, String email, String password, Date dob, String address, String phoneNumber, String image, int role) {
+    private int user_id;
+    private String user_fullName;
+    private String user_email;
+    private String user_password;
+    private Date user_dob;
+    private String user_address;
+    private String user_phoneNum;
+    private String user_iden;
+    private String user_image;
+    private String user_role;
+
+    public User(int user_id, String user_fullName, String user_email, String user_password, Date user_dob, String user_address, String user_phoneNum, String user_iden, String user_image, String user_role) {
         this.user_id = user_id;
-        this.fullName = fullName;
-        this.email = email;
-        this.password = password;
-        this.dob = dob;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.image = image;
-        this.role = role;
+        this.user_fullName = user_fullName;
+        this.user_email = user_email;
+        this.user_password = user_password;
+        this.user_dob = user_dob;
+        this.user_address = user_address;
+        this.user_phoneNum = user_phoneNum;
+        this.user_iden = user_iden;
+        this.user_image = user_image;
+        this.user_role = user_role;
     }
 
-    public String getUser_id() {
+    public User() {
+    }
+
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getUser_fullName() {
+        return user_fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setUser_fullName(String user_fullName) {
+        this.user_fullName = user_fullName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUser_email() {
+        return user_email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUser_password() {
+        return user_password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
     }
 
-    public Date getDob() {
-        return dob;
+    public Date getUser_dob() {
+        return user_dob;
     }
 
-    public void setDob(Date dob) {
-        this.dob = dob;
+    public void setUser_dob(Date user_dob) {
+        this.user_dob = user_dob;
     }
 
-    public String getAddress() {
-        return address;
+    public String getUser_address() {
+        return user_address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setUser_address(String user_address) {
+        this.user_address = user_address;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getUser_phoneNum() {
+        return user_phoneNum;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setUser_phoneNum(String user_phoneNum) {
+        this.user_phoneNum = user_phoneNum;
     }
 
-    public String getImage() {
-        return image;
+    public String getUser_iden() {
+        return user_iden;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setUser_iden(String user_iden) {
+        this.user_iden = user_iden;
     }
 
-    public int getRole() {
-        return role;
+    public String getUser_image() {
+        return user_image;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setUser_image(String user_image) {
+        this.user_image = user_image;
     }
 
-    public User(String user_id, String fullName) {
-        this.user_id = user_id;
-        this.fullName = fullName;
+    public String getUser_role() {
+        return user_role;
     }
-           
-           
-           
-        
+
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
+    }
+
 }

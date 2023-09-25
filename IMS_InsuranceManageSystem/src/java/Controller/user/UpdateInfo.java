@@ -12,14 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.User;
 
 /**
  *
  * @author Dell
  */
-@WebServlet(name="Info_user", urlPatterns={"/Info_user"})
-public class Info_user extends HttpServlet {
+@WebServlet(name="UpdateInfo", urlPatterns={"/UpdateInfo"})
+public class UpdateInfo extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +35,10 @@ public class Info_user extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Info_user</title>");  
+            out.println("<title>Servlet UpdateInfo</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Info_user at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet UpdateInfo at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,10 +55,7 @@ public class Info_user extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-         User newP = new User("1", "DDT");
-       response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-        out.println("{\"userId\": \"" + newP.getUser_id() + "\", \"fullname\": \"" + newP.getFullName() + "\"}");
+        processRequest(request, response);
     } 
 
     /** 
