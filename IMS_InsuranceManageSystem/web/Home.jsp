@@ -52,12 +52,11 @@
         <div class="banner" id="banner">
             <!-- Nội dung banner -->
         </div>
-        <!-- slider -->
+        <!--my slider -->
         <div class="items bg-card">
             <div class="card">
                 <a href="">
                     <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
                 </a>
             </div>
 
