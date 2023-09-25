@@ -23,7 +23,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-            Admin_user_dashboard.jsp
+            Home.jsp
         </welcome-file>
     </welcome-file-list>
 </web-app>

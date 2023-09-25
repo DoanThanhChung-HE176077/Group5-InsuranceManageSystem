@@ -25,7 +25,7 @@
 
             <ul class="my-navbar">
                 <li class="dropdown">
-                    <a class="" href="Home.jsp">Trang chủ</a>
+                    <a class="" href="/IMS_InsuranceManageSystemBackup/">Trang chủ</a>
 <!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                          Dropdown menu items 
                     </div>-->
