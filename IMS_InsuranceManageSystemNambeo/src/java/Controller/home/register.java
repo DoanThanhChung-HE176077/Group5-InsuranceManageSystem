@@ -18,6 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import model.User;
 
 /**
@@ -84,25 +86,78 @@ public class register extends HttpServlet {
         String password = request.getParameter("input-password");
         String repassword = request.getParameter("input-repassword");
         
-        // Tạo một đối tượng SimpleDateFormat
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        
+        if (checkPhoneNumber(phoneNum) == "Số điện thoại không hợp lệ") {
+            request.setAttribute("msg", "Số điện thoại không hợp lệ");
+            doGet(request, response);
 
-        Date dateofbirth=null;
-        try {
-            // Parse chuỗi thành một đối tượng Date
-            dateofbirth = dateFormat.parse(dob);
-        } catch (ParseException ex) {
-            Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+        } else if (checkEmail(mail) == "Email không hợp lệ") {
+            request.setAttribute("msg", "Email không hợp lệ");
+            doGet(request, response);
+
+        } else if (checkIdentityCardNumber(iden) == "Số căn cước công dân không hợp lệ") {
+            request.setAttribute("msg", "Số căn cước công dân không hợp lệ");
+            doGet(request, response);
+
+        } else if (password != repassword) {
+            request.setAttribute("msg", "nhập lại mật khẩu sai");
+            doGet(request, response);
+        } else {
+            // Tạo một đối tượng SimpleDateFormat
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            Date dateofbirth = null;
+            try {
+                // Parse chuỗi thành một đối tượng Date
+                dateofbirth = dateFormat.parse(dob);
+            } catch (ParseException ex) {
+                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            User u = new User();
+            UserDAO uD = new UserDAO();
+
+            uD.addUser(fullname, mail, password, dateofbirth, address, phoneNum, iden);
+
+            response.sendRedirect("login");
         }
+        
+        
+        
+        
+    }
+    
+    public static String checkPhoneNumber(String phoneNumber) {
+        String regex = "^0\\d{9}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneNumber);
+        if (matcher.matches()) {
+            return null;
+        } else {
+            return "Số điện thoại không hợp lệ";
+        }
+    }
 
-        User u = new User();
-        UserDAO uD = new UserDAO();
-        
-        uD.addUser(fullname, mail, password, dateofbirth, address, phoneNum, iden);
-        
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
-        
-        
+    public static String checkEmail(String email) {
+        String regex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            return null;
+        } else {
+            return "Email không hợp lệ";
+        }
+    }
+
+    public static String checkIdentityCardNumber(String identityCardNumber) {
+        String regex = "^[0-9]{12}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(identityCardNumber);
+        if (matcher.matches()) {
+            return null;
+        } else {
+            return "Số căn cước công dân không hợp lệ";
+        }
     }
 
     /** 

@@ -84,12 +84,16 @@ public class login extends HttpServlet {
         String msg = uD.checkLogin(userlogin, password);
         request.setAttribute("msg", msg);
         
-        HttpSession session = request.getSession();
-        u = uD.getUsers(userlogin, password);
-        session.setAttribute("user", u);
+        if (msg == "Login successful!") {
+            HttpSession session = request.getSession();
+            u = uD.getUsers(userlogin, password);
+            session.setAttribute("user", u);
+            response.sendRedirect("/IMS_InsuranceManageSystemNambeo/");
+        } else {
+            doGet(request, response);
+        }
+            
         
-        
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
         
         
     }

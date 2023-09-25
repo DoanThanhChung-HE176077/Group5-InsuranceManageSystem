@@ -47,52 +47,52 @@
                 <div class="form-group" style="display: flex;">
                     <span class="input_label">Số điện thoại</span>
                     <div class="input-group" style="margin-right: 10px;">
-                        <input name="input-phoneNum" type="text" id="" class="form-control" placeholder="Nhập số điện thoại">
+                        <input name="input-phoneNum" type="text" id="" class="form-control" placeholder="Nhập số điện thoại" required invalid-message="Vui lòng nhập">
                     </div>
                     <span class="input_label" style="margin-left: 180px;">Email</span>
                     <div class="input-group">
-                        <input name="input-mail" type="text" id="" class="form-control" placeholder="Nhập Mail">
+                        <input name="input-mail" type="text" id="" class="form-control" placeholder="Nhập Mail" required>
                     </div>
                 </div>
                 
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Họ Tên</span>
                     <div class="input-group">
-                        <input name="input-fullname" type="text" id="" class="form-control" placeholder="Nhập họ tên đầy đủ">
+                        <input name="input-fullname" type="text" id="" class="form-control" placeholder="Nhập họ tên đầy đủ" required>
                     </div>
                 </div>
                 
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Ngày Sinh</span>
                     <div class="input-group">
-                        <input name="input-dob" type="date" id="" class="form-control" placeholder="Nhập ngày sinh">
+                        <input name="input-dob" type="date" id="" class="form-control" placeholder="Nhập ngày sinh" required>
                     </div>
                 </div>
                 
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Địa chỉ</span>
                     <div class="input-group">
-                        <input name="input-address" type="text" id="" class="form-control" placeholder="Nhập địa chỉ">
+                        <input name="input-address" type="text" id="" class="form-control" placeholder="Nhập địa chỉ" required>
                     </div>
                 </div>
                 
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">CMT/CCCD</span>
                     <div class="input-group">
-                        <input name="input-iden" type="text" id="" class="form-control" placeholder="Nhập CMT/CCCD">
+                        <input name="input-iden" type="text" id="" class="form-control" placeholder="Nhập CMT/CCCD" required>
                     </div>
                 </div>
 
                 <div class="form-group" id="Upa_otp"> 
                     <span class="input_label">Mật khẩu</span>
                     <div class="input-group">
-                        <input name="input-password" type="password" id="" class="form-control" placeholder="Nhập mật khẩu">
+                        <input name="input-password" type="password" id="" class="form-control" placeholder="Nhập mật khẩu" required>
                     </div>
                 </div>
                 <div class="form-group" id="Upa_otp"> 
                     <span class="input_label">Nhập lại</span>
                     <div class="input-group">
-                        <input name="input-repassword" type="password" id="" class="form-control" placeholder="Nhập lại mật khẩu">
+                        <input name="input-repassword" type="password" id="" class="form-control" placeholder="Nhập lại mật khẩu" required>
                     </div>
                 </div>
                 <p style="text-align:center;color:red; font-size: 14px; margin-bottom: 10px;">
