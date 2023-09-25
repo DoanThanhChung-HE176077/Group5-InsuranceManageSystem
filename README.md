@@ -1,6 +1,6 @@
 # Insurance Manage System.
 
-SWP391-Project Group5
+SWP391-Project Group5.
 
 ## Member
 
