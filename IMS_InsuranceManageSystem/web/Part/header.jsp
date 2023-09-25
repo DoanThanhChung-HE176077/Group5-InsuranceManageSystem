@@ -289,46 +289,60 @@
                 else if (newPassword != cfPassword) {
                     alert('Enter wrong confirmed password');
                 } else {
-                        window.location.href = 'https://www.google.com';
+                       alert('Change password successfully!!');
                     }
             }
                     
 
                             
                             
-                            function saveInfo() {
-                            let inputs = document.querySelectorAll('.form-info input');
-                    let inputEmail = document.querySelector('.form-info input[type="email"]');
-                    let isEmpty = false;
+                           function saveInfo() { 
+    let inputs = document.querySelectorAll('.form-info input');
+    let inputEmail = document.querySelector('.form-info input[type="email"]');
+    let isEmpty = false;
 
-                    for (let i = 0; i < inputs.length; i++) {
-                        // Nếu input rỗng, thêm thuộc tính 'required'
-                        if (inputs[i].value.trim() === '') {
-                            isEmpty = true;
-                            inputs[i].setAttribute('required', true);
-                    } else {
-                        inputs[i].removeAttribute('required');
-                    }
-                }
-               
-                
-                // Kiểm tra xem có ô input email trống không
-                if (isEmpty) {
-                    alert('Vui lòng điền đầy đủ thông tin trước khi gửi.');
-                } else {
-                    let emailValue = inputEmail.value.trim();
-                    if (validateEmail(emailValue)) {
-                        window.location.href = 'https://www.google.com';
-                    } else {
-                            alert('Email không hợp lệ.');
-                        }
-                    }
-                var xhr = new XMLHttpRequest();
-                // Cấu hình yêu cầu AJAX
-                xhr.open("POST", "UpdateInfo", true);
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.send(JsonData);
-            }
+    for (let i = 0; i < inputs.length; i++) {
+        // Nếu input rỗng, thêm thuộc tính 'required'
+        if (inputs[i].value.trim() === '') {
+            isEmpty = true;
+            inputs[i].setAttribute('required', true);
+        } else {
+            inputs[i].removeAttribute('required');
+        }
+    }
+
+    // Kiểm tra xem có ô input email trống không
+    if (isEmpty) {
+        alert('Vui lòng điền đầy đủ thông tin trước khi gửi.');
+    } else {
+        let emailValue = inputEmail.value.trim();
+        if (!validateEmail(emailValue)) {
+            alert('Save unsuccessfully');
+        } else {
+            // Chuyển đổi dữ liệu thành JSON
+            var jsonData = {
+                user_id: data.user_id, // Sử dụng data từ fetchData
+                user_fullName: document.getElementById("user_fullname").value,
+                user_email: document.getElementById("user_email").value,
+                user_password: document.getElementById("user_password").value,
+                user_dob: document.getElementById("user_dob").value,
+                user_address: document.getElementById("user_address").value,
+                user_phoneNum: document.getElementById("user_phoneNum").value,
+                user_iden: document.getElementById("user_iden").value
+            };
+
+            // Chuyển đổi đối tượng JSON thành chuỗi JSON
+            var jsonString = JSON.stringify(jsonData);
+
+            // Cấu hình yêu cầu AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "UpdateInfo", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(jsonString);
+        }
+    }
+}
+
                     
 
                                 

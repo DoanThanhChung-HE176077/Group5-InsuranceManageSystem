@@ -26,4 +26,8 @@
             Home.jsp
         </welcome-file>
     </welcome-file-list>
+     <context-param>
+        <param-name>json-simple</param-name>
+        <param-value>D:\lib\json-simple-1.1.1</param-value>
+    </context-param>
 </web-app>
