@@ -5,6 +5,7 @@
 
 package Controller.admin;
 
+import Dao.IPDAO;
 import Model.InsuranceProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,7 +34,7 @@ public class admin_IP_add extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String ip_type = request.getParameter("ip_type");
         String ip_name = request.getParameter("ip_name");
-        InsuranceProduct IP = new InsuranceProduct();
+        IPDAO IP = new IPDAO();
         ArrayList<InsuranceProduct> list = IP.getALLIP();
         IP.addIP(parseInt(String.valueOf(list.size()+1)), ip_type, ip_name);
         response.sendRedirect("admin_IP_list");

@@ -41,7 +41,7 @@
     <body>
 
 
-
+        
 
         <!--header-->
         <jsp:include page="Part/header.jsp"></jsp:include>
@@ -116,14 +116,15 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                 </tr>
+                                
+                                
                             <c:forEach items="${listIP}" var="o">
                                 <tr>
                                     <td>${o.getIp_id()}</td>
                                     <td>${o.getIp_name()}</td>
                                     <td>
-                                        <a href="load?pid=${o.ip_id}" class="btn">Update</a>
-                                        <a href="delete?pid=${o.ip_id}" class="btn">Delete</a>
-                                        <a href="detail?pid=${o.ip_id}" class="btn">Detail</a>
+                                        <a href="admin_IP_detail?id=1" class="my-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#my-modal-detail"
+                                   data-bs-whatever="@getbootstrap">Detail</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -174,68 +175,45 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <!-- modal header -->
+                    <form action="admin_IP_detail" method="get">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Detail Insurance Product</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                     </div>
                     <!-- modal body -->
                     <div class="modal-body">
-                        <form>
+                        
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">ID:${admin_IP_detail.ip_id}</label>
+                                <input type="text" class="form-control" id="recipient-name" name="id">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                                <label for="message-text" class="col-form-label">Type:${admin_IP_detail.ip_type}</label>
+                                <textarea class="form-control" id="message-text" name="type"></textarea>
                             </div>
-                        </form>
+                        <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Name:${admin_IP_detail.ip_name}</label>
+                                <textarea class="form-control" id="message-text" name="name"></textarea>
+                            </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send message</button>
+                        
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
 
-        <!-- form edit detail user -->
-        <div class="modal fade" id="my-modal-edit" tabindex="-1" aria-labelledby="exampleModalLabe2"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <!-- modal header -->
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <!-- modal body -->
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send message</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
 
         <script>
             function show() {
                 document.getElementById('sidebar').classList.toggle('active');
             }
         </script>
+        <a href="admin_IP_detail?id=1">helo</a>
     </body>
 </html>
