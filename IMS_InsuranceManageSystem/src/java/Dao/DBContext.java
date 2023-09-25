@@ -12,18 +12,17 @@ import java.util.logging.Logger;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author FPT University - PRJ301
  */
 public class DBContext {
+
     protected Connection connection;
     protected PreparedStatement statement;
     protected ResultSet resultSet;
-    
-    public DBContext()
-    {
+
+    public DBContext() {
         //@Students: You are allowed to edit user, pass, url variables to fit 
         //your system configuration
         //You can also add more methods for Database Interaction tasks. 
@@ -34,7 +33,7 @@ public class DBContext {
             //enter pass and acc sql
             String user = "sa";
             String pass = "123";
-            
+
             //edit server name, database name
             String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insuranceDB";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
