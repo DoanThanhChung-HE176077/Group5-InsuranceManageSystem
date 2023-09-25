@@ -37,10 +37,10 @@
                     G5insurance_
                 </i>
             </a>
-            menu icon 
+<!--            menu icon -->
 
             <div class="bx bx-menu" id="my-menu-icon"></div>
-            nav list 
+<!--            nav list -->
             <ul class="my-navbar">
                 <li><a href="" class="home-active">Home</a></li>
                 <li><a href="" class="">category</a></li>
@@ -48,7 +48,7 @@
                 <li><a href="" class="">about</a></li>
                 <li><a href="" class="">option</a></li>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    Dropdown menu items 
+<!--                    Dropdown menu items -->
                     <div>
                         <a class="dropdown-item" href="#">
                             <i class='bx bxs-user'></i>
