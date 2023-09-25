@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+}
+body {
+    min-height: 100vh !important;
+}
+a {
+    text-decoration: none !important;
+}
+li {
+    list-style: none !important;
+}
+h1,
+h2 {
+    text-align: center !important ;
+    color: #444 !important;
+}
+h3 {
+    color: #999 !important;
+}
+.my-btn {
+    background: #f05462 !important;
+    color: white !important;
+    padding: 5px 10px !important;
+    text-align: center !important;
+}
+.my-btn:hover {
+    color: #f05462 !important;
+    background: white !important;
+    padding: 3px 8px !important;
+    border: 2px solid #f05462 !important;
+}
+.my-list-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 10px;
+    border-bottom: 2px solid #999;
+}
+table {
+    padding: 10px !important;
+}
+th,
+td {
+    text-align: center !important;
+    padding: 8px !important;
+}
+.side-container{
+    padding: 0 !important;
+}
+.side-menu {
+    position: fixed;
+    background: #f05462;
+    width: 20vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 76px;
+    
+}
+.side-menu .brand-name {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.side-menu li {
+    font-size: 19px !important;
+    padding: 10px 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-right: 11px;
+}
+.side-menu li:hover {
+    background: white;
+    color: #f05462;
+}
+#my-container {
+    position: absolute;
+    right: 0;
+    width: 80vw;
+    height: 100vh;
+    background: #f1f1f1;
+}
+/* .my-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80vw;
+    height: 10vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.my-nav {
+    width: 90%;
+    display: flex;
+    align-items: center;
+}
+.my-nav .my-search {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+}
+.my-nav .my-search input[type=text] {
+    border: none;
+    background: #f1f1f1;
+    padding: 10px;
+    width: 50%;
+}
+.my-nav .my-search button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.my-nav .my-search button img {
+    width: 30px;
+    height: 30px;
+}
+.my-nav .my-user {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.my-nav .my-user img {
+    width: 40px;
+    height: 40px;
+}
+.my-nav .my-user .img-case {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+.my-nav .my-user .img-case img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+} */
+/* ----------------header------------------------- */
+my-navbar{
+    color:#3cb815;
+}
+#my-header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    box-shadow: 0 8px 11px rgb(14 55 54 / 15%);
+    padding: 20px 100px;
+    transition: 0.3s;
+
+}
+.my-profile{
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    cursor: pointer;
+}
+.my-profile img {
+    width: 40px;
+    height: 49px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 59%;
+
+}
+
+.my-profile #my-user-name {
+    font-size: 13px;
+    font-weight: 500;
+
+}
+.my-logo{
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3cb815;
+    column-gap: 0.5rem;
+}
+.my-logo .bx{
+    font-size: 24px;
+    color: #ff7e00;
+}
+.my-navbar{
+    display: flex;
+    column-gap: 0.5rem ;
+    margin-bottom: 0;
+    margin-left: -100px;
+}
+.my-navbar li a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #3cb815;
+    padding: 0.5rem 1rem;
+
+}
+.my-navbar a:hover, .nav #homeactive{
+    background-color: #3cb815;
+    border-radius: 5rem;
+    color: #fff;
+    
+    transition: background 0.5s;
+}
+
+#my-menu-icon{
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+}
+
+/*dropdown*/
+/* Hide the dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Style the individual dropdown items */
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* Style the dropdown items on hover */
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+/* ----------------------------------------------- */
+
+#my-container .content {
+    position: relative;
+    margin-top: 10vh;
+    min-height: 90vh;
+    background: #f1f1f1;
+}
+#my-container .content .my-cards {
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#my-container .content .my-cards .my-card {
+    width: 250px;
+    height: 150px;
+    background: white;
+    margin: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#my-container .content .content-2 {
+    min-height: 60vh ;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+#my-container .content .content-2 .my-list1 {
+    min-height: 50vh;
+    flex: 5;
+    background: white;
+    margin: 0 25px 25px 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+}
+#my-container .content .content-2 .new-students {
+    flex: 2;
+    background: white;
+    min-height: 50vh;
+    margin: 0 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    flex-direction: column;
+}
+#my-container .content .content-2 .new-students table td:nth-child(1) img {
+    height: 40px;
+    width: 40px;
+}
+@media screen and (max-width: 1050px) {
+    .side-menu li {
+        font-size: 18px;
+    }
+}
+@media screen and (max-width: 940px) {
+    .side-menu li span {
+        display: none;
+    }
+    .side-menu {
+        align-items: center;
+    }
+    .side-menu li img {
+        width: 40px;
+        height: 40px;
+    }
+    .side-menu li:hover {
+        background: #f05462;
+        padding: 8px 38px;
+        border: 2px solid white;
+    }
+}
+@media screen and (max-width:536px) {
+    .brand-name h1 {
+        font-size: 16px;
+    }
+    #my-container .content .my-cards {
+        justify-content: center;
+    }
+    .side-menu li img {
+        width: 30px;
+        height: 30px;
+    }
+    #my-container .content .content-2 .my-list1 table th:nth-child(2),
+    #my-container .content .content-2 .my-list1 table td:nth-child(2) {
+        display: none;
+    }
+}
