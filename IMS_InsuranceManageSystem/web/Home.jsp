@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="CSS/home.css">
         <title>Document</title>
-        
+
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -41,94 +41,96 @@
 
         <!-- Liên kết đến JavaScript của Slick Carousel (phiên bản 1.8.1) -->
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-        
+
+
     </head>
     <body>
         <!--header-->
         <jsp:include page="Part/header.jsp"></jsp:include>
-        
-        <!-- body -->
-        <!-- Phần banner -->
-        <div class="banner" id="banner">
-            <!-- Nội dung banner -->
-        </div>
-        <!--my slider -->
-        <div class="items bg-card">
-            <div class="card">
-                <a href="">
-                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-                </a>
+
+            <!-- body -->
+            <!-- Phần banner -->
+            <div class="banner" id="banner">
+                <!-- Nội dung banner -->
+            </div>
+            <!-- slider -->
+            <div class="items bg-card">
+                <div class="card">
+                    <a href="">
+                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
+
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="">
+                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
+
+                    </a>
+                </div>
+
+
+                <div class="card">
+                    <a href="">
+                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
+
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="">
+                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
+
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="">
+                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
+
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="">
+                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
+
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="">
+                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
+
+                    </a>
+                </div>
+
+                <div class="card">
+                    <a href="">
+                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
+
+                    </a>
+                </div>
+
             </div>
 
-            <div class="card">
-                <a href="">
-                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
+            <section class="container products">
+                <h3 class="text-center">Nhóm sản phẩm</h3>
+                <div class="row">
+                    <a onclick="" class="col-lg-6 col-sm-6 text-center">
+                        <img src="Image/accident.png" alt="">
+                        <span class="d-block mt-3">Bảo Hiểm TNDS</span>
+                    </a>
+                    <a onclick="" class="col-lg-6 col-sm-6 text-center">
+                        <img src="Image/motorcycle.png" alt="">
+                        <span class="d-block mt-3">Bảo Hiểm Vật Chất</span>
+                    </a>
 
-                </a>
-            </div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </section>
 
-
-            <div class="card">
-                <a href="">
-                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                </a>
-            </div>
-
-            <div class="card">
-                <a href="">
-                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                </a>
-            </div>
-
-            <div class="card">
-                <a href="">
-                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                </a>
-            </div>
-
-            <div class="card">
-                <a href="">
-                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                </a>
-            </div>
-
-            <div class="card">
-                <a href="">
-                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                </a>
-            </div>
-
-            <div class="card">
-                <a href="">
-                    <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                </a>
-            </div>
-
-        </div>
-
-        <section class="container products">
-            <h3 class="text-center">Nhóm sản phẩm</h3>
-            <div class="row">
-                <a onclick="" class="col-lg-6 col-sm-6 text-center">
-                    <img src="Image/accident.png" alt="">
-                    <span class="d-block mt-3">BẢO HIỂM TNDS</span>
-                </a>
-                <a onclick="" class="col-lg-6 col-sm-6 text-center">
-                    <img src="Image/motorcycle.png" alt="">
-                    <span class="d-block mt-3">BẢO HIỂM VẬT CHẤT</span>
-                </a>
-
-                <div class="col-sm-2"></div>
-            </div>
-        </section>
-
-        <!-- foooter -->
+            <!-- footer -->
         <jsp:include page="Part/footer.jsp"></jsp:include>
 
 
@@ -157,8 +159,8 @@
                 });
             });
         </script>
-        
-        
-        
+
+
+
     </body>
 </html>
