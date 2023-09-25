@@ -10,15 +10,15 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import model.Users;
+import model.User;
 
 /**
  *
  * @author thant
  */
-public class userDAO extends DBContext{
+public class UserDAO extends DBContext{
 
-    public userDAO() {
+    public UserDAO() {
     }
    
     //check Login method
@@ -88,7 +88,7 @@ public class userDAO extends DBContext{
     }
     
     
-    public Users getUsers(String userlogin, String password) {
+    public User getUsers(String userlogin, String password) {
         try {
             String strSQL=null;
             if (checkInfo(userlogin) == "email") {
@@ -102,10 +102,10 @@ public class userDAO extends DBContext{
             ResultSet rs = pstm.executeQuery();
             if (rs.next()) {
                 // Đăng nhập thành công
-                Users u = new Users();
+                User u = new User();
                 u.setUser_id(rs.getInt(1));
-                u.setUser_fullname(rs.getString(2));
-                u.setUser_mail(rs.getString(3));
+                u.setUser_fullName(rs.getString(2));
+                u.setUser_email(rs.getString(3));
                 u.setUser_password(rs.getString(4));
                 u.setUser_dob(rs.getDate(5));
                 u.setUser_address(rs.getString(6));
@@ -160,5 +160,66 @@ public class userDAO extends DBContext{
             System.out.println("getLastId: " + e.getMessage());
         }
         return 0;
+    }
+    
+    
+    
+    
+//    thien
+    public User dislayInfo(int user_id) {
+        String sql = "select * from Users where user_id = " + user_id;
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                User us = new User(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7),
+                         rs.getString(8), rs.getString(9), rs.getString(10));
+                return us;
+            }
+        } catch (Exception E) {
+
+        }
+        return null;
+    }
+
+    public void updateUser(int user_id, String user_fullname, String user_mail,
+            String user_password, java.sql.Date user_dob, String user_address,
+            String user_phoneNum, String user_iden) {
+        String sql = "UPDATE [dbo].[Users]\n"
+                + "   SET \n"
+                + "       [user_fullname] = ?\n"
+                + "      ,[user_mail] = ?\n"
+                + "      ,[user_password] =?\n"
+                + "      ,[user_dob] = ?\n"
+                + "      ,[user_address] =?\n"
+                + "      ,[user_phoneNum] =?\n"
+                + "      ,[user_iden] = ?\n"
+                + "      \n"
+                + " WHERE user_id = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, user_fullname);
+            st.setString(2, user_mail);
+            st.setString(3, user_password);
+            st.setDate(4, user_dob);
+            st.setString(5, user_address);
+            st.setString(6, user_phoneNum);
+            st.setString(7, user_iden);
+            st.setInt(8, user_id);
+
+            st.executeUpdate();
+
+        } catch (Exception E) {
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+        UserDAO dao = new UserDAO();
+        dao.updateUser(1, "1", "1", "1", java.sql.Date.valueOf("2003-03-23"), "1123456", "1", "1");
+
     }
 }

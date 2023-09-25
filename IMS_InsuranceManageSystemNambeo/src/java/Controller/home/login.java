@@ -6,7 +6,8 @@ package Controller.home;
  */
 
 
-import Dao.userDAO;
+import Dao.UserDAO;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,7 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Users;
+import model.User;
 
 /**
  *
@@ -77,8 +78,8 @@ public class login extends HttpServlet {
         String userlogin = request.getParameter("input-login");
         String password = request.getParameter("input-password");
 
-        Users u = new Users();
-        userDAO uD = new userDAO();
+        User u = new User();
+        UserDAO uD = new UserDAO();
         
         String msg = uD.checkLogin(userlogin, password);
         request.setAttribute("msg", msg);

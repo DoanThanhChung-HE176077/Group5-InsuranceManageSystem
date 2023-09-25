@@ -5,7 +5,7 @@
 
 package Controller.home;
 
-import Dao.userDAO;
+import Dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Users;
+import model.User;
 
 /**
  *
@@ -95,8 +95,8 @@ public class register extends HttpServlet {
             Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        Users u = new Users();
-        userDAO uD = new userDAO();
+        User u = new User();
+        UserDAO uD = new UserDAO();
         
         uD.addUser(fullname, mail, password, dateofbirth, address, phoneNum, iden);
         
