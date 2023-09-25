@@ -8,6 +8,11 @@
         <link rel="stylesheet" href="CSS/header.css"/>
         <!-- box incon -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        
+        <!-- font ăesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <!-- navbar -->
@@ -15,7 +20,7 @@
             
             <a href="#" class="my-logo">
                 <i class='bx bxs-check-shield'>
-                    G5insurance_
+                    <span>G5insurance</span>
                 </i>
             </a>
             <!-- menu icon -->
@@ -75,10 +80,11 @@
                     <a class="dropdown-toggle" data-bs-toggle="dropdown" style="text-decoration: none;">
                         <img src="Image/chung_avatar.jpg" alt="">
                         <span id="my-username" style="color: black;">
-                            ${sessionScope.user.user_fullname}
+                            ${sessionScope.user.user_fullName}
                         </span>
                     </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!-- Dropdown menu items -->
                         <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#exampleModal">Profile</a>
                         
@@ -88,7 +94,7 @@
                         </c:if>
                         
                         <!--phân quyền admin-->
-                        <c:if test="${sessionScope.user.user_role.equals('staff')}">
+                        <c:if test="${sessionScope.user.user_role.equals('admin')}">
                             <a class="dropdown-item" href="admin_dashboard">Dashboard</a>
                         </c:if>
                             
@@ -103,21 +109,21 @@
                 
                     <c:if test="${sessionScope.user == null}">
                         <ul class="navbar-nav menutrai">
-                    <li class="d-flex align-items-center float-right" id="btnlogin">
-                        <a href="Login.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
-                        Đăng nhập
-                        </a>
-                        
-                    </li>
-                </ul>
-                <ul class="navbar-nav menutrai">
-                    <li class="d-flex align-items-center float-right" id="btnlogin">
-                        <a href="Register.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
-                        Đăng ký
-                        </a>
-                        
-                    </li>
-                </ul>
+                            <li class="d-flex align-items-center float-right" id="btnlogin">
+                                <a href="Login.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                    Đăng nhập
+                                </a>
+
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav menutrai">
+                            <li class="d-flex align-items-center float-right" id="btnlogin">
+                                <a href="Register.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                    Đăng ký
+                                </a>
+
+                            </li>
+                        </ul>
                     </c:if>
                 
                 
@@ -127,7 +133,7 @@
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-       <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#exampleModal">Profile</a>
+<!--       <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#exampleModal">Profile</a>-->
        
        <!-- my profile -->
        <div class="modal fade" id="exampleModal" tabindex="-1"

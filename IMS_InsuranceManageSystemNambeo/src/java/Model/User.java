@@ -21,6 +21,17 @@ public class User {
 //            user_role;
 //    Date user_dob;
     
+/*
+    CONFLICT CÁCH ĐẶT TÊN:
+    - nam: user_fullname
+    - someone: user_fullName
+    
+    => sai syntax `sesssionScope.user.userfullname` tại login.jsp dẫn đến không login được
+    khắc phục:
+    - thống nhất lại syntax 
+*/    
+    
+    
     private int user_id;
     private String user_fullName;
     private String user_email;

@@ -33,11 +33,11 @@ public class DBContext {
         try {
             //enter pass and acc sql
             String user = "sa";
-            String pass = "111";
+            String pass = "123";
             
             //edit server name, database name
 //            String url = "jdbc:sqlserver://DESKTOP-7MF95U3\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
-                String url = "jdbc:sqlserver://localhost:1433;databaseName=insurance-manage-systemV1";
+                String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {

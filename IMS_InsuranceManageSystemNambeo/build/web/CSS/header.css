@@ -26,10 +26,9 @@
     align-items: center;
     justify-content: space-between;
     background: #fff;
-    /*box-shadow: 0 8px 11px rgb(14 55 54 15%);*/
     padding: 20px 100px;
     transition: 0.3s;
-
+    
 }
 
 .my-profile{
@@ -40,31 +39,41 @@
 }
 
 .my-profile img {
+    margin-right: 10px;
     max-width: 40px;
     object-fit: cover;
     object-position: center;
     border-radius: 50%;
+    box-shadow: 0 0 10px #f05462;
 
 }
 
-/*.my-profile #my-user-name {
-    font-size: 14px !important;
-    font-weight: 500 !important;
-    color: green !important;
-    text-decoration: none !important;
-}*/
-.my-logo{
+/*.my-logo{
     display: flex;
     align-items: center;
     font-size: 1.1rem;
     font-weight: 600;
     color: #3cb815;
     column-gap: 0.5rem;
+}*/
+
+.my-logo {
+  font-family: Roboto;
+  font-size: 24px;
+  font-weight: 900;
+  text-decoration: none;
+    color: #f05462;
+    transition: none;
+  text-align: center;
+  border-radius: 4px;
 }
+
+
+/*
 .my-logo .bx{
     font-size: 24px;
     color: #ff7e00;
-}
+}*/
 .my-navbar{
     display: flex;
     column-gap: 0.5rem ;
