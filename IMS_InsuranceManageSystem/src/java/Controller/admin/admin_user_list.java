@@ -41,6 +41,8 @@ public class admin_user_list extends HttpServlet {
             out.println("</html>");
         }
     } 
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -67,6 +69,7 @@ public class admin_user_list extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /** 
