@@ -38,8 +38,8 @@ public class admin_IP_add extends HttpServlet {
         ArrayList<InsuranceProduct> list = IP.getALLIP();
         IP.addIP(parseInt(String.valueOf(list.size()+1)), ip_type, ip_name);
         response.sendRedirect("admin_IP_list");
-        }
-     
+        
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 

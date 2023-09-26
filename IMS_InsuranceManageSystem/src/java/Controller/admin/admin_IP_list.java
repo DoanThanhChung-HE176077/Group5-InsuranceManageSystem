@@ -8,8 +8,8 @@ package Controller.admin;
 import Dao.IPDAO;
 import Model.InsuranceProduct;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,9 +17,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author chun
+ * @author ADMIN
  */
-
 public class admin_IP_list extends HttpServlet {
    
     /** 
@@ -29,15 +28,14 @@ public class admin_IP_list extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        IPDAO ip = new IPDAO();
-        ArrayList<InsuranceProduct> list = ip.getALLIP();
-        request.setAttribute("listIP", list);
-        request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
-    } 
+        
+        }
+
+    
+        
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -50,7 +48,10 @@ public class admin_IP_list extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        IPDAO ip = new IPDAO();
+        ArrayList<InsuranceProduct> list = ip.getALLIP();
+        request.setAttribute("listIP", list);
+        request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
     } 
 
     /** 
