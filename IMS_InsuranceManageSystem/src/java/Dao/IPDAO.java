@@ -62,7 +62,7 @@ public class IPDAO extends DBContext{
 
     public InsuranceProduct getIPbyID(int id) {
         String strSQL = "select * from Insurance_Products\n"
-                + "where id = ?";
+                + "where ip_id = ?";
         try {
             
             PreparedStatement pstm = connection.prepareStatement(strSQL);  
@@ -79,4 +79,5 @@ public class IPDAO extends DBContext{
         }
         return null;
     }
+
 }

@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/Dao/DBContext.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_IP_list.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/Controller/admin/admin_IP_add.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/Controller/admin/admin_IP_list.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_dashboard.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/Model/InsuranceProduct.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

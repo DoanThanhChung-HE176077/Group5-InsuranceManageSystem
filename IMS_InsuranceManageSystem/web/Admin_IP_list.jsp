@@ -123,7 +123,7 @@
                                     <td>${o.getIp_id()}</td>
                                     <td>${o.getIp_name()}</td>
                                     <td>
-                                        <a href="admin_IP_detail?id=1" class="my-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#my-modal-detail"
+                                        <a href="admin_IP_detail?id=?" class="my-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#my-modal-detail"
                                    data-bs-whatever="@getbootstrap">Detail</a>
                                     </td>
                                 </tr>
@@ -185,15 +185,15 @@
                     <div class="modal-body">
                         
                             <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">ID:${admin_IP_detail.ip_id}</label>
+                                <label for="recipient-name" class="col-form-label">ID:${admin_IP_detail.getIp_id()}</label>
                                 <input type="text" class="form-control" id="recipient-name" name="id">
                             </div>
                             <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Type:${admin_IP_detail.ip_type}</label>
+                                <label for="message-text" class="col-form-label">Type:${admin_IP_detail.getIp_type()}</label>
                                 <textarea class="form-control" id="message-text" name="type"></textarea>
                             </div>
                         <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Name:${admin_IP_detail.ip_name}</label>
+                                <label for="message-text" class="col-form-label">Name:${admin_IP_detail.getIp_name()}</label>
                                 <textarea class="form-control" id="message-text" name="name"></textarea>
                             </div>
                         
@@ -214,6 +214,6 @@
                 document.getElementById('sidebar').classList.toggle('active');
             }
         </script>
-        <a href="admin_IP_detail?id=1">helo</a>
+        
     </body>
 </html>

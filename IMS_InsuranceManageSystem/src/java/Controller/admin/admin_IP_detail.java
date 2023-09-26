@@ -44,13 +44,13 @@ public class admin_IP_detail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        System.out.println(request.getParameter("id"));
         int id = Integer.parseInt(request.getParameter("id")) ;    
         IPDAO  ip = new IPDAO();
-        System.out.println(id);
-//        InsuranceProduct detail = ip.getIPbyID(id);
+        InsuranceProduct detail = ip.getIPbyID(id);
 //        request.setAttribute("admin_IP_detail", detail);
 //        request.getRequestDispatcher("admin_IP_list.jsp").forward(request, response);
+  
+        System.out.println(detail);
     } 
 
     /** 
