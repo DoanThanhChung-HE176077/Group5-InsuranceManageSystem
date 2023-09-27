@@ -30,18 +30,52 @@ public class admin_IP_detail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        int id = Integer.parseInt(request.getParameter("id")) ;    
+        
+        IPDAO  ip = new IPDAO();
+        InsuranceProduct detail = ip.getIPbyID(id);
+//        request.setAttribute("admin_IP_detail", detail);
+//        request.getRequestDispatcher("admin_IP_list.jsp").forward(request, response);
+        PrintWriter out = response.getWriter();
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet admin_IP_detail</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet admin_IP_detail at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+            out.print("                                    <div class=\"modal fade\" id=\"my-modal-detail\" tabindex=\"-1\" aria-labelledby=\"exampleModalLabe2\"\n" +
+"                                 aria-hidden=\"true\">\n" +
+"                                <div class=\"modal-dialog\">\n" +
+"                                    <div class=\"modal-content\">\n" +
+"                                         modal header \n" +
+"                                        <form action=\"admin_IP_detail\" method=\"get\">\n" +
+"                                        <div class=\"modal-header\">\n" +
+"                                            <h5 class=\"modal-title\" id=\"exampleModalLabel\">Detail Insurance Product</h5>\n" +
+"                                            <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\"\n" +
+"                                                    aria-label=\"Close\"></button>\n" +
+"                                        </div>\n" +
+"                                         modal body \n" +
+"                                        <div class=\"modal-body\">\n" +
+"                                            \n" +
+"                                                <div class=\"mb-3\">\n" +
+"                                                    <label for=\"recipient-name\" class=\"col-form-label\">ID:</label>\n" +
+"                                                    <input type=\"text\" class=\"form-control\" id=\"recipient-name\" name=\"id\" value=\""+detail.getIp_id()+"\">\n" +
+"                                                </div>\n" +
+"                                                <div class=\"mb-3\">\n" +
+"                                                    <label for=\"message-text\" class=\"col-form-label\">Type:</label>\n" +
+"                                                    <textarea class=\"form-control\" id=\"message-text\" name=\"type\" required=\""+detail.getIp_type()+"\"></textarea>\n" +
+"                                                </div>\n" +
+"                                            <div class=\"mb-3\">\n" +
+"                                                    <label for=\"message-text\" class=\"col-form-label\">Name:</label>\n" +
+"                                                    <textarea class=\"form-control\" id=\"message-text\" name=\"name\" required=\""+detail.getIp_name()+"\"></textarea>\n" +
+"                                                </div>\n" +
+"                                            \n" +
+"                                        </div>\n" +
+"                                        <div class=\"modal-footer\">\n" +
+"                                            <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>\n" +
+"                                            \n" +
+"                                        </div>\n" +
+"                                        </form>\n" +
+"                                    </div>\n" +
+"                                </div>\n" +
+"                            </div>");
+            
+        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,12 +89,7 @@ public class admin_IP_detail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id")) ;    
-        System.out.println(id);
-        IPDAO  ip = new IPDAO();
-        InsuranceProduct detail = ip.getIPbyID(id);
-        request.setAttribute("admin_IP_detail", detail);
-        request.getRequestDispatcher("admin_IP_list.jsp").forward(request, response);
+        processRequest(request, response);
         
     } 
 
