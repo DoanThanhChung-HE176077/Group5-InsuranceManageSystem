@@ -86,8 +86,16 @@ public class register extends HttpServlet {
         String password = request.getParameter("input-password");
         String repassword = request.getParameter("input-repassword");
         
+<<<<<<< HEAD
         System.out.println(repassword);
         System.out.println(password);
+=======
+<<<<<<< HEAD
+=======
+        System.out.println(repassword);
+        System.out.println(password);
+>>>>>>> chungdthe176077
+>>>>>>> 01875859da356dadf34fdf65dd9ada7e2cb5d332
         
         if (checkPhoneNumber(phoneNum) == "Số điện thoại không hợp lệ") {
             request.setAttribute("msg", "Số điện thoại không hợp lệ");
