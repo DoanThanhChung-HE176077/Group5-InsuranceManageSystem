@@ -13,6 +13,10 @@
         <!-- font ăesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <!-- bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
     </head>
     <body>
         <!-- navbar -->
@@ -110,7 +114,7 @@
                     <c:if test="${sessionScope.user == null}">
                         <ul class="navbar-nav menutrai">
                             <li class="d-flex align-items-center float-right" id="btnlogin">
-                                <a href="Login.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                <a href="login" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
                                     Đăng nhập
                                 </a>
 
@@ -118,7 +122,7 @@
                         </ul>
                         <ul class="navbar-nav menutrai">
                             <li class="d-flex align-items-center float-right" id="btnlogin">
-                                <a href="Register.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                <a href="register" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
                                     Đăng ký
                                 </a>
 

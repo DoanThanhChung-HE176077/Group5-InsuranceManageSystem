@@ -32,30 +32,12 @@ public class DBContext {
         //where StudentDBContext is located in dal package, 
         try {
             //enter pass and acc sql
-<<<<<<< HEAD
-            String user = "sa1";
-            String pass = "123";
-            
-            //edit server name, database name
-           String url = "jdbc:sqlserver://DESKTOP-7MF95U3:1433;databaseName=insurance-manage-systemV1";
-                //String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
-=======
-<<<<<<< HEAD
             String user = "sa";
             String pass = "123";
             
             //edit server name, database name
-//            String url = "jdbc:sqlserver://DESKTOP-7MF95U3\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
-                String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
-=======
-            String user = "sa1";
-            String pass = "123";
-            
-            //edit server name, database name
-           String url = "jdbc:sqlserver://DESKTOP-7MF95U3:1433;databaseName=insurance-manage-systemV1";
+           String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
                 //String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
->>>>>>> chungdthe176077
->>>>>>> 01875859da356dadf34fdf65dd9ada7e2cb5d332
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {

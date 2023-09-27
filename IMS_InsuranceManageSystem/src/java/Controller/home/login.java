@@ -16,13 +16,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.User;
+import Model.User;
 
 /**
  *
  * @author thant
  */
-@WebServlet(urlPatterns={"/login"})
 public class login extends HttpServlet {
     
     
@@ -88,15 +87,7 @@ public class login extends HttpServlet {
             HttpSession session = request.getSession();
             u = uD.getUsers(userlogin, password);
             session.setAttribute("user", u);
-<<<<<<< HEAD
             response.sendRedirect("/IMS_InsuranceManageSystem/");
-=======
-<<<<<<< HEAD
-            response.sendRedirect("/IMS_InsuranceManageSystemNambeo/");
-=======
-            response.sendRedirect("/IMS_InsuranceManageSystem/");
->>>>>>> chungdthe176077
->>>>>>> 01875859da356dadf34fdf65dd9ada7e2cb5d332
         } else {
             doGet(request, response);
         }

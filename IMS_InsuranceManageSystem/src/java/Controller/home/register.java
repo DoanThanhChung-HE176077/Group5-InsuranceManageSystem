@@ -20,13 +20,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import model.User;
+import Model.User;
 
 /**
  *
  * @author thant
  */
-@WebServlet(name="register", urlPatterns={"/register"})
 public class register extends HttpServlet {
    
     /** 
@@ -86,16 +85,9 @@ public class register extends HttpServlet {
         String password = request.getParameter("input-password");
         String repassword = request.getParameter("input-repassword");
         
-<<<<<<< HEAD
+        System.out.println(password);
         System.out.println(repassword);
         System.out.println(password);
-=======
-<<<<<<< HEAD
-=======
-        System.out.println(repassword);
-        System.out.println(password);
->>>>>>> chungdthe176077
->>>>>>> 01875859da356dadf34fdf65dd9ada7e2cb5d332
         
         if (checkPhoneNumber(phoneNum) == "Số điện thoại không hợp lệ") {
             request.setAttribute("msg", "Số điện thoại không hợp lệ");
@@ -109,7 +101,7 @@ public class register extends HttpServlet {
             request.setAttribute("msg", "Số căn cước công dân không hợp lệ");
             doGet(request, response);
 
-        } else if (password != repassword) {
+        } else if (password == null ? repassword != null : !password.equals(repassword)) {
             request.setAttribute("msg", "nhập lại mật khẩu sai");
             doGet(request, response);
         } else {

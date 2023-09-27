@@ -18,7 +18,6 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author thant
  */
-@WebServlet(name="logout", urlPatterns={"/logout"})
 public class logout extends HttpServlet {
    
     /** 
@@ -58,7 +57,7 @@ public class logout extends HttpServlet {
     throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.removeAttribute("user");
-        response.sendRedirect("Home.jsp");
+        response.sendRedirect("/IMS_InsuranceManageSystem/");
     } 
 
     /** 
