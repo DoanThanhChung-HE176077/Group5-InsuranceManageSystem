@@ -88,7 +88,11 @@ public class login extends HttpServlet {
             HttpSession session = request.getSession();
             u = uD.getUsers(userlogin, password);
             session.setAttribute("user", u);
+<<<<<<< HEAD
             response.sendRedirect("/IMS_InsuranceManageSystemNambeo/");
+=======
+            response.sendRedirect("/IMS_InsuranceManageSystem/");
+>>>>>>> chungdthe176077
         } else {
             doGet(request, response);
         }
