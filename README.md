@@ -1,6 +1,6 @@
 # Insurance Manage System.
 
-SWP391-Project Group5
+SWP391-Project Group5.
 
 ## Member
 
@@ -12,7 +12,7 @@ SWP391-Project Group5
 
 ## Technical using
 
-- Back-End: Java JDBC + SQL Server 19
+- Back-End: Java JDBC + SQL Server 19.
 - Front-End: HTML + CSS + JavaScript
 
 ## FPT-University

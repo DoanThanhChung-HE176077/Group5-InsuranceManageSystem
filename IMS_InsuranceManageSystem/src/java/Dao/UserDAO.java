@@ -18,8 +18,8 @@ import model.User;
  */
 public class UserDAO extends DBContext{
 
-    public UserDAO() {
-    }
+//    public UserDAO() {
+//    }
    
     //check Login method
     public String checkLogin(String userlogin, String password) {
