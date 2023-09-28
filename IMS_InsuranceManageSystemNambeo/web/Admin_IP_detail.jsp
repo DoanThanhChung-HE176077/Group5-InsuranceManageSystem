@@ -110,22 +110,25 @@
                         <a href="admin_IP_list" class="my-btn btn btn-primary">Back</a>
                     </div>
                     <table>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Type</th>
-                                    <th>Name</th>
-                                </tr>
                                 
-                                
-                           
-                                <tr>
-                                    <td>${detail.ip_id}</td>
-                                    <td>${detail.ip_type}</td>
-                                    <td>${detail.ip_name}</td>
-                                </tr>
-                            
+                    <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">ID:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="id" value="${detail.ip_id}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Type:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="type" value="${detail.ip_type}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Name:</label>
+                                <input type="text" class="form-control" id="recipient-name" name="type" value="${detail.ip_name}"></textarea>
+                            </div>
+
+                        </div>
                         </table>
                 </div>
+                               
 
 
                 <!-- -------------------------------------------------------------------------------------------------------------------------- -->
