@@ -22,6 +22,7 @@ import Model.User;
  *
  * @author thant
  */
+@WebServlet(urlPatterns={"/login"})
 public class login extends HttpServlet {
     
     
@@ -77,6 +78,9 @@ public class login extends HttpServlet {
         String userlogin = request.getParameter("input-login");
         String password = request.getParameter("input-password");
 
+        System.out.println(userlogin);
+        System.out.println(password);
+//        User u = new User();
         User u = new User();
         UserDAO uD = new UserDAO();
         

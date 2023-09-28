@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <!-- bootstrap -->
+        
+        
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
     </head>
@@ -114,7 +116,7 @@
                     <c:if test="${sessionScope.user == null}">
                         <ul class="navbar-nav menutrai">
                             <li class="d-flex align-items-center float-right" id="btnlogin">
-                                <a href="login" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                <a href="Login.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
                                     Đăng nhập
                                 </a>
 
@@ -122,7 +124,7 @@
                         </ul>
                         <ul class="navbar-nav menutrai">
                             <li class="d-flex align-items-center float-right" id="btnlogin">
-                                <a href="register" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                <a href="Register.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
                                     Đăng ký
                                 </a>
 
@@ -137,8 +139,7 @@
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<!--       <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#exampleModal">Profile</a>-->
-       
+
        <!-- my profile -->
        <div class="modal fade" id="exampleModal" tabindex="-1"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -208,6 +209,7 @@
                </div>
            </div>
        </div>
+       
        <!--change password-->
        <div class="modal fade" id="myModal">
            <div class="modal-dialog">
@@ -244,7 +246,7 @@
                    </div>
                </div>
            </div>
-                                       </div>
+       </div>
  <script>
 <!--info user-->
         let data;

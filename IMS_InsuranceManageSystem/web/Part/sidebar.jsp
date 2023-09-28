@@ -23,8 +23,8 @@
                 <li class="side-item"><img src="Image/reading-book (1).png" alt="">&nbsp;<span>Manage Users</span> </li>
                 <li class="side-item"><img src="Image/teacher2.png" alt="">&nbsp;<span>Manage Staffs</span> </li>
                 <li class="side-item"><img src="Image/school.png" alt="">&nbsp;<span>Manage Blogs</span> </li>
-                <li class="side-item" ><img src="Image/school.png" alt="">&nbsp;<span><a href="admin_insuranceProduct_dashboard">Manage Insurance Product</a></span> </li>
-                <li class="side-item" ><img src="Image/school.png" alt="">&nbsp;<span href="admin_insuranceProduct_dashboard">Manage Insurance Product</span> </li>
+                <li class="side-item" ><img src="Image/school.png" alt="">&nbsp;<span><a  href="admin_IP_list">Manage Insurance Product</a></span> </li>
+                
 
             </ul>
         </div>

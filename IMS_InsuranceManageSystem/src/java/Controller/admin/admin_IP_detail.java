@@ -3,23 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package Controller.home;
+package Controller.admin;
 
+import Dao.IPDAO;
+import Dao.UserDAO;
+import Model.InsuranceProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.io.BufferedReader;
+import Model.User;
 
 /**
  *
- * @author thant
+ * @author ADMIN
  */
-@WebServlet(name="logout", urlPatterns={"/logout"})
-public class logout extends HttpServlet {
+public class admin_IP_detail extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,20 +33,29 @@ public class logout extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet logout</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet logout at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    } 
-
+        // Đọc dữ liệu JSON từ yêu cầu
+//        BufferedReader reader = request.getReader();
+//        StringBuilder jsonBuilder = new StringBuilder();
+//        String line;
+//        while ((line = reader.readLine()) != null) {
+//            jsonBuilder.append(line);
+//        }
+//        
+//        IPDAO dao = new IPDAO();
+//        InsuranceProduct ip = dao.getIPbyID(Integer.parseInt(jsonBuilder.toString()));
+//       response.setContentType("application/json");
+//        PrintWriter out = response.getWriter();
+//       out.println("{\"IP\": \"" + ip.getIp_id() + "\", "
+//               + "\"Type\": \"" + ip.getIp_type() + "\", \"Name\": \"" 
+//               + ip.getIp_name() );
+//    
+        int id = Integer.parseInt(request.getParameter("ip_id"));
+                
+        IPDAO  ip = new IPDAO();
+        InsuranceProduct detail = ip.getIPbyID(id);
+        request.setAttribute("detail", detail);
+        request.getRequestDispatcher("Admin_IP_detail.jsp").forward(request, response);
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.
@@ -56,9 +67,8 @@ public class logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        response.sendRedirect("Home.jsp");
+
+        processRequest(request, response);
     } 
 
     /** 

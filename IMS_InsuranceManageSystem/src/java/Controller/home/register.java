@@ -26,6 +26,7 @@ import Model.User;
  *
  * @author thant
  */
+@WebServlet(name="register", urlPatterns={"/register"})
 public class register extends HttpServlet {
    
     /** 
@@ -85,7 +86,6 @@ public class register extends HttpServlet {
         String password = request.getParameter("input-password");
         String repassword = request.getParameter("input-repassword");
         
-        System.out.println(password);
         System.out.println(repassword);
         System.out.println(password);
         
@@ -101,7 +101,7 @@ public class register extends HttpServlet {
             request.setAttribute("msg", "Số căn cước công dân không hợp lệ");
             doGet(request, response);
 
-        } else if (password == null ? repassword != null : !password.equals(repassword)) {
+        } else if (password != repassword) {
             request.setAttribute("msg", "nhập lại mật khẩu sai");
             doGet(request, response);
         } else {
