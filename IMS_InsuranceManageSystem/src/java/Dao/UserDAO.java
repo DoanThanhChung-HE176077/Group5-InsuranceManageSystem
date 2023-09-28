@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import Model.User;
+import model.User;
 
 /**
  *
@@ -18,8 +18,8 @@ import Model.User;
  */
 public class UserDAO extends DBContext{
 
-//    public UserDAO() {
-//    }
+    public UserDAO() {
+    }
    
     //check Login method
     public String checkLogin(String userlogin, String password) {

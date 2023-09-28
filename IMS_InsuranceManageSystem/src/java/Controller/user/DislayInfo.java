@@ -13,8 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import Model.User;
+import model.User;
 
 /**
  *
@@ -59,12 +58,7 @@ public class DislayInfo extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         UserDAO dao = new UserDAO();
-        HttpSession session = request.getSession();
-        User user1 = (User) session.getAttribute("user");
-        User user = dao.dislayInfo(user1.getUser_id());
-         
-         
-         
+         User user = dao.dislayInfo(2);
        response.setContentType("application/json");
         PrintWriter out = response.getWriter();
        out.println("{\"user_id\": \"" + user.getUser_id() + "\", "

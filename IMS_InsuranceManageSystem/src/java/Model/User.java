@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package model;
 
 import java.util.Date;
 
@@ -20,17 +20,6 @@ public class User {
 //            user_iden, 
 //            user_role;
 //    Date user_dob;
-    
-/*
-    CONFLICT CÁCH ĐẶT TÊN:
-    - nam: user_fullname
-    - someone: user_fullName
-    
-    => sai syntax `sesssionScope.user.userfullname` tại login.jsp dẫn đến không login được
-    khắc phục:
-    - thống nhất lại syntax 
-*/    
-    
     
     private int user_id;
     private String user_fullName;

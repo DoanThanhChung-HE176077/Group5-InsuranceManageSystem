@@ -1,31 +1,27 @@
-package Controller.home;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+package Controller.admin;
 
-import Dao.UserDAO;
-
+import Dao.IPDAO;
+import Model.InsuranceProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.User;
+import static java.lang.Integer.parseInt;
+import java.util.ArrayList;
 
 /**
  *
- * @author thant
+ * @author ADMIN
  */
-@WebServlet(urlPatterns={"/login"})
-public class login extends HttpServlet {
-    
-    
+public class admin_IP_add extends HttpServlet {
+   
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -36,18 +32,13 @@ public class login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet login</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        String ip_type = request.getParameter("ip_type");
+        String ip_name = request.getParameter("ip_name");
+        IPDAO IP = new IPDAO();
+        ArrayList<InsuranceProduct> list = IP.getALLIP();
+        IP.addIP(parseInt(String.valueOf(list.size()+1)), ip_type, ip_name);
+        response.sendRedirect("admin_IP_list");
+        
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,8 +52,7 @@ public class login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
-
+        processRequest(request, response);
     } 
 
     /** 
@@ -75,23 +65,7 @@ public class login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String userlogin = request.getParameter("input-login");
-        String password = request.getParameter("input-password");
-
-        User u = new User();
-        UserDAO uD = new UserDAO();
-        
-        String msg = uD.checkLogin(userlogin, password);
-        request.setAttribute("msg", msg);
-        
-        HttpSession session = request.getSession();
-        u = uD.getUsers(userlogin, password);
-        session.setAttribute("user", u);
-        
-        
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
-        
-        
+        processRequest(request, response);
     }
 
     /** 
