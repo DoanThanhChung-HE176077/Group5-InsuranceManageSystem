@@ -11,16 +11,7 @@ SWP391-Project Group5.
 5. Do Duc Thien - HE176216
 
 ## Technical using
-
-<<<<<<< HEAD
 - Back-End: Java JDBC + SQL Server 19.
-=======
-<<<<<<< HEAD
-
-- # Back-End: Java JDBC + SQL Server 19
-- Back-End: Java JDBC + SQL Server 19.
-  > > > > > > > chungdthe176077
->>>>>>> 01875859da356dadf34fdf65dd9ada7e2cb5d332
 - Front-End: HTML + CSS + JavaScript
 
 ## FPT-University
