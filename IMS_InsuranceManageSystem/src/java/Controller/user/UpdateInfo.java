@@ -10,8 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import jdk.nashorn.internal.parser.JSONParser;
 
 @WebServlet(name = "UpdateInfo", urlPatterns = {"/UpdateInfo"})
 public class UpdateInfo extends HttpServlet {
