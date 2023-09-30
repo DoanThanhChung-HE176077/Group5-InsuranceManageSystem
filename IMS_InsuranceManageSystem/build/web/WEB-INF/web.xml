@@ -20,6 +20,14 @@
         <servlet-name>admin_IP_list</servlet-name>
         <servlet-class>Controller.admin.admin_IP_list</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>admin_Users_list</servlet-name>
+        <servlet-class>Controller.admin.admin_Users_list</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>admin_Users_detail</servlet-name>
+        <servlet-class>Controller.admin.admin_Users_detail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -39,6 +47,14 @@
     <servlet-mapping>
         <servlet-name>admin_IP_list</servlet-name>
         <url-pattern>/admin_IP_list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admin_Users_list</servlet-name>
+        <url-pattern>/admin_Users_list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admin_Users_detail</servlet-name>
+        <url-pattern>/admin_Users_detail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
