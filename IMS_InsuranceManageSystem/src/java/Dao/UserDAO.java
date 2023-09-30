@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import model.User;
+import Model.User;
 
 /**
  *

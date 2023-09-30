@@ -138,16 +138,25 @@
 }*/
 
 /* Style the individual dropdown items */
+.dropdown-menu {
+  background-color: #fdd12d;
+}
+
 .dropdown-menu a {
   display: block;
   padding: 10px;
   text-decoration: none;
   color: #2c464f;
+  
+  text-shadow: 0px 0px 1px #2c464f;
 }
 
 /* Style the dropdown items on hover */
 .dropdown-menu a:hover {
   background-color: #fff;
+  border-radius: 5rem;
+  text-shadow: 0px 0px 1px #2c464f;
+  transition: background 0.5s;
 }
 
 

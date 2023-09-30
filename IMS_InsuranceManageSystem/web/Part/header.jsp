@@ -95,7 +95,7 @@ Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </span>
                     </a>
                         
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #fdd12d;">
                         <!-- Dropdown menu items -->
                         <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#exampleModal">Profile</a>
                         

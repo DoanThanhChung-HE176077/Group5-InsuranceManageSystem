@@ -32,12 +32,72 @@ public class DBContext {
         //where StudentDBContext is located in dal package, 
         try {
             //enter pass and acc sql
+            
+            
+                                    /*======= Edit SQL config here ========
+                                      >>>>>>>>>>>>>          <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>  CHUNG   <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>          <<<<<<<<<<<<
+                                      ======= Edit SQL config here ========*/
+            
+//            String user = "sa";
+//            String pass = "123";
+//            String url = "jdbc:sqlserver://  XXXX  :1433;databaseName=insurance-manage-systemV1";
+            
+
+                                    /*======= Edit SQL config here ========
+                                      >>>>>>>>>>>>>          <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>  NAM     <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>          <<<<<<<<<<<<
+                                      ======= Edit SQL config here ========*/
+            
             String user = "sa";
             String pass = "123";
+            String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
+
+
+
+                                    /*======= Edit SQL config here ========
+                                      >>>>>>>>>>>>>          <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>  THIỆN   <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>          <<<<<<<<<<<<
+                                      ======= Edit SQL config here ========*/
             
-            //edit server name, database name
+//            String user = "sa";
+//            String pass = "123";
+//            String url = "jdbc:sqlserver://  XXXX  :1433;databaseName=insurance-manage-systemV1";
+
+
+
+                                    /*======= Edit SQL config here ========
+                                      >>>>>>>>>>>>>             <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>  TUẤN ANH   <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>             <<<<<<<<<<<<
+                                      ======= Edit SQL config here ========*/
+            
+//            String user = "sa";
+//            String pass = "123";
+//            String url = "jdbc:sqlserver://  XXXX  :1433;databaseName=insurance-manage-systemV1";
+
+
+
+                                    /*======= Edit SQL config here ========
+                                      >>>>>>>>>>>>>          <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>  MINH    <<<<<<<<<<<<
+                                      >>>>>>>>>>>>>          <<<<<<<<<<<<
+                                      ======= Edit SQL config here ========*/
+            
+//            String user = "sa";
+//            String pass = "123";
+//            String url = "jdbc:sqlserver://  XXXX  :1433;databaseName=insurance-manage-systemV1";
+
+
+            
 //            String url = "jdbc:sqlserver://DESKTOP-7MF95U3\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
-                String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insuranceDB";
+//                String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insuranceDB";
+//                String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
+
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
