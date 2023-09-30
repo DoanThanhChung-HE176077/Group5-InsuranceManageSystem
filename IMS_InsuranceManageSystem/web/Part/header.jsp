@@ -121,7 +121,8 @@ Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                     <c:if test="${sessionScope.user == null}">
                         <ul class="navbar-nav menutrai">
                             <li class="d-flex align-items-center float-right" id="btnlogin">
-                                <a href="Login.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                <a href="Login.jsp" style="padding: 8px; text-decoration: none; text-shadow: 0px 0px 1px #2c464f; color: #2c464f;">
+                                    <i class="fa fa-user" style="color: #2c464f"></i>
                                     Đăng nhập
                                 </a>
 
@@ -129,7 +130,8 @@ Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </ul>
                         <ul class="navbar-nav menutrai">
                             <li class="d-flex align-items-center float-right" id="btnlogin">
-                                <a href="Register.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                <a href="Register.jsp" style="padding: 8px; text-decoration: none; text-shadow: 0px 0px 1px #2c464f; color: #2c464f;">
+                                    <i class="fa fa-user" style="color: #2c464f"></i>
                                     Đăng ký
                                 </a>
 
