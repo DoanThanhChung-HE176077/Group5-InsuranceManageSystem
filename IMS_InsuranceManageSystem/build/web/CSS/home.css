@@ -45,7 +45,7 @@ body {
 }
 
 #banner{
-    background-image:url(../Image/banner_home.jpg) ;
+    background-image:url(../Image/banner_home2.jpg) ;
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
@@ -53,7 +53,7 @@ body {
     height: 50vh;
     position: relative;
     cursor: pointer;
-    
+    object-fit: contain;
 }
 
 .items {
