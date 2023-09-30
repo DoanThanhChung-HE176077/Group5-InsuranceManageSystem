@@ -98,7 +98,7 @@
                 <p style="text-align:center;color:red; font-size: 14px; margin-bottom: 10px;">
                     ${msg}
                 </p>
-                <button style="background-color: green;" type="submit">Đăng ký</button>
+                <button style="background-color: #fdd12d; color: #2c464f;" type="submit">Đăng ký</button>
 
 
             </form>

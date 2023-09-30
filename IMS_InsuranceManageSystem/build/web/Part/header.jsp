@@ -11,9 +11,14 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         
         <!-- font ăesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
         
+        <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-
+iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/Zpi
+Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <!-- bootstrap -->
         
         
@@ -24,11 +29,11 @@
         <!-- navbar -->
         <header id="my-header">
             
-            <a href="#" class="my-logo">
-                <i class='bx bxs-check-shield'>
+            <div class="my-logo">
+                <i class="fa-solid fa-shield-halved fa-2xl" style="color: #fdd12d;"></i>
                     <span>G5insurance</span>
-                </i>
-            </a>
+                
+            </div>
             <!-- menu icon -->
 
             <div class="bx bx-menu" id="my-menu-icon"></div>
@@ -90,7 +95,7 @@
                         </span>
                     </a>
                         
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #fdd12d;">
                         <!-- Dropdown menu items -->
                         <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#exampleModal">Profile</a>
                         
@@ -116,7 +121,8 @@
                     <c:if test="${sessionScope.user == null}">
                         <ul class="navbar-nav menutrai">
                             <li class="d-flex align-items-center float-right" id="btnlogin">
-                                <a href="Login.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                <a href="Login.jsp" style="padding: 8px; text-decoration: none; text-shadow: 0px 0px 1px #2c464f; color: #2c464f;">
+                                    <i class="fa fa-user" style="color: #2c464f"></i>
                                     Đăng nhập
                                 </a>
 
@@ -124,7 +130,8 @@
                         </ul>
                         <ul class="navbar-nav menutrai">
                             <li class="d-flex align-items-center float-right" id="btnlogin">
-                                <a href="Register.jsp" style="padding: 8px; text-decoration: none;"><i class="fa fa-user" style="color: #066132"></i>
+                                <a href="Register.jsp" style="padding: 8px; text-decoration: none; text-shadow: 0px 0px 1px #2c464f; color: #2c464f;">
+                                    <i class="fa fa-user" style="color: #2c464f"></i>
                                     Đăng ký
                                 </a>
 
