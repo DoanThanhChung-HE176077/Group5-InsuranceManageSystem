@@ -36,6 +36,10 @@
         <servlet-name>home_show</servlet-name>
         <servlet-class>Controller.home.home_show</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>reset_pass</servlet-name>
+        <servlet-class>reset_pass</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>home_show</servlet-name>
         <url-pattern>/home_show</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>reset_pass</servlet-name>
+        <url-pattern>/reset_pass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,13 +4,21 @@
     Author     : thant
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Quên Mật khẩu</title>
+        <title>Đăng nhập</title>
         <link rel="stylesheet" href="CSS/auth.css">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
         <style>
             
             input:focus {
@@ -32,31 +40,33 @@
             </div>
         </section>
         
-        <div class="login-default col-xl-3 col-lg-4 col-md-6 col-12">
-            <form action="#">
+        <div class="login-default" style="align-items: center;">
+            <form action="reset_pass" method="post">
                 <div class="title" style="text-align: center; font-size: 27px; line-height: 38px; margin-bottom: 30px; margin-top: 10px;">
                     QUÊN MẬT KHẨU
                 </div>
-                <!--            <div class="input-group">
-                                <label for="username">Mã đăng nhập</label>
-                                <input type="text" id="username" placeholder="Nhập số điện thoại/ Email">
-                            </div>-->
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Mã đăng nhập</span>
                     <div class="input-group">
-                        <input name="" type="text" id="" class="form-control" placeholder="Nhập số điện thoại/Email đang sử dụng">
+                        <input name="input-login" type="text" id="" class="form-control" placeholder="Nhập số điện thoại/Email đang sử dụng">
                     </div>
                 </div>
-
-                <div class="form-group" id="Upa_otp"> 
-                    <span class="input_label">OTP</span>
-                    <div class="input-group">
-                        <input name="" type="password" id="" class="form-control" placeholder="Nhập OTP">
+                <input type="text" name="otpSend-input" value="${otpSend}" hidden>
+                <c:if test="${otpSend != null}">
+                    <div class="form-group" id="Upa_otp"> 
+                        <span class="input_label">OTP</span>
+                        <div class="input-group">
+                            <input name="input-password" type="password" id="" class="form-control" placeholder="Nhập mã OTP">
+                        </div>
                     </div>
-                </div>
-                <button style="background-color: green;" type="submit">Xác Nhận</button>
-
-
+                </c:if>
+                
+                
+                <p style="text-align:center;color:red; font-size: 14px; margin-bottom: 10px;">
+                    ${msg}
+                </p>
+                <button style="background-color: #fdd12d; color: #2c464f;" type="submit">Xác nhận</button>
+    
             </form>
         </div>
         
