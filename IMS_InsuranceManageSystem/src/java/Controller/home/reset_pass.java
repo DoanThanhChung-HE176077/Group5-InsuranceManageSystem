@@ -1,3 +1,5 @@
+package Controller.home;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
@@ -65,7 +67,18 @@ public class reset_pass extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
+        String otpSend = request.getParameter("otpSend-input");
+        if (otpSend == "") {
+            request.setAttribute("otpSend", "1");
+            request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
+        } else {
+            request.setAttribute("otpSend", "1");
+            request.setAttribute("msg", "mo otp roi dmm");
+            
+            //Xử lý verify code
+            
+            request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
+        }
         
         
     }

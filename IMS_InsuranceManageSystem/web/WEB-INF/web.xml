@@ -38,7 +38,7 @@
     </servlet>
     <servlet>
         <servlet-name>reset_pass</servlet-name>
-        <servlet-class>reset_pass</servlet-class>
+        <servlet-class>Controller.home.reset_pass</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
