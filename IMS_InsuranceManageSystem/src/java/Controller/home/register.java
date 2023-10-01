@@ -98,9 +98,15 @@ public class register extends HttpServlet {
         User u = new User();
         UserDAO uD = new UserDAO();
         
-        uD.addUser(fullname, mail, password, dateofbirth, address, phoneNum, iden);
-        
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
+        //nam:
+        //request.getRequestDispatcher("Home.jsp").forward(request, response);
+
+        boolean check = uD.addUser(fullname, mail, password, dateofbirth, address, phoneNum, iden);
+        if (check) {
+            System.out.println(check + "+" + "register ok");
+        }
+        response.sendRedirect("/IMS_InsuranceManageSystem/");
+    
         
         
     }

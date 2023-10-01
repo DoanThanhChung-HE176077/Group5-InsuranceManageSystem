@@ -122,7 +122,7 @@ public class UserDAO extends DBContext{
 
     
     //register method
-    public void addUser(String fullname, String mail, String password, Date dob, String address, String phoneNum, String iden) {
+    public boolean addUser(String fullname, String mail, String password, Date dob, String address, String phoneNum, String iden) {
         try {
             int temp = getLastId()+1;
             String strSQL = "INSERT INTO Users (user_id, user_fullname, user_mail, user_password, user_dob, user_address, user_phoneNum, user_iden, user_img, user_role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -139,10 +139,12 @@ public class UserDAO extends DBContext{
             pstm.setString(9, "");
             pstm.setString(10, "customer");
             pstm.execute();
-                System.out.println("Add user successful");
+            return true;
+//                System.out.println("Add user successful");
         } catch (Exception e) {
             System.out.println("addUser: " + e.getMessage());
         }
+        return false;
     }
     
     public int getLastId() {

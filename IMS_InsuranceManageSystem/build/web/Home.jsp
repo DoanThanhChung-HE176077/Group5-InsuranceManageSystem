@@ -3,7 +3,7 @@
     Created on : Sep 19, 2023, 10:33:06 PM
     Author     : chun
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -53,65 +53,21 @@
             <div class="banner" id="banner">
                 <!-- Nội dung banner -->
             </div>
+            
             <!-- slider -->
             <div class="items bg-card">
-                <div class="card">
-                    <a href="">
-                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                    </a>
-                </div>
-
-
-                <div class="card">
-                    <a href="">
-                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                    </a>
-                </div>
-
-                <div class="card">
-                    <a href="">
-                        <img class="fixed-img card-img-top" src="Image/jerrryTest.jpg" alt="Card image cap">
-
-                    </a>
-                </div>
-
+            <!--show list blog image--> 
+                <c:if test="${listBlog != null}">
+                    <c:forEach items="${listBlog}" var="o1">
+                        <div class="card">
+                            <a href="">
+                                <!--src must be ex: name.jpg-->
+                                <img class="fixed-img card-img-top" src="${o1.getBl_img()}" alt="Card image cap">
+                            </a>
+                        </div>
+                    </c:forEach>
+                </c:if>
+            
             </div>
 
             <!--Product list-->

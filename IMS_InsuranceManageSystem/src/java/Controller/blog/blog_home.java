@@ -3,23 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package Controller.home;
+package Controller.blog;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author thant
+ * @author chun
  */
-@WebServlet(name="logout", urlPatterns={"/logout"})
-public class logout extends HttpServlet {
+public class blog_home extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +33,10 @@ public class logout extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet logout</title>");  
+            out.println("<title>Servlet blog_home</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet logout at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet blog_home at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,9 +53,7 @@ public class logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        response.sendRedirect("/IMS_InsuranceManageSystem/");
+        processRequest(request, response);
     } 
 
     /** 

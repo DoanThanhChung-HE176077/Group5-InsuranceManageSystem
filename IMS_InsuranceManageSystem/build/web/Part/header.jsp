@@ -20,8 +20,6 @@ iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H
 Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- bootstrap -->
-        
-        
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
     </head>
@@ -41,7 +39,7 @@ Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
             <ul class="my-navbar">
                 <li class="dropdown">
-                    <a class="" href="Home.jsp">Trang chủ</a>
+                    <a class="" href="/IMS_InsuranceManageSystem/">Trang chủ</a>
 <!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                          Dropdown menu items 
                     </div>-->

@@ -82,6 +82,7 @@ public class login extends HttpServlet {
         UserDAO uD = new UserDAO();
         
         String msg = uD.checkLogin(userlogin, password);
+        System.out.println(msg);
         request.setAttribute("msg", msg);
         
         HttpSession session = request.getSession();
@@ -89,9 +90,16 @@ public class login extends HttpServlet {
         session.setAttribute("user", u);
         
         
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
+        //sua ntn de co the show dc slick slider
+        if(msg.isEmpty() || msg.equals("Login successful!")){
+            response.sendRedirect("/IMS_InsuranceManageSystem/");
+        }else {
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
+        }
         
         
+        
+
     }
 
     /** 

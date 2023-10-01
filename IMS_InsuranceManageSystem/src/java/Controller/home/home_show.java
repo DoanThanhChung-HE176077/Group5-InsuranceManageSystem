@@ -5,21 +5,23 @@
 
 package Controller.home;
 
+import Dao.BlogDAO;
+import Dao.IPDAO;
+import Model.Blogs;
+import Model.InsuranceProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
- * @author thant
+ * @author chun
  */
-@WebServlet(name="logout", urlPatterns={"/logout"})
-public class logout extends HttpServlet {
+public class home_show extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +38,10 @@ public class logout extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet logout</title>");  
+            out.println("<title>Servlet home_show</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet logout at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet home_show at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,9 +58,32 @@ public class logout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        response.sendRedirect("/IMS_InsuranceManageSystem/");
+        //get list blog for slider
+        BlogDAO bg = new BlogDAO();
+        ArrayList<Blogs> listBlog = bg.getAllBlogs();
+        for (Blogs blogs : listBlog) {
+            System.out.println(blogs.getBl_img());
+        }
+        if (listBlog != null) {
+            System.out.println("list blog: not null");
+        }else {
+            System.out.println("list blog: null");
+        }
+        request.setAttribute("listBlog", listBlog);
+        
+        //get list insurance product
+        IPDAO ip = new IPDAO();
+        ArrayList<InsuranceProduct> listIP = ip.getALLIP();
+        if (listIP != null) {
+            System.out.println("list insurance product: not null");
+        } else {
+            System.out.println("list insurance product: null");
+        }
+        request.setAttribute("listIP", listIP);
+        
+        //send data to home
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
+        
     } 
 
     /** 

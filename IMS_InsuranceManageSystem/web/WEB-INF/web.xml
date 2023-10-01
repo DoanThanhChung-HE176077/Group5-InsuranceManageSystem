@@ -28,6 +28,14 @@
         <servlet-name>admin_Users_detail</servlet-name>
         <servlet-class>Controller.admin.admin_Users_detail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>blog_home</servlet-name>
+        <servlet-class>Controller.blog.blog_home</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>home_show</servlet-name>
+        <servlet-class>Controller.home.home_show</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -56,6 +64,14 @@
         <servlet-name>admin_Users_detail</servlet-name>
         <url-pattern>/admin_Users_detail</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>blog_home</servlet-name>
+        <url-pattern>/blog_home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>home_show</servlet-name>
+        <url-pattern>/home_show</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -63,7 +79,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-            Home.jsp
+            home_show
         </welcome-file>
     </welcome-file-list>
     <context-param>
