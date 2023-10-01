@@ -87,7 +87,7 @@ Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <li class="dropdown">
                         
                     <a class="dropdown-toggle" data-bs-toggle="dropdown" style="text-decoration: none;">
-                        <img src="Image/chung_avatar.jpg" alt="">
+                        <img src="${sessionScope.user.user_image}" alt="">
                         <span id="my-username" style="color: black;">
                             ${sessionScope.user.user_fullName}
                         </span>
