@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import Model.User;
+import java.util.ArrayList;
 
 /**
  *
@@ -219,9 +220,39 @@ public class UserDAO extends DBContext{
 
     }
 
+    
+
+    public ArrayList<User> getALLUser() {
+        ArrayList<User> list = new ArrayList<>();
+        
+        try {
+            String strSQL = "select * from Users";
+            PreparedStatement pstm = connection.prepareStatement(strSQL);          
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                list.add(new User(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)
+                        ));
+            }
+        } catch (Exception e) {
+            System.out.println("getALLUser: " + e.getMessage());
+        }
+        return list;
+    }
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
         dao.updateUser(1, "1", "1", "1", java.sql.Date.valueOf("2003-03-23"), "1123456", "1", "1");
+        ArrayList<User> list = dao.getALLUser();
+        System.out.println(list);
 
     }
+    
 }
