@@ -4,6 +4,7 @@
     Author     : chun
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -121,56 +122,18 @@
                                     </thead>
                                     <tbody>
                                         <!-- Example row, you can use a loop to generate rows dynamically -->
+                                    <c:forEach items="${bList}" var="blogs">
                                         <tr>
-                                            <td>Sample Blog Post 1</td>
-                                            <td>John Doe</td>
-                                            <td>2023-10-01</td>
-                                            <td>Published</td>
+                                            <td>${blogs.getBl_content()}</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                             <td>
                                                 <!-- Edit Button -->
-                                                <button class="btn btn-primary btn-sm">Edit</button>
+                                                <a href=""><button class="btn btn-primary btn-sm">Edit</button></a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Sample Blog Post 1</td>
-                                            <td>John Doe</td>
-                                            <td>2023-10-01</td>
-                                            <td>Published</td>
-                                            <td>
-                                                <!-- Edit Button -->
-                                                <button class="btn btn-primary btn-sm">Edit</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sample Blog Post 1</td>
-                                            <td>John Doe</td>
-                                            <td>2023-10-01</td>
-                                            <td>Published</td>
-                                            <td>
-                                                <!-- Edit Button -->
-                                                <button class="btn btn-primary btn-sm">Edit</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sample Blog Post 1</td>
-                                            <td>John Doe</td>
-                                            <td>2023-10-01</td>
-                                            <td>Published</td>
-                                            <td>
-                                                <!-- Edit Button -->
-                                                <button class="btn btn-primary btn-sm">Edit</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sample Blog Post 1</td>
-                                            <td>John Doe</td>
-                                            <td>2023-10-01</td>
-                                            <td>Published</td>
-                                            <td>
-                                                <!-- Edit Button -->
-                                                <button class="btn btn-primary btn-sm">Edit</button>
-                                            </td>
-                                        </tr>
+                                    </c:forEach>    
                                         <!-- Repeat rows for each blog post -->
                                     </tbody>
                                 </table>

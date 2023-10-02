@@ -40,6 +40,10 @@
         <servlet-name>reset_pass</servlet-name>
         <servlet-class>Controller.home.reset_pass</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>blog_list</servlet-name>
+        <servlet-class>Controller.blog.blog_list</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>reset_pass</servlet-name>
         <url-pattern>/reset_pass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>blog_list</servlet-name>
+        <url-pattern>/blog_list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
