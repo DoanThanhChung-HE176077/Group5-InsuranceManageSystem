@@ -112,6 +112,7 @@ public class UserDAO extends DBContext{
                 u.setUser_address(rs.getString(6));
                 u.setUser_phoneNum(rs.getString(7));
                 u.setUser_iden(rs.getString(8));
+                u.setUser_image(rs.getString(9));
                 u.setUser_role(rs.getString(10));
                 return u;
             }
