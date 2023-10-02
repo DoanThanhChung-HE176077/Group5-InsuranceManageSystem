@@ -1,28 +1,23 @@
-package Controller.home;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+package Controller.home;
 
 import Dao.UserDAO;
-import static Model.SendVerifyCodeMail.sendMail;
-import jakarta.mail.MessagingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author thant
  */
-public class reset_pass extends HttpServlet {
+public class change_forgetpass extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,10 +34,10 @@ public class reset_pass extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet reset_pass</title>");  
+            out.println("<title>Servlet change_pass</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet reset_pass at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet change_pass at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -72,69 +67,28 @@ public class reset_pass extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String otpSend = request.getParameter("otpSend-input");
         String inputLogin = request.getParameter("input-login");
+        String newPass = request.getParameter("input-newpassword");
+        String rePass = request.getParameter("input-repassword");
         
-        if (otpSend != "") {
-            String otpRiu = request.getParameter("otpRiu");
-            
-            
-            request.setAttribute("otpSend", "1");
-            String inputOtp = request.getParameter("otpRiu");
-            
-            
-            if (!inputOtp.equals(otpRiu)) {
-                request.setAttribute("msg", "Sai OTP");
-                request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
-            } else {
-                request.setAttribute("inputLogin", inputLogin);
-                request.getRequestDispatcher("ChangeForgetPass.jsp").forward(request, response);
-            }
-            
-            
-            //
-            
+        if (newPass == null ? rePass == null : !newPass.equals(rePass)) {
+            request.setAttribute("msg", "nhập lại mật khẩu sai");
+            request.getRequestDispatcher("ChangeForgetPass.jsp").forward(request, response);
         } else {
-            
             UserDAO uD = new UserDAO();
-            if (!uD.checkLoginInfo(inputLogin)) {
-                request.setAttribute("msg", "Thông tin đăng nhập không đúng");
-                request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
+            boolean check = uD.changeForgetPassword(inputLogin, newPass);
+            
+            System.out.println("changePassword status:" + check);
+            if (check) {
+                response.sendRedirect("Login.jsp");
             } else {
-                request.setAttribute("inputLogin", inputLogin);
-                String verifyCode = generateVerifyCode();
-                request.setAttribute("otpSend", "1");
-                request.setAttribute("msg", "OTP đã gửi");
-
-                request.setAttribute("otpRiu", verifyCode);
-
-
-                try {
-                    //verify code
-                    sendMail(verifyCode);
-                } catch (MessagingException ex) {
-                    Logger.getLogger(reset_pass.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
+                request.setAttribute("msg", "Đặt lại mật khẩu lỗi");
+                request.getRequestDispatcher("ChangeForgetPass.jsp").forward(request, response);
             }
         }
         
+        
     }
-    
-    
-    
-    public String generateVerifyCode() {
-    // Tạo mã xác minh ngẫu nhiên
-    int verifyCode = (int) (Math.random() * 999999 + 1);
-
-    // Đảm bảo rằng mã xác minh có 6 chữ số
-    String verifyCodeString = String.format("%06d", verifyCode);
-
-    return verifyCodeString;
-}
-
-
 
     /** 
      * Returns a short description of the servlet.

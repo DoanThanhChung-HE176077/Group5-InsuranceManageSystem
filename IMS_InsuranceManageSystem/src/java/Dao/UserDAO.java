@@ -270,5 +270,46 @@ public class UserDAO extends DBContext{
         System.out.println(list);
 
     }
+
+    public boolean changeForgetPassword(String inputLogin, String newPass) {
+        try {
+            String strSQL=null;
+            if (checkInfo(inputLogin) == "email") {
+                strSQL = "UPDATE Users SET user_password=? WHERE user_mail=?";
+            } else if (checkInfo(inputLogin) == "phone") {
+                strSQL = "UPDATE Users SET user_password=? WHERE user_phoneNum=?";
+            }
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, newPass);
+            pstm.setString(2, inputLogin);
+            pstm.execute();
+            
+            return true;
+        } catch (Exception e) {
+            System.out.println("changeForgetPassword: " + e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean checkLoginInfo(String inputLogin) {
+        try {
+            String strSQL=null;
+            if (checkInfo(inputLogin) == "email") {
+                strSQL = "SELECT * FROM Users WHERE user_mail = ?";
+            } else if (checkInfo(inputLogin) == "phone") {
+                strSQL = "SELECT * FROM Users WHERE user_phoneNum = ?";
+            }
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, inputLogin);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            
+        } catch (Exception e) {
+            System.out.println("checkLoginInfo: " + e.getMessage());
+        }
+        return false;
+    }
     
 }

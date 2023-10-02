@@ -4,13 +4,12 @@
     Author     : thant
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Đăng nhập</title>
+        <title>Đổi mật khẩu</title>
         <link rel="stylesheet" href="CSS/auth.css">
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
@@ -35,40 +34,32 @@
             <div id="banner-top" class="" style="pointer-events: none">
                 <div class="carousel-banner-top-item">
                     <img class="owl-lazy" src="Image/1.jpg" alt="Bảo hiểm quân đội EMIC">
-                    <div class="wraper-content-carosel">QUÊN MẬT KHẨU</div>
+                    <div class="wraper-content-carosel">ĐỔI MẬT KHẨU </div>
                 </div>
             </div>
         </section>
         
         <div class="login-default" style="align-items: center;">
-            <form action="reset_pass" method="post">
+            <form action="change_forgetpass" method="post">
                 <div class="title" style="text-align: center; font-size: 27px; line-height: 38px; margin-bottom: 30px; margin-top: 10px;">
-                    QUÊN MẬT KHẨU
+                    ĐỔI MẬT KHẨU
                 </div>
                 <div class="form-group" style="margin-bottom: 25px;">
-                    <span class="input_label">Mã đăng nhập</span>
+                    <span class="input_label">Mật khẩu mới</span>
                     <div class="input-group">
-                        <c:if test="${inputLogin == null}">
-                            <input name="input-login" type="text" id="" class="form-control" placeholder="Nhập số điện thoại/Email đang sử dụng">
-                        </c:if>
-                        
-                        <c:if test="${inputLogin != null}">
-                            <input name="input-login" type="text" id="" class="form-control" value="${inputLogin}" placeholder="">
-                        </c:if>
-                        
+                            <!--fake-->
+                            <input name="input-login" type="password" value="${inputLogin}" id="" class="form-control" hidden>
+                            <!--fake-->
+                        <input name="input-newpassword" type="password" id="" class="form-control" placeholder="Nhập mật khẩu mới">
                     </div>
                 </div>
-                <input type="text" name="otpSend-input" value="${otpSend}" hidden>
-                <input type="text" name="otpRiu" value="${otpRiu}" hidden>
-                <c:if test="${otpSend != null}">
-                    <div class="form-group" id="Upa_otp"> 
-                        <span class="input_label">OTP</span>
-                        <div class="input-group">
-                            <input name="input-password" type="password" id="" class="form-control" placeholder="Nhập mã OTP">
-                        </div>
+
+                <div class="form-group" id="Upa_otp"> 
+                    <span class="input_label">Nhập lại mật khẩu</span>
+                    <div class="input-group">
+                        <input name="input-repassword" type="password" id="" class="form-control" placeholder="Nhập lại mật khẩu mới">
                     </div>
-                </c:if>
-                
+                </div>
                 
                 <p style="text-align:center;color:red; font-size: 14px; margin-bottom: 10px;">
                     ${msg}
@@ -78,5 +69,7 @@
             </form>
         </div>
         
+                
+                
     </body>
 </html>
