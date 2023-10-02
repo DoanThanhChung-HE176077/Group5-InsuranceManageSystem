@@ -248,6 +248,21 @@ public class UserDAO extends DBContext{
         }
         return list;
     }
+     public void changePassword(int id, String password) {
+        String sql = "UPDATE [dbo].[Users]\n"
+                + "   SET \n"
+                + "      [user_password] = ?\n"
+                + "     \n"
+                + " WHERE user_id = ?";
+        try{
+               PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, password);
+            st.setInt(2, id);
+            st.executeUpdate();
+        }catch(Exception E){
+            
+        }
+    }
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
         dao.updateUser(1, "1", "1", "1", java.sql.Date.valueOf("2003-03-23"), "1123456", "1", "1");
