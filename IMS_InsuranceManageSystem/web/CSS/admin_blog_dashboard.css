@@ -69,27 +69,4 @@
             transition: background 0.5s;
         }
 
-        .btn-sidebar {
-            /* Custom styles for the button */
-            border: 1px solid #2c464f;
-            /* Border color (blue) */
-            background-color: transparent;
-            /* Transparent background */
-            color: #2c464f;
-            /* Text color (blue) */
-            width: 50px;
-            /* Set a fixed width */
-            height: 50px;
-            /* Set a fixed height */
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-            /* Smooth transitions */
-        }
-
-        .btn-sidebar:hover {
-            background-color: #fdd12d;
-            /* Background color on hover (blue) */
-            color: #fff;
-            /* Text color on hover (white) */
-            border-color: #fdd12d;
-            /* Border color on hover (blue) */
-        }
+        

@@ -15,9 +15,9 @@
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+<!--        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
                 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
@@ -42,56 +42,10 @@
          <jsp:include page="Part/header.jsp"></jsp:include>
         
         
-        <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-        <!-- side bar = offcanvas -->
-        <div class="offcanvas offcanvas-start " tabindex="-1" id="offcanvas" data-bs-keyboard="false"
-             data-bs-backdrop="false" style="width:  250px;">
-            <div class="offcanvas-header">
-                <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas"></h6>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <!-- <div class="offcanvas-body px-0">
-                <ul class="list-group" style="padding-top: 5px;">
-                    <li class="list-group-item my-btn1"><a href="#" class="my-sidebar-item">Dashboard</a></li>
-                    <li class="list-group-item my-btn1"><a href="#" class="my-sidebar-item">Manage User</a></li>
-                    <li class="list-group-item my-btn1"><a href="#" class="my-sidebar-item">Manage Blog</a></li>
-                    <li class="list-group-item my-btn1"><a href="#" class="my-sidebar-item">Manage Staff</a></li>
-                    <li class="list-group-item my-btn1"><a href="#" class="my-sidebar-item">Manage Insurance Product</a>
-                    </li>
-                </ul>
-    
-            </div> -->
-            <div class="offcanvas-body px-0">
-                <ul class="list-group" style="padding-top: 50px;">
-                    <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-home"></i> Home
-                        </a>
-                    </li>
-                    <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-user"></i> Manage User
-                        </a>
-                    </li>
-                    <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-blog"></i> Manage Blog
-                        </a>
-                    </li>
-                    <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-users"></i> Manage Staff
-                        </a>
-                    </li>
-                    <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-shield-alt"></i> Manage Insurance Product
-                        </a>
-                    </li>
-                </ul>
-            </div>
+         <!--sidebar-->
+        <jsp:include page="Part/sidebar_vip.jsp"></jsp:include>
+         
 
-        </div>
 
 
 
@@ -147,12 +101,8 @@
                             <!-- Column 2: Edit History Table -->
                             <div class="my-column1 col-md-6">
                                 <h2 style="display: inline-block;">Edit History</h2>
-                                <!-- toggler -->
-                                <button class="btn-sidebar btn float-end" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvas" role="button">
-                                    <i class="fa-solid fa-list fs-3 " data-bs-toggle="offcanvas"
-                                       data-bs-target="#offcanvas"></i>
-                                </button>
+                                <!-- togler -->
+                                
                                 <!-- Edit History Table -->
                                 <table class="table table-striped">
                                     <thead>
