@@ -265,7 +265,6 @@ public class UserDAO extends DBContext{
     }
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        dao.updateUser(1, "1", "1", "1", java.sql.Date.valueOf("2003-03-23"), "1123456", "1", "1");
         ArrayList<User> list = dao.getALLUser();
         System.out.println(list);
 

@@ -134,14 +134,13 @@
                 <!-- -------------------------------------------------------------------------------------------------------------------------- -->
                 <div class="new-students">
                     <div class="my-list-title">
-                        <h2>New Users</h2>
-                        <a href="#" class="my-btn btn btn-secondary">View All</a>
+                        <h2>Income</h2>
                     </div>
                     <table>
                         <tr>
-                            <th>Image</th>
+                            <th>ID</th>
                             <th>Name</th>
-                            
+                            <th>Income</th>
                         </tr>
                         <tr>
                             

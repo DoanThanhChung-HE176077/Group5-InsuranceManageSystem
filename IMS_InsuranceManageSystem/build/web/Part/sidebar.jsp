@@ -20,8 +20,8 @@
             </div>
             <ul class="side-container">
                 <li class="side-item"><img src="Image/dashboard (2).png" alt="">&nbsp; <span>Dashboard</span> </li>
-                <li class="side-item"><img src="Image/reading-book (1).png" alt="">&nbsp;<span>Manage Users</span> </li>
-                <li class="side-item"><img src="Image/teacher2.png" alt="">&nbsp;<span>Manage Staffs</span> </li>
+                <li class="side-item"><img src="Image/reading-book (1).png" alt="">&nbsp;<span><a href="admin_Users_list">Manage Users</a></span> </li>
+                <li class="side-item"><img src="Image/teacher2.png" alt="">&nbsp;<span><a href="admin_Users_list">Manage Staff</a></span> </li>
                 <li class="side-item"><img src="Image/school.png" alt="">&nbsp;<span><a href="blog_list">Manage Blogs</a></span> </li>
                 <li class="side-item" ><img src="Image/school.png" alt="">&nbsp;<span><a  href="admin_IP_list">Manage Insurance Product</a></span> </li>
                 
