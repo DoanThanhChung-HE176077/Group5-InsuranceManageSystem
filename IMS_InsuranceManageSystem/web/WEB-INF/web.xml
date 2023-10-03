@@ -9,10 +9,6 @@
         <servlet-class>Controller.admin.admin_dashboard</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>admin_insuranceProduct_dashboard</servlet-name>
-        <servlet-class>Controller.admin.admin_insuranceProduct_dashboard</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>admin_IP_detail</servlet-name>
         <servlet-class>Controller.admin.admin_IP_detail</servlet-class>
     </servlet>
@@ -55,10 +51,6 @@
     <servlet-mapping>
         <servlet-name>admin_dashboard</servlet-name>
         <url-pattern>/admin_dashboard</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>admin_insuranceProduct_dashboard</servlet-name>
-        <url-pattern>/admin_insuranceProduct_dashboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>admin_IP_detail</servlet-name>
