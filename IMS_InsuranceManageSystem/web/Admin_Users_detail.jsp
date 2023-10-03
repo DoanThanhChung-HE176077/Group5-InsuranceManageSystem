@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,19 +36,7 @@
 
 <body>
 
-    <!-- side menu  -->
-    <div class="side-menu">
-        <div class="brand-name">
-            <!-- <h1>Brand</h1> -->
-        </div>
-        <ul class="side-container">
-            <li class="side-item"><img src="Image/dashboard (2).png" alt="">&nbsp; <span>Dashboard</span> </li>
-            <li class="side-item"><img src="Image/reading-book (1).png" alt="">&nbsp;<span>Manage Users</span> </li>
-            <li class="side-item"><img src="Image/teacher2.png" alt="">&nbsp;<span>Manage Staffs</span> </li>
-            <li class="side-item"><img src="Image/school.png" alt="">&nbsp;<span>Manage Blogs</span> </li>
-            <li class="side-item"><img src="Image/school.png" alt="">&nbsp;<span>Manage Insurance Product</span> </li>
-        </ul>
-    </div>
+    <jsp:include page="Part/sidebar.jsp"></jsp:include>
 
 
 
@@ -62,7 +51,7 @@
                 <div class="my-card">
                     <div class="my-box">
                         <h1>2194</h1>
-                        <h3>Users</h3>
+                        <h3>Người dùng</h3>
                     </div>
                     <div class="icon-case">
                         <img src="Image/students.png" alt="">
@@ -72,7 +61,7 @@
                 <div class="my-card">
                     <div class="my-box">
                         <h1>53</h1>
-                        <h3>Staffs</h3>
+                        <h3>Nhân viên</h3>
                     </div>
                     <div class="icon-case">
                         <img src="Image/teachers.png" alt="">
@@ -82,7 +71,7 @@
                 <div class="my-card">
                     <div class="my-box">
                         <h1>5</h1>
-                        <h3>Contracts</h3>
+                        <h3>Hợp đồng</h3>
                     </div>
                     <div class="icon-case">
                         <img src="Image/schools.png" alt="">
@@ -92,7 +81,7 @@
                 <div class="my-card">
                     <div class="my-box">
                         <h1>18</h1>
-                        <h3>Blogs</h3>
+                        <h3>Bài viết</h3>
                     </div>
                     <div class="icon-case">
                         <img src="Image/income.png" alt="">
@@ -105,23 +94,32 @@
 
                 <div class="my-list1">
                     <div class="my-list-title">
-                        <h2>Detail Insurance Product</h2>
+                        <h2>Chi tiết thông tin người dùng</h2>
                         <!-- add new area -->
-                        <a href="admin_IP_list" class="my-btn btn btn-primary">Back</a>
+                        <a href="admin_Users_list" class="my-btn btn btn-primary">Quay lại</a>
                     </div>
                     <table>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Type</th>
-                                    <th>Name</th>
+                                    <th>Họ Tên</th>
+                                    <th>Email</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Số điện thoại</th>
+                                    <th>CCCD</th>
+                                    <th>Ảnh</th>
+                                    
                                 </tr>
                                 
                                 
                            
                                 <tr>
-                                    <td>${detail.ip_id}</td>
-                                    <td>${detail.ip_type}</td>
-                                    <td>${detail.ip_name}</td>
+                                    <td>${detail.user_fullName}</td>
+                                    <td>${detail.user_email}</td>
+                                    <td>${detail.user_dob}</td>
+                                    <td>${detail.user_address}</td>
+                                    <td>${detail.user_phoneNum}</td>
+                                    <td>${detail.user_iden}</td>
+                                    <td>${detail.user_image}</td>
                                 </tr>
                             
                         </table>

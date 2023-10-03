@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,19 +36,7 @@
 
 <body>
 
-    <!-- side menu  -->
-    <div class="side-menu">
-        <div class="brand-name">
-            <!-- <h1>Brand</h1> -->
-        </div>
-        <ul class="side-container">
-            <li class="side-item"><img src="Image/dashboard (2).png" alt="">&nbsp; <span>Dashboard</span> </li>
-            <li class="side-item"><img src="Image/reading-book (1).png" alt="">&nbsp;<span>Manage Users</span> </li>
-            <li class="side-item"><img src="Image/teacher2.png" alt="">&nbsp;<span>Manage Staffs</span> </li>
-            <li class="side-item"><img src="Image/school.png" alt="">&nbsp;<span>Manage Blogs</span> </li>
-            <li class="side-item"><img src="Image/school.png" alt="">&nbsp;<span>Manage Insurance Product</span> </li>
-        </ul>
-    </div>
+    <jsp:include page="Part/sidebar.jsp"></jsp:include>
 
 
 
@@ -62,7 +51,7 @@
                 <div class="my-card">
                     <div class="my-box">
                         <h1>2194</h1>
-                        <h3>Users</h3>
+                        <h3>Người dùng</h3>
                     </div>
                     <div class="icon-case">
                         <img src="Image/students.png" alt="">
@@ -72,7 +61,7 @@
                 <div class="my-card">
                     <div class="my-box">
                         <h1>53</h1>
-                        <h3>Staffs</h3>
+                        <h3>Nhân viên</h3>
                     </div>
                     <div class="icon-case">
                         <img src="Image/teachers.png" alt="">
@@ -82,7 +71,7 @@
                 <div class="my-card">
                     <div class="my-box">
                         <h1>5</h1>
-                        <h3>Contracts</h3>
+                        <h3>Hợp đồng</h3>
                     </div>
                     <div class="icon-case">
                         <img src="Image/schools.png" alt="">
@@ -92,7 +81,7 @@
                 <div class="my-card">
                     <div class="my-box">
                         <h1>18</h1>
-                        <h3>Blogs</h3>
+                        <h3>Bài viết</h3>
                     </div>
                     <div class="icon-case">
                         <img src="Image/income.png" alt="">
@@ -105,15 +94,13 @@
 
                 <div class="my-list1">
                     <div class="my-list-title">
-                        <h2>List Insurance Product</h2>
+                        <h2>Danh sách sản phẩm bảo hiểm</h2>
                         <!-- add new area -->
-                        <a href="#" class="my-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            data-bs-whatever="@getbootstrap">Add</a>
                     </div>
                     <table>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
+                                    <th>Tên sản phẩm</th>
                                 </tr>
                                 
                                 
@@ -122,7 +109,7 @@
                                     <td>${o.getIp_id()}</td>
                                     <td>${o.getIp_name()}</td>
                                     <td>
-                                        <a href="admin_IP_detail?ip_id=${o.getIp_id()} " class="my-btn btn btn-primary">Detail</a>
+                                        <a href="admin_IP_detail?ip_id=${o.getIp_id()} " class="my-btn btn btn-primary">Chi tiết</a>
                                         
                                     </td>
                                 </tr>
@@ -134,13 +121,13 @@
                 <!-- -------------------------------------------------------------------------------------------------------------------------- -->
                 <div class="new-students">
                     <div class="my-list-title">
-                        <h2>Income</h2>
+                        <h2>Doanh thu</h2>
                     </div>
                     <table>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Income</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Doanh thu</th>
                         </tr>
                         <tr>
                             

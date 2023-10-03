@@ -35,8 +35,8 @@ public class admin_Users_list extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         UserDAO ud = new UserDAO();
         ArrayList<User> list = ud.getALLUser();
-        request.setAttribute("listIP", list);
-        request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
+        request.setAttribute("listU", list);
+        request.getRequestDispatcher("Admin_Users_list.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
