@@ -44,6 +44,10 @@
         <servlet-name>change_forgetpass</servlet-name>
         <servlet-class>Controller.home.change_forgetpass</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>admin_Staff_list</servlet-name>
+        <servlet-class>Controller.admin.admin_Staff_list</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>change_forgetpass</servlet-name>
         <url-pattern>/change_forgetpass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admin_Staff_list</servlet-name>
+        <url-pattern>/admin_Staff_list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
