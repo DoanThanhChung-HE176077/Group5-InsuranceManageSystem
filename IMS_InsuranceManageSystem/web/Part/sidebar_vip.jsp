@@ -39,9 +39,24 @@
                 opacity: 0.1 !important;
             }
             
+            .sidebar-container {
+                /*display: flex;*/
+                position: absolute;
+                top: 100px;
+                z-index: 10;
+            }
+            
+            .sidebar-container a {
+                padding-top: 12px;
+                padding-right: 52px;
+            }
+            
+            .sidebar-container i {
+                margin-top: 5px;
+
+            }
+            
             .btn-sidebar {
-            /* Custom styles for the button */
-            border: 1px solid #2c464f;
             /* Border color (blue) */
             background-color: transparent;
             /* Transparent background */
@@ -54,28 +69,46 @@
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
             /* Smooth transitions */
             
+            border: none;
+            border-left: solid 5px #2c464f;
+            border-radius: 0px;
+            
+            padding-left: 0px;
         }
 
         .btn-sidebar:hover {
-            background-color: #fdd12d;
+            background-color: none;
             /* Background color on hover (blue) */
             color: #fff;
             /* Text color on hover (white) */
-            border-color: #fdd12d;
+            border-color: white;
             /* Border color on hover (blue) */
         }
+        
+        .offcanvas-title {
+            font-weight: bold;
+            font-style: italic;
+            text-shadow: 0px 0px 1px #2c464f;
+        }
+        
+        .list-group-item i {
+            margin-right: 10px;
+        }
+        
+        .list-group-item span {
+            font-size: 18px;
+        }
+        
+        
         </style>
     </head>
     <body>
-        <div style="
-            display: float;
-            position: absolute;
-            top: 100px;
-            z-index: 10;">
-            <button class="btn-sidebar btn" data-bs-toggle="offcanvas"
+        <div class="sidebar-container">
+            <a class="btn-sidebar btn" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvas">
-            <i class="fa-solid fa-list fs-3 "></i>
-        </button>
+<!--            <i class="fa-solid fa-list fs-3 "></i>-->
+            <i class="fa-solid fa-caret-right fa-2xl"></i>
+            </a>
         </div>
         
         
@@ -83,35 +116,43 @@
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" data-bs-keyboard="false"
              data-bs-scroll="true" style="width:  250px;">
             <div class="offcanvas-header">
-                <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas"></h6>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <i class="fa-solid fa-gear fa-rotate-270 fa-2xl"></i>
+                <h4 class="offcanvas-title d-none d-sm-block" id="offcanvas">Management</h4>
+                <a type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></a>
             </div>
             
             <div class="offcanvas-body px-0">
-                <ul class="list-group" style="padding-top: 50px;">
+                <ul class="list-group">
+                    
+                    
                     <li class="list-group-item my-btn1">
                         <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-home"></i> Home
+                            <i class="fas fa-home"></i> 
+                            <span>Home</span>
                         </a>
                     </li>
                     <li class="list-group-item my-btn1">
                         <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-user"></i> Manage User
+                            <i class="fas fa-user"></i> 
+                            <span style="margin-left: 3px;">Users</span>
                         </a>
                     </li>
                     <li class="list-group-item my-btn1">
                         <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-blog"></i> Manage Blog
+                            <i class="fas fa-blog"></i> 
+                            <span style="margin-right: 1px">Blogs</span>
                         </a>
                     </li>
                     <li class="list-group-item my-btn1">
                         <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-users"></i> Manage Staff
+                            <i class="fas fa-users"></i> 
+                            <span style="margin-left: -4px">Staffs</span>
                         </a>
                     </li>
                     <li class="list-group-item my-btn1">
                         <a href="#" class="my-sidebar-item">
-                            <i class="fas fa-shield-alt"></i> Manage Insurance Product
+                            <i class="fas fa-shield-alt"></i> 
+                            <span>Insurance Producs</span>
                         </a>
                     </li>
                 </ul>
