@@ -3,6 +3,7 @@
     Created on : Sep 22, 2023, 11:13:36 PM
     Author     : chun
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -220,8 +221,33 @@
 
             <div class="row mb-4">
                 <h2>Bài viết mới mỗi ngày</h2>
-
-                <div class="col-md-6">
+                <c:if test="${listBlog != null}">
+                    <c:forEach items="${listBlog}" var="o1">
+                        <div class="col-md-6">
+                            <div class="card mb-4 shadow-sm">
+                                <img src="Image/1.jpg" class="card-img-top" alt="Ảnh bài viết 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">${o1.getBl_title()}</h5>
+                                    <p class="card-text" 
+                                       style=" width:200px;
+                                                height:20px;
+                                                line-height:20px;
+                                                 overflow:hidden;"
+                                                 >${o1.getBl_content()}.</p>
+                                    <a href="#" class="btn btn-primary mybtn">Đọc thêm</a>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <div>
+                                        <i class='bx bx-purchase-tag-alt'></i>
+                                        <a href="#" class="mx-1">staff2</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:if>
+                
+<!--                <div class="col-md-6">
                     <div class="card mb-4 shadow-sm">
                         <img src="Image/1.jpg" class="card-img-top" alt="Ảnh bài viết 3">
                         <div class="card-body">
@@ -253,7 +279,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="col-md-6">
                     <div class="card mb-4 shadow-sm">

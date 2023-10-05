@@ -49,7 +49,7 @@ public class BlogDAO extends DBContext{
         Blogs bgg = new Blogs();
         ArrayList<Blogs> bg = dao.getAllBlogs();
         for (Blogs blogs : bg) {
-            System.out.println(blogs.getBl_img());
+            System.out.println(blogs.toString());
         }
     }
     

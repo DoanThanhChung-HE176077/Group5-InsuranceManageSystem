@@ -5,12 +5,15 @@
 
 package Controller.blog;
 
+import Dao.BlogDAO;
+import Model.Blogs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
@@ -54,9 +57,18 @@ public class blog_home_show extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         
+        BlogDAO bg = new BlogDAO();
+        
+        ArrayList<Blogs> listBlog = bg.getAllBlogs();
+        
+        if (listBlog == null) {
+            System.out.println("list blog to blog home FAILSE!!!");
+        }
         
         
-        response.sendRedirect("Blog_home.jsp");
+        request.setAttribute("listBlog", listBlog);
+//        response.sendRedirect("Blog_home.jsp");
+        request.getRequestDispatcher("Blog_home.jsp").forward(request, response);
     } 
 
     /** 
