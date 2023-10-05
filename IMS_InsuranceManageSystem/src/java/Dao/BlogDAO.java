@@ -33,8 +33,9 @@ public class BlogDAO extends DBContext{
                 String bl_img = rs.getString(5);
                 String bl_author = rs.getString(6);
                 String bl_creationdate = rs.getString(7);
-                String bl_status = rs.getString(8);
-                getAll.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, bl_author, bl_creationdate, bl_status));
+                int bl_view = rs.getInt(8);
+                String bl_status = rs.getString(9);
+                getAll.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, bl_author, bl_creationdate, bl_view, bl_status));
             }
             return getAll;
         } catch (SQLException ex) {

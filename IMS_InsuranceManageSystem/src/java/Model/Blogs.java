@@ -17,11 +17,12 @@ public class Blogs {
     String bl_author;
     String bl_creationdate;
     String bl_status;
+    int bl_view;
 
     public Blogs() {
     }
 
-    public Blogs(String bl_id, String bl_title, String bl_content, String bl_like, String bl_img, String bl_author, String bl_creationdate, String bl_status) {
+    public Blogs(String bl_id, String bl_title, String bl_content, String bl_like, String bl_img, String bl_author, String bl_creationdate,int bl_view, String bl_status) {
         this.bl_id = bl_id;
         this.bl_title = bl_title;
         this.bl_content = bl_content;
@@ -29,9 +30,19 @@ public class Blogs {
         this.bl_img = bl_img;
         this.bl_author = bl_author;
         this.bl_creationdate = bl_creationdate;
+        this.bl_view = bl_view;
         this.bl_status = bl_status;
     }
 
+    public int getBl_view() {
+        return bl_view;
+    }
+
+    public void setBl_view(int bl_view) {
+        this.bl_view = bl_view;
+    }
+
+    
     public String getBl_id() {
         return bl_id;
     }
