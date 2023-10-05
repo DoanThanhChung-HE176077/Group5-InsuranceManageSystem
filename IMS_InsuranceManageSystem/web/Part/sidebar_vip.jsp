@@ -126,33 +126,33 @@
                     
                     
                     <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
+                        <a href="/IMS_InsuranceManageSystem/" class="my-sidebar-item">
                             <i class="fas fa-home"></i> 
-                            <span>Home</span>
+                            <span>Trang Chủ</span>
                         </a>
                     </li>
                     <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
+                        <a href="admin_Users_list" class="my-sidebar-item">
                             <i class="fas fa-user"></i> 
-                            <span style="margin-left: 3px;">Users</span>
+                            <span style="margin-left: 3px;">Quản Lý Người Dùng</span>
                         </a>
                     </li>
                     <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
+                        <a href="blog_list" class="my-sidebar-item">
                             <i class="fas fa-blog"></i> 
-                            <span style="margin-right: 1px">Blogs</span>
+                            <span style="margin-right: 1px">Quản Lý Bài Viết</span>
                         </a>
                     </li>
                     <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
+                        <a href="admin_Staff_list" class="my-sidebar-item">
                             <i class="fas fa-users"></i> 
-                            <span style="margin-left: -4px">Staffs</span>
+                            <span style="margin-left: -4px">Quản Lý Nhân Viên</span>
                         </a>
                     </li>
                     <li class="list-group-item my-btn1">
-                        <a href="#" class="my-sidebar-item">
+                        <a href="admin_IP_list" class="my-sidebar-item">
                             <i class="fas fa-shield-alt"></i> 
-                            <span>Insurance Producs</span>
+                            <span>Quản Lý Sản Phẩm Bảo Hiểm</span>
                         </a>
                     </li>
                 </ul>

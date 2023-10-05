@@ -34,9 +34,10 @@
 </head>
 
 <body>
-
+    
+    <jsp:include page="Part/header.jsp"></jsp:include>
     <!-- side menu  -->
-    <jsp:include page="Part/sidebar.jsp"></jsp:include>
+    <jsp:include page="Part/sidebar_vip.jsp"></jsp:include>
 
 
    
