@@ -54,7 +54,12 @@
                     </div>
                 </div>
 
-                
+                <div class="form-group" id="Upa_otp"> 
+                    <span class="input_label">Nhập lại mật khẩu</span>
+                    <div class="input-group">
+                        <input name="input-repassword" type="password" id="" class="form-control" placeholder="Nhập lại mật khẩu mới">
+                    </div>
+                </div>
                 
                 <p style="text-align:center;color:red; font-size: 14px; margin-bottom: 10px;">
                     ${msg}
