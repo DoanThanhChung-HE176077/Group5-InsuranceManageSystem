@@ -35,7 +35,7 @@ public class BlogDAO extends DBContext{
                 String bl_creationdate = rs.getString(7);
                 int bl_view = rs.getInt(8);
                 String bl_status = rs.getString(9);
-                getAll.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, bl_author, bl_creationdate, bl_view, bl_status));
+                getAll.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, bl_author, bl_creationdate, bl_view, bl_view, bl_status));
             }
             return getAll;
         } catch (SQLException ex) {
@@ -43,11 +43,69 @@ public class BlogDAO extends DBContext{
         }
         return null;
     }
+    
+    //get top 5 blog hving view cao
+        public ArrayList<Blogs> getTop5Blogs() {
+        try {
+            ArrayList<Blogs> getTop5Blogs = new ArrayList<>();
+            String sql = "select top 5 * from Blogs order by bl_view desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String bl_id = rs.getString(1);
+                String bl_title = rs.getString(2);
+                String bl_content = rs.getString(3);
+                String bl_like = rs.getString(4);
+                String bl_img = rs.getString(5);
+                String bl_author = rs.getString(6);
+                String bl_creationdate = rs.getString(7);
+                int bl_tag_id = rs.getInt(8);
+                int bl_view = rs.getInt(9);
+                String bl_status = rs.getString(10);
+                getTop5Blogs.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, bl_author, bl_creationdate, bl_tag_id, bl_view, bl_status));
+            }
+            return getTop5Blogs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
+        //get top 15 blog hving view cao
+        public ArrayList<Blogs> getTop15Blogs() {
+        try {
+            ArrayList<Blogs> getTop15Blogs = new ArrayList<>();
+            String sql = "select top 5 * from Blogs order by bl_view desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String bl_id = rs.getString(1);
+                String bl_title = rs.getString(2);
+                String bl_content = rs.getString(3);
+                String bl_like = rs.getString(4);
+                String bl_img = rs.getString(5);
+                String bl_author = rs.getString(6);
+                String bl_creationdate = rs.getString(7);
+                int bl_tag_id = rs.getInt(8);
+                int bl_view = rs.getInt(9);
+                String bl_status = rs.getString(10);
+                getTop15Blogs.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, bl_author, bl_creationdate, bl_tag_id, bl_view, bl_status));
+            }
+            return getTop15Blogs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
         Blogs bgg = new Blogs();
-        ArrayList<Blogs> bg = dao.getAllBlogs();
+        
+//        ArrayList<Blogs> bg = dao.getAllBlogs();
+//        for (Blogs blogs : bg) {
+//            System.out.println(blogs.toString());
+//        }
+        ArrayList<Blogs> bg = dao.getTop5Blogs();
         for (Blogs blogs : bg) {
             System.out.println(blogs.toString());
         }

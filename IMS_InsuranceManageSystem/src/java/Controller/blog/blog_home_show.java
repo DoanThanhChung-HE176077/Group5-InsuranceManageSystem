@@ -59,14 +59,33 @@ public class blog_home_show extends HttpServlet {
         
         BlogDAO bg = new BlogDAO();
         
+        //Tat ca bai viet
         ArrayList<Blogs> listBlog = bg.getAllBlogs();
-        
         if (listBlog == null) {
             System.out.println("list blog to blog home FAILSE!!!");
+        }else{
+            System.out.println("list blog to blog home DONEEEE!!!");
         }
         
+        //Top 5 bai viet xem nhieu nhat
+        ArrayList<Blogs> listTop5Blogs = bg.getTop5Blogs();
+        if (listTop5Blogs == null) {
+            System.out.println("list Top 5 blog to blog home FAILSE!!!");
+        }else{
+            System.out.println("list Top 5 blog to blog home DONEEEE!!!");
+        }
+        
+        //Cac bai viet noi bat slider : 15b
+        ArrayList<Blogs> listTop15Blogs = bg.getTop15Blogs();
+        if (listTop15Blogs == null) {
+            System.out.println("list Top 15 slider blog to blog home FAILSE!!!");
+        }else{
+            System.out.println("list Top 15 slider blog to blog home DONEEEE!!!");
+        }
         
         request.setAttribute("listBlog", listBlog);
+        request.setAttribute("listTop5Blogs", listTop5Blogs);
+        request.setAttribute("listTop15Blogs", listTop15Blogs);
 //        response.sendRedirect("Blog_home.jsp");
         request.getRequestDispatcher("Blog_home.jsp").forward(request, response);
     } 

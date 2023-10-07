@@ -19,6 +19,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
         
+        
     </head>
     <body>
         <!-- navbar -->
@@ -73,19 +74,8 @@
             
             <!-- pro5 -->
             <div class="my-profile">
-<!--                <ul class="navbar-nav menutrai">
-                    <li class="d-flex align-items-center float-right" id="btnlogin">
-                        <a href="logout" style="padding: 8px;"><i class="fa fa-user" style="color: #066132"></i>
-                            Đăng xuất
-                        </a>
-                        
-                    </li>
-                </ul>-->
                 <c:if test="${sessionScope.user != null}">
-                    
-                    
-                <li class="dropdown">
-                        
+                <li class="dropdown"> 
                     <a class="dropdown-toggle" data-bs-toggle="dropdown" style="text-decoration: none;">
                         <img src=" ${sessionScope.user.user_image}" alt="">
                         <span id="my-username" style="color: black;">
@@ -99,7 +89,7 @@
                         
                         <!--phân quyền staff-->
                         <c:if test="${sessionScope.user.user_role.equals('staff')}">
-                            <a class="dropdown-item" href="#">Dashboard</a>
+                            <a class="dropdown-item" href="admin_dashboard">Dashboard</a>
                         </c:if>
                         
                         <!--phân quyền admin-->
