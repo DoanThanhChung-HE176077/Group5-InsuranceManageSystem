@@ -27,11 +27,15 @@ public class BlogDAO extends DBContext{
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String bl_id = rs.getString(1);
-                String bl_content = rs.getString(2);
-                String bl_like = rs.getString(3);
-                String bl_img = rs.getString(4);
-
-                getAll.add(new Blogs(bl_id, bl_content, bl_like, bl_img));
+                String bl_title = rs.getString(2);
+                String bl_content = rs.getString(3);
+                String bl_like = rs.getString(4);
+                String bl_img = rs.getString(5);
+                String bl_author = rs.getString(6);
+                String bl_creationdate = rs.getString(7);
+                int bl_view = rs.getInt(8);
+                String bl_status = rs.getString(9);
+                getAll.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, bl_author, bl_creationdate, bl_view, bl_status));
             }
             return getAll;
         } catch (SQLException ex) {
@@ -45,7 +49,7 @@ public class BlogDAO extends DBContext{
         Blogs bgg = new Blogs();
         ArrayList<Blogs> bg = dao.getAllBlogs();
         for (Blogs blogs : bg) {
-            System.out.println(blogs.getBl_img());
+            System.out.println(blogs.toString());
         }
     }
     

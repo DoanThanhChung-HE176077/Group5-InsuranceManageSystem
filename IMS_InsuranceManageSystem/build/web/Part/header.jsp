@@ -65,6 +65,9 @@
 
                     </div>
                 </li>
+                <li class="dropdown">
+                    <a class="" href="blog_home_show">Blog</a>
+                </li>
             </ul>
 
             

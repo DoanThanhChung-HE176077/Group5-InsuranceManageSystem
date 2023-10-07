@@ -5,18 +5,21 @@
 
 package Controller.blog;
 
+import Dao.BlogDAO;
+import Model.Blogs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
  * @author chun
  */
-public class blog_home extends HttpServlet {
+public class blog_home_show extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,10 +36,10 @@ public class blog_home extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet blog_home</title>");  
+            out.println("<title>Servlet blog_home_show</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet blog_home at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet blog_home_show at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -53,7 +56,19 @@ public class blog_home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        
+        BlogDAO bg = new BlogDAO();
+        
+        ArrayList<Blogs> listBlog = bg.getAllBlogs();
+        
+        if (listBlog == null) {
+            System.out.println("list blog to blog home FAILSE!!!");
+        }
+        
+        
+        request.setAttribute("listBlog", listBlog);
+//        response.sendRedirect("Blog_home.jsp");
+        request.getRequestDispatcher("Blog_home.jsp").forward(request, response);
     } 
 
     /** 

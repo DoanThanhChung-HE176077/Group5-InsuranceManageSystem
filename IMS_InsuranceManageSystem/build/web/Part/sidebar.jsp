@@ -19,7 +19,7 @@
                 <!-- <h1>Brand</h1> -->
             </div>
             <ul class="side-container">
-                <li class="side-item"><img src="Image/dashboard (2).png" alt="">&nbsp; <span>Trang chủ</span> </li>
+                <li class="side-item"><img src="Image/dashboard (2).png" alt="">&nbsp; <span>Trang Chủ</span> </li>
                 <li class="side-item"><img src="Image/reading-book (1).png" alt="">&nbsp;<span><a href="admin_Users_list">Quản lí người dùng</a></span> </li>
                 <li class="side-item"><img src="Image/teacher2.png" alt="">&nbsp;<span><a href="admin_Staff_list">Quản lí nhân viên</a></span> </li>
                 <li class="side-item"><img src="Image/school.png" alt="">&nbsp;<span><a href="blog_list">Quản lí bài viết</a></span> </li>
