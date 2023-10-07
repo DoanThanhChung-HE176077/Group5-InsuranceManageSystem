@@ -121,9 +121,9 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="carousel-item">
+<!--                                <div class="carousel-item">
                                     <a href="blog-detail-2.html">
-                                        <!-- Replace with the actual URL of the blog detail page -->
+                                         Replace with the actual URL of the blog detail page 
                                         <img src="Image/2.jpg" class="d-block w-100" alt="Image 2"
                                              style="height: 400px; width: 800px;">
                                         <div class="carousel-caption d-none d-md-block">
@@ -131,7 +131,29 @@
                                             <p>Some representative placeholder content for the second slide.</p>
                                         </div>
                                     </a>
-                                </div>
+                                </div>-->
+
+                                    <div class="carousel-item ">
+                                        <a href="blog-detail-1.html">
+                                            <!-- Replace with the actual URL of the blog detail page -->
+                                            <img src="Image/1.jpg" class="d-block w-100" alt="Image 1"
+                                                 style="height: 400px; width: 800px;">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h5>First slide label</h5>
+                                                <p>
+                                                    Tag: Tag1 / Post Date: January 1, 2023
+                                                    <br>
+                                                    Title: First Blog Post
+                                                    <br>
+                                                    Content: Some representative placeholder content for the first slide.
+                                                    <br>
+                                                    Views: 100
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+
+
                                 <div class="carousel-item">
                                     <a href="blog-detail-3.html">
                                         <!-- Replace with the actual URL of the blog detail page -->
