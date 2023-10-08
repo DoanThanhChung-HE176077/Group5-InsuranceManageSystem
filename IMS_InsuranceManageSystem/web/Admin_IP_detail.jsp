@@ -62,7 +62,7 @@
                                 <!-- Column 1: Blog Post Table -->
                                 <div class="my-column1 col-md-6">
                                     <h2 style="display: inline-block;">Chi tiết sản phẩm bảo hiểm</h2>
-<!--                                    go to blog page-->
+                                    <!--                                    go to blog page-->
                                     <button class="btn btn-success mb-3 " style="margin-left: 200px" >
                                         <a href="admin_IP_list" style="text-decoration: none; color: #fff;">Back</a>
                                     </button>
@@ -77,13 +77,13 @@
                                         </thead>
                                         <tbody>
                                             <!-- Example row, you can use a loop to generate rows dynamically -->
-                                        
+
                                             <tr>
                                                 <td>${detail.ip_id}</td>
-                                                <td>${detail.ip_type}</td>
-                                                <td>${detail.ip_name}</td>
-                                            </tr>
-                                    
+                                            <td>${detail.ip_type}</td>
+                                            <td>${detail.ip_name}</td>
+                                        </tr>
+
                                         <!-- Repeat rows for each blog post -->
                                     </tbody>
                                 </table>

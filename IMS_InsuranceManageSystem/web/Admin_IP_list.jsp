@@ -62,7 +62,7 @@
                                 <!-- Column 1: Blog Post Table -->
                                 <div class="my-column1 col-md-6">
                                     <h2 style="display: inline-block;">Danh sách sản phẩm bảo hiểm</h2>
-<!--                                    go to blog page-->
+                                    <!--                                    go to blog page-->
 
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
@@ -76,13 +76,13 @@
                                             <!-- Example row, you can use a loop to generate rows dynamically -->
                                         <c:forEach items="${listIP}" var="o">
                                             <tr>
-                                                
+
                                                 <td>${o.getIp_id()}</td>
                                                 <td>${o.getIp_name()}</td>
-                                                
+
                                                 <td>
                                                     <!-- Edit Button -->
-                                        <a href="admin_IP_detail?ip_id=${o.getIp_id()} " class="my-btn btn btn-primary">Chi tiết</a>
+                                                    <a href="admin_IP_detail?ip_id=${o.getIp_id()} " class="my-btn btn btn-primary">Chi tiết</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>    

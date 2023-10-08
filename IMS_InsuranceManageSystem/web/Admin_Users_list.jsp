@@ -62,7 +62,7 @@
                                 <!-- Column 1: Blog Post Table -->
                                 <div class="my-column1 col-md-6">
                                     <h2 style="display: inline-block;">Danh sách sản phẩm bảo hiểm</h2>
-<!--                                    go to blog page-->
+                                    <!--                                    go to blog page-->
 
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
@@ -78,18 +78,18 @@
                                         <tbody>
                                             <!-- Example row, you can use a loop to generate rows dynamically -->
                                         <c:forEach items="${listU}" var="o">
-                                <tr>
-                                    <td>${o.getUser_fullName()}</td>
-                                    <td>${o.getUser_dob()}</td>
-                                    <td>${o.getUser_address()}</td>
-                                    <td>${o.getUser_phoneNum()}</td>
-                                    <td>${o.getUser_image()}</td>
-                                    <td>
-                                        <a href="admin_Users_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
-                                        
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                            <tr>
+                                                <td>${o.getUser_fullName()}</td>
+                                                <td>${o.getUser_dob()}</td>
+                                                <td>${o.getUser_address()}</td>
+                                                <td>${o.getUser_phoneNum()}</td>
+                                                <td>${o.getUser_image()}</td>
+                                                <td>
+                                                    <a href="admin_Users_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
+
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                         <!-- Repeat rows for each blog post -->
                                     </tbody>
                                 </table>
