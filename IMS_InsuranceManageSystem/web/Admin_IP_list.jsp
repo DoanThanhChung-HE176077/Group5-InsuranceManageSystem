@@ -63,9 +63,7 @@
                                 <div class="my-column1 col-md-6">
                                     <h2 style="display: inline-block;">Danh sách sản phẩm bảo hiểm</h2>
 <!--                                    go to blog page-->
-                                    <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="blog_home_show" style="text-decoration: none; color: #fff;">Go to Blog</a>
-                                    </button>
+
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
                                         <thead>
