@@ -51,9 +51,9 @@ public class DBContext {
                                       >>>>>>>>>>>>>          <<<<<<<<<<<<
                                       ======= Edit SQL config here ========*/
            
-           String user = "sa";
-           String pass = "123";
-           String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
+//           String user = "sa";
+//           String pass = "123";
+//          String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
 
 
 
@@ -79,6 +79,11 @@ public class DBContext {
             // String pass = "123";
             // String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insuranceDB";
 
+//            String user = "sa";
+//            String pass = "123";
+//            String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insuranceDB";
+
+
 
 
                                     /*======= Edit SQL config here ========
@@ -87,15 +92,15 @@ public class DBContext {
                                       >>>>>>>>>>>>>          <<<<<<<<<<<<
                                       ======= Edit SQL config here ========*/
             
-//            String user = "sa";
-//            String pass = "1234";
-//            String url = "jdbc:sqlserver://localhost:1433;databaseName=insurance-manage-systemV1";
+            String user = "sa";
+            String pass = "1234";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=insurance-manage-systemV2";
 
 
             
 //            String url = "jdbc:sqlserver://DESKTOP-7MF95U3\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
-//                String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insuranceDB";
-//                String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
+//            String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insuranceDB";
+//            String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV1";
 
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

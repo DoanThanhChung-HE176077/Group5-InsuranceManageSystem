@@ -97,10 +97,6 @@ form {
     text-transform: none;
 }
 
-.input-group {
-  margin-bottom: 10px;
-}
-
 .form-group .input_label {
     position: absolute;
     background: 0 0;
@@ -125,6 +121,12 @@ form {
     z-index: 9;
     line-height: 18px;
 }
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+
 
 input {
   width: 100%;

@@ -16,8 +16,8 @@ import java.util.logging.Logger;
  *
  * @author chun
  */
-public class BlogDAO extends DBContext{
-    
+public class BlogDAO extends DBContext {
+
     //get list blog
     public ArrayList<Blogs> getAllBlogs() {
         try {
@@ -43,9 +43,9 @@ public class BlogDAO extends DBContext{
         }
         return null;
     }
-    
+
     //get top 5 blog hving view cao
-        public ArrayList<Blogs> getTop5Blogs() {
+    public ArrayList<Blogs> getTop5Blogs() {
         try {
             ArrayList<Blogs> getTop5Blogs = new ArrayList<>();
             String sql = "select top 5 * from Blogs order by bl_view desc";
@@ -71,8 +71,8 @@ public class BlogDAO extends DBContext{
         return null;
     }
 
-        //get top 15 blog hving view cao
-        public ArrayList<Blogs> getTop15Blogs() {
+    //get top 15 blog hving view cao
+    public ArrayList<Blogs> getTop15Blogs() {
         try {
             ArrayList<Blogs> getTop15Blogs = new ArrayList<>();
             String sql = "select top 5 * from Blogs order by bl_view desc";
@@ -97,10 +97,59 @@ public class BlogDAO extends DBContext{
         }
         return null;
     }
+
+    public void addBlog(Blogs blog) {
+        try {
+            String sql = "INSERT INTO [dbo].[Blogs]\n"
+                    + "           ([bl_title]\n"
+                    + "           ,[bl_content]\n"
+                    + "           ,[bl_like]\n"
+                    + "           ,[bl_img]\n"
+                    + "           ,[bl_author]\n"
+                    + "           ,[bl_creationdate]\n"
+                    + "           ,[bl_tag_id]\n"
+                    + "           ,[bl_view]\n"
+                    + "           ,[bl_status])\n"
+                    + "     VALUES\n"
+                    + "           (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, blog.getBl_title());
+            ps.setString(2, blog.getBl_content());
+            ps.setString(3, blog.getBl_like());
+            ps.setString(4, blog.getBl_img());
+            ps.setString(5, blog.getBl_author());
+            ps.setString(6, blog.getBl_creationdate());
+            ps.setInt(7, blog.getBl_tag_id());
+            ps.setInt(8, blog.getBl_view());
+            ps.setString(9, blog.getBl_status());
+        } catch (SQLException e) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, e.getMessage());
+        }
+    }
+
+    public int getLastId() {
+        int lastId;
+        try {
+            String strSQL = "SELECT top 1 bl_id\n"
+                    + "  FROM [dbo].[Blogs]\n"
+                    + "  ORDER BY bl_id DESC";
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                // Add thành công
+                lastId = rs.getInt(1);
+                return lastId;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, e.getMessage());
+        }
+        return 0;
+    }
+
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
         Blogs bgg = new Blogs();
-        
+
 //        ArrayList<Blogs> bg = dao.getAllBlogs();
 //        for (Blogs blogs : bg) {
 //            System.out.println(blogs.toString());
@@ -110,5 +159,5 @@ public class BlogDAO extends DBContext{
             System.out.println(blogs.toString());
         }
     }
-    
+
 }
