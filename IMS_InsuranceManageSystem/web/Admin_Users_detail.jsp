@@ -83,7 +83,7 @@
                                             <!-- Example row, you can use a loop to generate rows dynamically -->
 
                                             <tr>
-                                                <td>${detail.user_fullName}</td>
+                                            <td>${detail.user_fullName}</td>
                                             <td>${detail.user_email}</td>
                                             <td>${detail.user_dob}</td>
                                             <td>${detail.user_address}</td>
