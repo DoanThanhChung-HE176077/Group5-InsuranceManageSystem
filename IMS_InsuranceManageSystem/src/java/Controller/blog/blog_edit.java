@@ -14,9 +14,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author chun
+ * @author pc minh
  */
-public class blog_add extends HttpServlet {
+public class blog_edit extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,10 +33,10 @@ public class blog_add extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet blog_add</title>");  
+            out.println("<title>Servlet blog_edit</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet blog_add at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet blog_edit at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -53,8 +53,7 @@ public class blog_add extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        //processRequest(request, response);
-        
+        processRequest(request, response);
     } 
 
     /** 
