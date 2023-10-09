@@ -25,7 +25,7 @@ public class SendVerifyCodeMail {
     private static final String EMAIL_USERNAME = "huy172809@gmail.com";
     private static final String EMAIL_PASSWORD = "fycx uhny fxnb xtrh";
 
-    public static void sendMail(String verifyCode) throws IOException, AddressException, MessagingException {
+    public static void sendMail(String verifyCode) throws IOException, AddressException, MessagingException, jakarta.mail.MessagingException {
         // Tạo thông tin xác thực
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");

@@ -1,0 +1,47 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Oct 7, 2023, 3:58:50 PM
+    Author     : Dell
+*/
+body{
+    background-color: hsl(0,0%,97%);
+    padding: 20px;
+}
+span{
+    font-size: 14px;
+}
+.info_motobike{
+    padding: 15px;
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(157, 151, 151);
+    border-radius: 7px;
+}
+.general-dr{
+   width:  100%;
+   height: 40px;
+   outline: none;
+   border-radius: 5px;
+   border: 1px solid hsl(213,15%,85%);
+}
+.payment{
+    padding: 10px;
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(157, 151, 151);
+    border-radius: 7px;
+    
+}
+.payment button{
+    width: 100%;
+    background-color: hsl(47,98%,58%) ;
+    color: white;
+    font-weight: bolder;
+    border: none;
+   
+}
+.payment button:hover{
+    background-color: hsl(47, 22%, 49%);
+}
+
