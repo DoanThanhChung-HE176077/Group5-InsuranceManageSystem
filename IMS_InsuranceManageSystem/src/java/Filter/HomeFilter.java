@@ -16,6 +16,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -23,6 +24,7 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class HomeFilter implements Filter {
     
+
     private static final boolean debug = true;
 
     // The filter configuration object we are associated with.  If
@@ -95,6 +97,7 @@ public class HomeFilter implements Filter {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet error occurs
      */
+    
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
@@ -104,15 +107,14 @@ public class HomeFilter implements Filter {
         }
         
         doBeforeProcessing(request, response);
-        
-//        //viet vao day
+       
 //        HttpServletRequest httpRequest1 = (HttpServletRequest)request;
 //        HttpServletResponse httpRespone1 = (HttpServletResponse)response;
-////        String blockObjects = "/Login.jsp";
 //        String myurl = httpRequest1.getServletPath() ;
-//        if(myurl.endsWith(".jsp") && !myurl.equals("/Login.jsp") && !myurl.equals("/Register.jsp")){
+//        System.out.println(myurl);
+//        HttpSession sesssion = httpRequest1.getSession();
+//        if(sesssion.getAttribute("user")==null&&!myurl.endsWith("/home_show")&& !myurl.endsWith("/Login.jsp") && !myurl.endsWith("/Register.jsp") && !myurl.endsWith("blog_home_show")){
 //            httpRespone1.sendRedirect("/IMS_InsuranceManageSystem/");
-//            System.out.println("chay qua bo loc home");
 //        }
         
         Throwable problem = null;
