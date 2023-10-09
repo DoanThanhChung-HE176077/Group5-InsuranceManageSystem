@@ -14,18 +14,24 @@
 
         <title>Document</title>
 
+        <!-- bootstrap 4 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-            crossorigin="anonymous"></script>
+                integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-            crossorigin="anonymous"></script>
+                integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
 
         <!-- boxincon -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -74,6 +80,26 @@
                 font-size: 18px;
                 margin: 0;
             }
+
+            .myp {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                max-width: calc(25 * 1em);
+                /* Số từ cần in ra lần độ rộng của từ */
+            }
+
+            .myp::before {
+                content: attr(data-text);
+                /* Lấy nội dung gốc từ thuộc tính data-text */
+                display: inline;
+            }
+            
+            .mycard1{
+                border-radius: 35px;
+                box-shadow: 5px 10px 50px #555;
+                background-color: #fff; 
+            }
         </style>
     </head>
     <body>
@@ -81,160 +107,134 @@
         <!--header-->
         <jsp:include page="Part/header.jsp"></jsp:include>
 
-        <div class="container mt-4">
-            <div class="row mb-4">
-                <div class="col-md-6 offset-md-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Tìm kiếm bài viết">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary mybtn" type="button">Tìm kiếm</button>
+        <div class="container mt-4 mycard1" style="margin-top: 100px !important">
+            <div class="row mb-4" style="margin-top: -80px">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm bài viết">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary mybtn" type="button">Tìm kiếm</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="row ">
+                    <!-- Column 1: 2x2 grid of articles -->
+                    <div class="col-md-8">
+<!-----------------------------------------------cac bai viet noi bat---------------------------------------------------------------------> 
+                        <h2>Các bài viết nổi bật</h2>
 
-            <div class="row">
-                <!-- Column 1: 2x2 grid of articles -->
-                <div class="col-md-8">
-                    <h2>Các bài viết nổi bật</h2>
-
-                    <div class="row">
-                        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
-                                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                                        aria-label="Slide 2"></button>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                                        aria-label="Slide 3"></button>
+                        <div class="row">
+                            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                                <!---------------------------------------------number of list item--------------------------------------------------->
+                                <div class="carousel-indicators">
+                                <c:forEach items="${listTop15Blogs}" var="blog" varStatus="loopStatus">
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${loopStatus.index}"
+                                            class="${loopStatus.first ? 'active' : ''}" aria-current="${loopStatus.first}" aria-label="Slide ${loopStatus.index + 1}"></button>
+                                </c:forEach> 
                             </div>
                             <!-- list slider -->
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <a href="blog-detail-1.html">
-                                        <!-- Replace with the actual URL of the blog detail page -->
-                                        <img src="Image/1.jpg" class="d-block w-100" alt="Image 1"
-                                             style="height: 400px; width: 800px;">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>First slide label</h5>
-                                            <p>Some representative placeholder content for the first slide.</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="blog-detail-2.html">
-                                        <!-- Replace with the actual URL of the blog detail page -->
-                                        <img src="Image/2.jpg" class="d-block w-100" alt="Image 2"
-                                             style="height: 400px; width: 800px;">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>Second slide label</h5>
-                                            <p>Some representative placeholder content for the second slide.</p>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="carousel-item">
-                                    <a href="blog-detail-3.html">
-                                        <!-- Replace with the actual URL of the blog detail page -->
-                                        <img src="Image/3.jpg" class="d-block w-100" alt="Image 3"
-                                             style="height: 400px; width: 800px;">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h5>Third slide label</h5>
-                                            <p>Some representative placeholder content for the third slide.</p>
-                                        </div>
-                                    </a>
-                                </div>
+                                <!---------------------------------------------list slide item--------------------------------------------------->
+                                <c:forEach items="${listTop15Blogs}" var="blog" varStatus="loopStatus"> 
+                                    <div class="carousel-item ${loopStatus.first ? 'active' : ''}">
+                                        <a href="Blog_detail.jsp">
+                                            <img src="${blog.getBl_img()}" class="d-block w-100" alt="${blog.getBl_title()}"
+                                                 style="height: 400px; width: 800px; object-fit: cover;">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h5>${blog.getBl_title()}</h5>
+                                                <p class="myp">${blog. getBl_content()}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </c:forEach> 
+                                <!---------------------------------------------2 button prev next--------------------------------------------------->
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                                        data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                                        data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
-
-
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                                    data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                                    data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
-
-                    </div>
-
-
-                    <!-- Pagination -->
-                    <div class="row" style="height: 100px;">
-                        <div class="col-md-12">
-
+                        <!-- Pagination -->
+                        <div class="row" style="height: 100px;">
+                            <div class="col-md-12">
+                            </div>
                         </div>
                     </div>
-
-
                 </div>
-
                 <!-- Column 2: List of featured articles -->
+<!---------------xem nhieu nhat---------------------------------------------------------------------> 
                 <div class="col-md-4 ">
-                    <h2>Xem nhiều nhất</h2>
+                    <h2 >Xem nhiều nhất</h2>
                     <!-- Featured Article 1 -->
-                    <div class="card mb-3" style="max-width: 540px; height: 92px;">
-                        <div class="row no-gutters">
-                            <div class="col-md-4">
-                                <img src="Image/3.jpg" class="card-img" alt="Ảnh bài viết 3" style="height: 92px; width: 125px;">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="tag-date">
-                                        <span class="tag-name">Xe Cơ Giới</span>
-                                        <span class="creation-date">10/06/2003</span>
+                    <c:if test="${listTop5Blogs != null}">
+                        <c:forEach items="${listTop5Blogs}" var="o2">
+                            <div class="card mb-3 border border-5" style="max-width: 540px !important; height: 92px!important; cursor: pointer!important;
+                                 " data-toggle="mypopover1" title=" Bài viết: ${o2.getBl_title()}">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="${o2.getBl_img()}" class="card-img" alt="Ảnh bài viết 3" style="height: 92px; width: 125px; object-fit: cover;">
                                     </div>
-                                    <!-- Wrap the title in an anchor element -->
-                                    <h6 class="card-title"><a href="#" style="text-decoration: none;">Tiêu
-                                            đề bài viết 3</a></h6>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <div class="tag-date">
+                                                <span class="tag-name"> ${o2.getBl_tag_id()}</span>
+                                                <span class="creation-date"> ${o2.getBl_creationdate()}</span>
+                                            </div>
+                                            <!-- Wrap the title in an anchor element -->
+                                            <h6 class="card-title myp" ><a href="Blog_detail.jsp" style="
+                                                                      text-decoration: none;
+                                                                      text-transform: uppercase;
+                                                                      font-size: 12px;
+                                                                      font-weight: 100;
+                                                                      color: #2c464f;
+                                                                      text-shadow: 0px 0px 1px #2c464f;
+                                                                      ">
+                                                    ${o2.getBl_title()}</a></h6>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="card mb-3" style="max-width: 540px; height: 92px;">
-                        <div class="row no-gutters">
-                            <div class="col-md-4">
-                                <img src="Image/3.jpg" class="card-img" alt="Ảnh bài viết 3" style="height: 92px; width: 125px;">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="tag-date">
-                                        <span class="tag-name">Xe Cơ Giới</span>
-                                        <span class="creation-date">10/06/2003</span>
-                                    </div>
-                                    <!-- Wrap the title in an anchor element -->
-                                    <h6 class="card-title"><a href="#" style="text-decoration: none;">Tiêu
-                                            đề bài viết 3</a></h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </c:forEach>
+                    </c:if>
                 </div>
             </div>
-
-
-
-
-
-            <div class="row mb-4">
+<!---------------------------------------------------------------------Bai viet moi ngay--------------------------------------------------------------------->
+            <div class="row mb-4 ">
                 <h2>Bài viết mới mỗi ngày</h2>
                 <c:if test="${listBlog != null}">
                     <c:forEach items="${listBlog}" var="o1">
-                        <div class="col-md-6">
+                        <div class="col-md-6 "   data-toggle="mypopover1" title=" Bài viết: ${o1.getBl_title()}" 
+                             style="cursor: pointer;
+/*                             border: 2px solid black;*/
+/*                             outline: #4CAF50 solid 10px;*/
+/*                             margin: auto;
+                             padding: 20px;*/
+
+                             ">
                             <div class="card mb-4 shadow-sm">
                                 <img src="Image/1.jpg" class="card-img-top" alt="Ảnh bài viết 3">
                                 <div class="card-body">
-                                    <h5 class="card-title">${o1.getBl_title()}</h5>
-                                    <p class="card-text" 
-                                       style=" width:200px;
-                                                height:20px;
-                                                line-height:20px;
-                                                 overflow:hidden;"
-                                                 >${o1.getBl_content()}.</p>
-                                    <a href="#" class="btn btn-primary mybtn">Đọc thêm</a>
+                                    <h5 class="card-title">
+                                        <a href="Blog_detail.jsp" style="
+                                           text-decoration: none;
+                                           text-transform: uppercase;
+                                           font-size: 14px;
+                                           font-weight: 500;
+                                           color: #2c464f;
+                                           text-shadow: 0px 0px 1px #2c464f;
+                                           ">
+                                            ${o1.getBl_title()}
+                                        </a>
+                                    </h5>
+                                    <p class="card-text myp" data-text="${o1.getBl_content()}"></p>
+                                    <a href="Blog_detail.jsp" class="btn btn-primary mybtn">Đọc thêm</a>
                                 </div>
                                 <div class="card-footer text-right">
                                     <div>
@@ -246,76 +246,6 @@
                         </div>
                     </c:forEach>
                 </c:if>
-                
-<!--                <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="Image/1.jpg" class="card-img-top" alt="Ảnh bài viết 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Tiêu đề bài viết 3</h5>
-                            <p class="card-text">Nội dung bài viết 3...</p>
-                            <a href="#" class="btn btn-primary mybtn">Đọc thêm</a>
-                        </div>
-                        <div class="card-footer text-right">
-                            <div>
-                                <i class='bx bx-purchase-tag-alt'></i>
-                                <a href="#" class="mx-1">staff2</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="Image/1.jpg" class="card-img-top" alt="Ảnh bài viết 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Tiêu đề bài viết 3</h5>
-                            <p class="card-text">Nội dung bài viết 3...</p>
-                            <a href="#" class="btn btn-primary mybtn">Đọc thêm</a>
-                        </div>
-                        <div class="card-footer text-right">
-                            <div>
-                                <i class='bx bx-purchase-tag-alt'></i>
-                                <a href="#" class="mx-1">staff2</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-
-                <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="Image/1.jpg" class="card-img-top" alt="Ảnh bài viết 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Tiêu đề bài viết 3</h5>
-                            <p class="card-text">Nội dung bài viết 3...</p>
-                            <a href="#" class="btn btn-primary mybtn">Đọc thêm</a>
-                        </div>
-                        <div class="card-footer text-right">
-                            <div>
-                                <i class='bx bx-purchase-tag-alt'></i>
-                                <a href="#" class="mx-1">staff2</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
-                        <img src="Image/1.jpg" class="card-img-top" alt="Ảnh bài viết 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Tiêu đề bài viết 3</h5>
-                            <p class="card-text">Nội dung bài viết 3...</p>
-                            <a href="#" class="btn btn-primary mybtn">Đọc thêm</a>
-                        </div>
-                        <div class="card-footer text-right">
-                            <div>
-                                <i class='bx bx-purchase-tag-alt'></i>
-                                <a href="#" class="mx-1">staff2</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
 
                 <!-- Pagination -->
                 <div class="row">
@@ -331,5 +261,11 @@
                 </div>
             </div>
         </div>
+        
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="mypopover1"]').hover();
+            });
+        </script>
     </body>
 </html>

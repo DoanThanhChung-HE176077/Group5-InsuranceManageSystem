@@ -5,21 +5,18 @@
 
 package Controller.blog;
 
-import Dao.BlogDAO;
-import Model.Blogs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
- * @author chun
+ * @author pc minh
  */
-public class blog_home_show extends HttpServlet {
+public class blog_edit extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +33,10 @@ public class blog_home_show extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet blog_home_show</title>");  
+            out.println("<title>Servlet blog_edit</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet blog_home_show at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet blog_edit at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,38 +53,7 @@ public class blog_home_show extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
-        BlogDAO bg = new BlogDAO();
-        
-        //Tat ca bai viet
-        ArrayList<Blogs> listBlog = bg.getAllBlogs();
-        if (listBlog == null) {
-            System.out.println("list blog to blog home FAILSE!!!");
-        }else{
-            System.out.println("list blog to blog home DONEEEE!!!");
-        }
-        
-        //Top 5 bai viet xem nhieu nhat
-        ArrayList<Blogs> listTop5Blogs = bg.getTop5Blogs();
-        if (listTop5Blogs == null) {
-            System.out.println("list Top 5 blog to blog home FAILSE!!!");
-        }else{
-            System.out.println("list Top 5 blog to blog home DONEEEE!!!");
-        }
-        
-        //Cac bai viet noi bat slider : 15b
-        ArrayList<Blogs> listTop15Blogs = bg.getTop15Blogs();
-        if (listTop15Blogs == null) {
-            System.out.println("list Top 15 slider blog to blog home FAILSE!!!");
-        }else{
-            System.out.println("list Top 15 slider blog to blog home DONEEEE!!!");
-        }
-        
-        request.setAttribute("listBlog", listBlog);
-        request.setAttribute("listTop5Blogs", listTop5Blogs);
-        request.setAttribute("listTop15Blogs", listTop15Blogs);
-//        response.sendRedirect("Blog_home.jsp");
-        request.getRequestDispatcher("Blog_home.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
