@@ -61,7 +61,7 @@
 
                                 <!-- Column 1: Blog Post Table -->
                                 <div class="my-column1 col-md-6">
-                                    <h2 style="display: inline-block;">Danh sách sản phẩm bảo hiểm</h2>
+                                    <h2 style="display: inline-block;">Danh sách người dùng</h2>
                                     <!--                                    go to blog page-->
 
                                     <!-- Blog Post Table -->
