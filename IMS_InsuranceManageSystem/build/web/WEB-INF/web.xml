@@ -64,6 +64,14 @@
         <servlet-name>register</servlet-name>
         <servlet-class>Controller.home.register</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>admin_Staff_detail</servlet-name>
+        <servlet-class>Controller.admin.admin_Staff_detail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>admin_Staff_add</servlet-name>
+        <servlet-class>Controller.admin.admin_Staff_add</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admin_Staff_detail</servlet-name>
+        <url-pattern>/admin_Staff_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admin_Staff_add</servlet-name>
+        <url-pattern>/admin_Staff_add</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
