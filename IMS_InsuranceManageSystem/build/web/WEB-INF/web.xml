@@ -60,6 +60,10 @@
         <servlet-name>blog_edit</servlet-name>
         <servlet-class>Controller.blog.blog_edit</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>Controller.home.register</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>blog_edit</servlet-name>
         <url-pattern>/blog_edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
