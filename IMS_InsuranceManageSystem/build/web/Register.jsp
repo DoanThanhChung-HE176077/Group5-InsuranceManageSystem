@@ -58,7 +58,7 @@
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Họ Tên</span>
                     <div class="input-group">
-                        <input name="input-fullname" type="text" id="" class="form-control" placeholder="Nhập họ tên đầy đủ" required>
+                        <input name="input-fullname" type="text" id="" class="form-control" placeholder="Nhập tên, độ dài 2-64 chữ cái" required>
                     </div>
                 </div>
                 
@@ -107,5 +107,26 @@
         </div>
                 
         
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+    $(document).ready(function () {
+        // Bắt sự kiện khi người dùng gõ vào ô input
+        $('#fullname').on('input', function () {
+            validateFullname();
+        });
+
+        function validateFullname() {
+            // Lấy giá trị từ ô input
+            var fullname = $('#fullname').val();
+
+            // Kiểm tra điều kiện (ví dụ: độ dài tối thiểu là 3 ký tự)
+            if (fullname.length < 3) {
+                $('#fullname-error').text('Họ tên phải có ít nhất 3 ký tự.');
+            } else {
+                $('#fullname-error').text('');
+            }
+        }
+    });
+</script>
     </body>
 </html>

@@ -89,7 +89,10 @@ public class register extends HttpServlet {
         System.out.println(repassword);
         System.out.println(password);
         
-        if (checkPhoneNumber(phoneNum) == "Số điện thoại không hợp lệ") {
+        if (checkValidUsername(fullname) != "") {
+            request.setAttribute("msg", checkValidUsername(fullname));
+            doGet(request, response);
+        } else if (checkPhoneNumber(phoneNum) == "Số điện thoại không hợp lệ") {
             request.setAttribute("msg", "Số điện thoại không hợp lệ");
             doGet(request, response);
 
@@ -127,6 +130,23 @@ public class register extends HttpServlet {
         
         
         
+    }
+    
+    
+    public static String checkValidUsername(String username) {
+        // Kiểm tra độ dài của tên người dùng
+        if (username.length() < 2 || username.length() > 64) {
+            return "Nhập tên dài 2 - 64 ký tự";
+        }
+
+        String regex = "^[a-zA-Z]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(username);
+
+        if (!matcher.matches())
+            return "Tên sai định dạng";
+
+        return "";
     }
     
     public static String checkPhoneNumber(String phoneNumber) {
