@@ -84,6 +84,7 @@
                                                 <td>${o.getUser_address()}</td>
                                                 <td>${o.getUser_phoneNum()}</td>
                                                 <td>${o.getUser_image()}</td>
+                                        
                                                 <td>
                                                     <a href="admin_Users_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
 
