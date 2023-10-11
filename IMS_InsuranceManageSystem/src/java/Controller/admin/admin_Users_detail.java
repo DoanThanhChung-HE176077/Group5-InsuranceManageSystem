@@ -13,6 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,6 +36,8 @@ public class admin_Users_detail extends HttpServlet {
         UserDAO  u = new UserDAO();
         User detail = u.dislayInfo(id);
         request.setAttribute("detail", detail);
+        ArrayList<User> list1 = u.getNewUser();
+        request.setAttribute("listNU", list1);
         request.getRequestDispatcher("Admin_Users_detail.jsp").forward(request, response);
     } 
 

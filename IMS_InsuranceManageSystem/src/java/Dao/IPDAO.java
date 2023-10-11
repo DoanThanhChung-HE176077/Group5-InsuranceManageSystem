@@ -51,7 +51,8 @@ public class IPDAO extends DBContext{
             while (rs.next()) {
                 list.add(new InsuranceProduct(rs.getInt(1),
                         rs.getString(2),
-                        rs.getString(3)
+                        rs.getString(3),
+                        rs.getString(4)
                         ));
             }
         } catch (Exception e) {
@@ -72,14 +73,15 @@ public class IPDAO extends DBContext{
             while (rs.next()) {
                 return new InsuranceProduct(rs.getInt(1),
                         rs.getString(2),
-                        rs.getString(3)
+                        rs.getString(3),
+                        rs.getString(4)
                         );
             }
         } catch (Exception e) {
         }
         return null;
     }
-   
+    
     public static void main(String[] args) {
         IPDAO ip = new IPDAO();
         InsuranceProduct isp = ip.getIPbyID(1);

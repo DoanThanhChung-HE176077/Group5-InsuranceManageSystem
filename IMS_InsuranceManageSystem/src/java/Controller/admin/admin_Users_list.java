@@ -36,6 +36,8 @@ public class admin_Users_list extends HttpServlet {
         UserDAO ud = new UserDAO();
         ArrayList<User> list = ud.getALLUser();
         request.setAttribute("listU", list);
+        ArrayList<User> list1 = ud.getNewUser();
+        request.setAttribute("listNU", list1);
         request.getRequestDispatcher("Admin_Users_list.jsp").forward(request, response);
     } 
 

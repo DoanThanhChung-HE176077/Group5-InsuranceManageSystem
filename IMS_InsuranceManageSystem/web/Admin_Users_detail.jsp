@@ -114,16 +114,13 @@
                                     </thead>
                                     <tbody>
                                         <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
-                                        <tr>
-                                            <td>Doan Thanh Chung</td>
-                                            <td>12/06/2003</td>
-                                            <td>...</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vuong Viet Nam</td>
-                                            <td>12/10/2003</td>
-                                            <td>...</td>
-                                        </tr>
+                                        <c:forEach items="${listNU}" var="o">
+                                            <tr>
+                                                <td>${o.getUser_fullName()}</td>
+                                                <td>${o.getUser_dob()}</td>
+                                                <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
+                                            </tr>
+                                        </c:forEach>
 
                                         <!-- Repeat rows for each edit history entry -->
                                     </tbody>

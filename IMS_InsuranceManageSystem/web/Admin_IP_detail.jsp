@@ -73,6 +73,7 @@
                                                 <th>ID</th>
                                                 <th>Phân loại</th>
                                                 <th>Tên sản phẩm</th>
+                                                <th>Ảnh</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -80,8 +81,9 @@
 
                                             <tr>
                                                 <td>${detail.ip_id}</td>
-                                            <td>${detail.ip_type}</td>
-                                            <td>${detail.ip_name}</td>
+                                                <td>${detail.ip_type}</td>
+                                                <td>${detail.ip_name}</td>
+                                                <td><img src="${detail.ip_img}" width="60px" height="60px" ></td>
                                         </tr>
 
                                         <!-- Repeat rows for each blog post -->
