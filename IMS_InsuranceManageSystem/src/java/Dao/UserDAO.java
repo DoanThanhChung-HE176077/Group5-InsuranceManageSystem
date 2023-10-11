@@ -248,6 +248,31 @@ public class UserDAO extends DBContext{
         }
         return list;
     }
+    public ArrayList<User> getALLStaff() {
+        ArrayList<User> list = new ArrayList<>();
+        
+        try {
+            String strSQL = "select * from Users where user_role = 'staff'";
+            PreparedStatement pstm = connection.prepareStatement(strSQL);          
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                list.add(new User(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)
+                        ));
+            }
+        } catch (Exception e) {
+            System.out.println("getALLStaff: " + e.getMessage());
+        }
+        return list;
+    }
      public void changePassword(int id, String password) {
         String sql = "UPDATE [dbo].[Users]\n"
                 + "   SET \n"

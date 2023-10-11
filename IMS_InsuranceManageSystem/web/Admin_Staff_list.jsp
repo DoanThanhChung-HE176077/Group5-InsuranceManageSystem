@@ -60,7 +60,7 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-6">
+                                <div class="my-column1 col-md-8">
                                     <h2 style="display: inline-block;">Danh sách nhân viên</h2>
                                     <!--                                    go to blog page-->
 
@@ -86,7 +86,7 @@
                                                 <td>${o.getUser_image()}</td>
                                         
                                                 <td>
-                                                    <a href="admin_Users_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
+                                                    <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
 
                                                 </td>
                                             </tr>
@@ -98,8 +98,8 @@
                             </div>
 
                             <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-6">
-                                <h2 style="display: inline-block;">Người dùng mới</h2>
+                            <div class="my-column1 col-md-4">
+                                <h2 style="display: inline-block;">Nhân viên mới</h2>
                                 <!-- togler -->
 
                                 <!-- Edit History Table -->

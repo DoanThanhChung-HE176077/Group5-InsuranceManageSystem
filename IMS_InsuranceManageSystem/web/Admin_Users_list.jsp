@@ -60,7 +60,7 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-6">
+                                <div class="my-column1 col-md-8">
                                     <h2 style="display: inline-block;">Danh sách người dùng</h2>
                                     <!--                                    go to blog page-->
 
@@ -98,7 +98,7 @@
                             </div>
 
                             <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-6">
+                            <div class="my-column1 col-md-4">
                                 <h2 style="display: inline-block;">Người dùng mới</h2>
                                 <!-- togler -->
 

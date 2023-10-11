@@ -60,11 +60,11 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-6">
+                                <div class="my-column1 col-md-8">
                                     <h2 style="display: inline-block;">Chi tiết người dùng</h2>
                                     <!--                                    go to blog page-->
                                     <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="admin_Users_list" style="text-decoration: none; color: #fff;">Back</a>
+                                        <a href="admin_Users_list" style="text-decoration: none; color: #fff;">Quay lại</a>
                                     </button>
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
@@ -99,7 +99,7 @@
                             </div>
 
                             <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-6">
+                            <div class="my-column1 col-md-4">
                                 <h2 style="display: inline-block;">Người dùng mới</h2>
                                 <!-- togler -->
 
