@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import Model.User;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -384,6 +385,32 @@ public class UserDAO extends DBContext {
             System.out.println("checkLoginInfo: " + e.getMessage());
         }
         return false;
+    }
+
+    public List<User> searchByName(String txtsearch) {
+        List<User> list = new ArrayList<>();
+        String strSQL = "select * from Users\n"
+                + "where [user_fullname] like ?";
+        try {
+            
+            PreparedStatement pstm = connection.prepareStatement(strSQL);  
+            pstm.setString(1,"%"+ txtsearch+"%");
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                list.add(new User(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 
 }

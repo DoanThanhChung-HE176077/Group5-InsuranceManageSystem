@@ -72,6 +72,10 @@
         <servlet-name>admin_Staff_add</servlet-name>
         <servlet-class>Controller.admin.admin_Staff_add</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>admin_Users_search</servlet-name>
+        <servlet-class>Controller.admin.admin_Users_search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>admin_Staff_add</servlet-name>
         <url-pattern>/admin_Staff_add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>admin_Users_search</servlet-name>
+        <url-pattern>/admin_Users_search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -63,20 +63,30 @@
                                 <div class="my-column1 col-md-8">
                                     <h2 style="display: inline-block;">Danh sách người dùng</h2>
                                     <!--                                    go to blog page-->
+                                    <form action="admin_Users_search" method="post" class="form-inline my-2 my-lg-0">
+                                        <div class="input-group input-group-sm">
+                                            <input value ="${txtname}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-secondary btn-number">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
 
-                                    <!-- Blog Post Table -->
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Họ Tên</th>
-                                                <th>Ngày sinh</th>
-                                                <th>Địa chỉ</th>
-                                                <th>Số điện thoại</th>
-                                                <th>Ảnh</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Example row, you can use a loop to generate rows dynamically -->
+                                </form>
+                                <!-- Blog Post Table -->
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Họ Tên</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Ảnh</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Example row, you can use a loop to generate rows dynamically -->
                                         <c:forEach items="${listU}" var="o">
                                             <tr>
                                                 <td>${o.getUser_fullName()}</td>
@@ -84,7 +94,7 @@
                                                 <td>${o.getUser_address()}</td>
                                                 <td>${o.getUser_phoneNum()}</td>
                                                 <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
-                                        
+
                                                 <td>
                                                     <a href="admin_Users_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
 
