@@ -84,7 +84,7 @@
                                                 <td>${detail.user_address}</td>
                                                 <td>${detail.user_phoneNum}</td>
                                                 <td>${detail.user_iden}</td>
-                                                <td>${detail.user_image}</td>
+                                                <td> <img src="${detail.user_image}" width="60px" height="60px"> </td>
                                         </tr>
 
                                         <!-- Repeat rows for each blog post -->
