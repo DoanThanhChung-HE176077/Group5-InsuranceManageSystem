@@ -5,6 +5,7 @@
 package Dao;
 
 import Model.Blogs;
+import Model.newBl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -106,35 +107,38 @@ public class BlogDAO extends DBContext {
         }
         return null;
     }
+    
+    //get blog with user name
+    public ArrayList<newBl> getBlogs() {
+        try {
+            ArrayList<newBl> getTop150Blogs = new ArrayList<>();
+            String sql = "SELECT  B.* , U.user_fullname from Blogs B JOIN Users U ON B.user_id = U.user_id;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String bl_id = rs.getString(1);
+                String bl_title = rs.getString(2);
+                String bl_content = rs.getString(3);
+                int bl_like = rs.getInt(4);
+                String bl_img = rs.getString(5);
+                int user_id = rs.getInt(6);
+                String bl_creationdate = rs.getString(7);
+                int bl_type_id = rs.getInt(8);
+                int bl_tag_id = rs.getInt(9);
+                int bl_view = rs.getInt(10);
+                String bl_status = rs.getString(11);
+                String username = rs.getString(12);
 
-//    public void addBlog(Blogs blog) {
-//        try {
-//            String sql = "INSERT INTO [dbo].[Blogs]\n"
-//                    + "           ([bl_title]\n"
-//                    + "           ,[bl_content]\n"
-//                    + "           ,[bl_like]\n"
-//                    + "           ,[bl_img]\n"
-//                    + "           ,[bl_author]\n"
-//                    + "           ,[bl_creationdate]\n"
-//                    + "           ,[bl_tag_id]\n"
-//                    + "           ,[bl_view]\n"
-//                    + "           ,[bl_status])\n"
-//                    + "     VALUES\n"
-//                    + "           (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-//            PreparedStatement ps = connection.prepareStatement(sql);
-//            ps.setString(1, blog.getBl_title());
-//            ps.setString(2, blog.getBl_content());
-//            ps.setString(3, blog.getBl_like());
-//            ps.setString(4, blog.getBl_img());
-//            ps.setString(5, blog.getBl_author());
-//            ps.setString(6, blog.getBl_creationdate());
-//            ps.setInt(7, blog.getBl_tag_id());
-//            ps.setInt(8, blog.getBl_view());
-//            ps.setString(9, blog.getBl_status());
-//        } catch (SQLException e) {
-//            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, e.getMessage());
-//        }
-//    }
+                getTop150Blogs.add(new  newBl(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_id, bl_tag_id, bl_view, bl_status, username));
+
+            }
+            return getTop150Blogs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     
     //create new blog
      public boolean createBlog(
@@ -170,38 +174,22 @@ public class BlogDAO extends DBContext {
         return false;
     }
 
-//    public int getLastId() {
-//        int lastId;
-//        try {
-//            String strSQL = "SELECT top 1 bl_id\n"
-//                    + "  FROM [dbo].[Blogs]\n"
-//                    + "  ORDER BY bl_id DESC";
-//            PreparedStatement pstm = connection.prepareStatement(strSQL);
-//            ResultSet rs = pstm.executeQuery();
-//            if (rs.next()) {
-//                // Add thành công
-//                lastId = rs.getInt(1);
-//                return lastId;
-//            }
-//        } catch (SQLException e) {
-//            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, e.getMessage());
-//        }
-//        return 0;
-//    }
 
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
         Blogs bgg = new Blogs();
 
-//        ArrayList<Blogs> bg = dao.getAllBlogs();
-//        for (Blogs blogs : bg) {
-//            System.out.println(blogs.toString());
-//        }
-//        ArrayList<Blogs> bg = dao.getTop5Blogs();
-//        for (Blogs blogs : bg) {
-//            System.out.println(blogs.toString());
-//        }
-        dao.createBlog("a", "b", 0, "bl_img", 1, "2023-09-01", 1, 1, 0, "Active");
+        ArrayList<Blogs> bg = dao.getAllBlogs();
+        
+        for (Blogs blogs : bg) {
+            System.out.println(blogs.toString());
+        }
+//  s
+//        dao.createBlog("a", "b", 0, "bl_img", 1, "2023-09-01", 1, 1, 0, "Active");
+        
+
+
+
     }
 
 }
