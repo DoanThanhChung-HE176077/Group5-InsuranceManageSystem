@@ -11,26 +11,17 @@ import java.util.Date;
  * @author thant
  */
 public class User {
-//    int user_id;
-//    String user_fullname, 
-//            user_mail, 
-//            user_password, 
-//            user_address, 
-//            user_phoneNum, 
-//            user_iden, 
-//            user_role;
-//    Date user_dob;
     
-    private int user_id;
-    private String user_fullName;
-    private String user_email;
-    private String user_password;
-    private Date user_dob;
-    private String user_address;
-    private String user_phoneNum;
-    private String user_iden;
-    private String user_image;
-    private String user_role;
+     int user_id;
+     String user_fullName;
+     String user_email;
+     String user_password;
+     Date user_dob;
+     String user_address;
+     String user_phoneNum;
+     String user_iden;
+     String user_image;
+     String user_role;
     
 
     public User() {

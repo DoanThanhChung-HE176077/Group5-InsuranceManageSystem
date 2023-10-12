@@ -32,7 +32,7 @@
 
         <!-- bootstrap5 5icon -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
+        <script src="jquery-3.7.1.min.js"></script>
         <link rel="stylesheet" href="CSS/admin_blog_dashboard.css"/>
 
     </head>
@@ -90,12 +90,12 @@
                                                        >
                                                         ${blogs.getBl_title()}
                                                     </p></td>
-                                                <td>${blogs.getBl_author()}</td>
+                                                <td>${blogs.usernameString}</td>
                                                 <td>${blogs.getBl_creationdate()}</td>
                                                 <td>${blogs.getBl_status()}</td>
                                                 <td>
                                                     <!-- Edit Button -->
-                                                    <a href=""><button class="btn btn-primary btn-sm">Edit</button></a>
+                                                    <a href=""><button type="submit" class="btn btn-primary btn-sm">Edit</button></a>
                                                 </td>
                                             </tr>
                                         </c:forEach>    
@@ -142,7 +142,7 @@
                 </div>
             </div>
         </div>
-
+            
 
 
 
