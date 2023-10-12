@@ -108,6 +108,7 @@ public class BlogDAO extends DBContext {
         return null;
     }
     
+    //get blog with user name
     public ArrayList<newBl> getBlogs() {
         try {
             ArrayList<newBl> getTop150Blogs = new ArrayList<>();
@@ -178,11 +179,11 @@ public class BlogDAO extends DBContext {
         BlogDAO dao = new BlogDAO();
         Blogs bgg = new Blogs();
 
-//        ArrayList<Blogs> bg = dao.getAllBlogs();
+        ArrayList<Blogs> bg = dao.getAllBlogs();
         
-//        for (Blogs blogs : bg) {
-//            System.out.println(blogs.toString());
-//        }
+        for (Blogs blogs : bg) {
+            System.out.println(blogs.toString());
+        }
 //  s
 //        dao.createBlog("a", "b", 0, "bl_img", 1, "2023-09-01", 1, 1, 0, "Active");
         
