@@ -9,7 +9,7 @@ package Model;
  * @author chun
  */
 public class TNDS_LevelNop {
-     private int ln_id;
+    private int ln_id;
      private int lv_id;
       private int ln_nop;
        private int ln_price;
