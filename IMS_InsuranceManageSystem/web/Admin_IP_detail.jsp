@@ -60,11 +60,11 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-6">
+                                <div class="my-column1 col-md-7">
                                     <h2 style="display: inline-block;">Chi tiết sản phẩm bảo hiểm</h2>
                                     <!--                                    go to blog page-->
                                     <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="admin_IP_list" style="text-decoration: none; color: #fff;">Back</a>
+                                        <a href="admin_IP_list" style="text-decoration: none; color: #fff;">Quay lại</a>
                                     </button>
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
@@ -73,6 +73,7 @@
                                                 <th>ID</th>
                                                 <th>Phân loại</th>
                                                 <th>Tên sản phẩm</th>
+                                                <th>Ảnh</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -80,8 +81,9 @@
 
                                             <tr>
                                                 <td>${detail.ip_id}</td>
-                                            <td>${detail.ip_type}</td>
-                                            <td>${detail.ip_name}</td>
+                                                <td>${detail.ip_type}</td>
+                                                <td>${detail.ip_name}</td>
+                                                <td><img src="${detail.ip_img}" width="60px" height="60px" ></td>
                                         </tr>
 
                                         <!-- Repeat rows for each blog post -->
@@ -91,7 +93,7 @@
                             </div>
 
                             <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-6">
+                            <div class="my-column1 col-md-5">
                                 <h2 style="display: inline-block;">Doanh Thu</h2>
                                 <!-- togler -->
 

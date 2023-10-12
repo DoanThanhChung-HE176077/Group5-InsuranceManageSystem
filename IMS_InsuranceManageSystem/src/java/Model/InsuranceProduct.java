@@ -14,15 +14,24 @@ public class InsuranceProduct {
     private int ip_id;
     private String ip_type;
     private String ip_name;
+    private String ip_img;
     
     public InsuranceProduct(){
        
     }
-    public InsuranceProduct(int ip_id,String ip_type,String ip_name){
+    public InsuranceProduct(int ip_id,String ip_type,String ip_name,String ip_img){
         this.ip_id= ip_id;
         this.ip_type = ip_type;
         this.ip_name = ip_name;
-         
+        this.ip_img = ip_img;
+    }
+
+    public String getIp_img() {
+        return ip_img;
+    }
+
+    public void setIp_img(String ip_img) {
+        this.ip_img = ip_img;
     }
     
     public int getIp_id() {

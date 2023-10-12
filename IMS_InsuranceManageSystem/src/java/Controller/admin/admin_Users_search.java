@@ -8,18 +8,17 @@ package Controller.admin;
 import Dao.UserDAO;
 import Model.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author ADMIN
  */
-public class admin_Staff_list extends HttpServlet {
+public class admin_Users_search extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,12 +30,12 @@ public class admin_Staff_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String txtsearch = request.getParameter("txtname");
         UserDAO ud = new UserDAO();
-        ArrayList<User> list = ud.getALLStaff();
+        List<User> list = ud.searchByName(txtsearch);
         request.setAttribute("listU", list);
-        ArrayList<User> list1 = ud.getNewStaff();
-        request.setAttribute("listNU", list1);
-        request.getRequestDispatcher("Admin_Staff_list.jsp").forward(request, response);
+        request.setAttribute("txtname", txtsearch);
+        request.getRequestDispatcher("admin_Users_list").forward(request,response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

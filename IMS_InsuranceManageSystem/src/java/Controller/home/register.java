@@ -18,13 +18,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import Model.User;
 
 /**
  *
  * @author thant
  */
-@WebServlet(name="register", urlPatterns={"/register"})
 public class register extends HttpServlet {
    
     /** 
@@ -84,31 +85,101 @@ public class register extends HttpServlet {
         String password = request.getParameter("input-password");
         String repassword = request.getParameter("input-repassword");
         
-        // Tạo một đối tượng SimpleDateFormat
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-        Date dateofbirth=null;
-        try {
-            // Parse chuỗi thành một đối tượng Date
-            dateofbirth = dateFormat.parse(dob);
-        } catch (ParseException ex) {
-            Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        User u = new User();
-        UserDAO uD = new UserDAO();
+        System.out.println(password);
+        System.out.println(repassword);
+        System.out.println(password);
         
-        //nam:
-        //request.getRequestDispatcher("Home.jsp").forward(request, response);
+        if (checkValidUsername(fullname) != "") {
+            request.setAttribute("msg", checkValidUsername(fullname));
+            doGet(request, response);
+        } else if (checkPhoneNumber(phoneNum) == "Số điện thoại không hợp lệ") {
+            request.setAttribute("msg", "Số điện thoại không hợp lệ");
+            doGet(request, response);
 
-        boolean check = uD.addUser(fullname, mail, password, dateofbirth, address, phoneNum, iden);
-        if (check) {
-            System.out.println(check + "+" + "register ok");
+        } else if (checkEmail(mail) == "Email không hợp lệ") {
+            request.setAttribute("msg", "Email không hợp lệ");
+            doGet(request, response);
+
+        } else if (checkIdentityCardNumber(iden) == "Số căn cước công dân không hợp lệ") {
+            request.setAttribute("msg", "Số căn cước công dân không hợp lệ");
+            doGet(request, response);
+
+        } else if (password == null ? repassword != null : !password.equals(repassword)) {
+            request.setAttribute("msg", "nhập lại mật khẩu sai");
+            doGet(request, response);
+        } else {
+            // Tạo một đối tượng SimpleDateFormat
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            Date dateofbirth = null;
+            try {
+                // Parse chuỗi thành một đối tượng Date
+                dateofbirth = dateFormat.parse(dob);
+            } catch (ParseException ex) {
+                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            User u = new User();
+            UserDAO uD = new UserDAO();
+
+            uD.addUser(fullname, mail, password, dateofbirth, address, phoneNum, iden);
+
+            response.sendRedirect("login");
         }
-        response.sendRedirect("/IMS_InsuranceManageSystem/");
+        
+        
+        
+        
+    }
     
-        
-        
+    
+    public static String checkValidUsername(String username) {
+        // Kiểm tra độ dài của tên người dùng
+        if (username.length() < 2 || username.length() > 64) {
+            return "Nhập tên dài 2 - 64 ký tự";
+        }
+
+        String regex = "^[a-zA-Z]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(username);
+
+        if (!matcher.matches())
+            return "Tên sai định dạng";
+
+        return "";
+    }
+    
+    public static String checkPhoneNumber(String phoneNumber) {
+        String regex = "^0\\d{9}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(phoneNumber);
+        if (matcher.matches()) {
+            return null;
+        } else {
+            return "Số điện thoại không hợp lệ";
+        }
+    }
+
+    public static String checkEmail(String email) {
+        String regex = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            return null;
+        } else {
+            return "Email không hợp lệ";
+        }
+    }
+
+    public static String checkIdentityCardNumber(String identityCardNumber) {
+        String regex = "^[0-9]{12}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(identityCardNumber);
+        if (matcher.matches()) {
+            return null;
+        } else {
+            return "Số căn cước công dân không hợp lệ";
+        }
     }
 
     /** 

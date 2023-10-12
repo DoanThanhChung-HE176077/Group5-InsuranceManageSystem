@@ -60,11 +60,11 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-6">
+                                <div class="my-column1 col-md-8">
                                     <h2 style="display: inline-block;">Chi tiết người dùng</h2>
                                     <!--                                    go to blog page-->
                                     <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="admin_Users_list" style="text-decoration: none; color: #fff;">Back</a>
+                                        <a href="admin_Users_list" style="text-decoration: none; color: #fff;">Quay lại</a>
                                     </button>
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
@@ -89,7 +89,7 @@
                                             <td>${detail.user_address}</td>
                                             <td>${detail.user_phoneNum}</td>
                                             <td>${detail.user_iden}</td>
-                                            <td>${detail.user_image}</td>
+                                            <td> <img src="${detail.user_image}" width="60px" height="60px"> </td>
                                         </tr>
 
                                         <!-- Repeat rows for each blog post -->
@@ -99,7 +99,7 @@
                             </div>
 
                             <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-6">
+                            <div class="my-column1 col-md-4">
                                 <h2 style="display: inline-block;">Người dùng mới</h2>
                                 <!-- togler -->
 
@@ -114,16 +114,13 @@
                                     </thead>
                                     <tbody>
                                         <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
-                                        <tr>
-                                            <td>Doan Thanh Chung</td>
-                                            <td>12/06/2003</td>
-                                            <td>...</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Vuong Viet Nam</td>
-                                            <td>12/10/2003</td>
-                                            <td>...</td>
-                                        </tr>
+                                        <c:forEach items="${listNU}" var="o">
+                                            <tr>
+                                                <td>${o.getUser_fullName()}</td>
+                                                <td>${o.getUser_dob()}</td>
+                                                <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
+                                            </tr>
+                                        </c:forEach>
 
                                         <!-- Repeat rows for each edit history entry -->
                                     </tbody>
