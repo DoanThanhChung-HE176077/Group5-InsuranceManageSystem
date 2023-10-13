@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/admin_dashboard.css">
+    <link rel="stylesheet" href="CSS/sidebar.css">
     <title>Admin Panel</title>
 
     <!-- bootstrap5 -->
@@ -30,7 +30,7 @@
         <!-- bootstrap5 5icon -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
         
-        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
         
         
 
@@ -148,38 +148,58 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-
+    <script src="JS/script.js"></script>
+    
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'Dataset 1',
-                data: [12, 19, 3, 5, 2, 3, 10],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-                fill: true  
-            }]
-        };
+                    const charts = document.querySelectorAll(".chart");
 
-        var ctx1 = document.getElementsByClassName('chart')[0].getContext('2d');
-        var myChart1 = new Chart(ctx1, {
-            type: 'line',  
-            data: data,
-            options: {
-            }
-        });
+                    charts.forEach(function (chart) {
+                      var ctx = chart.getContext("2d");
+                      var myChart = new Chart(ctx, {
+                        type: "bar",
+                        data: {
+                          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                          datasets: [
+                            {
+                              label: "# of Votes",
+                              data: [12, 19, 3, 5, 2, 3],
+                              backgroundColor: [
+                                "rgba(255, 99, 132, 0.2)",
+                                "rgba(54, 162, 235, 0.2)",
+                                "rgba(255, 206, 86, 0.2)",
+                                "rgba(75, 192, 192, 0.2)",
+                                "rgba(153, 102, 255, 0.2)",
+                                "rgba(255, 159, 64, 0.2)"
+                              ],
+                              borderColor: [
+                                "rgba(255, 99, 132, 1)",
+                                "rgba(54, 162, 235, 1)",
+                                "rgba(255, 206, 86, 1)",
+                                "rgba(75, 192, 192, 1)",
+                                "rgba(153, 102, 255, 1)",
+                                "rgba(255, 159, 64, 1)"
+                              ],
+                              borderWidth: 1
+                            }
+                          ]
+                        },
+                        options: {
+                          scales: {
+                            y: {
+                              beginAtZero: true
+                            }
+                          }
+                        }
+                      });
+                    });
 
-        var ctx2 = document.getElementsByClassName('chart')[1].getContext('2d');
-        var myChart2 = new Chart(ctx2, {
-            type: 'line',  
-            data: data,
-            options: {
-            }
-        });
-    });
-</script>
+                    $(document).ready(function () {
+                      $(".data-table").each(function (_, table) {
+                        $(table).DataTable();
+                      });
+                    });
+    </script>
+    
 </body>
 
 </html>
