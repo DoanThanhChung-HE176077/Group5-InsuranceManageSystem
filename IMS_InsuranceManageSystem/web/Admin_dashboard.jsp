@@ -112,7 +112,7 @@
                                             Area Chart Example
                                         </div>
                                         <div class="card-body">
-                                            <canvas class="chart" width="400" height="200"></canvas>
+                                            <canvas class="chart bar-chart" width="400" height="200"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -123,16 +123,28 @@
                                             Area Chart Example
                                         </div>
                                         <div class="card-body">
-                                            <canvas class="chart" width="400" height="200"></canvas>
+                                            <canvas class="chart bar-chart" width="400" height="200"></canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
                                 
                                 </div>
 
                             <div class="my-column1 col-md-3">
-                                
+                                <!--pie chart-->
+                                <!--<div class="col-md-6 mb-3">-->
+                                    <div class="card h-100">
+                                    <div class="card-header">
+                                        <span class="me-2"><i class="bi bi-pie-chart"></i></span>
+                                        Pie Chart Example
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas class="chart" id="myPieChart" width="400" height="200"></canvas>
+                                    </div>
+                                </div>
+                                <!--</div>-->
                             </div>
                             
                             
@@ -148,57 +160,88 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-    <script src="JS/script.js"></script>
+    <!--<script src="JS/script.js"></script>-->
     
     <script>
-                    const charts = document.querySelectorAll(".chart");
+    $(document).ready(function () {
+        const barCharts = document.querySelectorAll(".bar-chart");
 
-                    charts.forEach(function (chart) {
-                      var ctx = chart.getContext("2d");
-                      var myChart = new Chart(ctx, {
-                        type: "bar",
-                        data: {
-                          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                          datasets: [
-                            {
-                              label: "# of Votes",
-                              data: [12, 19, 3, 5, 2, 3],
-                              backgroundColor: [
+        barCharts.forEach(function (chart) {
+            var ctx = chart.getContext("2d");
+            var myChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    datasets: [
+                        {
+                            label: "# of Votes",
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
                                 "rgba(54, 162, 235, 0.2)",
                                 "rgba(255, 206, 86, 0.2)",
                                 "rgba(75, 192, 192, 0.2)",
                                 "rgba(153, 102, 255, 0.2)",
                                 "rgba(255, 159, 64, 0.2)"
-                              ],
-                              borderColor: [
+                            ],
+                            borderColor: [
                                 "rgba(255, 99, 132, 1)",
                                 "rgba(54, 162, 235, 1)",
                                 "rgba(255, 206, 86, 1)",
                                 "rgba(75, 192, 192, 1)",
                                 "rgba(153, 102, 255, 1)",
                                 "rgba(255, 159, 64, 1)"
-                              ],
-                              borderWidth: 1
-                            }
-                          ]
-                        },
-                        options: {
-                          scales: {
-                            y: {
-                              beginAtZero: true
-                            }
-                          }
+                            ],
+                            borderWidth: 1
                         }
-                      });
-                    });
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
 
-                    $(document).ready(function () {
-                      $(".data-table").each(function (_, table) {
-                        $(table).DataTable();
-                      });
-                    });
-    </script>
+        // Create a new Chart object for the pie chart
+        var canvas = document.getElementById("myPieChart");
+        var myPieChart = new Chart(canvas, {
+            type: "pie",
+            data: {
+                labels: ["Red", "Green", "Blue"],
+                datasets: [{
+                    label: "My Dataset",
+                    data: [20, 30, 50],
+                    backgroundColor: [
+                        "rgba(255, 99, 132, 0.2)",
+                        "rgba(75, 192, 192, 0.2)",
+                        "rgba(54, 162, 235, 0.2)",
+                    ],
+                    borderColor: [
+                        "rgba(255, 99, 132, 1)",
+                        "rgba(75, 192, 192, 1)",
+                        "rgba(54, 162, 235, 1)",
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: true
+                }
+            }
+        });
+
+        $(".data-table").each(function (_, table) {
+            $(table).DataTable();
+        });
+    });
+</script>
+    
+ 
     
 </body>
 
