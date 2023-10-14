@@ -219,7 +219,7 @@
 
                              ">
                             <div class="card mb-4 shadow-sm">
-                                <img src="Image/1.jpg" class="card-img-top" alt="Ảnh bài viết 3">
+                                <img src="${o1.getBl_img()}" class="card-img-top" alt="Ảnh bài viết 3">
                                 <div class="card-body">
                                     <h5 class="card-title">
                                         <a href="Blog_detail.jsp" style="
@@ -233,7 +233,7 @@
                                             ${o1.getBl_title()}
                                         </a>
                                     </h5>
-                                    <p class="card-text myp" data-text="${o1.getBl_content()}"></p>
+                                    <p class="card-text myp" data-text="short content here"></p>
                                     <a href="Blog_detail.jsp" class="btn btn-primary mybtn">Đọc thêm</a>
                                 </div>
                                 <div class="card-footer text-right">

@@ -35,6 +35,16 @@
 
     </head>
     <body>
+        
+        <!--header-->
+        <jsp:include page="Part/header.jsp"></jsp:include>
+
+
+            <!--sidebar-->
+        <jsp:include page="Part/sidebar_vip.jsp"></jsp:include>
+        
+        
+        
         <div class="container mt-5">
             <h2>Tạo Blog</h2>
 <!--            <form id="blogForm" action="blog_add?user_id=${user.getUser_id()}" method="post" enctype="multipart/form-data">-->
@@ -50,13 +60,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="input-group mb-3">
-                                <input type="file" class="form-control" id="fileName" name="fileName" accept="image/*" onchange="loadFile(event)" required>
+                                <input type="file" class="form-control" id="file" name="file" accept="image/*" onchange="loadFile(event)" required>
                             </div>
                             <img id="output" src="" alt="Image Preview" class="img-thumbnail mt-3">
-                            <div class="mb-3">
-                                <label for="location" class="form-label">Save to:</label>
-                                <input type="text" class="form-control" value="D:\\store_file_test2" name="location">
-                            </div>
+      
                         </div>
 <!--                        <div class="col-md-6">
                             <div class="input-group mb-3">
@@ -71,17 +78,19 @@
                 <div class="mb-3">
                     <label for="blogType" class="form-label">Loại Blog</label>
                     <select class="form-select" id="blogType" name="blogType">
-                        <option value="common">Common</option>
-                        <option value="feature">Feature</option>
+                        <option value="1">Common</option>
+                        <option value="2">Feature</option>
                     </select>
                 </div>
                 <!--blog tag-->
                 <div class="mb-3">
                     <label for="tags" class="form-label">Choose Tag</label>
                     <select class="form-select" id="blogTag" name="blogTag">
-                        <option value="Sức khỏe">Sức khỏe</option>
-                        <option value="xã hội">Xã hội</option>
-                        <option value="Xe cơ giới">Xe cơ giới</option>
+                        <option value="2">Sức khỏe</option>
+                        <option value="3">Tài sản</option>
+                        <option value="1">Xe cơ giới</option>
+                        <option value="4">Du Lịch - Giải Trí</option>
+
                     </select>
                 </div>
                 <!--blog content-->

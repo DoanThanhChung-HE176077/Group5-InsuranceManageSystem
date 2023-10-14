@@ -6,6 +6,7 @@
 package Controller.blog;
 
 import Dao.BlogDAO;
+import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -83,9 +84,8 @@ public class blog_add extends HttpServlet {
         //title
         String title = request.getParameter("title");
         //image
-        Part filePart = request.getPart("fileName");
+        Part filePart = request.getPart("file");
         String fileName = filePart.getSubmittedFileName();
-        String location = request.getParameter("location");
         //user id
         int user_id = Integer.parseInt(request.getParameter("user_id"));
         //blogType
@@ -100,116 +100,120 @@ public class blog_add extends HttpServlet {
         //status
         String status = request.getParameter("status");
         
-//        check data 
-        System.out.println(title);
-        System.out.println(content);
-        System.out.println(user_id);
-        System.out.println(tagBlog);
-        System.out.println(typeBlog);
-        System.out.println(status);
         
-               
-        //check file exist in folder location : ==============TRUE=================
-        if (fileExists(location, fileName)) {
-            // Print a message indicating whether the file exists or not
-            System.out.println("-----------check file input exist in location -----");
-            System.out.println("File --(" + fileName + ")-- exists in the provided path: " + location);
-            String fileNameNew = renameIfFileExists(location, fileName);
+        //=============solve file image============
+        ServletContext context = getServletContext();// Get the ServletContext
+        String imageSaveAt = "image\\";// URL to the folder where the image will be saved, e.g., "image/chung.png"
+        String rootProjectUrl = context.getRealPath("/"); // Root project URL is in the "build" folder
+        String newRootProjectUrl = rootProjectUrl.replace("build\\web\\", "web\\");// Change URL to the web context
+        String finalUrl = newRootProjectUrl + imageSaveAt;// Construct the absolute path to the image
+        
+        
+       //===========check data =================
+        System.out.println("================CHECK DATA=======");
+        System.out.println("title: " + title);
+        System.out.println("content: " + content);
+        System.out.println("like: 0" );
+        //img v
+        System.out.println("user_id: " + user_id);
+        System.out.println("creationDate: " + formatted_creationDate);
+        System.out.println("tagBlog: " + tagBlog);
+        System.out.println("typeBlog: " + typeBlog);
+        System.out.println("View: 0");
+        System.out.println(status);
+        //========Image solve check===============
+        System.out.println("==================image solved check==============");
+        System.out.println("+-----------------------------+------------------------+");
+        System.out.println("| Name                        | Data                   |");
+        System.out.println("+-----------------------------+------------------------+");
+        System.out.printf("| %-50s | %s%n", "File Name", fileName);
+        System.out.printf("| %-50s | %s%n", "Image Save At", imageSaveAt);
+        System.out.printf("| %-50s | %s%n", "Root Project URL (build)", rootProjectUrl);
+        System.out.printf("| %-50s | %s%n", "New Root Project URL", newRootProjectUrl);
+        System.out.printf("| %-50s | %s%n", "New Root Project URL + Image", newRootProjectUrl + imageSaveAt);
+        System.out.printf("| %-50s | %s%n", "True Final Folder URL", finalUrl);
+        System.out.println("+-----------------------------+------------------------+");
+        //=========================================
+        
+        //========================SAVE TO DB ==========================
+        // Print a message indicating whether the file exists or not
+        if (fileExists(finalUrl, fileName)) {
+            System.out.println("=====================Check file exist=======================");
+            System.out.println("File (" + fileName + ") exists in the provided path: " + finalUrl);
+            String fileNameNew = renameIfFileExists(finalUrl, fileName);
             System.out.println("File with the same name already exists. Renamed to: " + fileNameNew);
-            //in ra man hinh without jsp
-            System.out.print("file name new: " + fileNameNew);
-            //in ra server tomcat
-            System.out.println("-----------Check receive input from user: --");
-            System.out.println("Receive location: " + location);
+            System.out.print("File name new: " + fileNameNew);
+            System.out.println("Receive location: " + finalUrl);
             System.out.println("Receive file name: " + fileNameNew);
-
+            //=========================================
             OutputStream os = null;
             InputStream is = null;
             try {
-                //ready to save 
-                os = new FileOutputStream(new File(location + File.separator + fileNameNew));
+                // Ready to save
+                os = new FileOutputStream(new File(finalUrl + File.separator + fileNameNew));
                 is = filePart.getInputStream();
                 int read = 0;
                 while ((read = is.read()) != -1) {
                     os.write(read);
                 }
-                System.out.println("-----------Check file ready to save--");
-                System.out.println("File location will save to: " + location);
-                System.out.println("File name: " + fileNameNew);
-                System.out.println("-----------upload result--------");
-                System.out.println("File uploaded successfully nhal.");
+                System.out.println("========READY SAVING TO DB=========");
+                System.out.println("File location will be saved to: " + finalUrl);
+                System.out.println("File name ORIGIN: " + fileNameNew);
+                String imageFileName = "Image/" + fileNameNew;
+                System.out.println("File name TO SAVE: " + imageFileName);
+                System.out.println("File uploaded successfully.");
 
                 //save to db
-//                BlogDAO dao = new BlogDAO();
-//                System.out.println("-----------Check saving to db --");
-//                if (dao.createBlog(title, content, 0, fileNameNew, user_id, creationDate, typeBlog,tagBlog , 0, status)) {
-//                    System.out.println("Saving file to db : DONE.");
-//                } else {
-//                    System.out.println("Saving file to db : FAILSE.");
-//                }
-//                System.out.println("===========================================");
+                BlogDAO dao = new BlogDAO();
+                System.out.println("-------Check saving to db -------");
+                if (dao.createBlog(title, content, 0, imageFileName, user_id, formatted_creationDate, typeBlog, tagBlog, 0, status)) {
+                    System.out.println("Saving file to db : DONE.");
+                } else {
+                    System.out.println("Saving file to db : FAILSE.");
+                }
+                System.out.println("===========================================");
 
             } catch (Exception e) {
-                System.out.print("Error upload at " + e.getMessage());
-                System.out.println("no");
+                System.out.print("Error upload: " + e.getMessage());
+                System.out.println("Error: " + e.getMessage());
             }
- //check file exist in folder location : ==============FALSE=================
         } else {
-            System.out.println("-----------check file input exist in location -----");
-            System.out.println("File " + fileName + " does NOT exist in the provided path: " + location);
-            //in ra man hinh without jsp
-            System.out.print("file name1: " + fileName);
-            //in ra server tomcat
-            System.out.println("-----------Check receive input from user: --");
-            System.out.println("Receive location: " + location);
-            System.out.println("Receive file name: " + fileName);
-
+            System.out.println("=====================Check file exist=======================");
+            System.out.println("File " + fileName + " does NOT exist in the provided path: " + finalUrl);
+            System.out.println("File name: " + fileName);
+            System.out.println("=========================================================");
             OutputStream os = null;
             InputStream is = null;
             try {
-                //ready to save 
-                os = new FileOutputStream(new File(location + File.separator + fileName));
+                // Ready to save
+                os = new FileOutputStream(new File(finalUrl + File.separator + fileName));
                 is = filePart.getInputStream();
                 int read = 0;
                 while ((read = is.read()) != -1) {
                     os.write(read);
                 }
-                System.out.println("-----------Check file ready to save--");
-                System.out.println("File location will save to: " + location);
-                System.out.println("File name: " + fileName);
-                System.out.println("-----------upload result--------");
-                System.out.println("File uploaded successfully nhal.");
+                System.out.println("========READY SAVING TO DB=========");
+                System.out.println("File location will be saved to: " + finalUrl);
+                System.out.println("File name ORIGIN: " + fileName);
+                String imageFileName = "Image/" + fileName;
+                System.out.println("File name TO SAVE: " + imageFileName);
+                System.out.println("File uploaded successfully.");
 
                 //save to db
-//                BlogDAO dao = new BlogDAO();
-//                System.out.println("--Check saving to db --");
-//                if (dao.createBlog(title, content, 0, fileName, user_id, creationDate, typeBlog,tagBlog , 0, status)) {
-//                    System.out.println("Saving file to db : DONE.");
-//                } else {
-//                    System.out.println("Saving file to db : FAILSE.");
-//                }
-//                System.out.println("===========================================");
-//                
+                BlogDAO dao = new BlogDAO();
+                System.out.println("-------Check saving to db -------");
+                if (dao.createBlog(title, content, 0, imageFileName, user_id, formatted_creationDate, typeBlog, tagBlog, 0, status)) {
+                    System.out.println("Saving file to db : DONE.");
+                } else {
+                    System.out.println("Saving file to db : FAILSE.");
+                }
+                System.out.println("===========================================");
+
             } catch (Exception e) {
-                System.out.print("Error upload at " + e.getMessage());
-                System.out.println("no");
+                System.out.print("Error upload: " + e.getMessage());
+                System.out.println("Error: " + e.getMessage());
             }
         }
-        
-        
-        
-        
-
-        
-        
-        
-        
-   
-
-
-        
-        
-        
         
     }
 
