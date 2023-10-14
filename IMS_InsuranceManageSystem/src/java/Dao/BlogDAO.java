@@ -7,7 +7,7 @@ package Dao;
 import Model.Blog_tag;
 import Model.Blog_type;
 import Model.Blogs;
-import Model.NewBl;
+import Model.newBl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -111,9 +111,9 @@ public class BlogDAO extends DBContext {
     }
     
     //get blog with user name
-    public ArrayList<NewBl> getBlogsWithUserName() {
+    public ArrayList<newBl> getBlogsWithUserName() {
         try {
-            ArrayList<NewBl> getBlogs = new ArrayList<>();
+            ArrayList<newBl> getBlogs = new ArrayList<>();
             String sql = "SELECT  B.* , U.user_fullname from Blogs B JOIN Users U ON B.user_id = U.user_id;";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -131,7 +131,7 @@ public class BlogDAO extends DBContext {
                 String bl_status = rs.getString(11);
                 String username = rs.getString(12);
 
-                getBlogs.add(new  NewBl(username, bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_like, bl_status));
+                getBlogs.add(new  newBl(username, bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_like, bl_status));
 
             }
             return getBlogs;

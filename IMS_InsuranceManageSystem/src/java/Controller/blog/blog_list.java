@@ -7,7 +7,7 @@ package Controller.blog;
 
 import Dao.BlogDAO;
 import Model.Blogs;
-import Model.NewBl;
+import Model.newBl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -59,7 +59,7 @@ public class Blog_list extends HttpServlet {
     throws ServletException, IOException {
         //processRequest(request, response);
         BlogDAO bd = new BlogDAO();
-        ArrayList<NewBl> bList = bd.getBlogsWithUserName();
+        ArrayList<newBl> bList = bd.getBlogsWithUserName();
         request.setAttribute("bList", bList);
         request.getRequestDispatcher("Admin_blog_dashboard.jsp").forward(request, response);
     } 
