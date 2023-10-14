@@ -28,7 +28,7 @@ import java.util.Date;
  * @author chun
  */
 @MultipartConfig
-public class blog_add extends HttpServlet {
+public class Blog_add extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

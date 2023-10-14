@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpSession;
  * @author thant
  */
 @WebServlet(name="logout", urlPatterns={"/logout"})
-public class logout extends HttpServlet {
+public class Logout extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

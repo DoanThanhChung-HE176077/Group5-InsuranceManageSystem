@@ -3,25 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package Controller.admin;
+package Controller.blog;
 
-import Dao.IPDAO;
-import Dao.UserDAO;
-import Model.InsuranceProduct;
-import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
- * @author ADMIN
+ * @author chun
  */
-public class Admin_Users_list extends HttpServlet {
+public class Blog_detail extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,12 +28,18 @@ public class Admin_Users_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        UserDAO ud = new UserDAO();
-        ArrayList<User> list = ud.getALLUser();
-        request.setAttribute("listU", list);
-        ArrayList<User> list1 = ud.getNewUser();
-        request.setAttribute("listNU", list1);
-        request.getRequestDispatcher("Admin_Users_list.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Blog_detail</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Blog_detail at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +53,10 @@ public class Admin_Users_list extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String blog_id = request.getParameter("Bl_id");
+        System.out.println(blog_id);
+        
+        
     } 
 
     /** 

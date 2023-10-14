@@ -138,7 +138,7 @@
                                 <!---------------------------------------------list slide item--------------------------------------------------->
                                 <c:forEach items="${listTop15Blogs}" var="blog" varStatus="loopStatus"> 
                                     <div class="carousel-item ${loopStatus.first ? 'active' : ''}">
-                                        <a href="Blog_detail.jsp">
+                                        <a href="Blog_detail?Bl_id=${blog.getBl_id()}">
                                             <img src="${blog.getBl_img()}" class="d-block w-100" alt="${blog.getBl_title()}"
                                                  style="height: 400px; width: 800px; object-fit: cover;">
                                             <div class="carousel-caption d-none d-md-block">
@@ -188,7 +188,7 @@
                                                 <span class="creation-date"> ${o2.getBl_creationdate()}</span>
                                             </div>
                                             <!-- Wrap the title in an anchor element -->
-                                            <h6 class="card-title myp" ><a href="Blog_detail.jsp" style="
+                                            <h6 class="card-title myp" ><a href="Blog_detail?Bl_id=${o2.getBl_id()}" style="
                                                                       text-decoration: none;
                                                                       text-transform: uppercase;
                                                                       font-size: 12px;
@@ -222,7 +222,7 @@
                                 <img src="${o1.getBl_img()}" class="card-img-top" alt="Ảnh bài viết 3">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <a href="Blog_detail.jsp" style="
+                                        <a href="Blog_detail?Bl_id=${o1.getBl_id()}" style="
                                            text-decoration: none;
                                            text-transform: uppercase;
                                            font-size: 14px;
@@ -234,7 +234,7 @@
                                         </a>
                                     </h5>
                                     <p class="card-text myp" data-text="short content here"></p>
-                                    <a href="Blog_detail.jsp" class="btn btn-primary mybtn">Đọc thêm</a>
+                                    <a href="Blog_detail?Bl_id=${o1.getBl_id()}" class="btn btn-primary mybtn">Đọc thêm</a>
                                 </div>
                                 <div class="card-footer text-right">
                                     <div>

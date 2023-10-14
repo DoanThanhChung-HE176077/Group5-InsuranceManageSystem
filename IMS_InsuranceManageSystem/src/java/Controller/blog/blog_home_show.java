@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author chun
  */
-public class blog_home_show extends HttpServlet {
+public class Blog_home_show extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

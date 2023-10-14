@@ -5,7 +5,7 @@
 package Dao;
 
 import Model.Blogs;
-import Model.newBl;
+import Model.NewBl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,12 +34,12 @@ public class BlogDAO extends DBContext {
                 String bl_img = rs.getString(5);
                 int user_id = rs.getInt(6);
                 String bl_creationdate = rs.getString(7);
-                int bl_type_id = rs.getInt(8);
-                int bl_tag_id = rs.getInt(9);
+                String bl_type_name = rs.getString(8);
+                String bl_tag_tagname = rs.getString(9);
                 int bl_view = rs.getInt(10);
                 String bl_status = rs.getString(11);
 
-                getAll.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_id, bl_tag_id, bl_view, bl_status));
+                getAll.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_view, bl_status));
             }
             return getAll;
         } catch (SQLException ex) {
@@ -63,12 +63,12 @@ public class BlogDAO extends DBContext {
                 String bl_img = rs.getString(5);
                 int user_id = rs.getInt(6);
                 String bl_creationdate = rs.getString(7);
-                int bl_type_id = rs.getInt(8);
-                int bl_tag_id = rs.getInt(9);
+                String bl_type_name = rs.getString(8);
+                String bl_tag_tagname = rs.getString(9);
                 int bl_view = rs.getInt(10);
                 String bl_status = rs.getString(11);
                 
-                getTop5Blogs.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_id, bl_tag_id, bl_view, bl_status));
+                getTop5Blogs.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_view, bl_status));
 
             }
             return getTop5Blogs;
@@ -93,12 +93,12 @@ public class BlogDAO extends DBContext {
                 String bl_img = rs.getString(5);
                 int user_id = rs.getInt(6);
                 String bl_creationdate = rs.getString(7);
-                int bl_type_id = rs.getInt(8);
-                int bl_tag_id = rs.getInt(9);
+                String bl_type_name = rs.getString(8);
+                String bl_tag_tagname = rs.getString(9);
                 int bl_view = rs.getInt(10);
                 String bl_status = rs.getString(11);
 
-                getTop15Blogs.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_id, bl_tag_id, bl_view, bl_status));
+                getTop15Blogs.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_view, bl_status));
 
             }
             return getTop15Blogs;
@@ -109,9 +109,9 @@ public class BlogDAO extends DBContext {
     }
     
     //get blog with user name
-    public ArrayList<newBl> getBlogs() {
+    public ArrayList<NewBl> getBlogsWithUserName() {
         try {
-            ArrayList<newBl> getBlogs = new ArrayList<>();
+            ArrayList<NewBl> getBlogs = new ArrayList<>();
             String sql = "SELECT  B.* , U.user_fullname from Blogs B JOIN Users U ON B.user_id = U.user_id;";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -123,13 +123,13 @@ public class BlogDAO extends DBContext {
                 String bl_img = rs.getString(5);
                 int user_id = rs.getInt(6);
                 String bl_creationdate = rs.getString(7);
-                int bl_type_id = rs.getInt(8);
-                int bl_tag_id = rs.getInt(9);
-                int bl_view = rs.getInt(10);
+                String bl_type_name = rs.getString(8);
+                String bl_tag_tagname = rs.getString(9);
+                String bl_view = rs.getString(10);
                 String bl_status = rs.getString(11);
                 String username = rs.getString(12);
 
-                getBlogs.add(new  newBl(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_id, bl_tag_id, bl_view, bl_status, username));
+                getBlogs.add(new  NewBl(username, bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_like, bl_status));
 
             }
             return getBlogs;
