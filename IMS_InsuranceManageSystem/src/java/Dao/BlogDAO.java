@@ -111,7 +111,7 @@ public class BlogDAO extends DBContext {
     //get blog with user name
     public ArrayList<newBl> getBlogs() {
         try {
-            ArrayList<newBl> getTop150Blogs = new ArrayList<>();
+            ArrayList<newBl> getBlogs = new ArrayList<>();
             String sql = "SELECT  B.* , U.user_fullname from Blogs B JOIN Users U ON B.user_id = U.user_id;";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -129,10 +129,10 @@ public class BlogDAO extends DBContext {
                 String bl_status = rs.getString(11);
                 String username = rs.getString(12);
 
-                getTop150Blogs.add(new  newBl(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_id, bl_tag_id, bl_view, bl_status, username));
+                getBlogs.add(new  newBl(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_id, bl_tag_id, bl_view, bl_status, username));
 
             }
-            return getTop150Blogs;
+            return getBlogs;
         } catch (SQLException ex) {
             Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
