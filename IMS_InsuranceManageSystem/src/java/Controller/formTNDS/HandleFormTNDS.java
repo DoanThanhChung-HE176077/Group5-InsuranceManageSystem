@@ -11,6 +11,7 @@ import Model.Form_TNDS;
 import Model.TNDS_Level;
 import Model.TNDS_LevelNop;
 import Model.TNDS_Type;
+import Model.User;
 
 
 import java.io.IOException;
@@ -20,6 +21,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -117,16 +119,25 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
             TNDS_Type type_object = dao.getType(type);
             int lnPrice = ln.getLn_price();
             System.out.println(lnPrice);
-            Form_TNDS form = dao.getForm_TNDS(type, ln.getLn_id());
-            
+           
+            HttpSession session = request.getSession();
+            User user1 = (User) session.getAttribute("user");
             
 //    // Gửi dữ liệu về trang JSP dưới dạng JSON
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
         System.out.println("{\"levelFee\": \"" + lnPrice + "\", \"taxFee\": \"" + 1 + "\"}");
-        out.println("{\"levelFee\": \"" + lnPrice + "\", \"taxFee\": \"" + type_object.getType_tax_price() + "\"}");
-//          out.println("{\"levelFee\": \"" + lnPrice + "\", \"taxFee\": \"" + type_object.getType_tax_price() + "\", \"totalPrice\": \"" + form.getFtnds_totalPrice() + "\"}");
+//        out.println("{\"levelFee\": \"" + lnPrice + "\", \"taxFee\": \"" + type_object.getType_tax_price() + "\"}");
+         out.println("{\"levelFee\": \"" + lnPrice + "\", " +
+            "\"taxFee\": \"" + type_object.getType_tax_price() + "\", " +
+            "\"user_iden\": \"" + user1.getUser_iden() + "\", " +
+            "\"user_phoneNum\": \"" + user1.getUser_phoneNum() + "\", " +
+            "\"user_fullName\": \"" + user1.getUser_fullName() + "\", " +
+            "\"user_dob\": \"" + user1.getUser_dob() + "\", " +
+            "\"user_email\": \"" + user1.getUser_email() + "\", " +
+            "\"user_address\": \"" + user1.getUser_address() + "\"}");
+
 
         } catch (Exception e) {
             e.printStackTrace();

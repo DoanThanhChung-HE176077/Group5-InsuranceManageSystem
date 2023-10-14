@@ -4,62 +4,138 @@
  */
 package Model;
 
+import java.sql.Date;
+
 /**
  *
  * @author chun
  */
 public class Form_TNDS {
-         private int ftnds_id;
-        private int ln_id;
-        private int type_id;
-        private int ftnds_totalPrice;
-        private int contract_id;
+        private String loaiXe;
+        private String soMay;
+        private String bienXe;
+        private String soKhung;
+        private Date startDate;
+        private Date endDate;
+        private String mucTrachNhiem;
+        private String soNguoi;
+        private String tongChiPhi;
+        private int userId;
+        private String ip_id;
+        private String status;
 
-    public Form_TNDS(int ftnds_id, int ln_id, int type_id, int ftnds_totalPrice, int contract_id) {
-        this.ftnds_id = ftnds_id;
-        this.ln_id = ln_id;
-        this.type_id = type_id;
-        this.ftnds_totalPrice = ftnds_totalPrice;
-        this.contract_id = contract_id;
+    public Form_TNDS(String loaiXe, String soMay, String bienXe, String soKhung, Date startDate, Date endDate, String mucTrachNhiem, String soNguoi, String tongChiPhi, int userId, String ip_id, String status) {
+        this.loaiXe = loaiXe;
+        this.soMay = soMay;
+        this.bienXe = bienXe;
+        this.soKhung = soKhung;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.mucTrachNhiem = mucTrachNhiem;
+        this.soNguoi = soNguoi;
+        this.tongChiPhi = tongChiPhi;
+        this.userId = userId;
+        this.ip_id = ip_id;
+        this.status = status;
     }
 
-    public int getFtnds_id() {
-        return ftnds_id;
+    public String getLoaiXe() {
+        return loaiXe;
     }
 
-    public void setFtnds_id(int ftnds_id) {
-        this.ftnds_id = ftnds_id;
+    public void setLoaiXe(String loaiXe) {
+        this.loaiXe = loaiXe;
     }
 
-    public int getLn_id() {
-        return ln_id;
+    public String getSoMay() {
+        return soMay;
     }
 
-    public void setLn_id(int ln_id) {
-        this.ln_id = ln_id;
+    public void setSoMay(String soMay) {
+        this.soMay = soMay;
     }
 
-    public int getType_id() {
-        return type_id;
+    public String getBienXe() {
+        return bienXe;
     }
 
-    public void setType_id(int type_id) {
-        this.type_id = type_id;
+    public void setBienXe(String bienXe) {
+        this.bienXe = bienXe;
     }
 
-    public int getFtnds_totalPrice() {
-        return ftnds_totalPrice;
+    public String getSoKhung() {
+        return soKhung;
     }
 
-    public void setFtnds_totalPrice(int ftnds_totalPrice) {
-        this.ftnds_totalPrice = ftnds_totalPrice;
+    public void setSoKhung(String soKhung) {
+        this.soKhung = soKhung;
     }
 
-    public int getContract_id() {
-        return contract_id;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setContract_id(int contract_id) {
-        this.contract_id = contract_id;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getMucTrachNhiem() {
+        return mucTrachNhiem;
+    }
+
+    public void setMucTrachNhiem(String mucTrachNhiem) {
+        this.mucTrachNhiem = mucTrachNhiem;
+    }
+
+    public String getSoNguoi() {
+        return soNguoi;
+    }
+
+    public void setSoNguoi(String soNguoi) {
+        this.soNguoi = soNguoi;
+    }
+
+    public String getTongChiPhi() {
+        return tongChiPhi;
+    }
+
+    public void setTongChiPhi(String tongChiPhi) {
+        this.tongChiPhi = tongChiPhi;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getIp_id() {
+        return ip_id;
+    }
+
+    public void setIp_id(String ip_id) {
+        this.ip_id = ip_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+        
+        
+   
 }

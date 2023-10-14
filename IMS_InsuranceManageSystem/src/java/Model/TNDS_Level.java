@@ -32,4 +32,5 @@ public class TNDS_Level {
     public void setLv_value(String lv_value) {
         this.lv_value = lv_value;
     }
+    
 }
