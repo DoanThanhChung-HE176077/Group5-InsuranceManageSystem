@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author ADMIN
  */
-public class admin_IP_list extends HttpServlet {
+public class Admin_IP_list extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

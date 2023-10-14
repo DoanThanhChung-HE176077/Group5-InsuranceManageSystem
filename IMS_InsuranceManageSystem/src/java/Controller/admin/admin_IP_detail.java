@@ -21,7 +21,7 @@ import Model.User;
  *
  * @author ADMIN
  */
-public class admin_IP_detail extends HttpServlet {
+public class Admin_IP_detail extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

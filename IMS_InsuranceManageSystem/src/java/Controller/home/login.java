@@ -23,7 +23,7 @@ import Model.User;
  * @author thant
  */
 @WebServlet(urlPatterns={"/login"})
-public class login extends HttpServlet {
+public class Login extends HttpServlet {
     
     
     /** 

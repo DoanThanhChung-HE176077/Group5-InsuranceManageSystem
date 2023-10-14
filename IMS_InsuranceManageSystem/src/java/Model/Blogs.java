@@ -17,15 +17,15 @@ public class Blogs {
     String bl_img;
     int user_id;
     String bl_creationdate;
-    int bl_type_id ;
-    int bl_tag_id;
+    String  bl_type_name ;
+    String bl_tag_tagname;
     int bl_view;
     String bl_status;
 
     public Blogs() {
     }
 
-    public Blogs(String bl_id, String bl_title, String bl_content, int bl_like, String bl_img, int user_id, String bl_creationdate, int bl_type_id, int bl_tag_id, int bl_view, String bl_status) {
+    public Blogs(String bl_id, String bl_title, String bl_content, int bl_like, String bl_img, int user_id, String bl_creationdate, String bl_type_name, String bl_tag_tagname, int bl_view, String bl_status) {
         this.bl_id = bl_id;
         this.bl_title = bl_title;
         this.bl_content = bl_content;
@@ -33,8 +33,8 @@ public class Blogs {
         this.bl_img = bl_img;
         this.user_id = user_id;
         this.bl_creationdate = bl_creationdate;
-        this.bl_type_id = bl_type_id;
-        this.bl_tag_id = bl_tag_id;
+        this.bl_type_name = bl_type_name;
+        this.bl_tag_tagname = bl_tag_tagname;
         this.bl_view = bl_view;
         this.bl_status = bl_status;
     }
@@ -95,20 +95,20 @@ public class Blogs {
         this.bl_creationdate = bl_creationdate;
     }
 
-    public int getBl_type_id() {
-        return bl_type_id;
+    public String getBl_type_name() {
+        return bl_type_name;
     }
 
-    public void setBl_type_id(int bl_type_id) {
-        this.bl_type_id = bl_type_id;
+    public void setBl_type_name(String bl_type_name) {
+        this.bl_type_name = bl_type_name;
     }
 
-    public int getBl_tag_id() {
-        return bl_tag_id;
+    public String getBl_tag_tagname() {
+        return bl_tag_tagname;
     }
 
-    public void setBl_tag_id(int bl_tag_id) {
-        this.bl_tag_id = bl_tag_id;
+    public void setBl_tag_tagname(String bl_tag_tagname) {
+        this.bl_tag_tagname = bl_tag_tagname;
     }
 
     public int getBl_view() {
@@ -126,17 +126,6 @@ public class Blogs {
     public void setBl_status(String bl_status) {
         this.bl_status = bl_status;
     }
-
-     
-
-    
-
-    @Override
-    public String toString() {
-        return "Blogs{" + "bl_id=" + bl_id + ", bl_title=" + bl_title + ", bl_content=" + bl_content + ", bl_like=" + bl_like + ", bl_img=" + bl_img + ", user_id=" + user_id + ", bl_creationdate=" + bl_creationdate + ", bl_type_id=" + bl_type_id + ", bl_tag_id=" + bl_tag_id + ", bl_view=" + bl_view + ", bl_status=" + bl_status + '}';
-    }
-    
-    
 
    
     
