@@ -103,9 +103,9 @@
                                     </tbody>
                                 </table>
 
-                                <!-- Create Post Button (opens a modal) -->
+                                <!-- Create Post Button -->
                                 <button class="btn btn-success mb-3" data-toggle="modal" data-target="#createModal">
-                                    <a href="Blog_addnew.jsp" style="text-decoration: none; color: #fff;">Create Post</a>
+                                    <a href="blog_add" style="text-decoration: none; color: #fff;">Create Post</a>
                                 </button>
                             </div>
 

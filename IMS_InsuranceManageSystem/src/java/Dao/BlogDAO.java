@@ -4,6 +4,8 @@
  */
 package Dao;
 
+import Model.Blog_tag;
+import Model.Blog_type;
 import Model.Blogs;
 import Model.NewBl;
 import java.sql.PreparedStatement;
@@ -148,8 +150,8 @@ public class BlogDAO extends DBContext {
             String bl_img,
             int user_id,
             String bl_creationdate,
-            int bl_type_id,
-            int bl_tag_id,
+            String bl_type_name,
+            String bl_tag_tagname,
             int bl_view,
             String bl_status) {
         try {
@@ -161,8 +163,8 @@ public class BlogDAO extends DBContext {
             pstm.setString(4, bl_img);
             pstm.setInt(5, user_id);
             pstm.setString(6, bl_creationdate);
-            pstm.setInt(7, bl_type_id);
-            pstm.setInt(8, bl_tag_id);
+            pstm.setString(7, bl_type_name);
+            pstm.setString(8, bl_tag_tagname);
             pstm.setInt(9, bl_view);
             pstm.setString(10, bl_status);
             
@@ -173,22 +175,62 @@ public class BlogDAO extends DBContext {
         }
         return false;
     }
+     
+     //get blog tag
+     public ArrayList<Blog_tag> getBlogTag() {
+        try {
+            ArrayList<Blog_tag> getBlogTag = new ArrayList<>();
+            String sql = "select * from Blog_tag";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int bl_id = rs.getInt(1);
+                String bl_tag_tagname = rs.getString(2);
+                getBlogTag.add(new Blog_tag(bl_id, bl_tag_tagname));
+            }
+            return getBlogTag;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+     
+     //get blog type
+    public ArrayList<Blog_type> getBlogType() {
+        try {
+            ArrayList<Blog_type> getBlogType = new ArrayList<>();
+            String sql = "select * from Blog_type";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int bl_id = rs.getInt(1);
+                String bl_tag_tagname = rs.getString(2);
+                getBlogType.add(new Blog_type(bl_id, bl_tag_tagname));
+            }
+            return getBlogType;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
 
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
         Blogs bgg = new Blogs();
 
-        ArrayList<Blogs> bg = dao.getAllBlogs();
-        
-        for (Blogs blogs : bg) {
-            System.out.println(blogs.toString());
-        }
-//  s
+//        ArrayList<Blogs> bg = dao.getAllBlogs();
+//        
+//        for (Blogs blogs : bg) {
+//            System.out.println(blogs.toString());
+//        }
+
 //        dao.createBlog("a", "b", 0, "bl_img", 1, "2023-09-01", 1, 1, 0, "Active");
         
-
-
+        ArrayList<Blog_tag> bggg = dao.getBlogTag();
+        for (Blog_tag blogs : bggg) {
+            System.out.println(blogs.toString());
+        }
 
     }
 

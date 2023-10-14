@@ -6,6 +6,8 @@
 package Controller.blog;
 
 import Dao.BlogDAO;
+import Model.Blog_tag;
+import Model.Blog_type;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +23,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -65,7 +68,17 @@ public class Blog_add extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        //processRequest(request, response);
+        
+        //send data to blog_addnew()
+        BlogDAO bgdao = new BlogDAO();
+        ArrayList<Blog_tag> tag = bgdao.getBlogTag();
+        ArrayList<Blog_type> type = bgdao.getBlogType();
+        
+        request.setAttribute("listTag", tag);
+        request.setAttribute("listType", type);
+        request.getRequestDispatcher("Blog_addnew.jsp").forward(request, response);
+        
+
         
     } 
 
@@ -79,6 +92,7 @@ public class Blog_add extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        //solve data from Blog_addnew.jsp
         //-------------important : must include :@MultipartConfig before starting this calss ---------------------          
 
         //title
@@ -89,9 +103,9 @@ public class Blog_add extends HttpServlet {
         //user id
         int user_id = Integer.parseInt(request.getParameter("user_id"));
         //blogType
-        int typeBlog = Integer.parseInt(request.getParameter("blogType")) ;
+        String typeBlog = request.getParameter("blogType") ;
         //blog tag
-        int tagBlog = Integer.parseInt(request.getParameter("blogTag")) ;
+        String tagBlog = request.getParameter("blogTag") ;
         //blogContent
         String content = request.getParameter("editor");
         //creationdate
@@ -214,6 +228,8 @@ public class Blog_add extends HttpServlet {
                 System.out.println("Error: " + e.getMessage());
             }
         }
+        
+        response.sendRedirect("blog_list");
         
     }
 

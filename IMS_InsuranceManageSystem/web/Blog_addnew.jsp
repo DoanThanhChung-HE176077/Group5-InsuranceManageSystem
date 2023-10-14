@@ -3,13 +3,13 @@
     Created on : Oct 8, 2023, 8:51:45 PM
     Author     : pc minh
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Create Blog</title>
 
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -45,7 +45,7 @@
         
         
         
-        <div class="container mt-5">
+        <div class="container mt-5" style="padding-top: 100px">
             <h2>Tạo Blog</h2>
 <!--            <form id="blogForm" action="blog_add?user_id=${user.getUser_id()}" method="post" enctype="multipart/form-data">-->
             <form id="blogForm" action="blog_add?user_id=${user.getUser_id()}" method="post" enctype="multipart/form-data">
@@ -65,11 +65,6 @@
                             <img id="output" src="" alt="Image Preview" class="img-thumbnail mt-3">
       
                         </div>
-<!--                        <div class="col-md-6">
-                            <div class="input-group mb-3">
-                                <input type="file" class="form-control" id="fileName" name="fileName" accept="image/*" onchange="loadFile(event)" required>
-                            </div>
-                        </div>-->
                     </div>
                 </div>
                 <!--user_id from session -> hidden-->
@@ -78,19 +73,18 @@
                 <div class="mb-3">
                     <label for="blogType" class="form-label">Loại Blog</label>
                     <select class="form-select" id="blogType" name="blogType">
-                        <option value="1">Common</option>
-                        <option value="2">Feature</option>
+                        <c:forEach items="${listType}" var="type">
+                            <option value="${type.getBl_type_id()}">${type.getBl_type_name()}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <!--blog tag-->
                 <div class="mb-3">
                     <label for="tags" class="form-label">Choose Tag</label>
                     <select class="form-select" id="blogTag" name="blogTag">
-                        <option value="2">Sức khỏe</option>
-                        <option value="3">Tài sản</option>
-                        <option value="1">Xe cơ giới</option>
-                        <option value="4">Du Lịch - Giải Trí</option>
-
+                        <c:forEach items="${listTag}" var="tag">
+                            <option value="${tag.getBl_tag_id()}">${tag.getBl_tag_tagname()}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <!--blog content-->
