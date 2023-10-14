@@ -127,6 +127,11 @@ public class Blogs {
         this.bl_status = bl_status;
     }
 
+    @Override
+    public String toString() {
+        return "Blogs{" + "bl_id=" + bl_id + ", bl_title=" + bl_title + ", bl_content=" + bl_content + ", bl_like=" + bl_like + ", bl_img=" + bl_img + ", user_id=" + user_id + ", bl_creationdate=" + bl_creationdate + ", bl_type_name=" + bl_type_name + ", bl_tag_tagname=" + bl_tag_tagname + ", bl_view=" + bl_view + ", bl_status=" + bl_status + '}';
+    }
+
    
     
 

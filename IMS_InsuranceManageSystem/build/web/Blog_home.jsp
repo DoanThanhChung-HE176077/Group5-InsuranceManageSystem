@@ -143,7 +143,7 @@
                                                  style="height: 400px; width: 800px; object-fit: cover;">
                                             <div class="carousel-caption d-none d-md-block">
                                                 <h5>${blog.getBl_title()}</h5>
-                                                <p class="myp">${blog. getBl_content()}</p>
+                                                <p class="myp"></p>
                                             </div>
                                         </a>
                                     </div>
@@ -184,7 +184,7 @@
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <div class="tag-date">
-                                                <span class="tag-name"> ${o2.getBl_tag_id()}</span>
+                                                <span class="tag-name"> ${o2.getBl_tag_tagname()}</span>
                                                 <span class="creation-date"> ${o2.getBl_creationdate()}</span>
                                             </div>
                                             <!-- Wrap the title in an anchor element -->

@@ -74,7 +74,7 @@
                     <label for="blogType" class="form-label">Loại Blog</label>
                     <select class="form-select" id="blogType" name="blogType">
                         <c:forEach items="${listType}" var="type">
-                            <option value="${type.getBl_type_id()}">${type.getBl_type_name()}</option>
+                            <option value="${type.getBl_type_name()}">${type.getBl_type_name()}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -83,7 +83,7 @@
                     <label for="tags" class="form-label">Choose Tag</label>
                     <select class="form-select" id="blogTag" name="blogTag">
                         <c:forEach items="${listTag}" var="tag">
-                            <option value="${tag.getBl_tag_id()}">${tag.getBl_tag_tagname()}</option>
+                            <option value="${tag.getBl_tag_tagname()}">${tag.getBl_tag_tagname()}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -122,14 +122,14 @@
 
         <script>
             ClassicEditor
-                    .create(document.querySelector('#editor'))
+                    .create(document.querySelector('#editor') )
                     .then(newEditor => {
                         editor = newEditor;
                     })
                     .catch(error => {
                         console.error(error);
                     });
-
+                    
         </script>
         <script>
             //truyen data from ckeditor box

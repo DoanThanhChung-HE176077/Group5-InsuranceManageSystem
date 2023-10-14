@@ -213,6 +213,36 @@ public class BlogDAO extends DBContext {
         }
         return null;
     }
+    
+        //get 1 blog by bl_id
+        public Blogs getABlogByBlogId (int bl_id) {
+            try {
+
+                String sql = "select * from Blogs where bl_id = ?";
+                PreparedStatement ps = connection.prepareStatement(sql);
+                ps.setInt(1, bl_id);
+                ResultSet rs = ps.executeQuery();
+
+                rs.next();
+                Blogs bg = new Blogs();
+                bg.setBl_id(rs.getString("bl_id"));
+                bg.setBl_title(rs.getString("bl_title"));
+                bg.setBl_content(rs.getString("bl_content"));
+                bg.setBl_like(rs.getInt("bl_like"));
+                bg.setBl_img(rs.getString("bl_img"));
+                bg.setUser_id(rs.getInt("user_id"));
+                bg.setBl_creationdate(rs.getString("bl_creationdate"));
+                bg.setBl_type_name(rs.getString("bl_type_name"));
+                bg.setBl_tag_tagname(rs.getString("bl_tag_tagname"));
+                bg.setBl_view(rs.getInt("bl_view"));
+                bg.setBl_status(rs.getString("bl_status"));
+
+                return bg;
+            } catch (SQLException ex) {
+                Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return null;
+        } 
 
 
     public static void main(String[] args) {
@@ -227,9 +257,17 @@ public class BlogDAO extends DBContext {
 
 //        dao.createBlog("a", "b", 0, "bl_img", 1, "2023-09-01", 1, 1, 0, "Active");
         
-        ArrayList<Blog_tag> bggg = dao.getBlogTag();
-        for (Blog_tag blogs : bggg) {
-            System.out.println(blogs.toString());
+//        ArrayList<Blog_tag> bggg = dao.getBlogTag();
+//        for (Blog_tag blogs : bggg) {
+//            System.out.println(blogs.toString());
+//        }
+        
+        Blogs blog = dao.getABlogByBlogId(1);
+        if (blog != null) {
+            System.out.println("Blog details:");
+            System.out.println(blog.toString());
+        } else {
+            System.out.println("Blog not found.");
         }
 
     }

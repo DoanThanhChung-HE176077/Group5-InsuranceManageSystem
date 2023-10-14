@@ -5,6 +5,8 @@
 
 package Controller.blog;
 
+import Dao.BlogDAO;
+import Model.Blogs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -53,8 +55,13 @@ public class Blog_detail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String blog_id = request.getParameter("Bl_id");
-        System.out.println(blog_id);
+        int blog_id =Integer.parseInt( request.getParameter("Bl_id"));
+        System.out.println("blog id: " +blog_id);
+
+        BlogDAO bg = new BlogDAO();
+        Blogs aBlog = bg.getABlogByBlogId(blog_id);
+        request.setAttribute("aBlog", aBlog);
+        request.getRequestDispatcher("Blog_detail2.jsp").forward(request, response);
         
         
     } 
