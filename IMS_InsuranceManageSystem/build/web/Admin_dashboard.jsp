@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,7 +34,13 @@
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
         
-        
+        <style>
+            .stats {
+                font-size: 54px;
+                position: absolute;
+                top: 20px;
+            }
+        </style>
 
 </head>
 
@@ -52,13 +60,13 @@
                             <div class="my-row row">
 
                                 <div class="my-column1 col-md-8">
-                                    <h4>Dashboard</h4>
+                                    <h4 style="text-align: center; font-weight: bold;">Thống kê</h4>
                                     <div class="row">
                                     <div class="col-md-3 mb-3">
                                       <div class="card bg-primary text-white h-100">
-                                        <div class="card-body py-5">Primary Card</div>
+                                          <div class="card-body py-5"><span class="stats">36</span></div>
                                         <div class="card-footer d-flex">
-                                          View Details
+                                          Số người dùng
                                           <span class="ms-auto">
                                             <i class="bi bi-chevron-right"></i>
                                           </span>
@@ -67,9 +75,9 @@
                                     </div>
                                     <div class="col-md-3 mb-3">
                                 <div class="card bg-warning text-dark h-100">
-                                  <div class="card-body py-5">Warning Card</div>
+                                  <div class="card-body py-5"><span class="stats">36</span></div>
                                   <div class="card-footer d-flex">
-                                    View Details
+                                    Yêu cầu hợp đồng
                                     <span class="ms-auto">
                                       <i class="bi bi-chevron-right"></i>
                                     </span>
@@ -78,20 +86,20 @@
                               </div>
                               <div class="col-md-3 mb-3">
                                 <div class="card bg-success text-white h-100">
-                                  <div class="card-body py-5">Success Card</div>
+                                  <div class="card-body py-5"><span class="stats">36</span></div>
                                   <div class="card-footer d-flex">
-                                    View Details
+                                    Yêu cầu bồi thường
                                     <span class="ms-auto">
                                       <i class="bi bi-chevron-right"></i>
                                     </span>
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-3 mb-4">
+                              <div class="col-md-3 mb-3">
                                 <div class="card bg-danger text-white h-100">
-                                  <div class="card-body py-5">Danger Card</div>
+                                  <div class="card-body py-5"><span class="stats">36</span></div>
                                   <div class="card-footer d-flex">
-                                    View Details
+                                    Bài viết
                                     <span class="ms-auto">
                                       <i class="bi bi-chevron-right"></i>
                                     </span>
@@ -105,25 +113,25 @@
                             <!--Chart-->
 
                             <div class="row">
-                                <div class="col-md-6 mb-3">
+                                <div class=" mb-3">
                                     <div class="card h-100">
                                         <div class="card-header">
                                             <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                                            Area Chart Example
+                                            Thống kê hợp đồng
                                         </div>
                                         <div class="card-body">
-                                            <canvas class="chart bar-chart" width="400" height="200"></canvas>
+                                            <canvas class="chart bar-chart1" width="400" height="200"></canvas>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class=" mb-3">
                                     <div class="card h-100">
                                         <div class="card-header">
                                             <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                                            Area Chart Example
+                                            Thống kê bồi thường
                                         </div>
                                         <div class="card-body">
-                                            <canvas class="chart bar-chart" width="400" height="200"></canvas>
+                                            <canvas class="chart bar-chart2" width="400" height="200"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -132,19 +140,19 @@
                                 
                                 </div>
 
-                            <div class="my-column1 col-md-3">
+                            <div class="my-column1 col-md-4">
                                 <!--pie chart-->
-                                <!--<div class="col-md-6 mb-3">-->
+                                <div class="col-md-12 mt-5 mb-3">
                                     <div class="card h-100">
                                     <div class="card-header">
                                         <span class="me-2"><i class="bi bi-pie-chart"></i></span>
-                                        Pie Chart Example
+                                        Tỉ lệ bồi thường
                                     </div>
                                     <div class="card-body">
                                         <canvas class="chart" id="myPieChart" width="400" height="200"></canvas>
                                     </div>
                                 </div>
-                                <!--</div>-->
+                                </div>
                             </div>
                             
                             
@@ -164,27 +172,101 @@
     
     <script>
     $(document).ready(function () {
-        const barCharts = document.querySelectorAll(".bar-chart");
+        const barCharts = document.querySelectorAll(".bar-chart1");
+        const barCharts2 = document.querySelectorAll(".bar-chart2");
 
         barCharts.forEach(function (chart) {
             var ctx = chart.getContext("2d");
             var myChart = new Chart(ctx, {
                 type: "bar",
                 data: {
-                    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                    labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+                        "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                     datasets: [
                         {
                             label: "# of Votes",
-                            data: [12, 19, 3, 5, 2, 3],
+                            data: [12, 19, 3, 5, 2, 3,  12, 19, 3, 5, 2, 3],
                             backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
                                 "rgba(54, 162, 235, 0.2)",
                                 "rgba(255, 206, 86, 0.2)",
                                 "rgba(75, 192, 192, 0.2)",
                                 "rgba(153, 102, 255, 0.2)",
+                                "rgba(255, 159, 64, 0.2)",
+                                
+                                "rgba(255, 99, 132, 0.2)",
+                                "rgba(54, 162, 235, 0.2)",
+                                "rgba(255, 206, 86, 0.2)",
+                                "rgba(75, 192, 192, 0.2)",
+                                "rgba(153, 102, 255, 0.2)",
                                 "rgba(255, 159, 64, 0.2)"
+                                
                             ],
                             borderColor: [
+                                "rgba(255, 99, 132, 1)",
+                                "rgba(54, 162, 235, 1)",
+                                "rgba(255, 206, 86, 1)",
+                                "rgba(75, 192, 192, 1)",
+                                "rgba(153, 102, 255, 1)",
+                                "rgba(255, 159, 64, 1)",
+                                
+                                "rgba(255, 99, 132, 1)",
+                                "rgba(54, 162, 235, 1)",
+                                "rgba(255, 206, 86, 1)",
+                                "rgba(75, 192, 192, 1)",
+                                "rgba(153, 102, 255, 1)",
+                                "rgba(255, 159, 64, 1)"
+                            ],
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+        
+        //chart 2
+        barCharts2.forEach(function (chart) {
+            var ctx = chart.getContext("2d");
+            var myChart2 = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+                        "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
+                    datasets: [
+                        {
+                            label: "# of Votes",
+                            data: [1, 2, 3, 4, 5, 6,  7, 8, 10, 12, 14, 16],
+                            backgroundColor: [
+                                "rgba(255, 99, 132, 0.2)",
+                                "rgba(54, 162, 235, 0.2)",
+                                "rgba(255, 206, 86, 0.2)",
+                                "rgba(75, 192, 192, 0.2)",
+                                "rgba(153, 102, 255, 0.2)",
+                                "rgba(255, 159, 64, 0.2)",
+                                
+                                "rgba(255, 99, 132, 0.2)",
+                                "rgba(54, 162, 235, 0.2)",
+                                "rgba(255, 206, 86, 0.2)",
+                                "rgba(75, 192, 192, 0.2)",
+                                "rgba(153, 102, 255, 0.2)",
+                                "rgba(255, 159, 64, 0.2)"
+                                
+                            ],
+                            borderColor: [
+                                "rgba(255, 99, 132, 1)",
+                                "rgba(54, 162, 235, 1)",
+                                "rgba(255, 206, 86, 1)",
+                                "rgba(75, 192, 192, 1)",
+                                "rgba(153, 102, 255, 1)",
+                                "rgba(255, 159, 64, 1)",
+                                
                                 "rgba(255, 99, 132, 1)",
                                 "rgba(54, 162, 235, 1)",
                                 "rgba(255, 206, 86, 1)",
