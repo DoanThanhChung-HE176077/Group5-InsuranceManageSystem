@@ -6,7 +6,6 @@
 package Controller.blog;
 
 import Dao.BlogDAO;
-import Model.Blogs;
 import Model.newBl;
 import java.io.IOException;
 import java.io.PrintWriter;
