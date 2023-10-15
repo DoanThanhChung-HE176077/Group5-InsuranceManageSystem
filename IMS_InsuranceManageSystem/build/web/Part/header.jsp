@@ -46,8 +46,8 @@
                     <a class="dropdown-toggle" data-bs-toggle="dropdown">Sản Phẩm</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!-- Dropdown menu items -->
-                        <a class="dropdown-item" href="#">Bảo hiểm vật chất</a>
-                        <a class="dropdown-item" href="#">Bảo hiểm TNDS</a>
+                        <a class="dropdown-item" href="ListProductInsurance.jsp">Bảo hiểm vật chất</a>
+                        <a class="dropdown-item" href="ListProductInsurance.jsp">Bảo hiểm TNDS</a>
                     </div>
                 </li>
                 <li class="dropdown">

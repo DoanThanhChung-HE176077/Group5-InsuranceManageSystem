@@ -41,7 +41,8 @@
                       <h5 class="card-title">BẢO HIỂM TNDS XE MÁY</h5>
                       <p class="card-text">Bảo hiểm trách nhiệm dân sự xe máy đối với bên thứ ba là loại bảo hiểm Bắt Buộc...</p>
                       <a class="see-detail" href="#">Xem chi tiết</a><br/>
-                      <button  class="btn btn-primary btn-buy">Mua ngay</button>
+                     <button onclick="window.location.href='HandleFormTNDS'" class="btn btn-primary btn-buy">Mua ngay</button>
+
                     </div>
                   </div>
             </div>
@@ -53,7 +54,8 @@
                       <h5 class="card-title">BẢO HIỂM TNDS XE MÁY</h5>
                       <p class="card-text">Bảo hiểm trách nhiệm dân sự xe máy đối với bên thứ ba là loại bảo hiểm Bắt Buộc...</p>
                       <a class="see-detail"  href="#">Xem chi tiết</a><br/>
-                      <button  class="btn btn-primary btn-buy ">Mua ngay</button>
+                     <button onclick="window.location.href='HandleFormTNDS'" class="btn btn-primary btn-buy">Mua ngay</button>
+
                     </div>
                   </div>
             </div>
