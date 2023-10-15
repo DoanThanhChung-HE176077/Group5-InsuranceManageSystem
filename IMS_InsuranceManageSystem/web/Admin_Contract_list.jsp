@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Admin_blog_dashboard
-    Created on : Oct 2, 2023, 7:46:10 PM
-    Author     : chun
---%>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
