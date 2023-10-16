@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author FPT University - PRJ301
  */
 public class DBContext {
-    protected Connection connection;
+    public static Connection connection;
     protected PreparedStatement statement;
     protected ResultSet resultSet;
     

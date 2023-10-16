@@ -47,7 +47,6 @@
         
         <div class="container mt-5" style="padding-top: 100px">
             <h2>Tạo Blog</h2>
-<!--            <form id="blogForm" action="blog_add?user_id=${user.getUser_id()}" method="post" enctype="multipart/form-data">-->
             <form id="blogForm" action="blog_add?user_id=${user.getUser_id()}" method="post" enctype="multipart/form-data">
                 <!--title-->
                 <div class="mb-3">
