@@ -1,6 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ page import="Dao.ChartDAO" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +38,7 @@
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
         
+        
         <style>
             .stats {
                 font-size: 54px;
@@ -50,6 +55,7 @@
 
 
     <jsp:include page="Part/sidebar_vip.jsp"></jsp:include>
+    
     
     
     <div class="container-fluid">
@@ -73,6 +79,7 @@
                                         </div>
                                       </div>
                                     </div>
+                                        
                                     <div class="col-md-3 mb-3">
                                 <div class="card bg-warning text-dark h-100">
                                   <div class="card-body py-5"><span class="stats">36</span></div>
@@ -84,7 +91,9 @@
                                   </div>
                                 </div>
                               </div>
+                                        
                               <div class="col-md-3 mb-3">
+                                  
                                 <div class="card bg-success text-white h-100">
                                   <div class="card-body py-5"><span class="stats">36</span></div>
                                   <div class="card-footer d-flex">
@@ -95,6 +104,7 @@
                                   </div>
                                 </div>
                               </div>
+                                        
                               <div class="col-md-3 mb-3">
                                 <div class="card bg-danger text-white h-100">
                                   <div class="card-body py-5"><span class="stats">36</span></div>
@@ -170,8 +180,13 @@
     
     <!--<script src="JS/script.js"></script>-->
     
+    
     <script>
     $(document).ready(function () {
+        // Retrieve data
+        
+        var chartData = ${ChartDAO.getChartData2()};
+        
         const barCharts = document.querySelectorAll(".bar-chart1");
         const barCharts2 = document.querySelectorAll(".bar-chart2");
 
@@ -184,8 +199,8 @@
                         "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                     datasets: [
                         {
-                            label: "# of Votes",
-                            data: [12, 19, 3, 5, 2, 3,  12, 19, 3, 5, 2, 3],
+                            label: "Số bảo hiểm đăng kí mới",
+                            data: [chartData, 19, 3, 5, 2, 3,  12, 19, 3, 5, 2, 3],
                             backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
                                 "rgba(54, 162, 235, 0.2)",
@@ -241,7 +256,7 @@
                         "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"],
                     datasets: [
                         {
-                            label: "# of Votes",
+                            label: "Số yêu cầu bồi thường",
                             data: [1, 2, 3, 4, 5, 6,  7, 8, 10, 12, 14, 16],
                             backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
