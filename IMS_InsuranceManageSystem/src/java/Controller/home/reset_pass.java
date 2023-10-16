@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author thant
  */
-public class Reset_pass extends HttpServlet {
+public class reset_pass extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -113,7 +113,7 @@ public class Reset_pass extends HttpServlet {
                     //verify code
                     sendMail(verifyCode);
                 } catch (MessagingException ex) {
-                    Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(reset_pass.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
