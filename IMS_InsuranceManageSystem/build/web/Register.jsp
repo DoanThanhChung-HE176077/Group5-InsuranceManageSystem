@@ -4,6 +4,7 @@
     Author     : thant
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -72,16 +73,25 @@
                     ĐĂNG KÝ
                 </div>
                 
+                
                 <div class="form-group" style="display: flex;">
                     <span class="input_label">Số điện thoại</span>
                     <div class="input-group" style="margin-right: 10px;">
                         <input name="input-phoneNum" type="text" id="" class="form-control" placeholder="Nhập số điện thoại" required invalid-message="Vui lòng nhập">
+                    
                     </div>
+                    
                     <span class="input_label" style="margin-left: 180px;">Email</span>
                     <div class="input-group">
                         <input name="input-mail" type="text" id="" class="form-control" placeholder="Nhập Mail" required>
+                    
                     </div>
+                    
                 </div>
+                        <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 25px; margin-top: -20px;">
+                        ${errorMessages["input-phoneNum"]} &nbsp&nbsp&nbsp ${errorMessages["input-mail"]}
+                        </p>
+                        
                 
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Họ Tên</span>
@@ -89,7 +99,9 @@
                         <input name="input-fullname" type="text" id="" class="form-control" placeholder="Nhập tên, độ dài 2-64 chữ cái" required>
                     </div>
                 </div>
-                
+                <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                        ${errorMessages["input-fullname"]}
+                    </p>
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Ngày Sinh</span>
                     <div class="input-group">
@@ -109,8 +121,11 @@
                     <div class="input-group">
                         <input name="input-iden" type="text" id="" class="form-control" placeholder="Nhập CMT/CCCD" required>
                     </div>
+                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                        ${errorMessages["input-iden"]}
+                    </p>
                 </div>
-
+                
                 <div class="form-group" id="Upa_otp"> 
                     <span class="input_label">Mật khẩu</span>
                     <div class="input-group">
@@ -122,10 +137,11 @@
                     <div class="input-group">
                         <input name="input-repassword" type="password" id="" class="form-control" placeholder="Nhập lại mật khẩu" required>
                     </div>
+                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                        ${errorMessages["input-password"]}
+                    </p>
                 </div>
-                <p style="text-align:center;color:red; font-size: 14px; margin-bottom: 10px;">
-                    ${msg}
-                </p>
+                
                 <button style="background-color: #fdd12d; color: #2c464f;" type="submit">Đăng ký</button>
 
 
@@ -141,8 +157,13 @@
                 
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
+                        const today = new Date();
+                        const maxDate = new Date();
+                        maxDate.setFullYear(today.getFullYear() - 18);
+
                         flatpickr("#datepicker", {
-                            dateFormat: "d/m/Y"
+                          dateFormat: "d/m/Y",
+                          maxDate: maxDate
                         });
                     });
                 </script>
