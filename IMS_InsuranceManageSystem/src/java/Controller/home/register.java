@@ -21,12 +21,16 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import Model.User;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author thant
  */
-public class Register extends HttpServlet {
+public class register extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -76,6 +80,9 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
+        Map<String, String> errorMessages = new HashMap<>();
+        
         String phoneNum = request.getParameter("input-phoneNum");
         String mail = request.getParameter("input-mail");
         String dob = request.getParameter("input-dob");
@@ -85,44 +92,86 @@ public class Register extends HttpServlet {
         String password = request.getParameter("input-password");
         String repassword = request.getParameter("input-repassword");
         
-        System.out.println(password);
-        System.out.println(repassword);
-        System.out.println(password);
         
-        if (checkValidUsername(fullname) != "") {
-            request.setAttribute("msg", checkValidUsername(fullname));
-            doGet(request, response);
-        } else if (checkPhoneNumber(phoneNum) == "Số điện thoại không hợp lệ") {
-            request.setAttribute("msg", "Số điện thoại không hợp lệ");
-            doGet(request, response);
+//        if (checkValidUsername(fullname) != "") {
+//            request.setAttribute("msg", checkValidUsername(fullname));
+//            doGet(request, response);
+//        } else if (checkPhoneNumber(phoneNum) == "Số điện thoại không hợp lệ") {
+//            request.setAttribute("msg", "Số điện thoại không hợp lệ");
+//            doGet(request, response);
+//
+//        } else if (checkEmail(mail) == "Email không hợp lệ") {
+//            request.setAttribute("msg", "Email không hợp lệ");
+//            doGet(request, response);
+//
+//        } else if (checkIdentityCardNumber(iden) == "Số căn cước công dân không hợp lệ") {
+//            request.setAttribute("msg", "Số căn cước công dân không hợp lệ");
+//            doGet(request, response);
+//
+//        } else if (password == null ? repassword != null : !password.equals(repassword)) {
+//            request.setAttribute("msg", "nhập lại mật khẩu sai");
+//            doGet(request, response);
+//        } else {
+//            // Tạo một đối tượng SimpleDateFormat
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//
+//            Date dateofbirth = null;
+//            try {
+//                // Parse chuỗi thành một đối tượng Date
+//                dateofbirth = dateFormat.parse(dob);
+//            } catch (ParseException ex) {
+//                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//            User u = new User();
+//            UserDAO uD = new UserDAO();
+//
+//            uD.addUser(fullname, mail, password, dateofbirth, address, phoneNum, iden);
+//
+//            response.sendRedirect("login");
+//        }
 
-        } else if (checkEmail(mail) == "Email không hợp lệ") {
-            request.setAttribute("msg", "Email không hợp lệ");
-            doGet(request, response);
+        if (!checkValidUsername(fullname).isEmpty()) {
+//            errorMessages.add(checkValidUsername(fullname));
+            errorMessages.put("input-fullname", checkValidUsername(fullname));
 
-        } else if (checkIdentityCardNumber(iden) == "Số căn cước công dân không hợp lệ") {
-            request.setAttribute("msg", "Số căn cước công dân không hợp lệ");
-            doGet(request, response);
+        }
+        if ("Số điện thoại không hợp lệ".equals(checkPhoneNumber(phoneNum))) {
+//            errorMessages.add("Số điện thoại không hợp lệ");
+            errorMessages.put("input-phoneNum", checkPhoneNumber(phoneNum));
+        }
+        if ("Email không hợp lệ".equals(checkEmail(mail))) {
+//            errorMessages.add("Email không hợp lệ");
+            errorMessages.put("input-mail", checkEmail(mail));
+        }
+        if ("Số căn cước công dân không hợp lệ".equals(checkIdentityCardNumber(iden))) {
+//            errorMessages.add("Số căn cước công dân không hợp lệ");
+            errorMessages.put("input-iden", checkIdentityCardNumber(iden));
+        }
+        if (password == null ? repassword != null : !password.equals(repassword)) {
+            errorMessages.put("input-password", (password == null || !password.equals(repassword)) ? "Nhập lại mật khẩu sai" : null);
 
-        } else if (password == null ? repassword != null : !password.equals(repassword)) {
-            request.setAttribute("msg", "nhập lại mật khẩu sai");
+        }
+
+        if (!errorMessages.isEmpty()) {
+            request.setAttribute("errorMessages", errorMessages);
             doGet(request, response);
         } else {
             // Tạo một đối tượng SimpleDateFormat
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-            Date dateofbirth = null;
+            Date dateOfBirth = null;
             try {
                 // Parse chuỗi thành một đối tượng Date
-                dateofbirth = dateFormat.parse(dob);
+                dateOfBirth = dateFormat.parse(dob);
             } catch (ParseException ex) {
-                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             User u = new User();
             UserDAO uD = new UserDAO();
 
-            uD.addUser(fullname, mail, password, dateofbirth, address, phoneNum, iden);
+            uD.addUser(fullname, mail, password, dateOfBirth, address, phoneNum, iden);
 
             response.sendRedirect("login");
         }

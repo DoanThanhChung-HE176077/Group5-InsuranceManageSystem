@@ -4,6 +4,7 @@
     Author     : thant
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,11 +18,39 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        
         <style>
             
             input:focus {
                 border-color: #000 !important;
                 transition: border-color 0.5s;
+            }
+            
+            .flatpickr-months .flatpickr-month {
+                background-color: #fdd12d;
+            }
+            
+            .flatpickr-current-month .flatpickr-monthDropdown-months {
+                background-color: #fdd12d;
+            }
+            
+            .flatpickr-weekdays {
+                background-color: #fdd12d !important;
+            }
+            
+            .flatpickr-weekday {
+                background-color: #fdd12d !important;
+                color: #fff !important;
+            }
+            
+            .flatpickr-calendar.arrowTop:after {
+                border-bottom-color: #fdd12d;
+            }
+            
+            .flatpickr-calendar.arrowBottom:after {
+                border-top-color: #fdd12d;
             }
             
         </style>
@@ -44,16 +73,25 @@
                     ĐĂNG KÝ
                 </div>
                 
+                
                 <div class="form-group" style="display: flex;">
                     <span class="input_label">Số điện thoại</span>
                     <div class="input-group" style="margin-right: 10px;">
                         <input name="input-phoneNum" type="text" id="" class="form-control" placeholder="Nhập số điện thoại" required invalid-message="Vui lòng nhập">
+                    
                     </div>
+                    
                     <span class="input_label" style="margin-left: 180px;">Email</span>
                     <div class="input-group">
                         <input name="input-mail" type="text" id="" class="form-control" placeholder="Nhập Mail" required>
+                    
                     </div>
+                    
                 </div>
+                        <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 25px; margin-top: -20px;">
+                        ${errorMessages["input-phoneNum"]} &nbsp&nbsp&nbsp ${errorMessages["input-mail"]}
+                        </p>
+                        
                 
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Họ Tên</span>
@@ -61,11 +99,13 @@
                         <input name="input-fullname" type="text" id="" class="form-control" placeholder="Nhập tên, độ dài 2-64 chữ cái" required>
                     </div>
                 </div>
-                
+                <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                        ${errorMessages["input-fullname"]}
+                    </p>
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Ngày Sinh</span>
                     <div class="input-group">
-                        <input name="input-dob" type="date" id="" class="form-control" placeholder="Nhập ngày sinh" required>
+                        <input name="input-dob" type="text" id="datepicker" class="form-control" placeholder="Nhập ngày sinh" style="background-color: #fff !important;" required>
                     </div>
                 </div>
                 
@@ -81,8 +121,11 @@
                     <div class="input-group">
                         <input name="input-iden" type="text" id="" class="form-control" placeholder="Nhập CMT/CCCD" required>
                     </div>
+                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                        ${errorMessages["input-iden"]}
+                    </p>
                 </div>
-
+                
                 <div class="form-group" id="Upa_otp"> 
                     <span class="input_label">Mật khẩu</span>
                     <div class="input-group">
@@ -94,10 +137,11 @@
                     <div class="input-group">
                         <input name="input-repassword" type="password" id="" class="form-control" placeholder="Nhập lại mật khẩu" required>
                     </div>
+                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                        ${errorMessages["input-password"]}
+                    </p>
                 </div>
-                <p style="text-align:center;color:red; font-size: 14px; margin-bottom: 10px;">
-                    ${msg}
-                </p>
+                
                 <button style="background-color: #fdd12d; color: #2c464f;" type="submit">Đăng ký</button>
 
 
@@ -108,25 +152,21 @@
                 
         
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-    $(document).ready(function () {
-        // Bắt sự kiện khi người dùng gõ vào ô input
-        $('#fullname').on('input', function () {
-            validateFullname();
-        });
+        
+                <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const today = new Date();
+                        const maxDate = new Date();
+                        maxDate.setFullYear(today.getFullYear() - 18);
 
-        function validateFullname() {
-            // Lấy giá trị từ ô input
-            var fullname = $('#fullname').val();
-
-            // Kiểm tra điều kiện (ví dụ: độ dài tối thiểu là 3 ký tự)
-            if (fullname.length < 3) {
-                $('#fullname-error').text('Họ tên phải có ít nhất 3 ký tự.');
-            } else {
-                $('#fullname-error').text('');
-            }
-        }
-    });
-</script>
+                        flatpickr("#datepicker", {
+                          dateFormat: "d/m/Y",
+                          maxDate: maxDate
+                        });
+                    });
+                </script>
+    
     </body>
 </html>
