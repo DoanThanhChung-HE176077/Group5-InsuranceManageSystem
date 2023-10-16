@@ -18,10 +18,11 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        
     </head>
     <body>
-        <form action="saveInfoTNDS" >
+             <jsp:include page="Part/header.jsp"></jsp:include>
+             <form  action="saveInfoTNDS" style="margin-top: 100px ; background-color: #fdcf2b ; padding: 20px 0" >
 
 
             <div class="container form_TNDS">
@@ -129,25 +130,25 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <span>Số CCCD/CMT/Hộ chiếu</span>
-                                            <input id="user_iden" class="form-control" type="text" readonly="" >
+                                            <input id="user_iden2" class="form-control" type="text" readonly="" >
                                             <span>Tên</span>
                                             <input id="user_fullName" class="form-control" type="text" readonly="" >
                                             <span>Email</span>
-                                            <input id="user_email" class="form-control" type="email"" readonly="">
+                                            <input id="user_email2" class="form-control" type="email"" readonly="">
                                         </div>
                                         <div class="col-md-6">
 
                                             <span>Số mobile</span>
-                                            <input id="user_phoneNum" class="form-control" type="number" readonly >
+                                            <input id="user_phoneNum2" class="form-control" type="number" readonly >
                                             <span>Ngày sinh</span>
-                                            <input id="user_dob" class="form-control" type="date" readonly>
+                                            <input id="user_dob2" class="form-control" type="date" readonly>
 
 
 
 
 
                                             <span>Địa chỉ</span>
-                                            <input id="user_address" class="form-control" type="text" readonly >
+                                            <input id="user_address2" class="form-control" type="text" readonly >
 
                                         </div>
                                     </div>
@@ -234,12 +235,12 @@
                         $("#total-fee").val(parseInt(jsonData.levelFee) + parseInt(jsonData.taxFee));
                         document.getElementById("a").innerHTML= jsonData.levelFee;
                         document.getElementById("b").innerHTML= parseInt(jsonData.levelFee) + parseInt(jsonData.taxFee);
-                         $("#user_iden").val(jsonData.user_iden);
+                         $("#user_iden2").val(jsonData.user_iden);
                           $("#user_fullName").val(jsonData.user_fullName);
-                           $("#user_email").val(jsonData.user_email);
-                            $("#user_phoneNum").val(jsonData.user_phoneNum);
-                             $("#user_dob").val(jsonData.user_dob);
-                              $("#user_address").val(jsonData.user_address);
+                           $("#user_email2").val(jsonData.user_email);
+                            $("#user_phoneNum2").val(jsonData.user_phoneNum);
+                             $("#user_dob2").val(jsonData.user_dob);
+                              $("#user_address2").val(jsonData.user_address);
                     }
                 };
 
