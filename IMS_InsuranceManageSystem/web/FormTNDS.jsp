@@ -129,7 +129,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <span>Số CCCD/CMT/Hộ chiếu</span>
-                                            <input id="user_iden" class="form-control" type="text" readonly="" >
+                                            <input id="user_iden" value="${user.getUser_fullName()}" class="form-control" type="text" readonly="" >
                                             <span>Tên</span>
                                             <input id="user_fullName" class="form-control" type="text" readonly="" >
                                             <span>Email</span>
@@ -141,11 +141,6 @@
                                             <input id="user_phoneNum" class="form-control" type="number" readonly >
                                             <span>Ngày sinh</span>
                                             <input id="user_dob" class="form-control" type="date" readonly>
-
-
-
-
-
                                             <span>Địa chỉ</span>
                                             <input id="user_address" class="form-control" type="text" readonly >
 

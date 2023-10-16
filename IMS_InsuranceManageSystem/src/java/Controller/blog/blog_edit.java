@@ -5,12 +5,17 @@
 
 package Controller.blog;
 
+import Dao.BlogDAO;
+import Model.Blog_tag;
+import Model.Blog_type;
+import Model.Blogs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /**
  *
@@ -53,7 +58,17 @@ public class Blog_edit extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String bl_id = request.getParameter("bl_id");
+        System.out.println("blog_edit -> bl_id:" + bl_id);
+        BlogDAO bg = new BlogDAO();
+        Blogs bgg = bg.getABlogByBlogId(Integer.parseInt(bl_id));
+        ArrayList<Blog_tag> tag = bg.getBlogTag();
+        ArrayList<Blog_type> type = bg.getBlogType();
+
+        request.setAttribute("listTag", tag);
+        request.setAttribute("listType", type);
+        request.setAttribute("aBlogs", bgg);
+        request.getRequestDispatcher("Blog_edit.jsp").forward(request, response);
     } 
 
     /** 

@@ -95,7 +95,7 @@
                                                 <td>${blogs.getBl_status()}</td>
                                                 <td>
                                                     <!-- Edit Button -->
-                                                    <a href=""><button type="submit" class="btn btn-primary btn-sm">Edit</button></a>
+                                                    <a href="blog_edit?bl_id=${blogs.getBl_id()}"><button type="submit" class="btn btn-primary btn-sm">Edit</button></a>
                                                 </td>
                                             </tr>
                                         </c:forEach>    
