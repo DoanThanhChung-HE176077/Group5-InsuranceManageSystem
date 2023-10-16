@@ -17,11 +17,39 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+        
         <style>
             
             input:focus {
                 border-color: #000 !important;
                 transition: border-color 0.5s;
+            }
+            
+            .flatpickr-months .flatpickr-month {
+                background-color: #fdd12d;
+            }
+            
+            .flatpickr-current-month .flatpickr-monthDropdown-months {
+                background-color: #fdd12d;
+            }
+            
+            .flatpickr-weekdays {
+                background-color: #fdd12d !important;
+            }
+            
+            .flatpickr-weekday {
+                background-color: #fdd12d !important;
+                color: #fff !important;
+            }
+            
+            .flatpickr-calendar.arrowTop:after {
+                border-bottom-color: #fdd12d;
+            }
+            
+            .flatpickr-calendar.arrowBottom:after {
+                border-top-color: #fdd12d;
             }
             
         </style>
@@ -65,7 +93,7 @@
                 <div class="form-group" style="margin-bottom: 25px;">
                     <span class="input_label">Ngày Sinh</span>
                     <div class="input-group">
-                        <input name="input-dob" type="date" id="" class="form-control" placeholder="Nhập ngày sinh" required>
+                        <input name="input-dob" type="text" id="datepicker" class="form-control" placeholder="Nhập ngày sinh" style="background-color: #fff !important;" required>
                     </div>
                 </div>
                 
@@ -108,25 +136,16 @@
                 
         
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-    $(document).ready(function () {
-        // Bắt sự kiện khi người dùng gõ vào ô input
-        $('#fullname').on('input', function () {
-            validateFullname();
-        });
-
-        function validateFullname() {
-            // Lấy giá trị từ ô input
-            var fullname = $('#fullname').val();
-
-            // Kiểm tra điều kiện (ví dụ: độ dài tối thiểu là 3 ký tự)
-            if (fullname.length < 3) {
-                $('#fullname-error').text('Họ tên phải có ít nhất 3 ký tự.');
-            } else {
-                $('#fullname-error').text('');
-            }
-        }
-    });
-</script>
+        
+                <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        flatpickr("#datepicker", {
+                            dateFormat: "d/m/Y"
+                        });
+                    });
+                </script>
+    
     </body>
 </html>

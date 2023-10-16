@@ -26,7 +26,7 @@ import Model.User;
  *
  * @author thant
  */
-public class Register extends HttpServlet {
+public class register extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -116,7 +116,7 @@ public class Register extends HttpServlet {
                 // Parse chuỗi thành một đối tượng Date
                 dateofbirth = dateFormat.parse(dob);
             } catch (ParseException ex) {
-                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             User u = new User();
