@@ -15,15 +15,16 @@ public class InsuranceProduct {
     private String ip_type;
     private String ip_name;
     private String ip_img;
-    
+    private String ip_description;
     public InsuranceProduct(){
        
     }
-    public InsuranceProduct(int ip_id,String ip_type,String ip_name,String ip_img){
+    public InsuranceProduct(int ip_id,String ip_type,String ip_name,String ip_img,String ip_description){
         this.ip_id= ip_id;
         this.ip_type = ip_type;
         this.ip_name = ip_name;
         this.ip_img = ip_img;
+        this.ip_description = ip_description;
     }
 
     public String getIp_img() {
@@ -59,6 +60,16 @@ public class InsuranceProduct {
         this.ip_name = ip_name;
     }
 
+    public String getIp_description() {
+        return ip_description;
+    }
+
+    public void setIp_description(String ip_description) {
+        this.ip_description = ip_description;
+    }
+
+
+    
     @Override
     public String toString() {
         return "InsuranceProduct{" + "ip_id=" + ip_id + ", ip_type=" + ip_type + ", ip_name=" + ip_name + '}';

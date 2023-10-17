@@ -56,7 +56,7 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-7">
+                                <div class="my-column1 col-md-9">
                                     <h2 style="display: inline-block;">Chi tiết sản phẩm bảo hiểm</h2>
                                     <!--                                    go to blog page-->
                                     <button class="btn btn-success mb-3 " style="margin-left: 200px" >
@@ -66,10 +66,11 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Phân loại</th>
-                                                <th>Tên sản phẩm</th>
-                                                <th>Ảnh</th>
+                                                <th class="col-1">ID</th>
+                                                <th class="col-1">Phân loại</th>
+                                                <th class="col-2">Tên sản phẩm</th>
+                                                <th class="col-1">Ảnh</th>
+                                                <th class="col-5">Mô tả</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -77,9 +78,10 @@
 
                                             <tr>
                                                 <td>${detail.ip_id}</td>
-                                                <td>${detail.ip_type}</td>
-                                                <td>${detail.ip_name}</td>
-                                                <td><img src="${detail.ip_img}" width="60px" height="60px" ></td>
+                                            <td>${detail.ip_type}</td>
+                                            <td>${detail.ip_name}</td>
+                                            <td><img src="${detail.ip_img}" width="60px" height="60px" ></td>
+                                            <td>${detail.ip_description}</td>
                                         </tr>
 
                                         <!-- Repeat rows for each blog post -->
@@ -89,7 +91,7 @@
                             </div>
 
                             <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-5">
+                            <div class="my-column1 col-md-3">
                                 <h2 style="display: inline-block;">Doanh Thu</h2>
                                 <!-- togler -->
 
@@ -107,12 +109,12 @@
                                         <tr>
                                             <td>1</td>
                                             <td>TNDS</td>
-                                            <td>1000000</td>
+                                            <td>${income1}</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td>Vatchat</td>
-                                            <td>500000</td>
+                                            <td>${income2}</td>
                                         </tr>
 
                                         <!-- Repeat rows for each edit history entry -->

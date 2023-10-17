@@ -1,18 +1,11 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : Oct 7, 2023, 3:58:50 PM
-    Author     : Dell
-*/
+
 body{
-    background-color:hsl(47,98%,58%);
-/*    padding: 20px;*/
+    background-color:hsl(47,98%,58%) !important;
+    font-size: 14px !important ;
 }
-span{
+/*span{
     font-size: 14px;
-}
+}*/
 .info_motobike{
     padding: 15px;
     background-color: rgb(255,255,255);

@@ -31,7 +31,7 @@ public class Admin_IP_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+       
         }
 
     
@@ -50,7 +50,11 @@ public class Admin_IP_list extends HttpServlet {
     throws ServletException, IOException {
         IPDAO ip = new IPDAO();
         ArrayList<InsuranceProduct> list = ip.getALLIP();
+        int income1 = ip.getIncomebyID(1);
+        int income2 = ip.getIncomebyID(2);
         request.setAttribute("listIP", list);
+        request.setAttribute("income1", income1);
+        request.setAttribute("income2", income2);
         request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
     } 
 

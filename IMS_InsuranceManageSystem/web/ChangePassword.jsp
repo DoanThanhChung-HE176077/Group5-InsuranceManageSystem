@@ -19,7 +19,7 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
              <style>
         body{
-            background-color: hsl(213,26%,93%);
+            background-color:hsl(47,98%,58%) !important;
             font-family: Arial, Helvetica, sans-serif;
             height: 100vh;
             padding: 50px;
@@ -66,9 +66,9 @@
     </style>
     </head>
     <body>
-       
+        <jsp:include page="Part/header.jsp"></jsp:include>
        <div id="password-form">
-           <a  href="/IMS_InsuranceManageSystem/">Trang chủ</a>
+<!--           <a  href="/IMS_InsuranceManageSystem/">Trang chủ</a>-->
         <h1>Change your password</h1>
     <form action="changePassword" method="post">
         <p>Old password</p> <input type="password" name="oldPass" required placeholder="Old password"/><br/>

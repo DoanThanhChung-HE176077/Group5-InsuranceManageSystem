@@ -23,24 +23,7 @@ public class IPDAO extends DBContext{
 
 
     
-    // add insurance product
-    public void addIP(int id,String type, String name) {
-        try {
-            String strSQL = "INSERT INTO [Insurance_Products](ip_id, ip_type, ip_name) values (?,?,?)"
-                    
-                    ;
-            PreparedStatement pstm = connection.prepareStatement(strSQL); 
-            pstm.setInt(1, id);
-            pstm.setString(2, type);
-            pstm.setString(3, name);
-            
-            pstm.execute();
-            
-        } catch (SQLException e) {
-            System.out.println("addIP: " + e.getMessage());
-        }
-        
-    }
+    
     public ArrayList<InsuranceProduct> getALLIP() {
         ArrayList<InsuranceProduct> list = new ArrayList<>();
         
@@ -52,7 +35,8 @@ public class IPDAO extends DBContext{
                 list.add(new InsuranceProduct(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getString(4)
+                        rs.getString(4),
+                        rs.getString(5)
                         ));
             }
         } catch (Exception e) {
@@ -74,13 +58,30 @@ public class IPDAO extends DBContext{
                 return new InsuranceProduct(rs.getInt(1),
                         rs.getString(2),
                         rs.getString(3),
-                        rs.getString(4)
+                        rs.getString(4),
+                        rs.getString(5)
                         );
             }
         } catch (Exception e) {
         }
         return null;
     }
+    public int getIncomebyID(int id) {
+    String strSQL = "SELECT SUM(total_price) AS total_income FROM Contract WHERE ip_id = ? AND (contract_status = 'active' OR contract_status = 'expired')";
+    try {
+        PreparedStatement pstm = connection.prepareStatement(strSQL);
+        pstm.setInt(1, id);
+        ResultSet rs = pstm.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("total_income");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // In lỗi để xác định vấn đề
+    }
+    return 0; // Giá trị mặc định hoặc 0 nếu không tìm thấy dữ liệu.
+}
+
     
     public static void main(String[] args) {
         IPDAO ip = new IPDAO();

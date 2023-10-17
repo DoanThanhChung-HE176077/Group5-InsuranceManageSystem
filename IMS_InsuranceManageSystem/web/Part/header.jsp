@@ -85,7 +85,7 @@
                         
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color: #fdd12d;">
                         <!-- Dropdown menu items -->
-                        <a class="dropdown-item"  href="#" data-toggle="modal" data-target="#exampleModal">Profile</a>
+                        <a class="dropdown-item"  href="UserProfile.jsp">Profile</a>
                         
                         <!--phân quyền staff-->
                         <c:if test="${sessionScope.user.user_role.equals('staff')}">
@@ -133,7 +133,7 @@
         </header>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-          <%@ include file="user_profile.jsp" %>
+        
 
     
     </body>

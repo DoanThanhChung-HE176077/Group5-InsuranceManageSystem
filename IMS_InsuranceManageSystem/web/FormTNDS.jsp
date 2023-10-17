@@ -21,8 +21,14 @@
         
     </head>
     <body>
+
+             
+
+
+
              <jsp:include page="Part/header.jsp"></jsp:include>
              <form  action="saveInfoTNDS" style="margin-top: 100px ; background-color: #fdcf2b ; padding: 20px 0" >
+
             <div class="container form_TNDS">
                 <div class="row">
                     <div class="col-md-8 info_motobike">
