@@ -10,7 +10,7 @@ package Model;
  */
 public class Blogs {
 
-    String bl_id;
+    int bl_id;
     String bl_title;
     String bl_content;
     int bl_like;
@@ -25,7 +25,7 @@ public class Blogs {
     public Blogs() {
     }
 
-    public Blogs(String bl_id, String bl_title, String bl_content, int bl_like, String bl_img, int user_id, String bl_creationdate, String bl_type_name, String bl_tag_tagname, int bl_view, String bl_status) {
+    public Blogs(int bl_id, String bl_title, String bl_content, int bl_like, String bl_img, int user_id, String bl_creationdate, String bl_type_name, String bl_tag_tagname, int bl_view, String bl_status) {
         this.bl_id = bl_id;
         this.bl_title = bl_title;
         this.bl_content = bl_content;
@@ -39,11 +39,11 @@ public class Blogs {
         this.bl_status = bl_status;
     }
 
-    public String getBl_id() {
+    public int getBl_id() {
         return bl_id;
     }
 
-    public void setBl_id(String bl_id) {
+    public void setBl_id(int bl_id) {
         this.bl_id = bl_id;
     }
 

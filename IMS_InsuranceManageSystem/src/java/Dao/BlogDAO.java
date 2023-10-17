@@ -29,7 +29,7 @@ public class BlogDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String bl_id = rs.getString(1);
+                int bl_id = rs.getInt(1);
                 String bl_title = rs.getString(2);
                 String bl_content = rs.getString(3);
                 int bl_like = rs.getInt(4);
@@ -58,7 +58,7 @@ public class BlogDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String bl_id = rs.getString(1);
+                int bl_id = rs.getInt(1);
                 String bl_title = rs.getString(2);
                 String bl_content = rs.getString(3);
                 int bl_like = rs.getInt(4);
@@ -88,7 +88,7 @@ public class BlogDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String bl_id = rs.getString(1);
+                int bl_id = rs.getInt(1);
                 String bl_title = rs.getString(2);
                 String bl_content = rs.getString(3);
                 int bl_like = rs.getInt(4);
@@ -110,6 +110,37 @@ public class BlogDAO extends DBContext {
         return null;
     }
     
+    //get all feature blog
+    public ArrayList<Blogs> getFeatureBlog(String bl_type_name1) {
+        try {
+            ArrayList<Blogs> getFeatureBlog = new ArrayList<>();
+            String sql = "select * from Blogs where bl_type_name = ?";
+            PreparedStatement pstm = connection.prepareStatement(sql);
+            pstm.setString(1, bl_type_name1);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                
+                int bl_id = rs.getInt(1);
+                String bl_title = rs.getString(2);
+                String bl_content = rs.getString(3);
+                int bl_like = rs.getInt(4);
+                String bl_img = rs.getString(5);
+                int user_id = rs.getInt(6);
+                String bl_creationdate = rs.getString(7);
+                String bl_type_name = rs.getString(8);
+                String bl_tag_tagname = rs.getString(9);
+                int bl_view = rs.getInt(10);
+                String bl_status = rs.getString(11);
+
+                getFeatureBlog.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_view, bl_status));
+            }
+            return getFeatureBlog;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     //get blog with user name
     public ArrayList<newBl> getBlogsWithUserName() {
         try {
@@ -118,7 +149,7 @@ public class BlogDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                String bl_id = rs.getString(1);
+                int bl_id = rs.getInt(1);
                 String bl_title = rs.getString(2);
                 String bl_content = rs.getString(3);
                 int bl_like = rs.getInt(4);
@@ -217,7 +248,6 @@ public class BlogDAO extends DBContext {
         //get 1 blog by bl_id
         public Blogs getABlogByBlogId (int bl_id) {
             try {
-
                 String sql = "select * from Blogs where bl_id = ?";
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setInt(1, bl_id);
@@ -225,7 +255,7 @@ public class BlogDAO extends DBContext {
 
                 rs.next();
                 Blogs bg = new Blogs();
-                bg.setBl_id(rs.getString("bl_id"));
+                bg.setBl_id(rs.getInt("bl_id"));
                 bg.setBl_title(rs.getString("bl_title"));
                 bg.setBl_content(rs.getString("bl_content"));
                 bg.setBl_like(rs.getInt("bl_like"));
@@ -262,14 +292,18 @@ public class BlogDAO extends DBContext {
 //            System.out.println(blogs.toString());
 //        }
         
-        Blogs blog = dao.getABlogByBlogId(1);
-        if (blog != null) {
-            System.out.println("Blog details:");
-            System.out.println(blog.toString());
-        } else {
-            System.out.println("Blog not found.");
-        }
+        
+//        if (blog != null) {
+//            System.out.println("Blog details:");
+//            System.out.println(blog.toString());
+//        } else {
+//            System.out.println("Blog not found.");
+//        }
 
+        ArrayList<Blogs> bg = dao.getFeatureBlog("Feature");
+        for (Blogs blogs : bg) {
+            System.out.println(blogs.toString());
+        }
     }
 
 }
