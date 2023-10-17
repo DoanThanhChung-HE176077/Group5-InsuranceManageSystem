@@ -23,3 +23,4 @@ IMS_InsuranceManageSystem/src/java/Dao/DBContext.java
 IMS_InsuranceManageSystem/nbproject/project.properties
 IMS_InsuranceManageSystem/nbproject/project.properties
 IMS_InsuranceManageSystem/web/Admin_Users_list.jsp
+IMS_InsuranceManageSystem/src/java/Dao/DBContext.java
