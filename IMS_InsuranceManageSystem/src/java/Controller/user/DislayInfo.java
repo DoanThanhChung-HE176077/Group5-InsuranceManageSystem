@@ -60,18 +60,25 @@ public class DislayInfo extends HttpServlet {
     throws ServletException, IOException {
         UserDAO dao = new UserDAO();
         HttpSession session = request.getSession();
-        User user1 = (User) session.getAttribute("user");
+        
+        User user12 = (User) session.getAttribute("user");
+         User user1 = dao.dislayInfo(user12.getUser_id());
          User user = dao.dislayInfo(user1.getUser_id());
        response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-       out.println("{\"user_id\": \"" + user.getUser_id() + "\", "
-               + "\"user_fullname\": \"" + user.getUser_fullName() + "\", \"user_email\": \"" 
-               + user.getUser_email() + "\", \"user_password\": \"" + user.getUser_password() 
-               + "\", \"user_dob\": \"" + user.getUser_dob() + "\", \"user_address\": \"" 
-               + user.getUser_address() + "\", \"user_phoneNum\": \"" + user.getUser_phoneNum() 
-               + "\", \"user_iden\": \"" + user.getUser_iden() + "\", \"user_image\": \"" 
-               + user.getUser_image() + "\", \"user_role\": \"" 
-               + user.getUser_role() + "\"}");
+     out.println("{"
+        + "\"user_id\": \"" + user1.getUser_id() + "\", "
+        + "\"user_fullname\": \"" + user1.getUser_fullName() + "\", "
+        + "\"user_email\": \"" + user1.getUser_email() + "\", "
+        + "\"user_password\": \"" + user1.getUser_password() + "\", "
+        + "\"user_dob\": \"" + user1.getUser_dob() + "\", "
+        + "\"user_address\": \"" + user1.getUser_address() + "\", "
+        + "\"user_phoneNum\": \"" + user1.getUser_phoneNum() + "\", "
+        + "\"user_iden\": \"" + user1.getUser_iden() + "\", "
+        + "\"user_image\": \"" + user1.getUser_image() + "\", "
+        + "\"user_role\": \"" + user1.getUser_role() + "\"}"
+);
+
 
     } 
 
