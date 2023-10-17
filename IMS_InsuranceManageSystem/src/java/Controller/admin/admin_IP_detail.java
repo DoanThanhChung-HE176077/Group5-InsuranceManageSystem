@@ -50,10 +50,13 @@ public class Admin_IP_detail extends HttpServlet {
 //               + ip.getIp_name() );
 //    
         int id = Integer.parseInt(request.getParameter("ip_id"));
-                
         IPDAO  ip = new IPDAO();
+        int income1 = ip.getIncomebyID(1);
+        int income2 = ip.getIncomebyID(2);
         InsuranceProduct detail = ip.getIPbyID(id);
         request.setAttribute("detail", detail);
+        request.setAttribute("income1", income1);
+        request.setAttribute("income2", income2);
         request.getRequestDispatcher("Admin_IP_detail.jsp").forward(request, response);
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

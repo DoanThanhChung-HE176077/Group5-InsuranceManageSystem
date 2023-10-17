@@ -39,11 +39,11 @@ public class DBContext {
                                       >>>>>>>>>>>>>  CHUNG   <<<<<<<<<<<<
                                       >>>>>>>>>>>>>          <<<<<<<<<<<<
                                       ======= Edit SQL config here ========*/
-//            
+            
 //            String user = "sa1";
 //            String pass = "123";
 //            String url = "jdbc:sqlserver://DESKTOP-7MF95U3:1433;databaseName=insurance-manage-systemV2";
-//            
+            
 
                                     /*======= Edit SQL config here ========
                                       >>>>>>>>>>>>>          <<<<<<<<<<<<
@@ -63,9 +63,9 @@ public class DBContext {
                                       >>>>>>>>>>>>>          <<<<<<<<<<<<
                                       ======= Edit SQL config here ========*/
             
-            String user = "sa";
-            String pass = "123";
-           String url = "jdbc:sqlserver://localhost:1433;databaseName=insurance-manage-systemV4";
+//            String user = "sa";
+//            String pass = "123";
+//           String url = "jdbc:sqlserver://localhost:1433;databaseName=insurance-manage-systemV4";
 
 
 
@@ -75,13 +75,9 @@ public class DBContext {
                                       >>>>>>>>>>>>>             <<<<<<<<<<<<
                                       ======= Edit SQL config here ========*/
             
-//             String user = "sa";
-//             String pass = "123";
-//             String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insurance-manage-systemV3";
-
-//            String user = "sa";
-//            String pass = "123";
-//            String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insuranceDB";
+             String user = "sa";
+             String pass = "123";
+             String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insurance-manage-systemV3";
 
 
 

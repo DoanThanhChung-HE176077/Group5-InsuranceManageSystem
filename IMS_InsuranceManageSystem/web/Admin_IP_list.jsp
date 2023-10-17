@@ -56,7 +56,7 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-6">
+                                <div class="my-column1 col-md-9">
                                     <h2 style="display: inline-block;">Danh sách sản phẩm bảo hiểm</h2>
                                     <!--                                    go to blog page-->
 
@@ -66,6 +66,7 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Tên sản phẩm</th>
+                                                <th>Ảnh</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -75,7 +76,7 @@
 
                                                 <td>${o.getIp_id()}</td>
                                                 <td>${o.getIp_name()}</td>
-
+                                                <td><img src="${o.ip_img}" width="60px" height="60px" ></td>
                                                 <td>
                                                     <!-- Edit Button -->
                                                     <a href="admin_IP_detail?ip_id=${o.getIp_id()} " class="my-btn btn btn-primary">Chi tiết</a>
@@ -89,7 +90,7 @@
                             </div>
 
                             <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-6">
+                            <div class="my-column1 col-md-3">
                                 <h2 style="display: inline-block;">Doanh Thu</h2>
                                 <!-- togler -->
 
@@ -107,12 +108,12 @@
                                         <tr>
                                             <td>1</td>
                                             <td>TNDS</td>
-                                            <td>1000000</td>
+                                            <td>${income1}</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td>Vatchat</td>
-                                            <td>500000</td>
+                                            <td>${income2}</td>
                                         </tr>
 
                                         <!-- Repeat rows for each edit history entry -->
