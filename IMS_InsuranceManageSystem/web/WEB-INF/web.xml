@@ -10,71 +10,71 @@
     </filter-mapping>
     <servlet>
         <servlet-name>blog_add</servlet-name>
-        <servlet-class>Controller.blog.blog_add</servlet-class>
+        <servlet-class>Controller.blog.Blog_add</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_dashboard</servlet-name>
-        <servlet-class>Controller.admin.admin_dashboard</servlet-class>
+        <servlet-class>Controller.admin.Admin_dashboard</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_IP_detail</servlet-name>
-        <servlet-class>Controller.admin.admin_IP_detail</servlet-class>
+        <servlet-class>Controller.admin.Admin_IP_detail</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_IP_list</servlet-name>
-        <servlet-class>Controller.admin.admin_IP_list</servlet-class>
+        <servlet-class>Controller.admin.Admin_IP_list</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_Users_list</servlet-name>
-        <servlet-class>Controller.admin.admin_Users_list</servlet-class>
+        <servlet-class>Controller.admin.Admin_Users_list</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_Users_detail</servlet-name>
-        <servlet-class>Controller.admin.admin_Users_detail</servlet-class>
+        <servlet-class>Controller.admin.Admin_Users_detail</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>home_show</servlet-name>
-        <servlet-class>Controller.home.home_show</servlet-class>
+        <servlet-class>Controller.home.Home_show</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>reset_pass</servlet-name>
-        <servlet-class>Controller.home.reset_pass</servlet-class>
+        <servlet-class>Controller.home.Reset_pass</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>blog_list</servlet-name>
-        <servlet-class>Controller.blog.blog_list</servlet-class>
+        <servlet-class>Controller.blog.Blog_list</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>change_forgetpass</servlet-name>
-        <servlet-class>Controller.home.change_forgetpass</servlet-class>
+        <servlet-class>Controller.home.Change_forgetpass</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_Staff_list</servlet-name>
-        <servlet-class>Controller.admin.admin_Staff_list</servlet-class>
+        <servlet-class>Controller.admin.Admin_Staff_list</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>blog_home_show</servlet-name>
-        <servlet-class>Controller.blog.blog_home_show</servlet-class>
+        <servlet-class>Controller.blog.Blog_home_show</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>blog_edit</servlet-name>
-        <servlet-class>Controller.blog.blog_edit</servlet-class>
+        <servlet-class>Controller.blog.Blog_edit</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>register</servlet-name>
-        <servlet-class>Controller.home.register</servlet-class>
+        <servlet-class>Controller.home.Register</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_Staff_detail</servlet-name>
-        <servlet-class>Controller.admin.admin_Staff_detail</servlet-class>
+        <servlet-class>Controller.admin.Admin_Staff_detail</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_Staff_add</servlet-name>
-        <servlet-class>Controller.admin.admin_Staff_add</servlet-class>
+        <servlet-class>Controller.admin.Admin_Staff_add</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>admin_Users_search</servlet-name>
-        <servlet-class>Controller.admin.admin_Users_search</servlet-class>
+        <servlet-class>Controller.admin.Admin_Users_search</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Blog_detail</servlet-name>

@@ -30,7 +30,7 @@ import java.util.Map;
  *
  * @author thant
  */
-public class register extends HttpServlet {
+public class Register extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -120,7 +120,7 @@ public class register extends HttpServlet {
 //                // Parse chuỗi thành một đối tượng Date
 //                dateofbirth = dateFormat.parse(dob);
 //            } catch (ParseException ex) {
-//                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+//                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
 //            }
 //
 //            User u = new User();
@@ -165,7 +165,7 @@ public class register extends HttpServlet {
                 // Parse chuỗi thành một đối tượng Date
                 dateOfBirth = dateFormat.parse(dob);
             } catch (ParseException ex) {
-                Logger.getLogger(register.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             User u = new User();
