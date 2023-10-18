@@ -21,6 +21,21 @@ import java.util.logging.Logger;
  */
 public class BlogDAO extends DBContext {
 
+    //count view
+    public boolean countView (int bl_idInput) {
+        try {
+            String sql = "  UPDATE Blogs\n"
+                    + "SET bl_view = bl_view + 1\n"
+                    + "WHERE bl_id = ?;";
+            PreparedStatement pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, bl_idInput);            
+            pstm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     //get list blog
     public ArrayList<Blogs> getAllBlogs() {
         try {
@@ -274,35 +289,12 @@ public class BlogDAO extends DBContext {
             return null;
         } 
 
-
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
-        Blogs bgg = new Blogs();
-
-//        ArrayList<Blogs> bg = dao.getAllBlogs();
-//        
-//        for (Blogs blogs : bg) {
-//            System.out.println(blogs.toString());
-//        }
-
-//        dao.createBlog("a", "b", 0, "bl_img", 1, "2023-09-01", 1, 1, 0, "Active");
-        
-//        ArrayList<Blog_tag> bggg = dao.getBlogTag();
-//        for (Blog_tag blogs : bggg) {
-//            System.out.println(blogs.toString());
-//        }
-        
-        
-//        if (blog != null) {
-//            System.out.println("Blog details:");
-//            System.out.println(blog.toString());
-//        } else {
-//            System.out.println("Blog not found.");
-//        }
-
-        ArrayList<Blogs> bg = dao.getFeatureBlog("Feature");
-        for (Blogs blogs : bg) {
-            System.out.println(blogs.toString());
+        if (dao.countView(1)) {
+            System.out.println("count ok");
+        } else {
+            System.out.println("ko on");
         }
     }
 

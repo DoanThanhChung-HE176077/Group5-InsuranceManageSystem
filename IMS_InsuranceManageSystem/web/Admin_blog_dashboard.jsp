@@ -57,9 +57,7 @@
                 <div class="row">
                     <div class="col min-vh-100 p-4">
                         <div class="container mt-5">
-
                             <div class="my-row row">
-
                                 <!-- Column 1: Blog Post Table -->
                                 <div class="my-column1 col-md-6">
                                     <h2 style="display: inline-block;">Blog Posts Manage</h2>

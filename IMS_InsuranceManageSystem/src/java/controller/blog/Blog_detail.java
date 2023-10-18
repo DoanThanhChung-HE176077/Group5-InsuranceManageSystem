@@ -59,6 +59,14 @@ public class Blog_detail extends HttpServlet {
         System.out.println("blog id: " +blog_id);
 
         BlogDAO bg = new BlogDAO();
+        boolean checkCountView = bg.countView(blog_id);
+        if (checkCountView) {
+            System.out.println("=====check count view blog=====");
+            System.out.println("add view done!!");
+        } else {
+            System.out.println("add view false!!!");
+            System.out.println("==========================");
+        }
         Blogs aBlog = bg.getABlogByBlogId(blog_id);
         request.setAttribute("aBlog", aBlog);
         request.getRequestDispatcher("Blog_detail2.jsp").forward(request, response);
