@@ -45,7 +45,7 @@
                     ĐĂNG NHẬP
                 </div>
                 <div class="form-group" style="margin-bottom: 25px;">
-                    <span class="input_label">Mã đăng nhập</span>
+                    <span class="input_label">Email</span>
                     <div class="input-group">
                         <input name="input-login" type="text" id="" class="form-control" placeholder="Nhập số điện thoại/Email">
                     </div>
