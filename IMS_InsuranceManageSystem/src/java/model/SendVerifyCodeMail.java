@@ -25,7 +25,7 @@ public class SendVerifyCodeMail {
     private static final String EMAIL_USERNAME = "huy172809@gmail.com";
     private static final String EMAIL_PASSWORD = "fycx uhny fxnb xtrh";
 
-    public static void sendMail(String verifyCode) throws IOException, AddressException, MessagingException, jakarta.mail.MessagingException {
+    public static void sendMail(String verifyCode, String usermail) throws IOException, AddressException, MessagingException, jakarta.mail.MessagingException {
         // Tạo thông tin xác thực
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -44,9 +44,10 @@ public class SendVerifyCodeMail {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress("thanthanh2753@gmail.com"));
         message.setRecipients(Message.RecipientType.TO,
-                new InternetAddress[]{new InternetAddress("namchik03@gmail.com")});
+//                new InternetAddress[]{new InternetAddress("namchik03@gmail.com")});
+                new InternetAddress[]{new InternetAddress(usermail)});
         message.setSubject("Verify code");
-        message.setText("Verify code của bạn là: " + verifyCode);
+        message.setText("Your verify code is: " + verifyCode);
 
         // Gửi thông điệp email
         Transport.send(message);

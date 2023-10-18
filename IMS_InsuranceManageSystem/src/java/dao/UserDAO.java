@@ -66,8 +66,61 @@ public class UserDAO extends DBContext {
             return "An error occurred during login.";
         }
     }
+    
+    public boolean checkIdenExist(String iden) {
+        try {
+            String strSQL = "SELECT * FROM Users WHERE user_iden = ?";
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, iden);
+            ResultSet rs = pstm.executeQuery();
+            
+            while (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("checkIdenExist: " + e.getMessage());
+        }
+        
+        return false;
+    }
+    
+    public boolean checkPhoneExist(String phonenumb) {
+        try {
+            String strSQL = "SELECT * FROM Users WHERE user_phoneNum = ?";
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, phonenumb);
+            ResultSet rs = pstm.executeQuery();
+            
+            while (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("checkPhoneExist: " + e.getMessage());
+        }
+        
+        return false;
+    }
+    
+    public boolean checkEmailExist(String email) {
+        try {
+            String strSQL = "SELECT * FROM Users WHERE user_mail = ?";
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, email);
+            ResultSet rs = pstm.executeQuery();
+            
+            while (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println("checkEmailExist: " + e.getMessage());
+        }
+        
+        return false;
+    }
+    
+    
 
-    public static String checkInfo(String input) {
+    public String checkInfo(String input) {
         // Kiểm tra xem input có phải là email không
         Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$");
         Matcher emailMatcher = emailPattern.matcher(input);
