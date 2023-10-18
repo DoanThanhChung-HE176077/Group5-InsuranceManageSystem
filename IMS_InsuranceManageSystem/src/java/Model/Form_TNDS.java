@@ -11,6 +11,7 @@ import java.sql.Date;
  * @author chun
  */
 public class Form_TNDS {
+         private int id;
         private String loaiXe;
         private String soMay;
         private String bienXe;
@@ -39,6 +40,22 @@ public class Form_TNDS {
         this.status = status;
     }
 
+    public Form_TNDS(int id, String loaiXe, String soMay, String bienXe, String soKhung, Date startDate, Date endDate, String mucTrachNhiem, String soNguoi, String tongChiPhi, int userId, String ip_id, String status) {
+        this.id = id;
+        this.loaiXe = loaiXe;
+        this.soMay = soMay;
+        this.bienXe = bienXe;
+        this.soKhung = soKhung;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.mucTrachNhiem = mucTrachNhiem;
+        this.soNguoi = soNguoi;
+        this.tongChiPhi = tongChiPhi;
+        this.userId = userId;
+        this.ip_id = ip_id;
+        this.status = status;
+    }
+    
     public String getLoaiXe() {
         return loaiXe;
     }
@@ -133,6 +150,14 @@ public class Form_TNDS {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
         

@@ -7,8 +7,6 @@ package Controller.formTNDS;
 
 import Dao.FormTNDS;
 import Model.Form_TNDS;
-import Model.TNDS_Level;
-import Model.TNDS_Type;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,16 +16,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.sql.Date;
-import java.time.LocalDate;
-
 
 /**
  *
  * @author Dell
  */
-@WebServlet(name="SaveInfoTNDS", urlPatterns={"/saveInfoTNDS"})
-public class SaveInfoTNDS extends HttpServlet {
+@WebServlet(name="HandleBillFormTNDS", urlPatterns={"/HandleBillFormTNDS"})
+public class HandleBillFormTNDS extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -44,10 +39,10 @@ public class SaveInfoTNDS extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SaveInfoTNDS</title>");  
+            out.println("<title>Servlet HandleBillFormTNDS</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SaveInfoTNDS at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet HandleBillFormTNDS at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,29 +59,17 @@ public class SaveInfoTNDS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        FormTNDS dao = new FormTNDS();
-       String type = request.getParameter("type");
-        TNDS_Type type2 = dao.getType(Integer.parseInt(type));
-       String soMay = request.getParameter("soMay");
-       String bienXe = request.getParameter("bienXe");
-       String soKhung = request.getParameter("soKhung");
-       Date fromDate = Date.valueOf(request.getParameter("fromDate")) ;
-       Date toDate = Date.valueOf(request.getParameter("toDate")) ;
-       String lv_fee = request.getParameter("level");
-       String tax_fee = request.getParameter("tax-fee");
-       String num = request.getParameter("num");
-       String total = request.getParameter("total");
-        HttpSession session = request.getSession();
-        User user1 = (User) session.getAttribute("user");
+    FormTNDS dao = new FormTNDS();
+    Form_TNDS obj = dao.getForm_TNDS();
+    HttpSession session = request.getSession();
         
-        String lv_fee_value = dao.getTNDS_LevelbyId(Integer.parseInt(lv_fee)).getLv_value();
-        Form_TNDS obj = new Form_TNDS(type2.getType_name(),soMay,bienXe,soKhung, fromDate,toDate,lv_fee_value, num, total, user1.getUser_id(), "1", "UnChecked");
-        dao.insertBill(obj);
-        request.getRequestDispatcher("HandleBillFormTNDS").forward(request, response);
-//        System.out.println(type);
-//        PrintWriter out = response.getWriter();
-//        out.print(type);
+    User user12 = (User) session.getAttribute("user");
+     System.out.println(obj.getId());
+         System.out.println(user12);
+    request.setAttribute("obj", obj);
+    request.setAttribute("user", user12);
        
+    request.getRequestDispatcher("BillOfInsuranceTNDS.jsp").forward(request, response);
     } 
 
     /** 
