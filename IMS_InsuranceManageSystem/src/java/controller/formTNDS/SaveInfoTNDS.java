@@ -5,10 +5,12 @@
 
 package controller.formTNDS;
 
+
 import dao.FormTNDS;
 import model.Form_TNDS;
 import model.TNDS_Level;
 import model.User;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -63,7 +65,9 @@ public class SaveInfoTNDS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        FormTNDS dao = new FormTNDS();
        String type = request.getParameter("type");
+        TNDS_Type type2 = dao.getType(Integer.parseInt(type));
        String soMay = request.getParameter("soMay");
        String bienXe = request.getParameter("bienXe");
        String soKhung = request.getParameter("soKhung");
@@ -75,14 +79,15 @@ public class SaveInfoTNDS extends HttpServlet {
        String total = request.getParameter("total");
         HttpSession session = request.getSession();
         User user1 = (User) session.getAttribute("user");
-        FormTNDS dao = new FormTNDS();
+        
         String lv_fee_value = dao.getTNDS_LevelbyId(Integer.parseInt(lv_fee)).getLv_value();
-       Form_TNDS obj = new Form_TNDS(type,soMay,bienXe,soKhung, fromDate,toDate,lv_fee_value, num, total, user1.getUser_id(), "1", "UnChecked");
+        Form_TNDS obj = new Form_TNDS(type2.getType_name(),soMay,bienXe,soKhung, fromDate,toDate,lv_fee_value, num, total, user1.getUser_id(), "1", "UnChecked");
         dao.insertBill(obj);
+        request.getRequestDispatcher("HandleBillFormTNDS").forward(request, response);
+//        System.out.println(type);
+//        PrintWriter out = response.getWriter();
+//        out.print(type);
        
-        System.out.println(type);
-        PrintWriter out = response.getWriter();
-        out.print(type);
     } 
 
     /** 

@@ -23,35 +23,28 @@
               </div>
               <div class="i_title">
                 <h2>Bảo hiểm về xe máy</h2>
-                <p class="p_title text_right" id="currentDate"></p>
+                x   
               </div>
             </div>
             <div class="i_row">
               <div class="i_number">
-                <p class="p_title">CONTRACT NO: 3452324</p>
+                <p class="p_title">CONTRACT NO:${requestScope.obj.id}</p>
               </div>
-              <div class="i_address text_right">
-                <p>TO</p>
-                <p class="p_title">
-                  Tên user <br />
-                  <span>Adress</span><br />
-                  
-                </p>
-              </div>
+            
             </div>
           </div>
           <div class="body">
             <div class="i_table">
               <div class="info" style="font-size: 17px; ">
-                <p>Họ tên khách hàng: Đỗ Đức Thiện</p>
-                <p>Thời gian bắt đầu: 2023</p>
-                <p>Thời gian kết thúc: 2023</p>
-                <p>Loại xe:</p>
-                <p>Loại xe:</p>
-                <p>Số máy:</p>
-                <p>Số khung:</p>
-                <p>Mức chịu trách nhiệm:</p>
-                <p>Số người:</p>
+                  <p>Họ tên khách hàng: ${requestScope.user.user_fullName}</p>
+                <p>Thời gian bắt đầu:  ${requestScope.obj.startDate}</p>
+                <p>Thời gian kết thúc:  ${requestScope.obj.endDate}</p>
+                <p>Loại xe:  ${requestScope.obj.loaiXe}</p>
+                <p>Biển xe: ${requestScope.obj.bienXe}</p>
+                <p>Số máy: ${requestScope.obj.soMay}</p>
+                <p>Số khung: ${requestScope.obj.soKhung}</p>
+                <p>Mức chịu trách nhiệm:${requestScope.obj.mucTrachNhiem}</p>
+                <p>Số người:${requestScope.obj.soNguoi}</p>
               </div>
              
             <div class="i_table_foot">
@@ -76,7 +69,7 @@
                   </div>
                   <div style ="border: none; border-radius: 5px; margin-left: 30%;" class="i_col w_50">
                     <p style="font-size: 15px;"><span>Tổng phí:</span>
-                      <span>$165.00</span>
+                      <span>${requestScope.obj.tongChiPhi}</span>
                     </p>
                   </div>
                   

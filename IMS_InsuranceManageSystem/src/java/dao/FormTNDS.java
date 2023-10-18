@@ -143,21 +143,53 @@ public class FormTNDS extends DBContext {
             String sql = "SELECT TOP (1000) [lv_id]\n"
                     + "      ,[lv_value]\n"
                     + "  FROM [insurance-manage-systemsV3].[dbo].[TNDS_Level] where lv_id  = ?";
-             PreparedStatement st = connection.prepareStatement(sql);
-             st.setInt(1, id);
-             ResultSet rs = st.executeQuery();
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return (new TNDS_Level(rs.getInt(1), rs.getString(2)));
             };
         } catch (Exception E) {
+
+        }
+        return null;
+    }
+
+    public Form_TNDS getForm_TNDS() {
+        String sql = "SELECT TOP (1000) [ftnds_id]\n"
+                + "      ,[ftnds_loaiXe]\n"
+                + "      ,[ftnds_soMay]\n"
+                + "      ,[ftnds_bienXe]\n"
+                + "      ,[ftnds_soKhung]\n"
+                + "      ,[ftnds_startDate]\n"
+                + "      ,[ftnds_endDate]\n"
+                + "      ,[ftnds_mucTrachNhiem]\n"
+                + "      ,[ftnds_soNguoi]\n"
+                + "      ,[ftnds_tongChiPhi]\n"
+                + "      ,[user_id]\n"
+                + "      ,[ip_id]\n"
+                + "      ,[ftnds_status]\n"
+                + "  FROM [insurance-manage-systemV4].[dbo].[Form_TNDS] where ftnds_id = (SELECT TOP 1 ftnds_id\n"
+                + "FROM [Form_TNDS]\n"
+                + "ORDER BY ftnds_id DESC)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return (new Form_TNDS(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                         rs.getDate(6), rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10),
+                         rs.getInt(11), rs.getString(12), rs.getString(13)));
+            };
             
+        } catch (Exception E) {
+
         }
         return null;
     }
 
     public static void main(String[] args) {
         FormTNDS dao = new FormTNDS();
-        TNDS_Level obj = dao.getTNDS_LevelbyId(4);
-        System.out.println(obj.getLv_value());
+        Form_TNDS obj = dao.getForm_TNDS();
+        System.out.println(obj.getId());
     }
 }
