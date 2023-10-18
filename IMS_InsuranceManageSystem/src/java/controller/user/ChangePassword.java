@@ -3,20 +3,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+<<<<<<< HEAD:IMS_InsuranceManageSystem/src/java/Controller/user/ChangePassword.java
+package Controller.user;
 
+import Dao.UserDAO;
+import Model.User;
+=======
+package controller.user;
+
+import dao.UserDAO;
+import model.User;
+>>>>>>> chungdthe176077:IMS_InsuranceManageSystem/src/java/controller/user/ChangePassword.java
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author ADMIN
+ * @author Dell
  */
-public class Admin_Staff_add extends HttpServlet {
+@WebServlet(name="ChangePassword", urlPatterns={"/changePassword"})
+public class ChangePassword extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,14 +45,15 @@ public class Admin_Staff_add extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet admin_Staff_add</title>");  
+            out.println("<title>Servlet ChangePassword</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet admin_Staff_add at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet ChangePassword at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     } 
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.
@@ -65,7 +78,31 @@ public class Admin_Staff_add extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String oldPass = request.getParameter("oldPass");
+        String newPass = request.getParameter("newPass");
+        String reNewPass = request.getParameter("reNewPass");
+        HttpSession session = request.getSession();
+        User user1 = (User) session.getAttribute("user");
+        String msg ="";
+        if(!oldPass.equals(user1.getUser_password())){
+            msg="Old password wrong ";
+        }
+        else if(oldPass.equals(newPass)){
+            msg="Old password must diffirent with new password";
+        }
+        else if(oldPass.equals(newPass)){
+            msg="Old password must diffirent with new password";
+        }
+        else if(!newPass.equals(reNewPass)){
+            msg="Renew password must same with new password";
+        }
+        else{
+            UserDAO dao = new UserDAO();
+            dao.changePassword(user1.getUser_id(), newPass);
+            msg ="Change password successfully";
+        }
+        request.setAttribute("msg", msg);
+        request.getRequestDispatcher("ChangePassword.jsp").forward(request, response);
     }
 
     /** 

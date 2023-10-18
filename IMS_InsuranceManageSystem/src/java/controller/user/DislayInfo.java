@@ -3,23 +3,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+package controller.user;
 
-import dao.IPDAO;
-import model.InsuranceProduct;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+<<<<<<< HEAD:IMS_InsuranceManageSystem/src/java/Controller/user/DislayInfo.java
+import Model.User;
+=======
+import model.User;
+>>>>>>> chungdthe176077:IMS_InsuranceManageSystem/src/java/controller/user/DislayInfo.java
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author ADMIN
+ * @author Dell
  */
-public class Admin_IP_list extends HttpServlet {
+@WebServlet(name="Info_user", urlPatterns={"/DislayInfo"})
+public class DislayInfo extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,11 +37,19 @@ public class Admin_IP_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Info_user</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Info_user at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-    
-        
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -48,14 +62,28 @@ public class Admin_IP_list extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        IPDAO ip = new IPDAO();
-        ArrayList<InsuranceProduct> list = ip.getALLIP();
-        int income1 = ip.getIncomebyID(1);
-        int income2 = ip.getIncomebyID(2);
-        request.setAttribute("listIP", list);
-        request.setAttribute("income1", income1);
-        request.setAttribute("income2", income2);
-        request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
+        UserDAO dao = new UserDAO();
+        HttpSession session = request.getSession();
+        
+        User user12 = (User) session.getAttribute("user");
+         User user1 = dao.dislayInfo(user12.getUser_id());
+         User user = dao.dislayInfo(user1.getUser_id());
+       response.setContentType("application/json");
+        PrintWriter out = response.getWriter();
+     out.println("{"
+        + "\"user_id\": \"" + user1.getUser_id() + "\", "
+        + "\"user_fullname\": \"" + user1.getUser_fullName() + "\", "
+        + "\"user_email\": \"" + user1.getUser_email() + "\", "
+        + "\"user_password\": \"" + user1.getUser_password() + "\", "
+        + "\"user_dob\": \"" + user1.getUser_dob() + "\", "
+        + "\"user_address\": \"" + user1.getUser_address() + "\", "
+        + "\"user_phoneNum\": \"" + user1.getUser_phoneNum() + "\", "
+        + "\"user_iden\": \"" + user1.getUser_iden() + "\", "
+        + "\"user_image\": \"" + user1.getUser_image() + "\", "
+        + "\"user_role\": \"" + user1.getUser_role() + "\"}"
+);
+
+
     } 
 
     /** 

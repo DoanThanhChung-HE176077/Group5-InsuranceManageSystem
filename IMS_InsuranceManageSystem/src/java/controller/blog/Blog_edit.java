@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+package controller.blog;
 
-import dao.IPDAO;
-import model.InsuranceProduct;
+import dao.BlogDAO;
+import model.Blog_tag;
+import model.Blog_type;
+import model.Blogs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,9 +19,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ADMIN
+ * @author pc minh
  */
-public class Admin_IP_list extends HttpServlet {
+public class Blog_edit extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,11 +33,19 @@ public class Admin_IP_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet blog_edit</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet blog_edit at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-    
-        
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -48,14 +58,17 @@ public class Admin_IP_list extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        IPDAO ip = new IPDAO();
-        ArrayList<InsuranceProduct> list = ip.getALLIP();
-        int income1 = ip.getIncomebyID(1);
-        int income2 = ip.getIncomebyID(2);
-        request.setAttribute("listIP", list);
-        request.setAttribute("income1", income1);
-        request.setAttribute("income2", income2);
-        request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
+        String bl_id = request.getParameter("bl_id");
+        System.out.println("blog_edit -> bl_id:" + bl_id);
+        BlogDAO bg = new BlogDAO();
+        Blogs bgg = bg.getABlogByBlogId(Integer.parseInt(bl_id));
+        ArrayList<Blog_tag> tag = bg.getBlogTag();
+        ArrayList<Blog_type> type = bg.getBlogType();
+
+        request.setAttribute("listTag", tag);
+        request.setAttribute("listType", type);
+        request.setAttribute("aBlogs", bgg);
+        request.getRequestDispatcher("Blog_edit.jsp").forward(request, response);
     } 
 
     /** 

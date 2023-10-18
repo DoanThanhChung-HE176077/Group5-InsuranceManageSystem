@@ -3,10 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+package Controller.home;
 
-import dao.IPDAO;
-import model.InsuranceProduct;
+import Dao.BlogDAO;
+import Dao.IPDAO;
+import Model.Blogs;
+import Model.InsuranceProduct;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,9 +19,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ADMIN
+ * @author chun
  */
-public class Admin_IP_list extends HttpServlet {
+public class Home_show extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,11 +33,19 @@ public class Admin_IP_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet home_show</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet home_show at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-    
-        
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -48,14 +58,32 @@ public class Admin_IP_list extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        //get list blog for slider
+        BlogDAO bg = new BlogDAO();
+        ArrayList<Blogs> listBlog = bg.getAllBlogs();
+        for (Blogs blogs : listBlog) {
+            System.out.println(blogs.getBl_img());
+        }
+        if (listBlog != null) {
+            System.out.println("list blog: not null");
+        }else {
+            System.out.println("list blog: null");
+        }
+        request.setAttribute("listBlog", listBlog);
+        
+        //get list insurance product
         IPDAO ip = new IPDAO();
-        ArrayList<InsuranceProduct> list = ip.getALLIP();
-        int income1 = ip.getIncomebyID(1);
-        int income2 = ip.getIncomebyID(2);
-        request.setAttribute("listIP", list);
-        request.setAttribute("income1", income1);
-        request.setAttribute("income2", income2);
-        request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
+        ArrayList<InsuranceProduct> listIP = ip.getALLIP();
+        if (listIP != null) {
+            System.out.println("list insurance product: not null");
+        } else {
+            System.out.println("list insurance product: null");
+        }
+        request.setAttribute("listIP", listIP);
+        
+        //send data to home
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
+        
     } 
 
     /** 

@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+package controller.blog;
 
-import dao.IPDAO;
-import model.InsuranceProduct;
+import dao.BlogDAO;
+import model.Blogs;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ADMIN
+ * @author chun
  */
-public class Admin_IP_list extends HttpServlet {
+public class Blog_home_show extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,11 +31,19 @@ public class Admin_IP_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet blog_home_show</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet blog_home_show at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-    
-        
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -48,14 +56,38 @@ public class Admin_IP_list extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        IPDAO ip = new IPDAO();
-        ArrayList<InsuranceProduct> list = ip.getALLIP();
-        int income1 = ip.getIncomebyID(1);
-        int income2 = ip.getIncomebyID(2);
-        request.setAttribute("listIP", list);
-        request.setAttribute("income1", income1);
-        request.setAttribute("income2", income2);
-        request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
+        
+        BlogDAO bg = new BlogDAO();
+        
+        //Tat ca bai viet
+        ArrayList<Blogs> listBlog = bg.getAllBlogs();
+        if (listBlog == null) {
+            System.out.println("list blog to blog home FAILSE!!!");
+        }else{
+            System.out.println("list blog to blog home DONEEEE!!!");
+        }
+        
+        //Top 5 bai viet xem nhieu nhat
+        ArrayList<Blogs> listTop5Blogs = bg.getTop5Blogs();
+        if (listTop5Blogs == null) {
+            System.out.println("list Top 5 blog to blog home FAILSE!!!");
+        }else{
+            System.out.println("list Top 5 blog to blog home DONEEEE!!!");
+        }
+        
+        //Cac bai viet noi bat slider : 15b
+        ArrayList<Blogs> listTop15Blogs = bg.getTop15Blogs();
+        if (listTop15Blogs == null) {
+            System.out.println("list Top 15 slider blog to blog home FAILSE!!!");
+        }else{
+            System.out.println("list Top 15 slider blog to blog home DONEEEE!!!");
+        }
+        
+        request.setAttribute("listBlog", listBlog);
+        request.setAttribute("listTop5Blogs", listTop5Blogs);
+        request.setAttribute("listTop15Blogs", listTop15Blogs);
+//        response.sendRedirect("Blog_home.jsp");
+        request.getRequestDispatcher("Blog_home.jsp").forward(request, response);
     } 
 
     /** 

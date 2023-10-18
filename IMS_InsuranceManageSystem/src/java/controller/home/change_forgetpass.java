@@ -3,23 +3,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+package Controller.home;
 
-import dao.IPDAO;
-import model.InsuranceProduct;
+import Dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
- * @author ADMIN
+ * @author thant
  */
-public class Admin_IP_list extends HttpServlet {
+public class Change_forgetpass extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,11 +29,19 @@ public class Admin_IP_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet change_pass</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet change_pass at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-    
-        
+    } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
@@ -48,14 +54,7 @@ public class Admin_IP_list extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        IPDAO ip = new IPDAO();
-        ArrayList<InsuranceProduct> list = ip.getALLIP();
-        int income1 = ip.getIncomebyID(1);
-        int income2 = ip.getIncomebyID(2);
-        request.setAttribute("listIP", list);
-        request.setAttribute("income1", income1);
-        request.setAttribute("income2", income2);
-        request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
@@ -68,7 +67,27 @@ public class Admin_IP_list extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String inputLogin = request.getParameter("input-login");
+        String newPass = request.getParameter("input-newpassword");
+        String rePass = request.getParameter("input-repassword");
+        
+        if (newPass == null ? rePass == null : !newPass.equals(rePass)) {
+            request.setAttribute("msg", "nhập lại mật khẩu sai");
+            request.getRequestDispatcher("ChangeForgetPass.jsp").forward(request, response);
+        } else {
+            UserDAO uD = new UserDAO();
+            boolean check = uD.changeForgetPassword(inputLogin, newPass);
+            
+            System.out.println("changePassword status:" + check);
+            if (check) {
+                response.sendRedirect("Login.jsp");
+            } else {
+                request.setAttribute("msg", "Đặt lại mật khẩu lỗi");
+                request.getRequestDispatcher("ChangeForgetPass.jsp").forward(request, response);
+            }
+        }
+        
+        
     }
 
     /** 

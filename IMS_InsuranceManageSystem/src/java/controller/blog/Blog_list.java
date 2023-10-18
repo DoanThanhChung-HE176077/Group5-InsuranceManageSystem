@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+package controller.blog;
 
-import dao.IPDAO;
-import model.InsuranceProduct;
+import dao.BlogDAO;
+import model.NewBl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -17,9 +17,15 @@ import java.util.ArrayList;
 
 /**
  *
+<<<<<<<< HEAD:IMS_InsuranceManageSystem/src/java/Controller/admin/admin_Staff_add.java
  * @author ADMIN
  */
-public class Admin_IP_list extends HttpServlet {
+public class Admin_Staff_add extends HttpServlet {
+========
+ * @author pc minh
+ */
+public class Blog_list extends HttpServlet {
+>>>>>>>> chungdthe176077:IMS_InsuranceManageSystem/src/java/controller/blog/Blog_list.java
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,12 +37,26 @@ public class Admin_IP_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+<<<<<<<< HEAD:IMS_InsuranceManageSystem/src/java/Controller/admin/admin_Staff_add.java
+            out.println("<title>Servlet admin_Staff_add</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet admin_Staff_add at " + request.getContextPath () + "</h1>");
+========
+            out.println("<title>Servlet blog_list</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet blog_list at " + request.getContextPath () + "</h1>");
+>>>>>>>> chungdthe176077:IMS_InsuranceManageSystem/src/java/controller/blog/Blog_list.java
+            out.println("</body>");
+            out.println("</html>");
         }
-
-    
-        
-
+    } 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
      * Handles the HTTP <code>GET</code> method.
@@ -48,14 +68,15 @@ public class Admin_IP_list extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        IPDAO ip = new IPDAO();
-        ArrayList<InsuranceProduct> list = ip.getALLIP();
-        int income1 = ip.getIncomebyID(1);
-        int income2 = ip.getIncomebyID(2);
-        request.setAttribute("listIP", list);
-        request.setAttribute("income1", income1);
-        request.setAttribute("income2", income2);
-        request.getRequestDispatcher("Admin_IP_list.jsp").forward(request, response);
+<<<<<<<< HEAD:IMS_InsuranceManageSystem/src/java/Controller/admin/admin_Staff_add.java
+        processRequest(request, response);
+========
+        //processRequest(request, response);
+        BlogDAO bd = new BlogDAO();
+        ArrayList<NewBl> bList = bd.getBlogsWithUserName();
+        request.setAttribute("bList", bList);
+        request.getRequestDispatcher("Admin_blog_dashboard.jsp").forward(request, response);
+>>>>>>>> chungdthe176077:IMS_InsuranceManageSystem/src/java/controller/blog/Blog_list.java
     } 
 
     /** 
