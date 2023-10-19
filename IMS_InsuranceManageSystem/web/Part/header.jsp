@@ -43,12 +43,13 @@
                     </div>-->
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-bs-toggle="dropdown">Sản Phẩm</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!-- Dropdown menu items -->
+<!--                    <a class="dropdown-toggle" data-bs-toggle="dropdown" >Sản Phẩm</a>-->
+                            <a  href="listInsuranceProduct">Sản Phẩm</a>
+<!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         Dropdown menu items 
                         <a class="dropdown-item" href="ListProductInsurance.jsp">Bảo hiểm vật chất</a>
                         <a class="dropdown-item" href="ListProductInsurance.jsp">Bảo hiểm TNDS</a>
-                    </div>
+                    </div>-->
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-bs-toggle="dropdown">Giới thiệu</a>
@@ -122,7 +123,6 @@
                                     <i class="fa fa-user" style="color: #2c464f"></i>
                                     Đăng ký
                                 </a>
-
                             </li>
                         </ul>
                     </c:if>

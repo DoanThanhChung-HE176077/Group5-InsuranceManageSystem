@@ -16,6 +16,9 @@ public class InsuranceProduct {
     private String ip_name;
     private String ip_img;
     private String ip_description;
+    
+    
+    
     public InsuranceProduct(){
        
     }

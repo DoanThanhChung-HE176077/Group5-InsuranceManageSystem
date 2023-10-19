@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-<!--    <filter>
+    <!--    <filter>
         <filter-name>HomeFilter</filter-name>
         <filter-class>filter.HomeFilter</filter-class>
     </filter>
@@ -80,6 +80,10 @@
         <servlet-name>Blog_detail</servlet-name>
         <servlet-class>controller.blog.Blog_detail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>listInsuranceProduct</servlet-name>
+        <servlet-class>controller.insuranceProduct.listInsuranceProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>Blog_detail</servlet-name>
         <url-pattern>/Blog_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>listInsuranceProduct</servlet-name>
+        <url-pattern>/listInsuranceProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

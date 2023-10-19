@@ -4,6 +4,7 @@
     Author     : Dell
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,9 +34,9 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 ">
+            
+<!--            <div class="col-md-6 ">
                 <div class="card sp1" style="width: 22rem;">
-                   
                     <div class="card-body">
                     <img src="Image/bao-hiem-xe-may-web.jpg" class="card-img-top" alt="...">
                       <h5 class="card-title">BẢO HIỂM TNDS XE MÁY</h5>
@@ -46,19 +47,32 @@
                     </div>
                   </div>
             </div>
+            
             <div class="col-md-6">
                 <div class="card" style="width: 22rem;">
-                    
                     <div class="card-body">
                         <img src="Image/bao-hiem-xe-may-web.jpg" class="card-img-top" alt="...">
                       <h5 class="card-title">BẢO HIỂM TNDS XE MÁY</h5>
                       <p class="card-text">Bảo hiểm trách nhiệm dân sự xe máy đối với bên thứ ba là loại bảo hiểm Bắt Buộc...</p>
                       <a class="see-detail"  href="#">Xem chi tiết</a><br/>
                      <button onclick="window.location.href='HandleFormTNDS'" class="btn btn-primary btn-buy">Mua ngay</button>
-
                     </div>
                   </div>
-            </div>
+            </div>-->
+            <c:forEach items="${listIP}" var="o">
+                <div class="col-md-6">
+                    <div class="card" style="width: 22rem;">
+                        <div class="card-body">
+                            <img src="Image/bao-hiem-xe-may-web.jpg" class="card-img-top" alt="...">
+                            <h5 class="card-title">${o.getIp_name()}</h5>
+                            <p class="card-text">${o.getIp_description()}</p>
+                            <a class="see-detail"  href="#">Xem chi tiết</a><br/>
+                            <button onclick="window.location.href='HandleFormTNDS'" class="btn btn-primary btn-buy">Mua ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+            
         </div>
     </div>
    
