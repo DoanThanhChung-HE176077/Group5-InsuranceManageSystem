@@ -123,7 +123,7 @@ public class Reset_pass extends HttpServlet {
                     
                     try {
                         //verify code
-                        sendMail(verifyCode, "namchik03@gmail.com");
+                        sendMail(verifyCode, inputLogin);
                     } catch (MessagingException ex) {
                         Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {

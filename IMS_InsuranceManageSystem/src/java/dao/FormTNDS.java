@@ -130,9 +130,7 @@ public class FormTNDS extends DBContext {
 
     public TNDS_Level getTNDS_LevelbyId(int id) {
         try {
-            String sql = "SELECT TOP (1000) [lv_id]\n"
-                    + "      ,[lv_value]\n"
-                    + "  FROM [insurance-manage-systemsV3].[dbo].[TNDS_Level] where lv_id  = ?";
+            String sql = "select * from TNDS_Level where lv_id  = ?";
              PreparedStatement st = connection.prepareStatement(sql);
              st.setInt(1, id);
              ResultSet rs = st.executeQuery();
