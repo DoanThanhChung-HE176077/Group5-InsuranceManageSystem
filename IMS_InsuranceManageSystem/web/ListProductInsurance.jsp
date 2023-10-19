@@ -17,13 +17,14 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
+
     </head>
     <body>
            <jsp:include page="Part/header.jsp"></jsp:include>
         <div class="banner">
           <img src="Image/banner_home2.jpg" alt="">
         </div>
-    </div>
+
         <div class="breadcrumb-list">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -67,14 +68,22 @@
                             <h5 class="card-title">${o.getIp_name()}</h5>
                             <p class="card-text">${o.getIp_description()}</p>
                             <a class="see-detail"  href="#">Xem chi tiết</a><br/>
-                            <button onclick="window.location.href='HandleFormTNDS'" class="btn btn-primary btn-buy">Mua ngay</button>
+                            <!--tnds-->
+                            <c:if test="${o.getIp_id() == 1}">
+                                <button onclick="window.location.href='HandleFormTNDS'" class="btn btn-primary btn-buy">Mua ngay</button>
+                            </c:if>
+                            <!--vat chat-->
+                            <c:if test="${o.getIp_id() == 2}">
+<!--                                <button onclick="window.location.href='HandleFormTNDS'" class="btn btn-primary btn-buy">Mua ngay</button>-->
+                                     <a href="#" class="btn btn-primary btn-buy"> Mua ngay</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>
             </c:forEach>
-            
         </div>
     </div>
    
+
     </body>
 </html>

@@ -59,6 +59,7 @@ public class listInsuranceProduct extends HttpServlet {
         IPDAO ipdao = new IPDAO();
         ArrayList<InsuranceProduct> listIP = ipdao.getALLIP();
 
+
         request.setAttribute("listIP", listIP);
         request.getRequestDispatcher("ListProductInsurance.jsp").forward(request, response);
 
