@@ -15,6 +15,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,11 +75,15 @@ public class Reset_pass extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String otpSend = request.getParameter("otpSend-input");
-        String inputLogin = request.getParameter("input-login");
+        HttpSession sessionOTP = request.getSession();
+        sessionOTP.getAttribute("otp");
         
-        if (otpSend != "") {
-            String otpRiu = request.getParameter("otpRiu");
+        HttpSession sessionEmail = request.getSession();
+        String inputLogin = (String) sessionEmail.getAttribute("otp");
+//         request.getParameter("input-login");
+        
+        if (sessionOTP != null) {
+            String otpRiu = (String) sessionOTP.getAttribute("otp");
             
             
             request.setAttribute("otpSend", "1");
@@ -98,23 +105,49 @@ public class Reset_pass extends HttpServlet {
             
             UserDAO uD = new UserDAO();
             if (!uD.checkLoginInfo(inputLogin)) {
-                request.setAttribute("msg", "Thông tin đăng nhập không đúng");
+                request.setAttribute("msg", "Email đã đăng kí không đúng!");
                 request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
             } else {
                 request.setAttribute("inputLogin", inputLogin);
-                String verifyCode = generateVerifyCode();
-                request.setAttribute("otpSend", "1");
+
+                // Tạo executor để quản lý luồng
+                ExecutorService executor = Executors.newFixedThreadPool(1);
+
+                // Bắt đầu luồng để gửi OTP
+                executor.submit(() -> {
+                    // Gửi OTP và thực hiện các bước cần thiết
+                    // ...
+
+                    // Ví dụ: Gửi mã OTP và lưu vào session
+                    String verifyCode = generateVerifyCode();
+                    
+                    try {
+                        //verify code
+                        sendMail(verifyCode, "namchik03@gmail.com");
+                    } catch (MessagingException ex) {
+                        Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    HttpSession session = request.getSession();
+                    session.setAttribute("otp", verifyCode);
+                });
+                
+//                String verifyCode = generateVerifyCode();
+//                request.setAttribute("otpSend", "1");
+
                 request.setAttribute("msg", "OTP đã gửi");
 
-                request.setAttribute("otpRiu", verifyCode);
+//                request.setAttribute("otpRiu", verifyCode);
 
 
-                try {
-                    //verify code
-                    sendMail(verifyCode, inputLogin);
-                } catch (MessagingException ex) {
-                    Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
-                }
+//                try {
+//                    //verify code
+//                    sendMail(verifyCode);
+//                } catch (MessagingException ex) {
+//                    Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
+//                }
 
                 request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
             }
