@@ -108,7 +108,9 @@ public class Contract {
         this.contract_status = contract_status;
     }
     
-    
+    public static void main(String[] args) {
+        
+    }
     
     
 }
