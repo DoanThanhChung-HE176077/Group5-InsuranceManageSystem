@@ -1,0 +1,161 @@
+/* gg font */
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');*/
+*{
+    font-family: Roboto,sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    scroll-padding-top: 2rem;
+    scroll-behavior: smooth;
+}
+/* some variables */
+
+/*img{
+    width: 100%;
+}*/
+
+#my-header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 20px 100px;
+    transition: 0.3s;
+    
+}
+
+.my-profile{
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    cursor: pointer;
+}
+
+.my-profile img {
+    margin-right: 10px;
+    max-width: 40px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #2c464f;
+
+}
+
+/*.my-logo{
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3cb815;
+    column-gap: 0.5rem;
+}*/
+
+.my-logo {
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 900;
+  text-decoration: none;
+    color: black;
+    text-shadow: 1px 0px 2px #2c464f;
+  text-align: center;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.my-logo i {
+  text-shadow: 0px 0px 10px #fdd12d;
+
+}
+
+
+
+/*
+.my-logo .bx{
+    font-size: 24px;
+    color: #ff7e00;
+}*/
+.my-navbar{
+    display: flex;
+    column-gap: 0.5rem ;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+.my-navbar li a {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2c464f;
+    padding: 0.5rem 1rem;
+    text-shadow: 0px 0px 1px #2c464f;
+}
+.my-navbar a:hover, .nav #homeactive{
+    background-color: #fdd12d;
+    border-radius: 5rem;
+    color: #2c464f;
+    text-shadow: 0px 0px 1px #2c464f;
+    transition: background 0.5s;
+}
+
+#my-menu-icon{
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10001;
+    display: none;
+}
+
+
+.my-navbar li {
+  position: relative;
+}
+
+.my-navbar .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fdd12d;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/*dropdown*/
+/* Hide the dropdown menu */
+/*.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}*/
+
+/* Style the individual dropdown items */
+.dropdown-menu {
+  background-color: #fdd12d;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #2c464f;
+  text-shadow: 0px 0px 1px #2c464f;
+}
+
+/* Style the dropdown items on hover */
+.dropdown-menu a:hover {
+  background-color: #fff;
+  border-radius: 5rem;
+  text-shadow: 0px 0px 1px #2c464f;
+  transition: background 0.5s;
+}
+
+
