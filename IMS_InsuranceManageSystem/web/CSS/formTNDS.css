@@ -1,0 +1,40 @@
+
+body{
+    background-color:hsl(47,98%,58%) !important;
+    font-size: 14px !important ;
+}
+/*span{
+    font-size: 14px;
+}*/
+.info_motobike{
+    padding: 15px;
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(157, 151, 151);
+    border-radius: 7px;
+}
+.general-dr{
+   width:  100%;
+   height: 40px;
+   outline: none;
+   border-radius: 5px;
+   border: 1px solid hsl(213,15%,85%);
+}
+.payment{
+    padding: 10px;
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(157, 151, 151);
+    border-radius: 7px;
+    
+}
+.payment button{
+    width: 100%;
+    background-color: hsl(47,98%,58%) ;
+    color: white;
+    font-weight: bolder;
+    border: none;
+   
+}
+.payment button:hover{
+    background-color: hsl(47, 22%, 49%);
+}
+
