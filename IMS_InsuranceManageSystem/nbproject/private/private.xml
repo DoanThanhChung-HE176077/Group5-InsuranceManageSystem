@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/ContractDAO.java</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/UserDAO.java</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Contract_Detail.jsp</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/DBContext.java</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Staff_update.jsp</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Users_detail.java</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Users_list.jsp</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/Contract.java</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Staff_list.jsp</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Users_list.java</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Users_detail.jsp</file>
+        </group>
     </open-files>
 </project-private>

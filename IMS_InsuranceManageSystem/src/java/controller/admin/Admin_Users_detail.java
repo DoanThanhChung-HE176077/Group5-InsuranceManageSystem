@@ -5,6 +5,7 @@
 
 package controller.admin;
 
+import dao.ContractDAO;
 import dao.UserDAO;
 import model.User;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import model.Contract;
 
 /**
  *
@@ -34,10 +36,11 @@ public class Admin_Users_detail extends HttpServlet {
        int id = Integer.parseInt(request.getParameter("id"));
                 
         UserDAO  u = new UserDAO();
+        ContractDAO c = new ContractDAO();
         User detail = u.dislayInfo(id);
         request.setAttribute("detail", detail);
-        ArrayList<User> list1 = u.getNewUser();
-        request.setAttribute("listNU", list1);
+        ArrayList<Contract> list1 = c.getAllContractOfUser(id);
+        request.setAttribute("listC", list1);
         request.getRequestDispatcher("Admin_Users_detail.jsp").forward(request, response);
     } 
 

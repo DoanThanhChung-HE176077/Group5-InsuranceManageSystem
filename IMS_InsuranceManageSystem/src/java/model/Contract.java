@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.sql.Date;
+
 
 
 /**
@@ -12,19 +14,19 @@ package model;
  */
 public class Contract {
     String contract_id;
-    int user_id;
-    String contract_startDate;
-    String contract_endDate;
+    String user_id;
+    Date contract_startDate;
+    Date contract_endDate;
     int ip_id;
     int fvc_id;
     int ftnds_id;
     String total_price;
     String contract_status;
-
+    String user_fullname;
+    String ip_name;
     public Contract() {
     }
-
-    public Contract(String contract_id, int user_id, String contract_startDate, String contract_endDate, int ip_id, int fvc_id, int ftnds_id, String total_price, String contract_status) {
+    public Contract(String contract_id, String user_id, Date contract_startDate, Date contract_endDate, int ip_id, int fvc_id, int ftnds_id, String total_price, String contract_status,String user_fullname,String ip_name) {
         this.contract_id = contract_id;
         this.user_id = user_id;
         this.contract_startDate = contract_startDate;
@@ -34,6 +36,24 @@ public class Contract {
         this.ftnds_id = ftnds_id;
         this.total_price = total_price;
         this.contract_status = contract_status;
+        this.user_fullname = user_fullname;
+        this.ip_name = ip_name;
+    }
+
+    public String getUser_fullname() {
+        return user_fullname;
+    }
+
+    public void setUser_fullname(String user_fullname) {
+        this.user_fullname = user_fullname;
+    }
+
+    public String getIp_name() {
+        return ip_name;
+    }
+
+    public void setIp_name(String ip_name) {
+        this.ip_name = ip_name;
     }
 
     public String getContract_id() {
@@ -44,27 +64,27 @@ public class Contract {
         this.contract_id = contract_id;
     }
 
-    public int getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(int user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
-    public String getContract_startDate() {
+    public Date getContract_startDate() {
         return contract_startDate;
     }
 
-    public void setContract_startDate(String contract_startDate) {
+    public void setContract_startDate(Date contract_startDate) {
         this.contract_startDate = contract_startDate;
     }
 
-    public String getContract_endDate() {
+    public Date getContract_endDate() {
         return contract_endDate;
     }
 
-    public void setContract_endDate(String contract_endDate) {
+    public void setContract_endDate(Date contract_endDate) {
         this.contract_endDate = contract_endDate;
     }
 
