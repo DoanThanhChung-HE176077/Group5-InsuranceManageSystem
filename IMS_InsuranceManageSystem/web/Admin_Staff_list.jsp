@@ -105,7 +105,7 @@
                                                     <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: #B78181">Chỉnh sửa</a>
                                                 </td>
                                                 <td>
-                                                    <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: red">Xóa</a>
+                                                    <a href="Admin_Staff_delete?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: red">Xóa</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
