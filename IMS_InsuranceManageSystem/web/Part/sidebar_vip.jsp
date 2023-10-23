@@ -143,12 +143,12 @@
                             <span style="margin-right: 1px">Quản Lý Bài Viết</span>
                         </a>
                     </li>
-                    <li class="list-group-item my-btn1">
+<!--                    <li class="list-group-item my-btn1">
                         <a href="admin_Staff_list" class="my-sidebar-item">
                             <i class="fas fa-users"></i> 
                             <span style="margin-left: -4px">Quản Lý Nhân Viên</span>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="list-group-item my-btn1">
                         <a href="admin_IP_list" class="my-sidebar-item">
                             <i class="fas fa-shield-alt"></i> 

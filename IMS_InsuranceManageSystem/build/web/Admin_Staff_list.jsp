@@ -102,7 +102,7 @@
                                                     <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
                                                 </td>
                                                 <td>
-                                                    <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: yellow">Chỉnh sửa</a>
+                                                    <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: #B78181">Chỉnh sửa</a>
                                                 </td>
                                                 <td>
                                                     <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: red">Xóa</a>
