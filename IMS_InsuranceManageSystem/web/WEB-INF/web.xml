@@ -8,6 +8,7 @@
         <filter-name>HomeFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>-->
+
     <servlet>
         <servlet-name>blog_add</servlet-name>
         <servlet-class>controller.blog.Blog_add</servlet-class>
