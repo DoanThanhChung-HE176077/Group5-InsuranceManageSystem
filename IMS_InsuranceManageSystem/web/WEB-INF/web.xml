@@ -84,6 +84,10 @@
         <servlet-name>listInsuranceProduct</servlet-name>
         <servlet-class>controller.insuranceProduct.listInsuranceProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_Staff_delete</servlet-name>
+        <servlet-class>controller.admin.Admin_Staff_delete</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>listInsuranceProduct</servlet-name>
         <url-pattern>/listInsuranceProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Staff_delete</servlet-name>
+        <url-pattern>/Admin_Staff_delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

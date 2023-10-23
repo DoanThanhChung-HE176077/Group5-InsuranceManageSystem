@@ -7,6 +7,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -465,7 +466,19 @@ public class UserDAO extends DBContext {
         }
         return list;
     }
-    
+    public void deleteStaff(String id) {
+        String strSQL = "DELETE FROM Users WHERE user_id = ?";
+        try {
+            PreparedStatement pstm = connection.prepareStatement(strSQL);  
+            pstm.setString(1,id);
+            pstm.executeQuery();
+            
+        } catch (SQLException e) {
+            System.out.println("deleteStaff:" + e);
+        }
+
+        
+    }
     
     
 
