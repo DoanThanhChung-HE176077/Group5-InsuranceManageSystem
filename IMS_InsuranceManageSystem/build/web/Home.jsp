@@ -60,7 +60,7 @@
                 <c:if test="${listBlog != null}">
                     <c:forEach items="${listBlog}" var="o1">
                         <div class="card">
-                            <a href="">
+                            <a href="Blog_detail?Bl_id=${o1.getBl_id()}">
                                 <!--src must be ex: name.jpg-->
                                 <img class="fixed-img card-img-top" src="${o1.getBl_img()}" alt="Card image cap">
                             </a>
