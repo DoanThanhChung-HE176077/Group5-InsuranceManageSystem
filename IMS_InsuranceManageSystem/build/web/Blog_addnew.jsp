@@ -31,6 +31,12 @@
             label{
                 font: caption;
             }
+            .my-form {
+                border-radius: 10px;
+                background-color: #fff;
+                margin-top: 100px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            }
         </style>
 
     </head>
@@ -43,82 +49,91 @@
             <!--sidebar-->
         <jsp:include page="Part/sidebar_vip.jsp"></jsp:include>
         
-        
-        
-        <div class="container mt-5" style="padding-top: 100px">
-            <h2>Tạo Blog</h2>
-            <form id="blogForm" action="blog_add?user_id=${user.getUser_id()}" method="post" enctype="multipart/form-data">
-                <!--title-->
-                <div class="mb-3">
-                    <label for="title" class="form-label">Tiêu đề của Blog</label>
-                    <input type="text" class="form-control" id="title" name="title" required>
-                </div>
-                <!--image-->
-                <div class="mb-3">
-                    <label for="image" class="form-label">Tải lên hình ảnh</label>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-group mb-3">
-                                <input type="file" class="form-control" id="file" name="file" accept="image/*" onchange="loadFile(event)" required>
-                            </div>
-                            <img id="output" src="" alt="Image Preview" class="img-thumbnail mt-3">
-      
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-min-vh-100 p-4">
+                    <div class="container mt-5" style="padding-top: 100px">
+                        <div class="my-form row">
+                            <h2>Tạo Blog</h2>
+                <!--            <form id="blogForm" action="blog_add?user_id=${user.getUser_id()}" method="post" enctype="multipart/form-data">-->
+                            <form id="blogForm" action="blog_add?user_id=${user.getUser_id()}" method="post" enctype="multipart/form-data">
+                                <!--title-->
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Tiêu đề của Blog</label>
+                                    <input type="text" class="form-control" id="title" name="title" required>
+                                </div>
+                                <!--image-->
+                                <div class="mb-3">
+                                    <label for="image" class="form-label">Tải lên hình ảnh</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group mb-3">
+                                                <input type="file" class="form-control" id="file" name="file" accept="image/*" onchange="loadFile(event)" required>
+                                            </div>
+                                            <img id="output" src="" alt="Image Preview" class="img-thumbnail mt-3">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--user_id from session -> hidden-->
+                                <input type="text" value="${user.getUser_id()}" name="user_id" type="hidden" hidden>
+                                <!--blog type-->
+                                <div class="mb-3">
+                                    <label for="blogType" class="form-label">Loại Blog</label>
+                                    <select class="form-select" id="blogType" name="blogType">
+                                        <c:forEach items="${listType}" var="type">
+                                            <option value="${type.getBl_type_name()}">${type.getBl_type_name()}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <!--blog tag-->
+                                <div class="mb-3">
+                                    <label for="tags" class="form-label">Chọn Tag</label>
+                                    <select class="form-select" id="blogTag" name="blogTag">
+                                        <c:forEach items="${listTag}" var="tag">
+                                            <option value="${tag.getBl_tag_tagname()}">${tag.getBl_tag_tagname()}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <!--blog content-->
+                                <div class="mb-3">
+                                    <label for="blogContent" class="form-label">Nội dung bài viết</label>
+                                    <!-- CKEditor container -->
+                                    <textarea name="editor" id="editor"></textarea>
+                                </div>
+                                <!--creationdate-->
+                                <div class="mb-3">
+                                    <label for="creationDate">Ngày tạo</label>
+                                    <input type="text" class="" name="creationdate" id="creation-date" readonly>
+                                </div>
+                                <!--status-->
+                                <div class="mb-3">
+                                    <label class="form-label">Trạng thái Blog</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="active" name="status" value="Active" required>
+                                        <label class="form-check-label" for="active">
+                                            Active
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="disable" name="status" value="Disable" required>
+                                        <label class="form-check-label" for="disable">
+                                            Disable
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- Submit Button -->
+                                <input class="btn btn-primary" onclick="createCourse()" type="submit" id="submit"value="Create Blog" >
+                            </form>
                         </div>
                     </div>
+                    
                 </div>
-                <!--user_id from session -> hidden-->
-                <input type="text" value="${user.getUser_id()}" name="user_id" type="hidden" hidden>
-                <!--blog type-->
-                <div class="mb-3">
-                    <label for="blogType" class="form-label">Loại Blog</label>
-                    <select class="form-select" id="blogType" name="blogType">
-                        <c:forEach items="${listType}" var="type">
-                            <option value="${type.getBl_type_name()}">${type.getBl_type_name()}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <!--blog tag-->
-                <div class="mb-3">
-                    <label for="tags" class="form-label">Choose Tag</label>
-                    <select class="form-select" id="blogTag" name="blogTag">
-                        <c:forEach items="${listTag}" var="tag">
-                            <option value="${tag.getBl_tag_tagname()}">${tag.getBl_tag_tagname()}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <!--blog content-->
-                <div class="mb-3">
-                    <label for="blogContent" class="form-label">Nội dung bài viết</label>
-                    <!-- CKEditor container -->
-                    <textarea name="editor" id="editor"></textarea>
-                </div>
-                <!--creationdate-->
-                <div class="mb-3">
-                    <label for="creationDate">Ngày tạo</label>
-                    <input type="text" class="" name="creationdate" id="creation-date" readonly>
-                </div>
-                <!--status-->
-                <div class="mb-3">
-                    <label class="form-label">Trạng thái Blog</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" id="active" name="status" value="Active" required>
-                        <label class="form-check-label" for="active">
-                            Active
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" id="disable" name="status" value="Disable" required>
-                        <label class="form-check-label" for="disable">
-                            Disable
-                        </label>
-                    </div>
-                </div>
-                <!-- Submit Button -->
-                <input class="btn btn-primary"  onclick="createCourse()" type="submit" id="submit"value="Create Blog" >
-            </form>
+                
+            </div>
+            
         </div>
-
-
+        
         <script>
             ClassicEditor
                     .create(document.querySelector('#editor') )
@@ -131,7 +146,7 @@
                     
         </script>
         <script>
-            //truyen data from ckeditor box
+            //truyen data tu ckeditor box
             var createCourse = () => {
                 var editor = $("#editor").val();
                 $.ajax({
