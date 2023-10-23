@@ -100,7 +100,7 @@
 
                             <!-- Column 2: Edit History Table -->
                             <div class="my-column1 col-md-4">
-                                <h2 style="display: inline-block;">Người dùng mới</h2>
+                                <h2 style="display: inline-block;">Hợp đồng người dùng</h2>
                                 <!-- togler -->
 
                                 <!-- Edit History Table -->
@@ -108,17 +108,19 @@
                                     <thead>
                                         <tr>
                                             <th>Họ Tên</th>
-                                            <th>Ngày sinh</th>
-                                            <th>Ảnh</th>
+                                            <th>Tên hợp đồng</th>
+                                            <th>Ngày bắt đầu</th>
+                                            <th>Ngày kết thúc</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
-                                        <c:forEach items="${listNU}" var="o">
+                                        <c:forEach items="${listC}" var="o">
                                             <tr>
-                                                <td>${o.getUser_fullName()}</td>
-                                                <td>${o.getUser_dob()}</td>
-                                                <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
+                                                <td>${o.user_fullname}</td>
+                                                <td>${o.ip_name}</td>
+                                                <td>${o.contract_startDate}</td>
+                                                <td>${o.contract_endDate}</td>
                                             </tr>
                                         </c:forEach>
 

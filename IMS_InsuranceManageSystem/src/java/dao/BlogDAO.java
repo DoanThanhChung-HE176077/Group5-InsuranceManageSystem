@@ -221,7 +221,42 @@ public class BlogDAO extends DBContext {
         }
         return false;
     }
-     
+    
+     //update existed blog
+    public boolean updateBlog(Blogs blog) {
+        try {
+            String sql = "UPDATE [dbo].[Blogs]\n"
+                    + "   SET [bl_title] = ?\n"
+                    + "      ,[bl_content] = ?\n"
+                    + "      ,[bl_like] = ?\n"
+                    + "      ,[bl_img] = ?\n"
+                    + "      ,[user_id] = ?\n"
+                    + "      ,[bl_creationdate] = ?\n"
+                    + "      ,[bl_type_name] = ?\n"
+                    + "      ,[bl_tag_tagname] = ?\n"
+                    + "      ,[bl_view] = ?\n"
+                    + "      ,[bl_status] = ?\n"
+                    + " WHERE [bl_id] = ?";
+            PreparedStatement pstm = connection.prepareStatement(sql);
+            pstm.setString(1, blog.getBl_title());
+            pstm.setString(2, blog.getBl_content());
+            pstm.setInt(3, blog.getBl_like());
+            pstm.setString(4, blog.getBl_img());
+            pstm.setInt(5, blog.getUser_id());
+            pstm.setString(6, blog.getBl_creationdate());
+            pstm.setString(7, blog.getBl_type_name());
+            pstm.setString(8, blog.getBl_tag_tagname());
+            pstm.setInt(9, blog.getBl_view());
+            pstm.setString(10, blog.getBl_status());
+            pstm.setInt(11, blog.getBl_id());
+
+            pstm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
      //get blog tag
      public ArrayList<Blog_tag> getBlogTag() {
         try {

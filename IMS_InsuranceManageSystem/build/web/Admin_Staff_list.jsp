@@ -63,7 +63,20 @@
                                 <div class="my-column1 col-md-8">
                                     <h2 style="display: inline-block;">Danh sách nhân viên</h2>
                                     <!--                                    go to blog page-->
+                                    <button class="btn btn-success mb-3 " style="margin-left: 200px" >
+                                        <a href="admin_Users_list" style="text-decoration: none; color: #fff;">Quay lại</a>
+                                    </button>
+                                    <form action="admin_Users_search" method="post" class="form-inline my-2 my-lg-0">
+                                        <div class="input-group input-group-sm">
+                                            <input value ="${txtname}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-secondary btn-number">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
 
+                                </form>
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
                                         <thead>
@@ -87,7 +100,12 @@
                                         
                                                 <td>
                                                     <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
-
+                                                </td>
+                                                <td>
+                                                    <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: yellow">Chỉnh sửa</a>
+                                                </td>
+                                                <td>
+                                                    <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: red">Xóa</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>

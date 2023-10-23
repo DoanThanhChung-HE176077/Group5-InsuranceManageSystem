@@ -273,7 +273,7 @@ public class UserDAO extends DBContext {
         ArrayList<User> list = new ArrayList<>();
 
         try {
-            String strSQL = "select * from Users where user_role = 'customer'";
+            String strSQL = "select * from Users";
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
