@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/ContractDAO.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/UserDAO.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Contract_Detail.jsp</file>
@@ -15,6 +16,9 @@
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Users_list.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Users_detail.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Register.jsp</file>
+=======
+            <file>file:/E:/My%20Document/Fall2023/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/blog/Blog_edit.java</file>
+>>>>>>> 54403ec0888bbb39ba5bf158cc730061a7e21a57
         </group>
     </open-files>
 </project-private>
