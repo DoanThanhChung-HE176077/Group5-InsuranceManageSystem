@@ -5,6 +5,7 @@
 
 package controller.admin;
 
+import dao.BlogDAO;
 import dao.UserDAO;
 import model.User;
 import java.io.IOException;
@@ -14,6 +15,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import model.Blogs;
+import model.NewBl;
 
 /**
  *
@@ -32,10 +35,11 @@ public class Admin_Staff_list extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         UserDAO ud = new UserDAO();
+        BlogDAO bd = new BlogDAO();
         ArrayList<User> list = ud.getALLStaff();
         request.setAttribute("listU", list);
-        ArrayList<User> list1 = ud.getNewStaff();
-        request.setAttribute("listNU", list1);
+        ArrayList<NewBl> list1 = bd.getNewBlogsWithUserName();
+        request.setAttribute("listNB", list1);
         request.getRequestDispatcher("Admin_Staff_list.jsp").forward(request, response);
     } 
 

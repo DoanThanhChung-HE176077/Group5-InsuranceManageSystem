@@ -5,6 +5,7 @@
 
 package controller.admin;
 
+import dao.BlogDAO;
 import dao.UserDAO;
 import model.User;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import model.NewBl;
 
 /**
  *
@@ -32,12 +34,12 @@ public class Admin_Staff_detail extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         int id = Integer.parseInt(request.getParameter("id"));
-                
+        BlogDAO bd = new BlogDAO();
         UserDAO  u = new UserDAO();
         User detail = u.dislayInfo(id);
         request.setAttribute("detail", detail);
-        ArrayList<User> list1 = u.getNewStaff();
-        request.setAttribute("listNU", list1);
+        ArrayList<NewBl> list1 = bd.getNewBlogsWithUserNamebyID(id);
+        request.setAttribute("listNB", list1);
         request.getRequestDispatcher("Admin_Staff_detail.jsp").forward(request, response);
     } 
 

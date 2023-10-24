@@ -94,6 +94,64 @@ public class BlogDAO extends DBContext {
         }
         return null;
     }
+    public ArrayList<NewBl> getNewBlogsWithUserName() {
+        try {
+            ArrayList<NewBl> getBlogs = new ArrayList<>();
+            String sql = "SELECT top 3  B.* , U.user_fullname from Blogs B JOIN Users U ON B.user_id = U.user_id where bl_status='active'";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int bl_id = rs.getInt(1);
+                String bl_title = rs.getString(2);
+                String bl_content = rs.getString(3);
+                int bl_like = rs.getInt(4);
+                String bl_img = rs.getString(5);
+                int user_id = rs.getInt(6);
+                String bl_creationdate = rs.getString(7);
+                String bl_type_name = rs.getString(8);
+                String bl_tag_tagname = rs.getString(9);
+                String bl_view = rs.getString(10);
+                String bl_status = rs.getString(11);
+                String username = rs.getString(12);
+
+                getBlogs.add(new  NewBl(username, bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_like, bl_status));
+
+            }
+            return getBlogs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public ArrayList<NewBl> getNewBlogsWithUserNamebyID(int id) {
+        try {
+            ArrayList<NewBl> getBlogs = new ArrayList<>();
+            String sql = "SELECT top 3  B.* , U.user_fullname from Blogs B JOIN Users U ON B.user_id = U.user_id where bl_status='active'and U.user_id ="+id;
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int bl_id = rs.getInt(1);
+                String bl_title = rs.getString(2);
+                String bl_content = rs.getString(3);
+                int bl_like = rs.getInt(4);
+                String bl_img = rs.getString(5);
+                int user_id = rs.getInt(6);
+                String bl_creationdate = rs.getString(7);
+                String bl_type_name = rs.getString(8);
+                String bl_tag_tagname = rs.getString(9);
+                String bl_view = rs.getString(10);
+                String bl_status = rs.getString(11);
+                String username = rs.getString(12);
+
+                getBlogs.add(new  NewBl(username, bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_like, bl_status));
+
+            }
+            return getBlogs;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     //get top 15 blog hving view cao
     public ArrayList<Blogs> getTop15Blogs() {
