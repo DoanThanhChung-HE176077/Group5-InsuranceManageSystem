@@ -77,7 +77,7 @@ public class DBContext {
             
              String user = "sa";
              String pass = "123";
-             String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insurance-manage-systemV3";
+             String url = "jdbc:sqlserver://DESKTOP-2P00V52\\SQL2022:1433;databaseName=insurance-manage-systemV4";
 
 
 
