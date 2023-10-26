@@ -62,7 +62,12 @@
             </div>-->
             <c:forEach items="${listIP}" var="o">
                 <div class="col-md-6">
-                    <div class="card" style="width: 22rem;">
+                    <c:if test="${o.getIp_id() == 1}">
+                        <div class="card sp1" style="width: 22rem;">
+                    </c:if>
+                    <c:if test="${o.getIp_id() == 2}">
+                         <div class="card" style="width: 22rem;">
+                    </c:if>
                         <div class="card-body">
                             <img src="Image/bao-hiem-xe-may-web.jpg" class="card-img-top" alt="...">
                             <h5 class="card-title">${o.getIp_name()}</h5>
