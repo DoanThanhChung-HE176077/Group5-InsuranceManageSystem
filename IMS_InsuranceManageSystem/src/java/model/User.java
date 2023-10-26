@@ -98,6 +98,25 @@ public class User {
     public void setUser_role(String user_role) {
         this.user_role = user_role;
     }
+
+    public String getUser_iden_img() {
+        return user_iden_img;
+    }
+
+    public void setUser_iden_img(String user_iden_img) {
+        this.user_iden_img = user_iden_img;
+    }
+
+    public String getStatus() {
+        if(status.equals("Verified"))
+                return "Đã xác minh";
+        else
+        return "Chưa xác minh";
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
     
     
