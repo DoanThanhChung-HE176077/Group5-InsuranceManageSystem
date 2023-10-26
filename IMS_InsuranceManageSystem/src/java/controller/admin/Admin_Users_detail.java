@@ -37,7 +37,7 @@ public class Admin_Users_detail extends HttpServlet {
                 
         UserDAO  u = new UserDAO();
         ContractDAO c = new ContractDAO();
-        User detail = u.dislayInfo(id);
+        User detail = u.getDetailUser(id);
         request.setAttribute("detail", detail);
         ArrayList<Contract> list1 = c.getAllContractOfUser(id);
         request.setAttribute("listC", list1);

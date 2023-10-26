@@ -36,7 +36,7 @@ public class Admin_Staff_detail extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         BlogDAO bd = new BlogDAO();
         UserDAO  u = new UserDAO();
-        User detail = u.dislayInfo(id);
+        User detail = u.getDetailUser(id);
         request.setAttribute("detail", detail);
         ArrayList<NewBl> list1 = bd.getNewBlogsWithUserNamebyID(id);
         request.setAttribute("listNB", list1);

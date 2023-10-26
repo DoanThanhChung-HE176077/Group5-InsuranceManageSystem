@@ -77,6 +77,8 @@
                                                 <th>Số điện thoại</th>
                                                 <th>CCCD</th>
                                                 <th>Ảnh</th>
+                                                <th>Vai trò</th>
+                                                <th>Trạng thái</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -90,6 +92,8 @@
                                             <td>${detail.user_phoneNum}</td>
                                             <td>${detail.user_iden}</td>
                                             <td> <img src="${detail.user_image}" width="60px" height="60px"> </td>
+                                            <td>${detail.user_role}</td>
+                                            <td>${detail.status}</td>
                                         </tr>
 
                                         <!-- Repeat rows for each blog post -->
