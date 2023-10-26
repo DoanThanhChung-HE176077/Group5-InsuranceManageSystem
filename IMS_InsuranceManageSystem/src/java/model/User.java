@@ -31,6 +31,21 @@ public class User {
     public User() {
     }
 
+    public User(int user_id, String user_fullName, String user_email, String user_password, Date user_dob, String user_address, String user_phoneNum, String user_iden, String user_image, String user_role, String user_iden_img, String status) {
+        this.user_id = user_id;
+        this.user_fullName = user_fullName;
+        this.user_email = user_email;
+        this.user_password = user_password;
+        this.user_dob = user_dob;
+        this.user_address = user_address;
+        this.user_phoneNum = user_phoneNum;
+        this.user_iden = user_iden;
+        this.user_image = user_image;
+        this.user_role = user_role;
+        this.user_iden_img = user_iden_img;
+        this.status = status;
+    }
+    
     public User(int user_id, String user_fullName, String user_email, String user_password, java.sql.Date user_dob, String user_address, String user_phoneNum, String user_iden, String user_image, String user_role) {
         this.user_id = user_id;
         this.user_fullName = user_fullName;
@@ -200,7 +215,12 @@ public class User {
     }
 
     public String getUser_role() {
-        return user_role;
+        if (user_role.equals("staff")){
+        return "Nhân viên";}
+        else if (user_role.equals("customer"))
+            return "Khách hàng";
+        else
+            return "Admin";
     }
 
 
