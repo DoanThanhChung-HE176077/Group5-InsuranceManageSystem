@@ -59,11 +59,19 @@ public class HandleFormVatChat extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+
         FormDAO dao = new FormDAO();
         ArrayList<Models> listModels =  dao.getVatChatModels();
         ArrayList<Brands> listBrands = dao.getVatChatBrands();
         ArrayList<Deductible_Level> listDeduc = dao.getVatChatDeduc();
         ArrayList<Package_Type> listPackT = dao.getVatChatPack();
+        
+        for (Models models : listModels) {
+            System.out.println(models.getBrand_id());
+        }
+        for (Brands brands : listBrands) {
+            System.out.println(brands.getBrand_id());
+        }
         
         request.setAttribute("listModels", listModels);
         request.setAttribute("listBrands", listBrands);

@@ -89,20 +89,27 @@
                                 <div class="col-md-6">
                                     <!--------------------- Hãng xe --------------------->
                                     <div>
-                                        <label> Hãng xe<span class="errmsg"> *</span></label><br />
-                                        <select class="general-dr abc" id="type" name="type">
-                                        <c:forEach items="${listBrands}" var="o1">
-                                            <option value = "${o1.getBrand_name()}">${o1.getBrand_name()}</option>
-                                        </c:forEach>
+                                        <label>Hãng xe<span class="errmsg"> *</span></label><br />
+                                        <select class="general-dr abc" id="motorBrands" name="motorBrands">
+                                            <c:forEach items="${listBrands}" var="brand">
+                                                <option value="${brand.getBrand_id()}">${brand.getBrand_name()} have id: ${brand.getBrand_id()} </option>
+                                            </c:forEach>
                                         </select>
                                     </div>
                                     <div>
                                         <br>
-                                        <!--------------------------------------------->
+                                        <!-------------------Hieu xe - models-------------------------->
+                                        <c:forEach items="${listBrands}" var="brand">
+                                            <c:forEach items="${listModels}" var="model">
+                                                <c:if test="">
+
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:forEach>
                                         <label>Hiệu xe <span class="errmsg"> *</span></label>
-                                        <select class="general-dr abc" id="level" name="level">
-                                            <c:forEach items="" var="c">
-                                                <option value=""></option>
+                                        <select class="general-dr abc" id="motorBrandModel" name="motorBrandModel">
+                                            <c:forEach items="${listModels}" var="model">
+                                                <option value="${model.getModel_price()}" id="${model.getModel_id()}">${model.getModel_name()} thuoc: ${model.getBrand_id()}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -112,9 +119,7 @@
                                         <label>Số máy<span class="errmsg"> *</span></label>
                                         <input class="form-control" type="text" name="soMay">
                                     </div>
-                                    <!-- <span style="color: hsl(29, 57%, 54%);">Bắt buộc cần nhập số biển kiểm soát</span> -->
                                 </div>
-
                                 <div class="col-md-6">
                                     <div>
                                         <label>Biển kiểm soát<span class="errmsg"> *</span></label>
@@ -126,7 +131,6 @@
                                         <input class="form-control" type="text" name="soKhung">
                                     </div>
                                 </div>
-
                             </div>
 
                             <!----------------------PHẠM VI BẢO HIỂM----------------------->
@@ -239,6 +243,18 @@
                 </div>
             </div>
         </form>
+        
+        <!-- JavaScript code using jQuery for the dependent dropdown -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+
+
+
+
     </body>
 
 </html>
