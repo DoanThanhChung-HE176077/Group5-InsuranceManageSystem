@@ -5,7 +5,7 @@
 
 package controller.formTNDS;
 
-import dao.FormTNDS;
+import dao.FormDAO;
 import dao.UserDAO;
 import model.Form_TNDS;
 import model.TNDS_Level;
@@ -70,7 +70,7 @@ public class HandleFormTNDS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        FormTNDS dao = new FormTNDS();
+        FormDAO dao = new FormDAO();
          ArrayList<TNDS_Type> listType = dao.getAllType();
          ArrayList<TNDS_Level> listLevel = dao.getAllLevel();
          ArrayList<Integer> listNum = dao.getNumberOfPerson();
@@ -114,7 +114,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
             System.out.println(level);
             System.out.println(num);
             
-            FormTNDS dao = new FormTNDS();
+            FormDAO dao = new FormDAO();
             TNDS_LevelNop ln = dao.getLevelNop(Integer.parseInt(num), Integer.parseInt(level));
             TNDS_Type type_object = dao.getType(type);
             int lnPrice = ln.getLn_price();

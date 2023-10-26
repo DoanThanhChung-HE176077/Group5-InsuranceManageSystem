@@ -3,32 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/conf/MANIFEST.MF</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Contract_Detail.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Staff_update.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Users_detail.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/nbproject/build-impl.xml</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/BlogDAO.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Staff_add.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/Contract.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Register.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/ContractDAO.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/UserDAO.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/Blogs.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Staff_detail.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Users_list.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Staff_delete.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Users_detail.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/home/Register.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Staff_detail.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/UserProfile.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/DBContext.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/User.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/NewBl.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Staff_list.jsp</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Users_list.java</file>
-            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Staff_list.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/FormTNDS.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/HandleFormVatChat.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/insuranceProduct/listInsuranceProduct.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/IPDAO.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/HandleFormTNDS.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/ListProductInsurance.jsp</file>
         </group>
     </open-files>
 </project-private>

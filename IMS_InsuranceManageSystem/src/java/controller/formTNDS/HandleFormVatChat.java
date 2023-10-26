@@ -6,27 +6,23 @@
 package controller.formTNDS;
 
 import dao.FormDAO;
-import model.Form_TNDS;
-import model.TNDS_Level;
-import model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.sql.Date;
-import java.time.LocalDate;
-
+import java.util.ArrayList;
+import model.Brands;
+import model.Deductible_Level;
+import model.Models;
+import model.Package_Type;
 
 /**
  *
- * @author Dell
+ * @author chun
  */
-@WebServlet(name="SaveInfoTNDS", urlPatterns={"/saveInfoTNDS"})
-public class SaveInfoTNDS extends HttpServlet {
+public class HandleFormVatChat extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -43,10 +39,10 @@ public class SaveInfoTNDS extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SaveInfoTNDS</title>");  
+            out.println("<title>Servlet HandleFormVatChat</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SaveInfoTNDS at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet HandleFormVatChat at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,26 +59,17 @@ public class SaveInfoTNDS extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-       String type = request.getParameter("type");
-       String soMay = request.getParameter("soMay");
-       String bienXe = request.getParameter("bienXe");
-       String soKhung = request.getParameter("soKhung");
-       Date fromDate = Date.valueOf(request.getParameter("fromDate")) ;
-       Date toDate = Date.valueOf(request.getParameter("toDate")) ;
-       String lv_fee = request.getParameter("level");
-       String tax_fee = request.getParameter("tax-fee");
-       String num = request.getParameter("num");
-       String total = request.getParameter("total");
-        HttpSession session = request.getSession();
-        User user1 = (User) session.getAttribute("user");
         FormDAO dao = new FormDAO();
-        String lv_fee_value = dao.getTNDS_LevelbyId(Integer.parseInt(lv_fee)).getLv_value();
-       Form_TNDS obj = new Form_TNDS(type,soMay,bienXe,soKhung, fromDate,toDate,lv_fee_value, num, total, user1.getUser_id(), "1", "UnChecked");
-        dao.insertBill(obj);
-       
-        System.out.println(type);
-        PrintWriter out = response.getWriter();
-        out.print(type);
+        ArrayList<Models> listModels =  dao.getVatChatModels();
+        ArrayList<Brands> listBrands = dao.getVatChatBrands();
+        ArrayList<Deductible_Level> listDeduc = dao.getVatChatDeduc();
+        ArrayList<Package_Type> listPackT = dao.getVatChatPack();
+        
+        request.setAttribute("listModels", listModels);
+        request.setAttribute("listBrands", listBrands);
+        request.setAttribute("listDeduc", listDeduc);
+        request.setAttribute("listPackT", listPackT);
+        request.getRequestDispatcher("FormVatChat.jsp").forward(request, response);
     } 
 
     /** 

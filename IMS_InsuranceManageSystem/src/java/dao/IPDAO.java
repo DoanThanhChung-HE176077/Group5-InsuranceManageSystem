@@ -22,8 +22,6 @@ public class IPDAO extends DBContext{
     ResultSet rs; // Luu tru va xu ly du lieu
 
 
-    
-    
     public ArrayList<InsuranceProduct> getALLIP() {
         ArrayList<InsuranceProduct> list = new ArrayList<>();
         

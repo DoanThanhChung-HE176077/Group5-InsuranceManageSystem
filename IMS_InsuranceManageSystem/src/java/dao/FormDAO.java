@@ -12,14 +12,20 @@ import model.User;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Brands;
+import model.Deductible_Level;
+import model.Models;
+import model.Package_Type;
 
 /**
  *
  * @author Dell
  */
-public class FormTNDS extends DBContext {
+public class FormDAO extends DBContext {
 
     public ArrayList<TNDS_Type> getAllType() {
         ArrayList<TNDS_Type> list = new ArrayList<>();
@@ -67,7 +73,6 @@ public class FormTNDS extends DBContext {
     }
 
     public TNDS_LevelNop getLevelNop(int ln_nop, int lv_id) {
-
         String sql = "  SELECT * FROM TNDS_LevelNop \n"
                 + "WHERE ln_nop = ? \n"
                 + "AND lv_id =?;";
@@ -86,7 +91,6 @@ public class FormTNDS extends DBContext {
     }
 
     public TNDS_Type getType(int type_id) {
-
         String sql = "select * from TNDS_Type where type_id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -103,7 +107,6 @@ public class FormTNDS extends DBContext {
     }
 
     public void insertBill(Form_TNDS object) {
-
         String sql = "insert into Form_TNDS values((SELECT COALESCE(MAX(ftnds_id), 0) from Form_TNDS)+1,?,?,?,?,?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -142,10 +145,93 @@ public class FormTNDS extends DBContext {
         }
         return null;
     }
+    
+    
+    //get all models
+    public ArrayList<Models> getVatChatModels() {
+        try {
+            ArrayList<Models> getAll = new ArrayList<>();
+            String sql = "select * from Models";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int model_id = rs.getInt(1);
+                String model_name = rs.getString(2);
+                String model_price = rs.getString(3);
+                int brand_id = rs.getInt(4);
+                getAll.add(new Models(model_id, model_name, model_price, brand_id));
+            }
+            return getAll;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    //get all brand for vat chat 
+     public ArrayList<Brands> getVatChatBrands() {
+         try {
+             ArrayList<Brands> getAll = new ArrayList<>();
+             String sql = "select * from Brands";
+             PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery();
+             while (rs.next()) {
+                 int brand_id = rs.getInt(1);
+                 String brand_name = rs.getString(2);
+                 getAll.add(new Brands(brand_id, brand_name));
+             }
+             return getAll;
+         } catch (SQLException ex) {
+             Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         return null;
+    }
+     //get all deduc
+    public ArrayList<Deductible_Level> getVatChatDeduc() {
+        try {
+            ArrayList<Deductible_Level> getAll = new ArrayList<>();
+            String sql = "  select * from Deductible_Level";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int deduc_id = rs.getInt(1);
+                float deduct_percent = rs.getFloat(2);
+                getAll.add(new Deductible_Level(deduc_id, deduct_percent));
+            }
+            return getAll;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    //get all pack
+    public ArrayList<Package_Type> getVatChatPack() {
+        try {
+            ArrayList<Package_Type> getAll = new ArrayList<>();
+            String sql = "select * from Package_Type";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int pt_id = rs.getInt(1);
+                float pt_percent = rs.getFloat(2);
+                getAll.add(new Package_Type(pt_id, pt_percent));
+            }
+            return getAll;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    
 
     public static void main(String[] args) {
-        FormTNDS dao = new FormTNDS();
-        TNDS_Level obj = dao.getTNDS_LevelbyId(4);
-        System.out.println(obj.getLv_value());
+        FormDAO dao = new FormDAO();
+//        TNDS_Level obj = dao.getTNDS_LevelbyId(4);
+//        System.out.println(obj.getLv_value());
+        
+        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
+        for (Deductible_Level deductible_Level : de) {
+            System.out.println(de.toString());
+        }
     }
 }

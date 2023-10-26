@@ -20,7 +20,7 @@
 
     </head>
     <body>
-           <jsp:include page="Part/header.jsp"></jsp:include>
+         <jsp:include page="Part/header.jsp"></jsp:include>
         <div class="banner">
           <img src="Image/banner_home2.jpg" alt="">
         </div>
@@ -80,7 +80,7 @@
                             <!--vat chat-->
                             <c:if test="${o.getIp_id() == 2}">
 <!--                                <button onclick="window.location.href='HandleFormTNDS'" class="btn btn-primary btn-buy">Mua ngay</button>-->
-                                     <a href="#" class="btn btn-primary btn-buy"> Mua ngay</a>
+                                     <a href="HandleFormVatChat" class="btn btn-primary btn-buy"> Mua ngay</a>
                             </c:if>
                         </div>
                     </div>

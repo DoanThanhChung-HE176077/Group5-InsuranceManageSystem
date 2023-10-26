@@ -3,7 +3,7 @@
     Created on : Oct 19, 2023, 8:59:21 PM
     Author     : chun
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,6 +76,8 @@
     </head>
 
     <body>
+        <jsp:include page="Part/header.jsp"></jsp:include>
+
         <form action="saveInfoTNDS" style="margin-top: 100px ;">
             <div class="container form_TNDS">
                 <div class="row">
@@ -89,9 +91,9 @@
                                     <div>
                                         <label> Hãng xe<span class="errmsg"> *</span></label><br />
                                         <select class="general-dr abc" id="type" name="type">
-                                            <c:forEach items="" var="c">
-                                                <option value=""></option>
-                                            </c:forEach>
+                                        <c:forEach items="${listBrands}" var="o1">
+                                            <option value = "${o1.getBrand_name()}">${o1.getBrand_name()}</option>
+                                        </c:forEach>
                                         </select>
                                     </div>
                                     <div>
@@ -152,8 +154,8 @@
                                                 <br>
                                                 <label>Gói bảo hiểm cơ bản<span class="errmsg"> *</span></label>
                                                 <select class="general-dr abc" id="level" name="level">
-                                                    <c:forEach items="" var="c">
-                                                        <option value=""></option>
+                                                    <c:forEach items="${listPackT}" var="pt">
+                                                        <option value="${pt.getPt_percent()}">${pt.getPt_percent()}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -176,12 +178,10 @@
                                                 <br>
                                                 <label>Mức khấu trừ<span class="errmsg"> *</span></label>
                                                 <select class="general-dr abc" id="num" name="num">
-                                                    <c:forEach items="" var="c">
-                                                        <option value=""></option>
+                                                    <c:forEach items="${listDeduc}" var="deduc">
+                                                        <option value="${deduc.getDeduc_percent()}">${deduc.getDeduc_percent()}</option>
                                                     </c:forEach>
                                                 </select>
-
-
                                             </div>
                                             <div>
                                                 <label>Tổng phí</label>
