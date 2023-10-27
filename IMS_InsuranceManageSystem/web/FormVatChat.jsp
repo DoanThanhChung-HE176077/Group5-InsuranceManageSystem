@@ -246,8 +246,7 @@
 
 
 
-    <script>
-        // Initialize the car model dropdown with the default value
+<script>
         updateCarModels();
         function updateCarModels() {
             var selectedBrandId = document.getElementById("motorBrands").value;
@@ -269,11 +268,23 @@
 
         // Event cap nhat gia xe vao Gia tri xe
         document.getElementById("motorBrandModel").addEventListener("change", function () {
-            var selectedModelPrice = this.value;
-            document.getElementById("motorBrandModel-price").value = selectedModelPrice;
-            document.getElementById("motorBrandModel-price").setAttribute("value", selectedModelPrice);
-        }); 
-        
+        var selectedModelPrice = this.value;
+        // Convert the value to a string
+        var selectedModelPriceString = String(selectedModelPrice);
+        // Validate
+        var formattedPrice = formatValue(selectedModelPriceString);
+        // Update the input 
+        document.getElementById("motorBrandModel-price").value = formattedPrice;
+        document.getElementById("motorBrandModel-price").setAttribute("value", formattedPrice);
+    });
+
+    function formatValue(value) {
+        // Split the string into groups of 3 characters from the right
+        const groups = value.match(/(\d{1,3})(?=(\d{3})*(?!\d))/g);
+        // Join the groups with periods
+        return groups.join('.');
+    }
+
         
         // Function to calculate the total
         function calculateTotal() {
@@ -301,6 +312,13 @@
         // Initial calculation on page load
         calculateTotal();
         
+        
+
+
+    
+ 
+
+</script>
         
 
 
