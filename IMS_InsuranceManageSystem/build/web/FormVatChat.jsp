@@ -160,6 +160,7 @@
                                             </div>
                                             <!--------------------Gia tri xe------------------------->
                                             <div>
+                                                <br>
                                                 <label>Giá trị xe</label>
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -186,9 +187,16 @@
                                             </div>
                                             <!------------------------Tong phi ------------------->
                                             <div>
+                                                <br>
                                                 <label>Tổng phí</label>
                                                 <input class="form-control" id="total-fee" type="text" readonly
-                                                       placeholder="" name="total" value="">
+                                                       placeholder="Tổng phí" name="total" value="">
+                                            </div>
+                                            <div>
+                                                <br>
+                                                <input class="form-control" id="inWord" type="text" readonly
+                                                       placeholder="Bằng chữ"  value="">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -227,12 +235,15 @@
                             <h6>Thông tin phí bảo hiểm</h6>
                             <hr>
                             <div class="fee">
-                                <label>Phí</label>
+                                <label>Giá trị xe: </label>
                                 <span id="a" style="float: right;"></span>
                             </div>
                             <div class="fee">
-                                <label>Tổng phí</label>
-                                <h6 id="b" style="float: right;"></h6>
+                                <label>Tổng chi phí:</label>
+                                <h6 id="submitFrom_bangso" class="totalBig" id="b" style="float: right;"></h6>
+                                <br>
+                                <label>Bằng chữ: </label>
+                                <p id="submitFrom_bangchu" class="submitFrom" style=" float: right; font-style: italic"></p>
                             </div>
                             <button type="submit" class="btn ">Thanh toán</button>
                         </div>
@@ -268,25 +279,59 @@
 
         // Event cap nhat gia xe vao Gia tri xe
         document.getElementById("motorBrandModel").addEventListener("change", function () {
-        var selectedModelPrice = this.value;
-        // Convert the value to a string
-        var selectedModelPriceString = String(selectedModelPrice);
-        // Validate
-        var formattedPrice = formatValue(selectedModelPriceString);
-        // Update the input 
-        document.getElementById("motorBrandModel-price").value = formattedPrice;
-        document.getElementById("motorBrandModel-price").setAttribute("value", formattedPrice);
-    });
-
-    function formatValue(value) {
-        // Split the string into groups of 3 characters from the right
-        const groups = value.match(/(\d{1,3})(?=(\d{3})*(?!\d))/g);
-        // Join the groups with periods
-        return groups.join('.');
-    }
-
+            var selectedModelPrice = this.value;
+            var selectedModelPriceString = String(selectedModelPrice);
+            var formattedPrice = formatValue(selectedModelPriceString);
+            document.getElementById("motorBrandModel-price").value = formattedPrice;
+            document.getElementById("motorBrandModel-price").setAttribute("value", formattedPrice);
+        });
+        //bien int thanh string  xx.xxx.xxx vnd
+        function formatValue(value) {
+            const groups = value.match(/(\d{1,3})(?=(\d{3})*(?!\d))/g);
+            return groups.join('.');
+        }
         
-        // Function to calculate the total
+        //number to vietnam so
+        function numberToVietnameseWords(number) {
+            const units = ["", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+            const groups = ["", "nghìn", "triệu", "tỷ"]; 
+            function groupToVietnamese(group) {
+                const hundred = Math.floor(group / 100);
+                const ten = Math.floor((group % 100) / 10);
+                const one = group % 10;
+                let result = '';
+                if (hundred > 0) {
+                    result += units[hundred] + " trăm ";
+                }
+                if (ten > 1) {
+                    result += units[ten] + " mươi ";
+                } else if (ten === 1) {
+                    result += "mười ";
+                } else if (ten === 0 && one > 0) {
+                    result += "lẻ ";
+                }
+                if (one > 0) {
+                    result += units[one] + " ";
+                }
+                return result;
+            }
+            const numStr = number.toString();
+            const numGroups = [];
+            for (let i = numStr.length; i > 0; i -= 3) {
+                const group = parseInt(numStr.slice(Math.max(i - 3, 0), i), 10);
+                numGroups.push(group);
+            }
+            let result = '';
+            for (let i = numGroups.length - 1; i >= 0; i--) {
+                const group = numGroups[i];
+                if (group > 0) {
+                    result += groupToVietnamese(group) + groups[i] + ' ';
+                }
+            }
+            return result.trim();
+        }
+
+        // Function to calculate the total price o day
         function calculateTotal() {
             var packPercent = parseFloat(document.getElementById("pack_percent").value);
             var deducPercent = parseFloat(document.getElementById("deduc_percent").value);
@@ -295,11 +340,17 @@
             console.log("deducPercent: " + deducPercent);
             console.log("motoPrice: " + motoPrice);
             if (!isNaN(packPercent) && !isNaN(deducPercent) && !isNaN(motoPrice)) {
-                var total = (motoPrice * (packPercent / 100) * (1 - (deducPercent / 100)));
-                document.getElementById("tax-fee").value = total;
-                document.getElementById("total-fee").value = total;
+                var total = (motoPrice *1000000* (packPercent / 100) * (1 - (deducPercent / 100)));
+                var totalFormat = formatValue(String(total));
+                var totalInVNWord = numberToVietnameseWords(parseInt(total));
+                document.getElementById("inWord").value = totalInVNWord;
+                document.getElementById("inWord").setAttribute("value",  totalInVNWord);
+                document.getElementById("total-fee").value = totalFormat;
+                document.getElementById("total-fee").setAttribute("value", totalFormat);
+                document.getElementById("submitFrom_bangso").innerHTML = totalFormat + " ₫";
+                document.getElementById("submitFrom_bangchu").innerHTML = totalInVNWord;
             } else {
-                document.getElementById("tax-fee").value = ""; // Clear the total if any of the values is not a number
+                document.getElementById("tax-fee").value = ""; 
                 document.getElementById("total-fee").value = "";
             }
         }
