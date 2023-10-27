@@ -22,10 +22,15 @@
     </head>
     <body>
 
-            
-             <jsp:include page="Part/header.jsp"></jsp:include>
-             <form  action="saveInfoTNDS" style="margin-top: 100px ; background-color: #fdcf2b ; padding: 20px 0" >
+             
 
+
+
+             <jsp:include page="Part/header.jsp"></jsp:include>
+             <form  action="saveInfoTNDS" method="get" id="frmCreateOrder" style="margin-top: 100px ; background-color: #fdcf2b ; padding: 20px 0" >
+                 <input type="hidden" Checked="True" id="bankCode" name="bankCode" value="" >
+                 <input type="text"  name="check" value="tnds" hidden >
+                 
             <div class="container form_TNDS">
                 <div class="row">
                     <div class="col-md-8 info_motobike">
@@ -119,7 +124,8 @@
                                             </div>                            
                                             <div>
                                                 <span>Tổng phí</span>
-                                                <input class="form-control" id="total-fee" type="text" readonly placeholder="" name="total" >
+<!--                                                <input class="form-control" id="total-fee" type="text" readonly placeholder="" name="total" >-->
+                                                <input class="form-control" readonly data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount"  name="amount" type="number" value="" />
                                             </div>
                                         </div>
                                     </div>
@@ -216,6 +222,30 @@
         </script>-->
 
     <script>
+          $("#frmCreateOrder").submit(function () {
+                var postData = $("#frmCreateOrder").serialize();
+                var submitUrl = $("#frmCreateOrder").attr("action");
+                console.log(postData);
+                $.ajax({
+                    type: "GET",
+                    url: submitUrl,
+                    data: postData,
+                    dataType: 'JSON',
+                    success: function (x) {
+                        if (x.code === '00') {
+                            if (window.vnpay) {
+                                vnpay.open({width: 768, height: 600, url: x.data});
+                            } else {
+                                location.href = x.data;
+                            }
+                            return false;
+                        } else {
+                            alert(x.Message);
+                        }
+                    }
+                });
+                return false;
+            });
         document.querySelectorAll(".abc").forEach(function (element) {
             element.addEventListener("click", function () {
                 var xhr = new XMLHttpRequest();
@@ -233,7 +263,7 @@
                         // Cập nhật giá trị trong các thẻ HTML
                         $("#lv-fee").val(jsonData.levelFee);
                         $("#tax-fee").val(jsonData.taxFee);
-                        $("#total-fee").val(parseInt(jsonData.levelFee) + parseInt(jsonData.taxFee));
+                        $("#amount").val(parseInt(jsonData.levelFee) + parseInt(jsonData.taxFee));
                         document.getElementById("a").innerHTML= jsonData.levelFee;
                         document.getElementById("b").innerHTML= parseInt(jsonData.levelFee) + parseInt(jsonData.taxFee);
                          $("#user_iden2").val(jsonData.user_iden);
@@ -269,7 +299,7 @@
             // Đặt giá trị vào trường toDate
             document.getElementById("toDate").value = toDate;
         }
-
+        
 
 
 
