@@ -89,12 +89,12 @@
                         <a class="dropdown-item"  href="UserProfile.jsp">Profile</a>
                         
                         <!--phân quyền staff-->
-                        <c:if test="${sessionScope.user.user_role.equals('staff')}">
+                        <c:if test="${sessionScope.user.user_role.equals('Nhân viên')}">
                             <a class="dropdown-item" href="admin_dashboard">Dashboard</a>
                         </c:if>
                         
                         <!--phân quyền admin-->
-                        <c:if test="${sessionScope.user.user_role.equals('admin')}">
+                        <c:if test="${sessionScope.user.user_role.equals('Admin')}">
                             <a class="dropdown-item" href="admin_dashboard">Dashboard</a>
                         </c:if>
                             
@@ -129,7 +129,6 @@
                 
                 
                 </div>
-
         </header>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
