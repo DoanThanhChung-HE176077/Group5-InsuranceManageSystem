@@ -11,14 +11,14 @@ package model;
 public class Models {
     int model_id;
     String model_name;
-    String model_price;
+    int model_price;
     int brand_id;
 
     public Models() {
     }
 
     
-    public Models(int model_id, String model_name, String model_price, int brand_id) {
+    public Models(int model_id, String model_name, int model_price, int brand_id) {
         this.model_id = model_id;
         this.model_name = model_name;
         this.model_price = model_price;
@@ -41,11 +41,11 @@ public class Models {
         this.model_name = model_name;
     }
 
-    public String getModel_price() {
+    public int getModel_price() {
         return model_price;
     }
 
-    public void setModel_price(String model_price) {
+    public void setModel_price(int model_price) {
         this.model_price = model_price;
     }
 

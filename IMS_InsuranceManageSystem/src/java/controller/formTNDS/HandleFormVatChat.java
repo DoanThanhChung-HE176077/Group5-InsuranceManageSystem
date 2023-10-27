@@ -65,13 +65,7 @@ public class HandleFormVatChat extends HttpServlet {
         ArrayList<Brands> listBrands = dao.getVatChatBrands();
         ArrayList<Deductible_Level> listDeduc = dao.getVatChatDeduc();
         ArrayList<Package_Type> listPackT = dao.getVatChatPack();
-        
-        for (Models models : listModels) {
-            System.out.println(models.getBrand_id());
-        }
-        for (Brands brands : listBrands) {
-            System.out.println(brands.getBrand_id());
-        }
+
         
         request.setAttribute("listModels", listModels);
         request.setAttribute("listBrands", listBrands);

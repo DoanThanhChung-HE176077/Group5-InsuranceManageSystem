@@ -91,7 +91,6 @@ public class Login extends HttpServlet {
         
         //sua ntn de co the show dc slick slider
         if(msg.isEmpty() || msg.equals("Login successful!")){
-            
             response.sendRedirect("/IMS_InsuranceManageSystem/");
         }else {
             request.getRequestDispatcher("Login.jsp").forward(request, response);

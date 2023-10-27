@@ -92,6 +92,10 @@
         <servlet-name>HandleFormVatChat</servlet-name>
         <servlet-class>controller.formTNDS.HandleFormVatChat</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveInfoVatChat</servlet-name>
+        <servlet-class>controller.formTNDS.SaveInfoVatChat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -176,9 +180,13 @@
         <servlet-name>HandleFormVatChat</servlet-name>
         <url-pattern>/HandleFormVatChat</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveInfoVatChat</servlet-name>
+        <url-pattern>/SaveInfoVatChat</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-            30
+            999
         </session-timeout>
     </session-config>
     <welcome-file-list>

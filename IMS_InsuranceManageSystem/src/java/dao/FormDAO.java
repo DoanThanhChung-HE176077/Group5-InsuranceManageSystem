@@ -157,7 +157,7 @@ public class FormDAO extends DBContext {
             while (rs.next()) {
                 int model_id = rs.getInt(1);
                 String model_name = rs.getString(2);
-                String model_price = rs.getString(3);
+                int model_price = rs.getInt(3);
                 int brand_id = rs.getInt(4);
                 getAll.add(new Models(model_id, model_name, model_price, brand_id));
             }

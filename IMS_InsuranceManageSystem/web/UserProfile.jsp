@@ -71,144 +71,131 @@
 
 </form>
 <script>
-                                           <!--info user-->
-        let data1;
-        let JsonData1;
-        document.querySelector('.form-info').addEventListener('submit', function(event) 
-                                           {
-                                                   event.preventDefault(); // Ngăn chặn sự kiện mặc định của form
-                                           // Thêm code xử lý submit ở đây nếu cần
+<!--info user-->
+let data1;
+let JsonData1;
+document.querySelector('.form-info').addEventListener('submit', function(event) {
+    event.preventDefault(); // Ngăn chặn sự kiện mặc định của form
+    // Thêm code xử lý submit ở đây nếu cần
 });
+
 function fetchData()
 
-                                           {
-                                                   var xhr = new XMLHttpRequest();
-                                           xhr.open("GET", "DislayInfo", true);
-                                           xhr.onreadystatechange = function () {
-                                               if (xhr.readyState === 4 && xhr.status === 200) {
-                                                       JsonData1 = xhr.responseText;
-                                                       data1 = JSON.parse(xhr.responseText);
-                                                       document.getElementById("user_id2").value = data1.user_id;
-                                                       document.getElementById("user_fullname2").value = data1.user_fullname;
-                                                       document.getElementById("user_email2").value = data1.user_email;
-                                                       document.getElementById("user_password2").value = data1.user_password;
-                                                       document.getElementById("user_dob2").value = data1.user_dob;
-                                                       document.getElementById("user_address2").value = data1.user_address;
-                                                       document.getElementById("user_phoneNum2").value = data1.user_phoneNum;
-                                                       document.getElementById("user_iden2").value = data1.user_iden;
-                                                       document.getElementById("profileImage").src = data1.user_image;
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "DislayInfo", true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            JsonData1 = xhr.responseText;
+            data1 = JSON.parse(xhr.responseText);
+            document.getElementById("user_id2").value = data1.user_id;
+            document.getElementById("user_fullname2").value = data1.user_fullname;
+            document.getElementById("user_email2").value = data1.user_email;
+            document.getElementById("user_password2").value = data1.user_password;
+            document.getElementById("user_dob2").value = data1.user_dob;
+            document.getElementById("user_address2").value = data1.user_address;
+            document.getElementById("user_phoneNum2").value = data1.user_phoneNum;
+            document.getElementById("user_iden2").value = data1.user_iden;
+            document.getElementById("profileImage").src = data1.user_image;
 
-                                               }
-                                           };
-                                           xhr.send();
-                                      }
-                                           
-                    
-                    
-                    
-                    fetchData();
-                                      function editInfo()
-                                           {
-                                                   var inputs = document.querySelectorAll('.form-info input');
+        }
+    };
+    xhr.send();
+}
 
-                                           for (var i = 0; i < inputs.length; i++) {
-                                               if (i != 0) {
-                                                           inputs[i].removeAttribute('readonly'); // Xóa thuộc tính readOnly
-                                                   }
 
-                                               }
-                                               ;
 
-                                               let btn_edit = document.getElementById('btn-edit1');
 
-                                               btn_edit.style.display = 'none';
-                                               let btn_Save = document.getElementById('btn-Save');
-                                               let btn_changePassword = document.getElementById('btn-changePassword');
-                                               let btn_sentRequest = document.getElementById('btn-sentRequest');
-                                               btn_Save.innerHTML = '<button type="submit" onclick="saveInfo()" class="btn btn-primary">Save</button>';
-                                               btn_changePassword.innerHTML = '<button  onclick="changePassword()" class="btn btn-primary">Change password</button>';
+fetchData();
+
+function editInfo() {
+    var inputs = document.querySelectorAll('.form-info input');
+    for (var i = 0; i < inputs.length; i++) {
+        if (i != 0) {
+            inputs[i].removeAttribute('readonly'); // Xóa thuộc tính readOnly
+        }
+
+    };
+
+    let btn_edit = document.getElementById('btn-edit1');
+    btn_edit.style.display = 'none';
+    let btn_Save = document.getElementById('btn-Save');
+    let btn_changePassword = document.getElementById('btn-changePassword');
+    let btn_sentRequest = document.getElementById('btn-sentRequest');
+    btn_Save.innerHTML = '<button type="submit" onclick="saveInfo()" class="btn btn-primary">Save</button>';
+    btn_changePassword.innerHTML = '<button  onclick="changePassword()" class="btn btn-primary">Change password</button>';
 
 }
-                                               
-                                           
-                                                   
-                                                   
-                                           //Đổi password
-                                           
-                                           function changePassword() {
-                                                       window.alert('hello');
-                                               window.location.href = 'ChangePassword.jsp';
-                                               return false; // Ngăn chặn sự kiện mặc định của nút hoặc form
-                                                       }
-                                               
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       
-                                                       function saveInfo() {
-                                                       let inputs = document.querySelectorAll('.form-info input');
-                                               let inputEmail = document.querySelector('.form-info input[type="email"]');
-                                               let isEmpty = false;
 
-                                               for (let i = 0; i < inputs.length; i++) {
-                                                   // Nếu input rỗng, thêm thuộc tính 'required'
-                                                   if (inputs[i].value.trim() === '') {
-                                                       isEmpty = true;
-                                                       inputs[i].setAttribute('required', true);
-                                           } else {
-                                               inputs[i].removeAttribute('required');
-                                           }
-                                       }
 
-                                       // Kiểm tra xem có ô input email trống không
-                                       if (isEmpty) {
-                                           alert('Vui lòng điền đầy đủ thông tin trước khi gửi.');
-                                       } else {
-                                           let emailValue = inputEmail.value.trim();
-                                           if (!validateEmail(emailValue)) {
-                                               alert('Save unsuccessfully');
-                                           } else {
-                                               // Chuyển đổi dữ liệu thành JSON
-                                               var jsonData = {
-                                                       user_id: data1.user_id, // Sử dụng data từ fetchData
-                                                       user_fullName: document.getElementById("user_fullname2").value,
-                                                       user_email: document.getElementById("user_email2").value,
-                                                       user_password: document.getElementById("user_password2").value,
-                                                       user_dob: document.getElementById("user_dob2").value,
-                                                       user_address: document.getElementById("user_address2").value,
-                                                       user_phoneNum: document.getElementById("user_phoneNum2").value,
-                                                       user_iden: document.getElementById("user_iden2").value
-                                                   };
-                                                   console.log(jsonData);
-                                                   alert('Save successfully')
-                                                   // Chuyển đổi đối tượng JSON thành chuỗi JSON
-                                                   var jsonString = JSON.stringify(jsonData);
 
-                                                   // Cấu hình yêu cầu AJAX
-                                                   var xhr = new XMLHttpRequest();
-                                                   xhr.open("POST", "UpdateInfo", true);
-                                                   xhr.setRequestHeader("Content-Type", "application/json");
-                                                   xhr.send(jsonString);
-                                               }
-                                           }
-                                                       }
-                                           
-                                               
-                                               
-                                               
-                                               
-                                               
-                                               function validateEmail(email) {
-                                                   let regex = /^[a-zA-Z0-9.-_]+@gmail\.com$/;
-                                           return regex.test(email);
-                                                       }
-                                           
-                                                       
-                                           
-                                               
-                                               
-                                           
-        </script>
+
+//Đổi password
+
+function changePassword() {
+    window.alert('hello');
+    window.location.href = 'ChangePassword.jsp';
+    return false; // Ngăn chặn sự kiện mặc định của nút hoặc form
+}
+
+
+
+
+function saveInfo() {
+    let inputs = document.querySelectorAll('.form-info input');
+    let inputEmail = document.querySelector('.form-info input[type="email"]');
+    let isEmpty = false;
+
+    for (let i = 0; i < inputs.length; i++) {
+        // Nếu input rỗng, thêm thuộc tính 'required'
+        if (inputs[i].value.trim() === '') {
+            isEmpty = true;
+            inputs[i].setAttribute('required', true);
+        } else {
+            inputs[i].removeAttribute('required');
+        }
+    }
+
+    // Kiểm tra xem có ô input email trống không
+    if (isEmpty) {
+        alert('Vui lòng điền đầy đủ thông tin trước khi gửi.');
+    } else {
+        let emailValue = inputEmail.value.trim();
+        if (!validateEmail(emailValue)) {
+            alert('Save unsuccessfully');
+        } else {
+            // Chuyển đổi dữ liệu thành JSON
+            var jsonData = {
+                user_id: data1.user_id, // Sử dụng data từ fetchData
+                user_fullName: document.getElementById("user_fullname2").value,
+                user_email: document.getElementById("user_email2").value,
+                user_password: document.getElementById("user_password2").value,
+                user_dob: document.getElementById("user_dob2").value,
+                user_address: document.getElementById("user_address2").value,
+                user_phoneNum: document.getElementById("user_phoneNum2").value,
+                user_iden: document.getElementById("user_iden2").value
+            };
+            console.log(jsonData);
+            alert('Save successfully')
+            // Chuyển đổi đối tượng JSON thành chuỗi JSON
+            var jsonString = JSON.stringify(jsonData);
+
+            // Cấu hình yêu cầu AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "UpdateInfo", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(jsonString);
+        }
+    }
+}
+
+
+
+
+function validateEmail(email) {
+    let regex = /^[a-zA-Z0-9.-_]+@gmail\.com$/;
+    return regex.test(email);
+}
+</script>
     </body>
 </html>
