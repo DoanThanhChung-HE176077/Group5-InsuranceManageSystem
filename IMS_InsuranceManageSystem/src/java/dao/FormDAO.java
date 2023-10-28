@@ -253,15 +253,101 @@ public class FormDAO extends DBContext {
         return null;
     }
     
+    //save input data to vatchat table with status : chua thaanh toan (unpaid)\
+    public void insertVatChatToFormVatChat(
+                    int brand_id,
+                    int model_id,
+                    int pt_id,
+                    int deduc_id,
+                    String startDate,
+                    String endDate,
+                    int totalPrice,
+                    int user_id,
+                    String fvc_deviceNum,
+                    String fvc_deviceChassisNum,
+                    String fvc_licensePlates,
+                    String ip_id,
+                    String fvc_status) {
+            try {
+                String sql = "insert into Form_Vatchat values((SELECT COALESCE(MAX(fvc_id), 0) from Form_Vatchat)+1 , "
+                        + " ?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement pstm = connection.prepareStatement(sql);
+                pstm.setInt(1, brand_id);
+                pstm.setInt(2, model_id);
+                pstm.setInt(3, pt_id);
+                pstm.setInt(4, deduc_id);
+                pstm.setString(5, startDate);
+                pstm.setString(6, endDate);
+                pstm.setInt(7, totalPrice);
+                pstm.setInt(8, user_id);
+                pstm.setString(9, fvc_deviceNum);
+                pstm.setString(10, fvc_deviceChassisNum);
+                pstm.setString(11, fvc_licensePlates);
+                pstm.setString(12, ip_id);
+                pstm.setString(13, fvc_status);
+
+                pstm.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }        
+       }
+    
+        //update fvc status after pay bill => paid
+        public void updateStatusForLatestFormVatChat(String paid) {
+             paid = "paid";
+            try {
+                // Get the latest fvc_id
+                String selectLatestIdSql = "SELECT MAX(fvc_id) FROM Form_Vatchat";
+                PreparedStatement selectLatestIdPstm = connection.prepareStatement(selectLatestIdSql);
+                ResultSet resultSet = selectLatestIdPstm.executeQuery();
+
+                if (resultSet.next()) {
+                    int latestFvcId = resultSet.getInt(1);
+
+                    // Update the status for the latest record
+                    String updateStatusSql = "UPDATE Form_Vatchat SET fvc_status = ? WHERE fvc_id = ?";
+                    PreparedStatement updateStatusPstm = connection.prepareStatement(updateStatusSql);
+                    updateStatusPstm.setString(1, paid);
+                    updateStatusPstm.setInt(2, latestFvcId);
+
+                    int rowsUpdated = updateStatusPstm.executeUpdate();
+
+                    if (rowsUpdated > 0) {
+                        System.out.println("Status updated successfully for the latest fvc_id: " + latestFvcId);
+                    } else {
+                        System.out.println("No rows were updated for the latest fvc_id: " + latestFvcId);
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    
 
     public static void main(String[] args) {
         FormDAO dao = new FormDAO();
 //        TNDS_Level obj = dao.getTNDS_LevelbyId(4);
 //        System.out.println(obj.getLv_value());
-        
-        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
-        for (Deductible_Level deductible_Level : de) {
-            System.out.println(de.toString());
+
+//        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
+//        for (Deductible_Level deductible_Level : de) {
+//            System.out.println(de.toString());
+//        }
+//        ArrayList<Brands> br = dao.getVatChatBrands();
+//        for (Brands mybr : br) {
+//            System.out.println(mybr.getBrand_id());
+//        }
+        ArrayList<Brands> br = dao.getVatChatBrands();
+        String br_idName = "";
+        int br_idUser = 2;
+        int br_idFromDB = 0;
+        for (Brands mybr : br) {
+            if (br_idUser == mybr.getBrand_id()) {
+                br_idName = mybr.getBrand_name();
+            }
         }
+        System.out.println(br_idName);
+
     }
 }

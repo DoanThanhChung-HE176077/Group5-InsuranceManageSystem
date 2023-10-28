@@ -80,7 +80,7 @@
     <body>
         <jsp:include page="Part/header.jsp"></jsp:include>
 
-        <form action="saveInfoTNDS" method="GET" style="margin-top: 100px ;">
+        <form action="saveInfoTNDS" method="GET" style="margin-top: 100px ;" id="frmCreateOrder">
             <div class="container form_TNDS">
                 <div class="row">
                     <div class="col-md-8 info_motobike">
@@ -445,7 +445,30 @@
 
         
         
-        
+        $("#frmCreateOrder").submit(function () {
+            var postData = $("#frmCreateOrder").serialize();
+            var submitUrl = $("#frmCreateOrder").attr("action");
+            console.log(postData);
+            $.ajax({
+                type: "GET",
+                url: submitUrl,
+                data: postData,
+                dataType: 'JSON',
+                success: function (x) {
+                    if (x.code === '00') {
+                        if (window.vnpay) {
+                            vnpay.open({width: 768, height: 600, url: x.data});
+                        } else {
+                            location.href = x.data;
+                        }
+                        return false;
+                    } else {
+                        alert(x.Message);
+                    }
+                    }
+                });
+                return false;
+            });
 
 
     

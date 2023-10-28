@@ -32,6 +32,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import model.Brands;
+import model.Deductible_Level;
+import model.Models;
+import model.Package_Type;
 import model.TNDS_Type;
 
 
@@ -78,6 +82,24 @@ public class SaveInfoTNDS extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         long amount= 0;
+        //cap nhat gia tri cho ip_id = 1(tnds) hoac 2(vatchat) de sau khi thanh toán xong còn bi?t dang 
+        //mua bán vs hop dong oai nao`
+        String ip_id = "";
+        
+        
+        //bien toan cuc cho vatchat de push vao map xong chuyen qua bill
+        String fvc_brand_name;
+        String fvc_model_name;
+        String fvc_pt_name;
+        String fvc_deduc_name;
+        String fvc_startDate;
+        String fvc_endDate;
+        String fvc_totalPrice;
+        String fvc_soMay;
+        String fvc_soKhung;
+        String fvc_bienXe;
+        
+        
         String check =request.getParameter("check");
         if(check.equals("tnds")){
             FormDAO dao = new FormDAO();
@@ -97,29 +119,76 @@ public class SaveInfoTNDS extends HttpServlet {
             User user1 = (User) session.getAttribute("user");
 
             String lv_fee_value = dao.getTNDS_LevelbyId(Integer.parseInt(lv_fee)).getLv_value();
-            Form_TNDS obj = new Form_TNDS(type2.getType_name(),soMay,bienXe,soKhung, fromDate,toDate,lv_fee_value, num, total, user1.getUser_id(), "1", "UnChecked");
+            Form_TNDS obj = new Form_TNDS(type2.getType_name(),soMay,bienXe,soKhung, fromDate,toDate,lv_fee_value, num, total, user1.getUser_id(), "1", "unpaid");
             dao.insertBill(obj);
             amount = Integer.parseInt(request.getParameter("amount"))*100;
+            ip_id = "1";
+            
+            
         }
         else if(check.equals("vatchat")){
-            String brand_id = request.getParameter("send-brand_id");
-            String model_id = request.getParameter("send-model_id");
-            String pt_id = request.getParameter("send-pt_id1");
-            String deuct_id = request.getParameter("send-deduc_id1");
-            String startDate = request.getParameter("startDate");
-            String endDate = request.getParameter("endDate");
-            String fvc_totalPrice = request.getParameter("send-fvc_totalPrice");
-            String soMay = request.getParameter("soMay"); //Device number
-            String soKhung = request.getParameter("soKhung"); //Device chassis number
-            String bienXe = request.getParameter("bienXe"); //License plates
+            //lay thong tin tu form => save cac id vao db tam unpaid + update ip_id = 2 + lay ra cac deduc_name, pt_name
+            //de mang cho vao bangr bill, chu o bill ko de hien id dc 
+             String fvc_brand_id = request.getParameter("send-brand_id");
+             String fvc_model_id = request.getParameter("send-model_id");
+             String fvc_pt_id = request.getParameter("send-pt_id1");
+             String fvc_deduc_id = request.getParameter("send-deduc_id1");
+             fvc_startDate = request.getParameter("startDate");
+             fvc_endDate = request.getParameter("endDate");
+             fvc_totalPrice = request.getParameter("send-fvc_totalPrice");
+             String amountsString = fvc_totalPrice;
+             fvc_soMay = request.getParameter("soMay"); //Device number
+             fvc_soKhung = request.getParameter("soKhung"); //Device chassis number
+             fvc_bienXe = request.getParameter("bienXe"); //License plates
+             ip_id = "2";
+            
+             //parse id from string to int to save to db
+            int parsedBrandId = Integer.parseInt(fvc_brand_id);
+            int parsedModelId = Integer.parseInt(fvc_model_id);
+            int parsedPtId = Integer.parseInt(fvc_pt_id);
+            int parsedDeducId = Integer.parseInt(fvc_deduc_id);
+            int parseTotal = removeDotsFromNumber(fvc_totalPrice);
 
             HttpSession session = request.getSession();
             User user1 = (User) session.getAttribute("user");
             int user_id = user1.getUser_id(); // user_id
 
-            String amountsString = fvc_totalPrice;
-            amount = (removeDotsFromNumber(amountsString))*100;
-            System.out.println( "amount: "+amount);
+            FormDAO dao = new FormDAO();
+            //add vào db
+            dao.insertVatChatToFormVatChat(parsedBrandId, parsedModelId, parsedPtId, parsedDeducId, fvc_startDate, fvc_endDate, parseTotal,user_id, fvc_soMay, fvc_soKhung, fvc_bienXe,ip_id, "unpaid");
+            // update amount to send to vnpay
+            amount = (removeDotsFromNumber(amountsString)) * 100;
+            
+            
+            //====get data name to send to bill in4 ====
+            ArrayList<Brands> br = dao.getVatChatBrands();
+            ArrayList<Models> md = dao.getVatChatModels();
+            ArrayList<Package_Type> pt = dao.getVatChatPack();
+            ArrayList<Deductible_Level> deduct = dao.getVatChatDeduc();
+            //compare to get name 
+            int br_idUser = parsedBrandId; //get brand id from user input
+            int md_idUser = parsedModelId; //get brand id from user input
+            int pt_idUser = parsedPtId; //get brand id from user input
+            int deduct_idUser = parsedDeducId; //get brand id from user input
+            
+            for (Brands mybr : br) {
+                if (br_idUser == mybr.getBrand_id()) {
+                    fvc_brand_name = mybr.getBrand_name();
+                }  
+            }
+            for (Models mymd : md) {
+                if (md_idUser == mymd.getModel_id()) {
+                    fvc_model_name = mymd.getModel_name();
+                }
+            }
+            for (Package_Type mypt : pt) {
+                if (pt_idUser == mypt.getPt_id()) {
+                    fvc_pt_name = String.valueOf(mypt.getPt_percent()) + "%";
+                }
+            }
+            
+            
+            
         }
         
        
@@ -127,31 +196,42 @@ public class SaveInfoTNDS extends HttpServlet {
         String vnp_Command = "pay";
         String orderType = "other";
         String bankCode = request.getParameter("bankCode");
-        String vnp_TxnRef = Config.getRandomNumber(8);
+        // don hang infor
+        String vnp_TxnRef = "";
+        if( ip_id.equals("2")){
+            vnp_TxnRef =Config.generateRandomStringVatChat();
+            //#L2+.....
+        }else if ( ip_id.equals("1") ){
+            vnp_TxnRef = Config.generateRandomStringTNDS();
+            //#L1+.....
+        }
         String vnp_IpAddr = Config.getIpAddress(request);
         String vnp_TmnCode = Config.vnp_TmnCode;
         
         Map<String, String> vnp_Params = new HashMap<>();
+        //transfer data from this svl to bill 
+//        vnp_Params.put
+        
+        
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
         vnp_Params.put("vnp_Amount", String.valueOf(amount));
         vnp_Params.put("vnp_CurrCode", "VND");
-        
         if (bankCode != null && !bankCode.isEmpty()) {
             vnp_Params.put("vnp_BankCode", bankCode);
         }
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-        vnp_Params.put("vnp_OrderInfo", "Thanh toan don hang:" + vnp_TxnRef);
+        vnp_Params.put("vnp_OrderInfo", "Thanh toán đơn hàng: " + vnp_TxnRef);
         vnp_Params.put("vnp_OrderType", orderType);
-
         String locate = request.getParameter("language");
         if (locate != null && !locate.isEmpty()) {
             vnp_Params.put("vnp_Locale", locate);
         } else {
             vnp_Params.put("vnp_Locale", "vn");
         }
-        vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
+//        vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
+        vnp_Params.put("vnp_ReturnUrl", "http://localhost:9999/IMS_InsuranceManageSystem/HandleBill?ip_id=" + ip_id);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));

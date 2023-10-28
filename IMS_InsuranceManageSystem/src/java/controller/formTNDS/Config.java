@@ -23,6 +23,7 @@ public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 //    public static String vnp_ReturnUrl = "http://localhost:9999/vnpay_jsp/vnpay_return.jsp";
+    //deo dat cai nay o config nua, dua ve saveInfor
     public static String vnp_ReturnUrl = "http://localhost:9999/IMS_InsuranceManageSystem/HandleBillFormTNDS";
     public static String vnp_TmnCode = "0W9YGDHD";
     public static String secretKey = "ANRNOWQJNHRJGZVPMAPACAQURYSIISCH";
@@ -130,4 +131,47 @@ public class Config {
         }
         return sb.toString();
     }
+    public static String generateRandomStringTNDS() {
+        String prefix = "#L1";
+        int length = 6;
+
+        String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+
+        // Add the prefix
+        sb.append(prefix);
+
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(characters.length());
+            sb.append(characters.charAt(randomIndex));
+        }
+
+        return sb.toString();
+    }
+    public static String generateRandomStringVatChat() {
+        String prefix = "#L2";
+        int length = 6;
+
+        String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+
+        // Add the prefix
+        sb.append(prefix);
+
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(characters.length());
+            sb.append(characters.charAt(randomIndex));
+        }
+
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        String randomString = generateRandomStringVatChat();
+        System.out.println(randomString);
+    }
+    
 }
+
