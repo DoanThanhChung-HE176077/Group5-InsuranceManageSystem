@@ -80,7 +80,7 @@
     <body>
         <jsp:include page="Part/header.jsp"></jsp:include>
 
-        <form action="SaveInfoVatChat" method="POST" style="margin-top: 100px ;">
+        <form action="saveInfoTNDS" method="GET" style="margin-top: 100px ;">
             <div class="container form_TNDS">
                 <div class="row">
                     <div class="col-md-8 info_motobike">
@@ -140,7 +140,8 @@
                                     <div class="col-md-6">
                                         <label>Từ ngày<span class="errmsg"> *</span></label>
                                         <input class="form-control" required type="date" placeholder="Default input"
-                                               name="start" id="fromDate" onchange="updateToDate()">
+                                               name="startDate" id="fromDate" onchange="updateToDate()">
+                                        <p style="color: red; font-style: italic; font-weight: bold ">Người dùng vui lòng nhập ngày bắt đầu hợp đồng lớn hơn ngày hiện tại</p>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Đến ngày<span class="errmsg"> *</span></label>
@@ -153,14 +154,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div>
-                                                <br>
                                                 <label>Gói bảo hiểm cơ bản<span class="errmsg"> *</span></label>
                                                 <select class="general-dr abc" id="pack_percent" name="send-pt_id">
                                                     <option id="mySelect" disabled selected>Lựa chọn gói</option>
                                                     <c:forEach items="${listPackT}" var="pt">
-                                                    <option value="${pt.getPt_percent()}" >${pt.getPt_percent()}%</option>
+                                                        <option value="${pt.getPt_percent()}" id="${pt.getPt_id()}">${pt.getPt_percent()}%</option>
                                                     </c:forEach>
                                                 </select>
+                                                <input type="hidden" value="" class="send-pt_id" name="send-pt_id1"/>
                                             </div>
                                             <!--------------------Gia tri xe------------------------->
                                             <div>
@@ -180,14 +181,14 @@
                                     <!--------------------Muc khau tru------------------------->
                                         <div class="col-md-6">
                                             <div>
-                                                <br>
                                                 <label>Mức khấu trừ<span class="errmsg"> *</span></label>
-                                                <select class="general-dr abc" id="deduc_percent" name="send-deduc_percent">
+                                                <select class="general-dr abc" id="deduc_percent" name="deduc_percent">
                                                     <option id="mySelect" disabled selected>Lựa chọn mức khấu trừ</option>
                                                     <c:forEach items="${listDeduc}" var="deduc">
-                                                        <option value="${deduc.getDeduc_percent()}">${deduc.getDeduc_percent()}%</option>
+                                                        <option value="${deduc.getDeduc_percent()}" id="${deduc.getDeduc_id()}">${deduc.getDeduc_percent()}%</option>
                                                     </c:forEach>
                                                 </select>
+                                                <input type="hidden" value="" class="send-deduc_id" name="send-deduc_id1"/>
                                             </div>
                                             <!------------------------Tong phi ------------------->
                                             <div>
@@ -251,6 +252,7 @@
                                     </tbody>
                                 </table>
                                 <button type="submit" class="btn ">Thanh toán</button>
+                                <input type="text" value="vatchat" name="check" hidden/>
                             </div>
                     </div>
                 </div>
@@ -280,8 +282,7 @@
             </c:forEach>
             document.getElementById("motorBrandModel-price").value = "";
        }
-         //update id send-model_id follow by model.getModel_id()
-         // Get references to the dropdown and hidden input field
+         //=====================update id send-model_id follow by model.getModel_id()
         var motorBrandModelDropdown = document.getElementById("motorBrandModel");
         var sendModelIdInput = document.querySelector("input[name='send-model_id']");
 
@@ -294,8 +295,34 @@
             //co the loi ra id cua 1 tag = cach .id
             sendModelIdInput.value = selectedOption.id;
         });
+        
+        //============================== Update cho deduct
+        var deducDropdown = document.getElementById("deduc_percent");
+        var sendDeducInput = document.querySelector(".send-deduc_id");
+        // Add an event listener to the dropdown
+        deducDropdown.addEventListener("change", function () {
+            // Get the selected option
+            var selectedOption = deducDropdown.options[deducDropdown.selectedIndex];
 
-        // Event cap nhat gia xe vao Gia tri xe
+            // Update the value of the hidden input with the selected option's ID
+            sendDeducInput.value = selectedOption.id;
+        });
+        
+        //============================ update pt
+        var packDropdown = document.getElementById("pack_percent");
+        var sendPtIdInput = document.querySelector(".send-pt_id");
+        // Add an event listener to the dropdown
+        packDropdown.addEventListener("change", function () {
+            // Get the selected option
+            var selectedOption = packDropdown.options[packDropdown.selectedIndex];
+
+            // Update the value of the hidden input with the selected option's ID
+            sendPtIdInput.value = selectedOption.id;
+        });
+
+
+
+        // ==================Event cap nhat gia xe vao Gia tri xe
         document.getElementById("motorBrandModel").addEventListener("change", function () {
             var selectedModelPrice = this.value;
             var selectedModelPriceString = String(selectedModelPrice);
@@ -304,13 +331,13 @@
             document.getElementById("motorBrandModel-price").setAttribute("value", formattedPrice);
             document.getElementById("send_motorBrandModel-price").innerHTML = `${formattedPrice} ₫`;
         });
-        //bien int thanh string  xx.xxx.xxx vnd
+        //====================bien int thanh string  xx.xxx.xxx vnd
         function formatValue(value) {
             const groups = value.match(/(\d{1,3})(?=(\d{3})*(?!\d))/g);
             return groups.join('.');
         }
         
-        //number to vietnam so
+        //=====================number to vietnam so
         function numberToVietnameseWords(number) {
             const units = ["", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
             const groups = ["", "nghìn", "triệu", "tỷ"]; 
@@ -350,7 +377,7 @@
             return result.trim();
         }
 
-        // Function to calculate the total price o day
+        // ===========================Function to calculate the total price o day
         function calculateTotal() {
             var packPercent = parseFloat(document.getElementById("pack_percent").value);
             var deducPercent = parseFloat(document.getElementById("deduc_percent").value);
@@ -376,13 +403,47 @@
             }
         }
 
-        // Event listeners to trigger the calculation when the user selects options
+        // ===============Event listeners to trigger the calculation when the user selects options
         document.getElementById("pack_percent").addEventListener("change", calculateTotal);
         document.getElementById("deduc_percent").addEventListener("change", calculateTotal);
         document.getElementById("motorBrandModel-price").addEventListener("change", calculateTotal);
 
         // Initial calculation on page load
         calculateTotal();
+        
+        
+        function updateToDate() {
+          // Get references to the "Start Date" and "End Date" input fields
+          var fromDateInput = document.getElementById("fromDate");
+          var toDateInput = document.getElementById("toDate");
+
+          // Get the current date
+          var currentDate = new Date();
+
+          // Parse the value of the "Start Date" input as a Date object
+          var fromDate = new Date(fromDateInput.value);
+
+          // Check if the "Start Date" is valid and not earlier than the current date
+          if (!isNaN(fromDate) && fromDate >= currentDate) {
+            // Calculate the "End Date" as one year from the "Start Date"
+            var endDate = new Date(fromDate);
+            endDate.setFullYear(endDate.getFullYear() + 1);
+
+            // Format the "End Date" as YYYY-MM-DD
+            var endDateFormatted = endDate.toISOString().split('T')[0];
+
+            // Set the value of the "End Date" input
+            toDateInput.value = endDateFormatted;
+          } else {
+            // Clear the "End Date" input
+            toDateInput.value = "";
+
+            // Show an alert notification
+            alert("Ngày bắt đầu hơn ngày hôm nay");
+          }
+        }
+
+        
         
         
 

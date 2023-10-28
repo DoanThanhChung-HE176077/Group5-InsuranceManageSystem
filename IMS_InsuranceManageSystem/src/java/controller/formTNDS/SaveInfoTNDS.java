@@ -99,23 +99,36 @@ public class SaveInfoTNDS extends HttpServlet {
             String lv_fee_value = dao.getTNDS_LevelbyId(Integer.parseInt(lv_fee)).getLv_value();
             Form_TNDS obj = new Form_TNDS(type2.getType_name(),soMay,bienXe,soKhung, fromDate,toDate,lv_fee_value, num, total, user1.getUser_id(), "1", "UnChecked");
             dao.insertBill(obj);
-              amount = Integer.parseInt(request.getParameter("amount"))*100;
+            amount = Integer.parseInt(request.getParameter("amount"))*100;
         }
-        else if(check.equals("vc")){
-             String total = request.getParameter("amount1");
-              amount = Integer.parseInt(request.getParameter("amount1"))*100;
+        else if(check.equals("vatchat")){
+            String brand_id = request.getParameter("send-brand_id");
+            String model_id = request.getParameter("send-model_id");
+            String pt_id = request.getParameter("send-pt_id1");
+            String deuct_id = request.getParameter("send-deduc_id1");
+            String startDate = request.getParameter("startDate");
+            String endDate = request.getParameter("endDate");
+            String fvc_totalPrice = request.getParameter("send-fvc_totalPrice");
+            String soMay = request.getParameter("soMay"); //Device number
+            String soKhung = request.getParameter("soKhung"); //Device chassis number
+            String bienXe = request.getParameter("bienXe"); //License plates
+
+            HttpSession session = request.getSession();
+            User user1 = (User) session.getAttribute("user");
+            int user_id = user1.getUser_id(); // user_id
+
+            String amountsString = fvc_totalPrice;
+            amount = (removeDotsFromNumber(amountsString))*100;
+            System.out.println( "amount: "+amount);
         }
         
        
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String orderType = "other";
-       
         String bankCode = request.getParameter("bankCode");
-        
         String vnp_TxnRef = Config.getRandomNumber(8);
         String vnp_IpAddr = Config.getIpAddress(request);
-
         String vnp_TmnCode = Config.vnp_TmnCode;
         
         Map<String, String> vnp_Params = new HashMap<>();
@@ -208,4 +221,13 @@ public class SaveInfoTNDS extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public static int removeDotsFromNumber(String numberWithDots) {
+        // Remove all dots and then parse the string as an integer
+        String withoutDots = numberWithDots.replaceAll("\\.", "");
+        try {
+            return Integer.parseInt(withoutDots);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
 }

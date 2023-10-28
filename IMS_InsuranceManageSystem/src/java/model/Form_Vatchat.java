@@ -146,6 +146,11 @@ public class Form_Vatchat {
         this.fvc_status = fvc_status;
     }
 
+    @Override
+    public String toString() {
+        return "Form_Vatchat{" + "fvc_id=" + fvc_id + ", brand_id=" + brand_id + ", model_id=" + model_id + ", pt_id=" + pt_id + ", deduc_id=" + deduc_id + ", startDate=" + startDate + ", endDate=" + endDate + ", totalPrice=" + totalPrice + ", user_id=" + user_id + ", fvc_deviceNum=" + fvc_deviceNum + ", fvc_deviceChassisNum=" + fvc_deviceChassisNum + ", fvc_licensePlates=" + fvc_licensePlates + ", fvc_status=" + fvc_status + '}';
+    }
+
     
     
 

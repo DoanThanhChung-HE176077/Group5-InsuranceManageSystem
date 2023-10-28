@@ -71,11 +71,10 @@ public class SaveInfoVatChat extends HttpServlet {
         
 //======= Receive data input from vatchat form =========
 
-
         String brand_id = request.getParameter("send-brand_id");
         String model_id = request.getParameter("send-model_id");
-        String pt_id = request.getParameter("send-pt_id");
-        String deuct_id = request.getParameter("send-deduc_percent");        
+        String pt_id = request.getParameter("send-pt_id1");
+        String deuct_id = request.getParameter("send-deduc_id1");        
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
         String fvc_totalPrice = request.getParameter("send-fvc_totalPrice");
@@ -87,24 +86,22 @@ public class SaveInfoVatChat extends HttpServlet {
         User user1 = (User) session.getAttribute("user");
         int user_id = user1.getUser_id(); // user_id
         
-
-
-
-        
-        
+        String amountsString = fvc_totalPrice;
+        int amount = removeDotsFromNumber(amountsString);
 //======== Check receive data ==============
         System.out.println("======== Check vatchat receive data ==============");
+        System.out.println("brand_id: " + brand_id);
+        System.out.println("model_id: " + model_id);
+        System.out.println("pt_id: " + pt_id);
+        System.out.println("deuct_id: " + deuct_id);
+        System.out.println("startDate: " + startDate);
+        System.out.println("endDate: " + endDate);
+        System.out.println("fvc_totalPrice: " + fvc_totalPrice);
         System.out.println("soMay: " + soMay);
         System.out.println("soKhung: " + soKhung);
         System.out.println("bienXe: " + bienXe);
-        System.out.println("brand_id: " + brand_id);
-        System.out.println("startDate: " + startDate);
-        System.out.println("endDate: " + endDate);
-        System.out.println("mode_id: " + model_id);
-        System.out.println("pt_id: " + pt_id);
-        System.out.println("deuct_id: " + deuct_id);
-        System.out.println("fvc_totalPrice: " + fvc_totalPrice);
-        System.out.println("user_id: "+ user_id);
+        System.out.println("user_id: " + user_id);
+        System.out.println(amount);
 
 
       
@@ -118,6 +115,16 @@ public class SaveInfoVatChat extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    public static int removeDotsFromNumber(String numberWithDots) {
+        // Remove all dots and then parse the string as an integer
+        String withoutDots = numberWithDots.replaceAll("\\.", "");
+        try {
+            return Integer.parseInt(withoutDots);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
 
 }
 
