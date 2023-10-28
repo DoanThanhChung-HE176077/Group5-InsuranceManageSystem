@@ -11,6 +11,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -67,32 +69,43 @@ public class SaveInfoVatChat extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         
-        //======= Receive data input from vatchat form =========
-        String motorBrands = request.getParameter("motorBrands");
-        String hieuXe = request.getParameter("motorBrandModel");
-        String soMay = request.getParameter("soMay");
-        String soKhung = request.getParameter("soKhung");
-        String bienXe = request.getParameter("bienXe");
-        String ngayBatDau = request.getParameter("fromDate");
-        String ngayKetThuc = request.getParameter("toDate");
-        String goibaoHiemCoBan = request.getParameter("pack_percent");
-        String mucKhauTru = request.getParameter("deduc_percent");
-        String giaTriXe = request.getParameter("motorModel-price");
-        String tongSoTien = request.getParameter("total");
+//======= Receive data input from vatchat form =========
+
+
+        String brand_id = request.getParameter("send-brand_id");
+        String model_id = request.getParameter("send-model_id");
+        String pt_id = request.getParameter("send-pt_id");
+        String deuct_id = request.getParameter("send-deduc_percent");        
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+        String fvc_totalPrice = request.getParameter("send-fvc_totalPrice");
+        String soMay = request.getParameter("soMay"); //Device number
+        String soKhung = request.getParameter("soKhung"); //Device chassis number
+        String bienXe = request.getParameter("bienXe"); //License plates
         
-        //======== Check receive data ==============
+        HttpSession session = request.getSession();
+        User user1 = (User) session.getAttribute("user");
+        int user_id = user1.getUser_id(); // user_id
+        
+
+
+
+        
+        
+//======== Check receive data ==============
         System.out.println("======== Check vatchat receive data ==============");
-        System.out.println("motorBrands: " + motorBrands);
-        System.out.println("hieuXe: " + hieuXe);
         System.out.println("soMay: " + soMay);
         System.out.println("soKhung: " + soKhung);
         System.out.println("bienXe: " + bienXe);
-        System.out.println("ngayBatDau: " + ngayBatDau);
-        System.out.println("ngayKetThuc: " + ngayKetThuc);
-        System.out.println("goibaoHiemCoBan: " + goibaoHiemCoBan);
-        System.out.println("mucKhauTru: " + mucKhauTru);
-        System.out.println("giaTriXe: " + giaTriXe);
-        System.out.println("tongSoTien: " + tongSoTien);
+        System.out.println("brand_id: " + brand_id);
+        System.out.println("startDate: " + startDate);
+        System.out.println("endDate: " + endDate);
+        System.out.println("mode_id: " + model_id);
+        System.out.println("pt_id: " + pt_id);
+        System.out.println("deuct_id: " + deuct_id);
+        System.out.println("fvc_totalPrice: " + fvc_totalPrice);
+        System.out.println("user_id: "+ user_id);
+
 
       
     }

@@ -86,13 +86,13 @@
                     <div class="col-md-8 info_motobike">
                         <div id="form_TNDS">
 
-                            <h5><i class="fa-solid fa-car"></i> Thông tin về xe</h5>
+                            <h5 style="font-weight: bold"><i class="fa-solid fa-car"></i> Thông tin về xe</h5>
                             <div class="row">
                                 <div class="col-md-6">
                                     <!--------------------- Hãng xe --------------------->
                                     <div>
                                         <label>Hãng xe<span class="errmsg"> *</span></label><br />
-                                        <select class="general-dr abc" id="motorBrands" name="motorBrands" onchange="updateCarModels()">
+                                        <select class="general-dr abc" id="motorBrands" name="send-brand_id" onchange="updateCarModels()">
                                             <option id="mySelect" value="" disabled selected>Lựa chọn hãng xe của bạn</option>
                                         <c:forEach items="${listBrands}" var="brand">
                                             <option value="${brand.getBrand_id()}">${brand.getBrand_name()} have id: ${brand.getBrand_id()}</option>
@@ -103,8 +103,9 @@
                                     <div>
                                         <br>
                                         <label>Hiệu xe <span class="errmsg"> *</span></label>
-                                        <select class="general-dr abc" id="motorBrandModel" name="motorBrandModel">
+                                        <select class="general-dr abc" id="motorBrandModel" name="model_id">
                                         </select>
+                                        <input type="hidden" name="send-model_id" value=""/>
                                     </div>
                                     <!---------------------So may------------------------>
                                     <br>
@@ -112,7 +113,10 @@
                                         <label>Số máy<span class="errmsg"> *</span></label>
                                         <input class="form-control" type="text" name="soMay">
                                     </div>
+                                    <p style="color: red; font-style: italic; font-weight: bold ">Người mua bảo hiểm cam kết cung cấp thông tin chính xác để đảm bảo quyền lợi bảo hiểm</p>
+
                                 </div>
+
                                 <!--------------------- BKS --------------------->
                                 <div class="col-md-6">
                                     <div>
@@ -130,17 +134,17 @@
 
                             <!----------------------PHẠM VI BẢO HIỂM----------------------->
                             <div id="scope insurance">
-                                <h5><i class="fas fa-plus-square"></i> Phạm vi bảo hiểm</h5>
+                                <h5 style=" font-weight: bold"><i class="fas fa-plus-square"></i> Phạm vi bảo hiểm</h5>
                                 <!--------------------------------------------->
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Từ ngày<span class="errmsg"> *</span></label>
                                         <input class="form-control" required type="date" placeholder="Default input"
-                                               name="fromDate" id="fromDate" onchange="updateToDate()">
+                                               name="start" id="fromDate" onchange="updateToDate()">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Đến ngày<span class="errmsg"> *</span></label>
-                                        <input class="form-control" type="date" placeholder="Default input" name="toDate"
+                                        <input class="form-control" type="date" placeholder="Default input" name="endDate"
                                                id="toDate" readonly>
                                     </div>
                                 </div>
@@ -151,10 +155,10 @@
                                             <div>
                                                 <br>
                                                 <label>Gói bảo hiểm cơ bản<span class="errmsg"> *</span></label>
-                                                <select class="general-dr abc" id="pack_percent" name="pack_percent">
-                                                        <option id="mySelect" disabled selected>Lựa chọn gói</option>
+                                                <select class="general-dr abc" id="pack_percent" name="send-pt_id">
+                                                    <option id="mySelect" disabled selected>Lựa chọn gói</option>
                                                     <c:forEach items="${listPackT}" var="pt">
-                                                        <option value="${pt.getPt_percent()}">${pt.getPt_percent()}%</option>
+                                                    <option value="${pt.getPt_percent()}" >${pt.getPt_percent()}%</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -178,7 +182,7 @@
                                             <div>
                                                 <br>
                                                 <label>Mức khấu trừ<span class="errmsg"> *</span></label>
-                                                <select class="general-dr abc" id="deduc_percent" name="deduc_percent">
+                                                <select class="general-dr abc" id="deduc_percent" name="send-deduc_percent">
                                                     <option id="mySelect" disabled selected>Lựa chọn mức khấu trừ</option>
                                                     <c:forEach items="${listDeduc}" var="deduc">
                                                         <option value="${deduc.getDeduc_percent()}">${deduc.getDeduc_percent()}%</option>
@@ -190,7 +194,7 @@
                                                 <br>
                                                 <label>Tổng phí</label>
                                                 <input class="form-control" id="total-fee" type="text" readonly
-                                                       placeholder="Tổng phí" name="total" value="">
+                                                       placeholder="Tổng phí" name="send-fvc_totalPrice" value="">
                                             </div>
                                             <div>
                                                 <br>
@@ -200,11 +204,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
+                                </div>                                 
 
                                 <div id="vehicle_owner_information">
-                                    <h5 style="margin-top: 10px;"> <i class="fas fa-address-card"></i>Thông tin chủ xe
+                                    <h5 style="margin-top: 10px; font-weight: bold"> <i class="fas fa-address-card"></i> Thông tin chủ xe
                                         (<span>Theo đăng kí xe</span>)</h5>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -225,28 +228,30 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
+
                     <div class="col-md-4 ">
-                        <div class="payment">
-                            <h6>Thông tin phí bảo hiểm</h6>
-                            <hr>
-                            <div class="fee">
-                                <label>Giá trị xe: </label>
-                                <span id="a" style="float: right;"></span>
+                            <div class="container payment">
+                                <h5 style="font-weight:bold">Thông tin thanh toán</h5>
+                                <table class="table ">
+                                    <tbody>
+                                        <tr>
+                                            <th>Tổng chi phí:</th>
+                                            <td>
+                                                <p style="font-size: 20px;" type="text" id="submitFrom_bangso" name="tong-chi-phi">
+                                                    
+                                                </p>
+                                                <span style=" float: left; font-style: italic; font-size: 10px;margin-top: -15px" id="submitFrom_bangchu" name="bang-chu">
+                                                    
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button type="submit" class="btn ">Thanh toán</button>
                             </div>
-                            <div class="fee">
-                                <label>Tổng chi phí:</label>
-                                <h6 id="submitFrom_bangso" class="totalBig" id="b" style="float: right;"></h6>
-                                <br>
-                                <label>Bằng chữ: </label>
-                                <p id="submitFrom_bangchu" class="submitFrom" style=" float: right; font-style: italic"></p>
-                            </div>
-                            <button type="submit" class="btn ">Thanh toán</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -263,7 +268,6 @@
             var selectedBrandId = document.getElementById("motorBrands").value;
             var carModelsDropdown = document.getElementById("motorBrandModel");
             carModelsDropdown.innerHTML = "<option value=''>Lựa chọn loại xe</option>"; // Clear the current options
-
             // Use JSTL to loop through the listModels attribute
             <c:forEach items="${listModels}" var="model">
                 if (${model.getBrand_id()} == selectedBrandId) {
@@ -272,10 +276,24 @@
                     option.id = "${model.getModel_id()}";
                     option.innerText = "${model.getModel_name()} thuoc: ${model.getBrand_id()}";
                     carModelsDropdown.appendChild(option);
-                }
+                } 
             </c:forEach>
             document.getElementById("motorBrandModel-price").value = "";
        }
+         //update id send-model_id follow by model.getModel_id()
+         // Get references to the dropdown and hidden input field
+        var motorBrandModelDropdown = document.getElementById("motorBrandModel");
+        var sendModelIdInput = document.querySelector("input[name='send-model_id']");
+
+        // Add an event listener to the dropdown
+        motorBrandModelDropdown.addEventListener("change", function () {
+            // Get the selected option
+            var selectedOption = motorBrandModelDropdown.options[motorBrandModelDropdown.selectedIndex];
+            
+            // Update the value of the hidden input with the selected option's value (ID)
+            //co the loi ra id cua 1 tag = cach .id
+            sendModelIdInput.value = selectedOption.id;
+        });
 
         // Event cap nhat gia xe vao Gia tri xe
         document.getElementById("motorBrandModel").addEventListener("change", function () {
@@ -284,6 +302,7 @@
             var formattedPrice = formatValue(selectedModelPriceString);
             document.getElementById("motorBrandModel-price").value = formattedPrice;
             document.getElementById("motorBrandModel-price").setAttribute("value", formattedPrice);
+            document.getElementById("send_motorBrandModel-price").innerHTML = `${formattedPrice} ₫`;
         });
         //bien int thanh string  xx.xxx.xxx vnd
         function formatValue(value) {
@@ -347,8 +366,10 @@
                 document.getElementById("inWord").setAttribute("value",  totalInVNWord);
                 document.getElementById("total-fee").value = totalFormat;
                 document.getElementById("total-fee").setAttribute("value", totalFormat);
+                //thông tin bao hiem:
                 document.getElementById("submitFrom_bangso").innerHTML = totalFormat + " ₫";
-                document.getElementById("submitFrom_bangchu").innerHTML = totalInVNWord;
+                document.getElementById("submitFrom_bangchu").innerHTML = totalInVNWord + " đồng.";
+                
             } else {
                 document.getElementById("tax-fee").value = ""; 
                 document.getElementById("total-fee").value = "";
