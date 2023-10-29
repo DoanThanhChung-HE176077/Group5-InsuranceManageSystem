@@ -12,8 +12,9 @@ public class Bill {
     int id ;
     String bill_code ; 
     String bill_total ;
-    String bill_ip_id ;
+    String bill_ip_id ; //1 or 2
     String bill_user ;
     String bill_content ;
     String bill_creationDate ;
+    
 }
