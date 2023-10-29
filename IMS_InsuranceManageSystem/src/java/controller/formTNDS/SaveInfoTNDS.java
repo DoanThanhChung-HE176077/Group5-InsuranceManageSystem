@@ -37,6 +37,8 @@ import model.Deductible_Level;
 import model.Models;
 import model.Package_Type;
 import model.TNDS_Type;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -85,20 +87,7 @@ public class SaveInfoTNDS extends HttpServlet {
         //cap nhat gia tri cho ip_id = 1(tnds) hoac 2(vatchat) de sau khi thanh toán xong còn bi?t dang 
         //mua bán vs hop dong oai nao`
         String ip_id = "";
-        
-        
-        //bien toan cuc cho vatchat de push vao map xong chuyen qua bill
-        String fvc_brand_name;
-        String fvc_model_name;
-        String fvc_pt_name;
-        String fvc_deduc_name;
-        String fvc_startDate;
-        String fvc_endDate;
-        String fvc_totalPrice;
-        String fvc_soMay;
-        String fvc_soKhung;
-        String fvc_bienXe;
-        
+        String creationBillDate = getCurrentDateTime();
         
         String check =request.getParameter("check");
         if(check.equals("tnds")){
@@ -133,14 +122,14 @@ public class SaveInfoTNDS extends HttpServlet {
              String fvc_model_id = request.getParameter("send-model_id");
              String fvc_pt_id = request.getParameter("send-pt_id1");
              String fvc_deduc_id = request.getParameter("send-deduc_id1");
-             fvc_startDate = request.getParameter("startDate");
-             fvc_endDate = request.getParameter("endDate");
-             fvc_totalPrice = request.getParameter("send-fvc_totalPrice");
+             String fvc_startDate = request.getParameter("startDate");
+             String fvc_endDate = request.getParameter("endDate");
+             String fvc_totalPrice = request.getParameter("send-fvc_totalPrice");
              String amountsString = fvc_totalPrice;
-             fvc_soMay = request.getParameter("soMay"); //Device number
-             fvc_soKhung = request.getParameter("soKhung"); //Device chassis number
-             fvc_bienXe = request.getParameter("bienXe"); //License plates
-             ip_id = "2";
+             String fvc_soMay = request.getParameter("soMay"); //Device number
+             String fvc_soKhung = request.getParameter("soKhung"); //Device chassis number
+             String fvc_bienXe = request.getParameter("bienXe"); //License plates
+             
             
              //parse id from string to int to save to db
             int parsedBrandId = Integer.parseInt(fvc_brand_id);
@@ -148,7 +137,7 @@ public class SaveInfoTNDS extends HttpServlet {
             int parsedPtId = Integer.parseInt(fvc_pt_id);
             int parsedDeducId = Integer.parseInt(fvc_deduc_id);
             int parseTotal = removeDotsFromNumber(fvc_totalPrice);
-
+            //get user
             HttpSession session = request.getSession();
             User user1 = (User) session.getAttribute("user");
             int user_id = user1.getUser_id(); // user_id
@@ -158,45 +147,18 @@ public class SaveInfoTNDS extends HttpServlet {
             dao.insertVatChatToFormVatChat(parsedBrandId, parsedModelId, parsedPtId, parsedDeducId, fvc_startDate, fvc_endDate, parseTotal,user_id, fvc_soMay, fvc_soKhung, fvc_bienXe,ip_id, "unpaid");
             // update amount to send to vnpay
             amount = (removeDotsFromNumber(amountsString)) * 100;
-            
-            
-            //====get data name to send to bill in4 ====
-            ArrayList<Brands> br = dao.getVatChatBrands();
-            ArrayList<Models> md = dao.getVatChatModels();
-            ArrayList<Package_Type> pt = dao.getVatChatPack();
-            ArrayList<Deductible_Level> deduct = dao.getVatChatDeduc();
-            //compare to get name 
-            int br_idUser = parsedBrandId; //get brand id from user input
-            int md_idUser = parsedModelId; //get brand id from user input
-            int pt_idUser = parsedPtId; //get brand id from user input
-            int deduct_idUser = parsedDeducId; //get brand id from user input
-            
-            for (Brands mybr : br) {
-                if (br_idUser == mybr.getBrand_id()) {
-                    fvc_brand_name = mybr.getBrand_name();
-                }  
-            }
-            for (Models mymd : md) {
-                if (md_idUser == mymd.getModel_id()) {
-                    fvc_model_name = mymd.getModel_name();
-                }
-            }
-            for (Package_Type mypt : pt) {
-                if (pt_idUser == mypt.getPt_id()) {
-                    fvc_pt_name = String.valueOf(mypt.getPt_percent()) + "%";
-                }
-            }
-            
-            
-            
+            //update ip_id
+            ip_id = "2";
+
         }
+
         
        
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String orderType = "other";
         String bankCode = request.getParameter("bankCode");
-        // don hang infor
+        // code cua bill
         String vnp_TxnRef = "";
         if( ip_id.equals("2")){
             vnp_TxnRef =Config.generateRandomStringVatChat();
@@ -208,11 +170,11 @@ public class SaveInfoTNDS extends HttpServlet {
         String vnp_IpAddr = Config.getIpAddress(request);
         String vnp_TmnCode = Config.vnp_TmnCode;
         
+        //=================transfer data from this svl to bill  =============
         Map<String, String> vnp_Params = new HashMap<>();
-        //transfer data from this svl to bill 
-//        vnp_Params.put
-        
-        
+        //=========map data of vat chat ======================
+        vnp_Params.put("bill_creationDate",creationBillDate);
+        //=======map data of vnpay ==========
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
@@ -230,7 +192,7 @@ public class SaveInfoTNDS extends HttpServlet {
         } else {
             vnp_Params.put("vnp_Locale", "vn");
         }
-//        vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
+        //vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
         vnp_Params.put("vnp_ReturnUrl", "http://localhost:9999/IMS_InsuranceManageSystem/HandleBill?ip_id=" + ip_id);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
@@ -309,5 +271,11 @@ public class SaveInfoTNDS extends HttpServlet {
         } catch (NumberFormatException e) {
             return 0;
         }
+    }
+    public static String getCurrentDateTime() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+        String formattedDateTime = currentDateTime.format(formatter);
+        return formattedDateTime;
     }
 }

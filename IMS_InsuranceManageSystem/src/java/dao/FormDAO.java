@@ -13,6 +13,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -338,16 +340,12 @@ public class FormDAO extends DBContext {
 //        for (Brands mybr : br) {
 //            System.out.println(mybr.getBrand_id());
 //        }
-        ArrayList<Brands> br = dao.getVatChatBrands();
-        String br_idName = "";
-        int br_idUser = 2;
-        int br_idFromDB = 0;
-        for (Brands mybr : br) {
-            if (br_idUser == mybr.getBrand_id()) {
-                br_idName = mybr.getBrand_name();
-            }
-        }
-        System.out.println(br_idName);
+
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+        String formattedDateTime = currentDateTime.format(formatter);
+        // Print the current date and time
+        System.out.println("Current Date and Time: " + formattedDateTime);
 
     }
 }

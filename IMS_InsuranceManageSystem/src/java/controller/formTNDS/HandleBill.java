@@ -93,21 +93,33 @@ public class HandleBill extends HttpServlet {
         
 //=====================sau khi thanh toan thanh cong ===============
 //==============bill in4 cho vat chat===============
-        String billID = request.getParameter("vnp_OrderInfo");
-        //#L22AA9QB
-        String amountTotal = remove2LastZeros(request.getParameter("vnp_Amount"));
-        String ip_id = request.getParameter("ip_id");
+        
+        HttpSession session = request.getSession();
+        User getUser = (User) session.getAttribute("user");
 
-        System.out.println("billID: " + billID);
-        //Notification: Thanh to?n ??n h?ng: #L22AA9QB
-        System.out.println("Amount Total: " + amountTotal);
-        //217800 => form chuan
-        System.out.println("IP ID: " + ip_id);
-
+        String bill_id = ""; //#L22AA9QB
+        String bill_total = "";
+        String bill_ip_id = request.getParameter("ip_id");
+        String bill_user = getUser.getUser_fullName();
+        String bill_content = "Thanh toán thành công.";
+        String bill_creationDate = request.getParameter("bill_creationDate");
+        
+        
+        if(bill_ip_id.equals("2")){
+            //go to vat chat
+            bill_id = request.getParameter("vnp_OrderInfo");
+            bill_total = remove2LastZeros(request.getParameter("vnp_Amount"));        //loai bo 2 so 0 cuoi cung trc khi gan cho amount 
+            
+            //save bill vào db
+            
+            //send data to bill.jsp
+            request.getRequestDispatcher("BillVatChat.jsp").forward(request, response);
+        }else if(bill_ip_id.equals("1")) {
+            //go to tnds
+            
+        }
+        
         response.sendRedirect("BillVatChat.jsp");
-        
-        
-        
     }
     
 
