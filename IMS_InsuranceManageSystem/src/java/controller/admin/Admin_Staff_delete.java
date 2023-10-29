@@ -30,9 +30,9 @@ public class Admin_Staff_delete extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
-        UserDAO u = new UserDAO();
+        UserDAO  u = new UserDAO();
         u.deleteStaff(id);
-        response.sendRedirect("admin_Staff_list");
+        request.getRequestDispatcher("admin_Staff_list").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
