@@ -97,18 +97,19 @@ public class HandleBill extends HttpServlet {
         HttpSession session = request.getSession();
         User getUser = (User) session.getAttribute("user");
 
-        String bill_id = ""; //#L22AA9QB
+        String bill_code = ""; //#L22AA9QB
         String bill_total = "";
         String bill_ip_id = request.getParameter("ip_id");
         String bill_user = getUser.getUser_fullName();
         String bill_content = "Thanh toán thành công.";
         String bill_creationDate = request.getParameter("bill_creationDate");
+        //hh:mm:ss dd-mm-yyyy
         
         
         if(bill_ip_id.equals("2")){
             //go to vat chat
-            bill_id = request.getParameter("vnp_OrderInfo");
-            bill_total = remove2LastZeros(request.getParameter("vnp_Amount"));        //loai bo 2 so 0 cuoi cung trc khi gan cho amount 
+            bill_code = request.getParameter("vnp_OrderInfo");
+            bill_total = remove2LastZeros(request.getParameter("vnp_Amount"));//loai bo 2 so 0 cuoi cung trc khi gan cho amount 
             
             //save bill vào db
             
@@ -119,7 +120,7 @@ public class HandleBill extends HttpServlet {
             
         }
         
-        response.sendRedirect("BillVatChat.jsp");
+
     }
     
 
