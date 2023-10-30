@@ -232,6 +232,7 @@
                     data: postData,
                     dataType: 'JSON',
                     success: function (x) {
+                        console.log(x);
                         if (x.code === '00') {
                             if (window.vnpay) {
                                 vnpay.open({width: 768, height: 600, url: x.data});
@@ -241,6 +242,7 @@
                             return false;
                         } else {
                             alert(x.Message);
+                            console.log(x);
                         }
                     }
                 });
