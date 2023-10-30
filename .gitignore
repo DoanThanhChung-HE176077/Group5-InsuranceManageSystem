@@ -5,3 +5,5 @@ IMS_InsuranceManageSystem/nbproject/private/private.xml
 IMS_InsuranceManageSystem/nbproject/private/private.properties
 IMS_InsuranceManageSystem/build/web/WEB-INF/classes/dao/DBContext.class
 /IMS_InsuranceManageSystem/dist/
+IMS_InsuranceManageSystem/build/web/WEB-INF/classes/dao/DBContext.class
+IMS_InsuranceManageSystem/src/java/dao/DBContext.java
