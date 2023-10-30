@@ -96,6 +96,10 @@
         <servlet-name>SaveInfoVatChat</servlet-name>
         <servlet-class>controller.formTNDS.SaveInfoVatChat</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_Staff_uprole</servlet-name>
+        <servlet-class>controller.admin.Admin_Staff_uprole</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -183,6 +187,10 @@
     <servlet-mapping>
         <servlet-name>SaveInfoVatChat</servlet-name>
         <url-pattern>/SaveInfoVatChat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Staff_uprole</servlet-name>
+        <url-pattern>/Admin_Staff_uprole</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

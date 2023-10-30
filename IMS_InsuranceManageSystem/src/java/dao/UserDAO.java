@@ -295,6 +295,33 @@ public class UserDAO extends DBContext {
         }
         return list;
     }
+    public ArrayList<User> getUser() {
+        ArrayList<User> list = new ArrayList<>();
+
+        try {
+            String strSQL = "select * from Users where user_role='customer'  ORDER BY user_fullname ASC";
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                list.add(new User(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12)
+                ));
+            }
+        } catch (Exception e) {
+            System.out.println("getUser: " + e.getMessage());
+        }
+        return list;
+    }
     public User getDetailUser(int user_id) {
         String sql = "select * from Users where user_id = " + user_id;
         try {
@@ -494,7 +521,7 @@ public class UserDAO extends DBContext {
         return list;
     }
     public void deleteStaff(String id) {
-        String strSQL = "DELETE FROM Users WHERE user_id = ?";
+        String strSQL = " update users set user_role = 'customer' where user_id = ?";
         try {
             PreparedStatement pstm = connection.prepareStatement(strSQL);  
             pstm.setString(1,id);
@@ -502,6 +529,19 @@ public class UserDAO extends DBContext {
             
         } catch (SQLException e) {
             System.out.println("deleteStaff:" + e);
+        }
+
+        
+    }
+    public void addStaff(String id) {
+        String strSQL = " update users set user_role = 'staff' where user_id = ?";
+        try {
+            PreparedStatement pstm = connection.prepareStatement(strSQL);  
+            pstm.setString(1,id);
+            pstm.executeQuery();
+            
+        } catch (SQLException e) {
+            System.out.println("addStaff:" + e);
         }
 
         

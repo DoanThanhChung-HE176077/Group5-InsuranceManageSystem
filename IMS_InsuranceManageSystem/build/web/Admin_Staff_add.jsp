@@ -33,13 +33,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
         <link rel="stylesheet" href="CSS/admin_blog_dashboard.css"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" href="CSS/user_profile.css"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     </head>
     <body>
@@ -50,73 +43,107 @@
 
             <!--sidebar-->
         <jsp:include page="Part/sidebar_vip.jsp"></jsp:include>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col min-vh-100 p-4">
-                    <div class="container mt-5">
 
-                        <div class="my-row row">
 
-                            <!-- Column 1: Blog Post Table -->
 
-                            <form class="form-info ">
-                                <div style="margin-top: 100px" class="container rounded bg-white mt-5 mb-5">
-                                    <div class="row ">
-                                        <div class="col-md-3 border-right ">
-                                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img id="profileImage" class="rounded-circle mt-5" width="150px" src=""></div>
-                                        </div>
-                                        <div class="col-md-5 border-right">
-                                            <div class="p-3 py-5">
-                                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                                    <h4 class="text-right">Thêm nhân viên</h4>
-                                                </div>
 
-                                                <div class="row mt-3">
-                                                    <div class="col-md-12">  <input type="text" id="user_id2"
-                                                                                    class="form-control"
-                                                                                    placeholder="UserID" hidden></div>
-                                                    <div class="col-md-12"><label class="labels">Họ và tên</label><input type="text" class="form-control" id="user_fullname2"
-                                                                                                                        placeholder="Họ và tên" ></div>
-                                                    <div class="col-md-12"><label class="labels">Email</label><input type="email" class="form-control"
-                                                                                                                     placeholder="Email"
-                                                                                                                     id="user_email2" ></div>
-                                                    <div class="col-md-12"><label class="labels">Ngày sinh </label> <input type="date" class="form-control"
-                                                                                                                               id="user_dob2" name="dateInput" ></div>
-                                                    <div class="col-md-12"><label class="labels">Địa chỉ</label><input type="text" class="form-control"
-                                                                                                                       id="user_address2"  placeholder="Địa chỉ" ></div>
-                                                    <div class="col-md-12"><label class="labels">Số điện thoại</label><input type="number" class="form-control" id="user_phoneNum2"
-                                                                                                                            placeholder="Số điện thoại" ></div>
-                                                    <div class="col-md-12"><label class="labels">Căn cước công dân</label> <input type="number" class="form-control"
-                                                                                                                               id="user_iden2" placeholder="Căn cước công dân" ></div>
-                                                    <div class="col-md-12"><label class="labels">Mật khẩu</label> 
-                                                        <input type="password" class="form-control" placeholder=" Mật khẩu" ></div>
-                                                        <div class="col-md-12"><label class="labels">Nhập lại mật khẩu</label> 
-                                                        <input type="password" class="form-control" placeholder="Nhập lại mật khẩu" ></div>
-                                                </div>
 
-                                                <div class="modal-footer">
-                                                    <button id="btn-edit1" type="button"
-                                                             class="btn btn-primary">Hủy</button>
-                                                    <button id="btn-edit1" type="button"
-                                                             class="btn btn-primary">Thêm</button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
+            <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
 
-                                    </div>
-                                </div>
 
-                            </form>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col min-vh-100 p-4">
+                        <div class="container mt-5">
+
+                            <div class="my-row row">
+
+                                <!-- Column 1: Blog Post Table -->
+                                <div class="my-column1 col-md-8">
+                                    <h2 style="display: inline-block;">Thêm nhân viên</h2>
+                                    <!--                                    go to blog page-->
+                                    <button class="btn btn-success mb-3 " style="margin-left: 200px" >
+                                        <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Quay lại</a>
+                                    </button>
+                                    
+                                <!-- Blog Post Table -->
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Họ Tên</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Số điện thoại</th>
+                                            <th>Ảnh</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Example row, you can use a loop to generate rows dynamically -->
+                                        <c:forEach items="${listU}" var="o">
+                                            <tr>
+                                                <td>${o.getUser_fullName()}</td>
+                                                <td>${o.getUser_dob()}</td>
+                                                <td>${o.getUser_address()}</td>
+                                                <td>${o.getUser_phoneNum()}</td>
+                                                <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
+                                                <td>${o.getStatus()}</td>
+                                                
+                                                <td>
+                                                    <a href="Admin_Staff_uprole?id=${o.getUser_id()} " class="my-btn btn btn-primary">Thêm</a>
+
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        <!-- Repeat rows for each blog post -->
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                            <!-- Column 2: Edit History Table -->
+                            <div class="my-column1 col-md-4">
+                                <h2 style="display: inline-block;">Người dùng mới</h2>
+                                <!-- togler -->
+
+                                <!-- Edit History Table -->
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Họ Tên</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Ảnh</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
+                                        <c:forEach items="${listNU}" var="o">
+                                            <tr>
+                                                <td>${o.getUser_fullName()}</td>
+                                                <td>${o.getUser_dob()}</td>
+                                                <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
+                                            </tr>
+                                        </c:forEach>
+
+                                        <!-- Repeat rows for each edit history entry -->
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>   
-    </div>
-    <!-- quan trong cua dropdowntable -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-</body>
+        </div>
+
+
+
+
+
+
+        <!-- quan trong cua dropdowntable -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    </body>
 </html>
