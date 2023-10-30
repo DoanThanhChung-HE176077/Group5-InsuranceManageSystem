@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 import dao.FormDAO;
 import model.Form_TNDS;
 import model.TNDS_Level;
+import model.TNDS_Type;
 import model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +24,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -32,13 +33,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
-import model.Brands;
-import model.Deductible_Level;
-import model.Models;
-import model.Package_Type;
-import model.TNDS_Type;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+//import model.Package_Type;
+//import java.time.LocalDateTime;
+//import java.time.format.DateTimeFormatter;
 
 
 /**
@@ -87,13 +85,14 @@ public class SaveInfoTNDS extends HttpServlet {
         //cap nhat gia tri cho ip_id = 1(tnds) hoac 2(vatchat) de sau khi thanh toán xong còn bi?t dang 
         //mua bán vs hop dong oai nao`
         String ip_id = "";
-        String creationBillDate = getCurrentDateTime();
+//        String creationBillDate = getCurrentDateTime();
         
         String check =request.getParameter("check");
         if(check.equals("tnds")){
             FormDAO dao = new FormDAO();
 
             String type = request.getParameter("type");
+            
             TNDS_Type type2 = dao.getType(Integer.parseInt(type));
             String soMay = request.getParameter("soMay");
             String bienXe = request.getParameter("bienXe");
@@ -106,12 +105,12 @@ public class SaveInfoTNDS extends HttpServlet {
             String total = request.getParameter("amount");
             HttpSession session = request.getSession();
             User user1 = (User) session.getAttribute("user");
-
+            ip_id = "1";
             String lv_fee_value = dao.getTNDS_LevelbyId(Integer.parseInt(lv_fee)).getLv_value();
             Form_TNDS obj = new Form_TNDS(type2.getType_name(),soMay,bienXe,soKhung, fromDate,toDate,lv_fee_value, num, total, user1.getUser_id(), "1", "unpaid");
             dao.insertBill(obj);
             amount = Integer.parseInt(request.getParameter("amount"))*100;
-            ip_id = "1";
+            
             
             
         }
@@ -129,7 +128,8 @@ public class SaveInfoTNDS extends HttpServlet {
              String fvc_soMay = request.getParameter("soMay"); //Device number
              String fvc_soKhung = request.getParameter("soKhung"); //Device chassis number
              String fvc_bienXe = request.getParameter("bienXe"); //License plates
-             
+             //update ip_id
+            ip_id = "2";
             
              //parse id from string to int to save to db
             int parsedBrandId = Integer.parseInt(fvc_brand_id);
@@ -147,8 +147,7 @@ public class SaveInfoTNDS extends HttpServlet {
             dao.insertVatChatToFormVatChat(parsedBrandId, parsedModelId, parsedPtId, parsedDeducId, fvc_startDate, fvc_endDate, parseTotal,user_id, fvc_soMay, fvc_soKhung, fvc_bienXe,ip_id, "unpaid");
             // update amount to send to vnpay
             amount = (removeDotsFromNumber(amountsString)) * 100;
-            //update ip_id
-            ip_id = "2";
+            
 
         }
 
@@ -173,7 +172,7 @@ public class SaveInfoTNDS extends HttpServlet {
         //=================transfer data from this svl to bill  =============
         Map<String, String> vnp_Params = new HashMap<>();
         //=========map data of vat chat ======================
-        vnp_Params.put("bill_creationDate",creationBillDate);
+//        vnp_Params.put("bill_creationDate",creationBillDate);
         //=======map data of vnpay ==========
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
@@ -272,10 +271,10 @@ public class SaveInfoTNDS extends HttpServlet {
             return 0;
         }
     }
-    public static String getCurrentDateTime() {
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-        String formattedDateTime = currentDateTime.format(formatter);
-        return formattedDateTime;
-    }
+//    public static String getCurrentDateTime() {
+//        LocalDateTime currentDateTime = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+//        String formattedDateTime = currentDateTime.format(formatter);
+//        return formattedDateTime;
+//    }
 }

@@ -103,7 +103,7 @@ public class FormDAO extends DBContext {
                 return (new TNDS_Type(rs.getInt(1), rs.getString(2), rs.getInt(3)));
             };
         } catch (Exception E) {
-
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, E);
         }
         return null;
     }
@@ -329,8 +329,8 @@ public class FormDAO extends DBContext {
 
     public static void main(String[] args) {
         FormDAO dao = new FormDAO();
-//        TNDS_Level obj = dao.getTNDS_LevelbyId(4);
-//        System.out.println(obj.getLv_value());
+        TNDS_Type obj = dao.getType(4);
+        System.out.println(obj.getType_name());
 
 //        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
 //        for (Deductible_Level deductible_Level : de) {
@@ -341,11 +341,12 @@ public class FormDAO extends DBContext {
 //            System.out.println(mybr.getBrand_id());
 //        }
 
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
-        String formattedDateTime = currentDateTime.format(formatter);
-        // Print the current date and time
-        System.out.println("Current Date and Time: " + formattedDateTime);
+//        LocalDateTime currentDateTime = LocalDateTime.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
+//        String formattedDateTime = currentDateTime.format(formatter);
+//        // Print the current date and time
+//        System.out.println("Current Date and Time: " + formattedDateTime);
 
+        
     }
 }
