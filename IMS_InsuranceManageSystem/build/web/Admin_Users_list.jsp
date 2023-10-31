@@ -33,7 +33,36 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
         <link rel="stylesheet" href="CSS/admin_blog_dashboard.css"/>
+        <style>
+            .pagination {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
+.pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+}
+
+.current-page {
+    background-color: #333; /* Màu nền của trang hiện tại khi được chọn */
+    color: #fff; /* Màu chữ của trang hiện tại khi được chọn */
+    
+}
+
+.pagination a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+
+        </style>
     </head>
     <body>
 
@@ -66,7 +95,7 @@
                                     <button class="btn btn-success mb-3 " style="margin-left: 200px" >
                                         <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Danh sách nhân viên</a>
                                     </button>
-                                    <form action="admin_Users_search" method="post" class="form-inline my-2 my-lg-0">
+                                    <form action="admin_Users_search" method="get" class="form-inline my-2 my-lg-0">
                                         <div class="input-group input-group-sm">
                                             <input value ="${txtname}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                                         <div class="input-group-append">
@@ -77,6 +106,7 @@
                                     </div>
 
                                 </form>
+                                
                                 <!-- Blog Post Table -->
                                 <table class="table table-striped">
                                     <thead>
@@ -106,8 +136,19 @@
                                             </tr>
                                         </c:forEach>
                                         <!-- Repeat rows for each blog post -->
+                                        
                                     </tbody>
+                                    
                                 </table>
+                                <c:set var="page" value="${requestScope.page}"/>
+<div class="pagination">
+    <c:forEach begin="${1}" end="${requestScope.num}" var="i">
+        <c:set var="currentPage" value="${i == page}"/>
+        <a href="admin_Users_list?page=${i}" class="${currentPage ? 'current-page' : ''}">${i}</a>
+    </c:forEach>
+</div>
+
+
 
                             </div>
 
