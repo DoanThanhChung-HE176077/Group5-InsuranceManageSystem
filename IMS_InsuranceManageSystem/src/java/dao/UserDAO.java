@@ -514,7 +514,9 @@ public class UserDAO extends DBContext {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10)));
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12)));
             }
         } catch (Exception e) {
         }
@@ -543,10 +545,19 @@ public class UserDAO extends DBContext {
         } catch (SQLException e) {
             System.out.println("addStaff:" + e);
         }
+    }
+        public List<User> getListbyPage(List <User> list, int start, int end){
+            ArrayList <User> arr = new ArrayList<>();
+            for (int i = start;i<end;i++){
+                arr.add(list.get(i));
+            }
+            return arr;
+        }
 
         
     }
+        
     
     
 
-}
+

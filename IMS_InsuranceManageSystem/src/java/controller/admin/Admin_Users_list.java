@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -35,7 +36,22 @@ public class Admin_Users_list extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         UserDAO ud = new UserDAO();
         ArrayList<User> list = ud.getALLUser();
-        request.setAttribute("listU", list);
+        int page, numberpage=5;
+        int size = list.size();
+        int num = (size%5==0?(size/5):((size/5))+1);
+        String xpage = request.getParameter("page");
+        if (xpage == null){
+            page = 1;
+        }else{
+            page = Integer.parseInt(xpage);
+        }
+        int start, end;
+        start = (page-1)*numberpage;
+        end = Math.min(page*numberpage,size);
+        List <User> listU= ud.getListbyPage(list, start, end);
+        request.setAttribute("listU", listU);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
         ArrayList<User> list1 = ud.getNewUser();
         request.setAttribute("listNU", list1);
         request.getRequestDispatcher("Admin_Users_list.jsp").forward(request, response);
