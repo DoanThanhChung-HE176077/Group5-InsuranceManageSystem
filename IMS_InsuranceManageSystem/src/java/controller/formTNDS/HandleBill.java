@@ -14,7 +14,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Contract;
 import model.Form_TNDS;
+import model.Form_Vatchat;
 import model.User;
 
 /**
@@ -96,7 +98,7 @@ public class HandleBill extends HttpServlet {
         
         HttpSession session = request.getSession();
         User getUser = (User) session.getAttribute("user");
-
+        request.setAttribute("user",getUser );
         String bill_code = ""; //#L22AA9QB
         String bill_total = "";
         String bill_ip_id = request.getParameter("ip_id");
@@ -110,14 +112,30 @@ public class HandleBill extends HttpServlet {
             //go to vat chat
             bill_code = request.getParameter("vnp_OrderInfo");
             bill_total = remove2LastZeros(request.getParameter("vnp_Amount"));//loai bo 2 so 0 cuoi cung trc khi gan cho amount 
-            
+             request.setAttribute("bill_total", bill_total);
+              FormDAO dao = new FormDAO();
+              Form_Vatchat obj = dao.getForm_VatChat();
+              request.setAttribute("obj", obj);
+              request.setAttribute("hangXe", dao.getBranchById(obj.getBrand_id()).getBrand_name());
+               request.setAttribute("hieuXe", dao.getModelById(obj.getModel_id()).getModel_name());
+                request.setAttribute("pk", dao.getPakage_TypeById(obj.getPt_id()).getPt_percent());
+                 request.setAttribute("deduct", dao.getDeductible_LevelById(obj.getDeduc_id()).getDeduc_percent());
+              System.out.println(obj.getEndDate());
             //save bill vào db
             
             //send data to bill.jsp
-            request.getRequestDispatcher("BillVatChat.jsp").forward(request, response);
+            request.getRequestDispatcher("BillOfVatChat.jsp").forward(request, response);
         }else if(bill_ip_id.equals("1")) {
             //go to tnds
-            
+             FormDAO dao = new FormDAO();
+            Form_TNDS obj = dao.getForm_TNDS();
+            System.out.println(obj.getId());
+            request.setAttribute("obj", obj);
+            dao.updateStatusTNDS(obj.getId());
+            dao.insertContractTnds(new Contract(getUser.getUser_id(), obj.getStartDate(), obj.getEndDate(),
+                    Integer.parseInt(obj.getIp_id()) , obj.getId()
+                    , Integer.parseInt(obj.getTongChiPhi())));
+        request.getRequestDispatcher("BillOfInsuranceTNDS.jsp").forward(request, response);
         }
         
 

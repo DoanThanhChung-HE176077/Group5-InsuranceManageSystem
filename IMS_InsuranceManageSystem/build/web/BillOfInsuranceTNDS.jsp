@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,35 +24,30 @@
               </div>
               <div class="i_title">
                 <h2>Bảo hiểm về xe máy</h2>
-                <p class="p_title text_right" id="currentDate"></p>
+                
               </div>
             </div>
             <div class="i_row">
               <div class="i_number">
-                <p class="p_title">CONTRACT NO: 3452324</p>
+                <p class="p_title">CONTRACT NO:${requestScope.obj.id}</p>
               </div>
-              <div class="i_address text_right">
-                <p>TO</p>
-                <p class="p_title">
-                  Tên user <br />
-                  <span>Adress</span><br />
-                  
-                </p>
-              </div>
+            
             </div>
           </div>
           <div class="body">
             <div class="i_table">
               <div class="info" style="font-size: 17px; ">
-                <p>Họ tên khách hàng: Đỗ Đức Thiện</p>
-                <p>Thời gian bắt đầu: 2023</p>
-                <p>Thời gian kết thúc: 2023</p>
-                <p>Loại xe:</p>
-                <p>Loại xe:</p>
-                <p>Số máy:</p>
-                <p>Số khung:</p>
-                <p>Mức chịu trách nhiệm:</p>
-                <p>Số người:</p>
+                <p>Họ tên khách hàng: ${requestScope.user.user_fullName}</p>
+                <fmt:formatDate value="${requestScope.obj.startDate}" pattern="dd/MM/yyyy" var="formattedStartDate" />
+                <p>Thời gian bắt đầu: ${formattedStartDate}</p>
+                <fmt:formatDate value="${requestScope.obj.endDate}" pattern="dd/MM/yyyy" var="formattedEndDate" />
+                <p>Thời gian kết thúc:  ${formattedEndDate}</p>
+                <p>Loại xe:  ${requestScope.obj.loaiXe}</p>
+                <p>Biển xe: ${requestScope.obj.bienXe}</p>
+                <p>Số máy: ${requestScope.obj.soMay}</p>
+                <p>Số khung: ${requestScope.obj.soKhung}</p>
+                <p>Mức chịu trách nhiệm:${requestScope.obj.mucTrachNhiem}</p>
+                <p>Số người:${requestScope.obj.soNguoi}</p>
               </div>
              
             <div class="i_table_foot">
@@ -74,9 +70,10 @@
                 <div class="i_row grand_total_wrap">
                   <div style="width: 70%;">
                   </div>
+                  <fmt:formatNumber value="${requestScope.obj.tongChiPhi}" pattern="#,##0" var="formattedTongChiPhi" />
                   <div style ="border: none; border-radius: 5px; margin-left: 30%;" class="i_col w_50">
-                    <p style="font-size: 15px;"><span>Tổng phí:</span>
-                      <span>$165.00</span>
+                    <p style="font-size: 15px;"><span>Tổng phí: </span>
+                      <span>${formattedTongChiPhi}</span>
                     </p>
                   </div>
                   
@@ -112,17 +109,7 @@
         </div>
       </section>
       <script>
-        // Tạo một đối tượng Date
-        const currentDate = new Date();
-
-        // Lấy ngày, tháng và năm
-        const day = currentDate.getDate();
-        const month = currentDate.getMonth() + 1; // Tháng bắt đầu từ 0
-        const year = currentDate.getFullYear();
-
-        // Hiển thị ngày tháng năm trong định dạng mong muốn
-        const formattedDate = `${day}/${month}/${year}`;
-        document.getElementById('currentDate').innerText = formattedDate;
+      
     </script>
     </body>
 </html>

@@ -9,20 +9,30 @@ package model;
  * @author chun
  */
 public class Form_Vatchat {
-    int fvc_id;
-    int brand_id;
-    int model_id;
-    int pt_id;
-    int deduc_id;
-    String startDate;
-    String endDate;
-    int totalPrice;
-    int user_id;
-    String fvc_deviceNum;
-    String fvc_deviceChassisNum;
-    String fvc_licensePlates;
-    String ip_id ;
-    String fvc_status;
+
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    private int fvc_id;
+    private int brand_id;
+    private int model_id;
+    private int pt_id;
+    private int deduc_id;
+    private String startDate;
+    private String endDate;
+    private int totalPrice;
+    private int user_id;
+    private String fvc_deviceNum;
+    private String fvc_deviceChassisNum;
+    private String fvc_licensePlates;
+    private String ip_id;
+    private String fvc_status;
 
     public Form_Vatchat() {
     }
@@ -156,12 +166,4 @@ public class Form_Vatchat {
         this.fvc_status = fvc_status;
     }
 
-    
-
-    
-    
-
-   
-    
-    
 }

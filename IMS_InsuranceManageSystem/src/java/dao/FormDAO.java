@@ -19,7 +19,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Brands;
+import model.Contract;
 import model.Deductible_Level;
+import model.Form_Vatchat;
 import model.Models;
 import model.Package_Type;
 
@@ -136,19 +138,18 @@ public class FormDAO extends DBContext {
     public TNDS_Level getTNDS_LevelbyId(int id) {
         try {
             String sql = "select * from TNDS_Level where lv_id  = ?";
-             PreparedStatement st = connection.prepareStatement(sql);
-             st.setInt(1, id);
-             ResultSet rs = st.executeQuery();
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return (new TNDS_Level(rs.getInt(1), rs.getString(2)));
             };
         } catch (Exception E) {
-            
+
         }
         return null;
     }
-    
-    
+
     //get all models
     public ArrayList<Models> getVatChatModels() {
         try {
@@ -169,25 +170,27 @@ public class FormDAO extends DBContext {
         }
         return null;
     }
+
     //get all brand for vat chat 
-     public ArrayList<Brands> getVatChatBrands() {
-         try {
-             ArrayList<Brands> getAll = new ArrayList<>();
-             String sql = "select * from Brands";
-             PreparedStatement ps = connection.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery();
-             while (rs.next()) {
-                 int brand_id = rs.getInt(1);
-                 String brand_name = rs.getString(2);
-                 getAll.add(new Brands(brand_id, brand_name));
-             }
-             return getAll;
-         } catch (SQLException ex) {
-             Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         return null;
+    public ArrayList<Brands> getVatChatBrands() {
+        try {
+            ArrayList<Brands> getAll = new ArrayList<>();
+            String sql = "select * from Brands";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int brand_id = rs.getInt(1);
+                String brand_name = rs.getString(2);
+                getAll.add(new Brands(brand_id, brand_name));
+            }
+            return getAll;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
-     //get all deduc
+    //get all deduc
+
     public ArrayList<Deductible_Level> getVatChatDeduc() {
         try {
             ArrayList<Deductible_Level> getAll = new ArrayList<>();
@@ -205,6 +208,7 @@ public class FormDAO extends DBContext {
         }
         return null;
     }
+
     //get all pack
     public ArrayList<Package_Type> getVatChatPack() {
         try {
@@ -223,6 +227,7 @@ public class FormDAO extends DBContext {
         }
         return null;
     }
+
     public Form_TNDS getForm_TNDS() {
         String sql = "SELECT TOP (1000) [ftnds_id]\n"
                 + "      ,[ftnds_loaiXe]\n"
@@ -244,93 +249,227 @@ public class FormDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                return (new Form_TNDS(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                         rs.getDate(6), rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10),
-                         rs.getInt(11), rs.getString(12), rs.getString(13)));
+                return (new Form_TNDS(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getDate(6), rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10),
+                        rs.getInt(11), rs.getString(12), rs.getString(13)));
             };
-            
+
         } catch (Exception E) {
 
         }
         return null;
     }
-    
+
+    public Form_Vatchat getForm_VatChat() {
+        String sql = "SELECT *\n"
+                + "FROM [dbo].[Form_Vatchat]\n"
+                + "WHERE fvc_id = (SELECT TOP 1 fvc_id FROM [Form_Vatchat] ORDER BY fvc_id DESC)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return (new Form_Vatchat(rs.getInt(1), rs.getInt(2), rs.getInt(3)
+                , rs.getInt(4)
+                ,
+                rs.getInt(5)
+                , rs.getString(6)
+                ,  rs.getString(7)
+                , rs.getInt(8)
+                , rs.getInt(9)
+                , 
+                rs.getString(10)
+                , rs.getString(11)
+                , rs.getString(12)
+                , rs.getString(13)
+                , rs.getString(14)
+            ));
+            };
+
+        } catch (Exception E) {
+
+        }
+        return null;
+    }
+
     //save input data to vatchat table with status : chua thaanh toan (unpaid)\
     public void insertVatChatToFormVatChat(
-                    int brand_id,
-                    int model_id,
-                    int pt_id,
-                    int deduc_id,
-                    String startDate,
-                    String endDate,
-                    int totalPrice,
-                    int user_id,
-                    String fvc_deviceNum,
-                    String fvc_deviceChassisNum,
-                    String fvc_licensePlates,
-                    String ip_id,
-                    String fvc_status) {
-            try {
-                String sql = "insert into Form_Vatchat values((SELECT COALESCE(MAX(fvc_id), 0) from Form_Vatchat)+1 , "
-                        + " ?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                PreparedStatement pstm = connection.prepareStatement(sql);
-                pstm.setInt(1, brand_id);
-                pstm.setInt(2, model_id);
-                pstm.setInt(3, pt_id);
-                pstm.setInt(4, deduc_id);
-                pstm.setString(5, startDate);
-                pstm.setString(6, endDate);
-                pstm.setInt(7, totalPrice);
-                pstm.setInt(8, user_id);
-                pstm.setString(9, fvc_deviceNum);
-                pstm.setString(10, fvc_deviceChassisNum);
-                pstm.setString(11, fvc_licensePlates);
-                pstm.setString(12, ip_id);
-                pstm.setString(13, fvc_status);
+            int brand_id,
+            int model_id,
+            int pt_id,
+            int deduc_id,
+            String startDate,
+            String endDate,
+            int totalPrice,
+            int user_id,
+            String fvc_deviceNum,
+            String fvc_deviceChassisNum,
+            String fvc_licensePlates,
+            String ip_id,
+            String fvc_status) {
+        try {
+            String sql = "insert into Form_Vatchat values((SELECT COALESCE(MAX(fvc_id), 0) from Form_Vatchat)+1 , "
+                    + " ?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, brand_id);
+            pstm.setInt(2, model_id);
+            pstm.setInt(3, pt_id);
+            pstm.setInt(4, deduc_id);
+            pstm.setString(5, startDate);
+            pstm.setString(6, endDate);
+            pstm.setInt(7, totalPrice);
+            pstm.setInt(8, user_id);
+            pstm.setString(9, fvc_deviceNum);
+            pstm.setString(10, fvc_deviceChassisNum);
+            pstm.setString(11, fvc_licensePlates);
+            pstm.setString(12, ip_id);
+            pstm.setString(13, fvc_status);
 
-                pstm.executeUpdate();
-            } catch (SQLException ex) {
-                Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }        
-       }
-    
-        //update fvc status after pay bill => paid
-        public void updateStatusForLatestFormVatChat(String paid) {
-             paid = "paid";
-            try {
-                // Get the latest fvc_id
-                String selectLatestIdSql = "SELECT MAX(fvc_id) FROM Form_Vatchat";
-                PreparedStatement selectLatestIdPstm = connection.prepareStatement(selectLatestIdSql);
-                ResultSet resultSet = selectLatestIdPstm.executeQuery();
+            pstm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-                if (resultSet.next()) {
-                    int latestFvcId = resultSet.getInt(1);
+    //update fvc status after pay bill => paid
+    public void updateStatusForLatestFormVatChat(String paid) {
+        paid = "paid";
+        try {
+            // Get the latest fvc_id
+            String selectLatestIdSql = "SELECT MAX(fvc_id) FROM Form_Vatchat";
+            PreparedStatement selectLatestIdPstm = connection.prepareStatement(selectLatestIdSql);
+            ResultSet resultSet = selectLatestIdPstm.executeQuery();
 
-                    // Update the status for the latest record
-                    String updateStatusSql = "UPDATE Form_Vatchat SET fvc_status = ? WHERE fvc_id = ?";
-                    PreparedStatement updateStatusPstm = connection.prepareStatement(updateStatusSql);
-                    updateStatusPstm.setString(1, paid);
-                    updateStatusPstm.setInt(2, latestFvcId);
+            if (resultSet.next()) {
+                int latestFvcId = resultSet.getInt(1);
 
-                    int rowsUpdated = updateStatusPstm.executeUpdate();
+                // Update the status for the latest record
+                String updateStatusSql = "UPDATE Form_Vatchat SET fvc_status = ? WHERE fvc_id = ?";
+                PreparedStatement updateStatusPstm = connection.prepareStatement(updateStatusSql);
+                updateStatusPstm.setString(1, paid);
+                updateStatusPstm.setInt(2, latestFvcId);
 
-                    if (rowsUpdated > 0) {
-                        System.out.println("Status updated successfully for the latest fvc_id: " + latestFvcId);
-                    } else {
-                        System.out.println("No rows were updated for the latest fvc_id: " + latestFvcId);
-                    }
+                int rowsUpdated = updateStatusPstm.executeUpdate();
+
+                if (rowsUpdated > 0) {
+                    System.out.println("Status updated successfully for the latest fvc_id: " + latestFvcId);
+                } else {
+                    System.out.println("No rows were updated for the latest fvc_id: " + latestFvcId);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    // update trạng thái paid
+
+    public void updateStatusTNDS(int id) {
+        String sql = " UPDATE [Form_TNDS]\n"
+                + "SET [ftnds_status] = 'paid'\n"
+                + "WHERE ftnds_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.executeUpdate();
+        } catch (Exception E) {
+
+        }
+    }
+
+        public void insertContractTnds(Contract c) {
+        String sql = " INSERT INTO [Contract] \n" +
+"                ([contract_id],[user_id], [contract_startDate], [contract_endDate], [ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status])\n" +
+"                 VALUES \n" +
+"                   (((SELECT MAX(contract_id) AS max_contract_id\n" +
+"                FROM[Contract])+1),?, ?, ?, ?, null,?, ?, 'Pending')";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            st.setInt(1, c.getUser_id());
+            st.setDate(2, c.getContract_startDate());
+
+            st.setDate(3, c.getContract_endDate());
+            st.setInt(4, c.getIp_id());
+            st.setInt(5, c.getFtnds_id());
+            
+            st.setInt(6, c.getTotal_price());
+
+            st.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Errol");
         }
 
+    }
+    //get branch by id
+    public Brands getBranchById(int id){
+        String sql = " select * from Brands where brand_id = ?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return new Brands(rs.getInt(1),rs.getString(2));
+            }
+           
+        }catch(Exception E){
+            
+        }
+        return null;
+    }
     
+     public Models getModelById(int id){
+        String sql = " select * from Models where brand_id = ?";
+         try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return new Models(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
+            }
+           
+        }catch(Exception E){
+            
+        }
+        return null;
+    }
+     
+      public Package_Type getPakage_TypeById(int id){
+        String sql = "select * from Package_Type where pt_id = ?";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return new Package_Type(rs.getInt(1),rs.getInt(2));
+            }
+           
+        }catch(Exception E){
+            
+        }
+        return null;
+    }
+      public Deductible_Level getDeductible_LevelById(int id){
+        String sql = " select * from Deductible_Level where deduc_id = ?";
+         try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if(rs.next()){
+                return new Deductible_Level(rs.getInt(1),rs.getInt(2));
+            }
+           
+        }catch(Exception E){
+            
+        }
+        return null;
+        
+    }
 
     public static void main(String[] args) {
         FormDAO dao = new FormDAO();
-        TNDS_Type obj = dao.getType(4);
-        System.out.println(obj.getType_name());
+        Form_Vatchat x = dao.getForm_VatChat();
+        System.out.println(dao.getModelById(x.getModel_id()).getModel_name());
+      
 
 //        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
 //        for (Deductible_Level deductible_Level : de) {
@@ -340,13 +479,10 @@ public class FormDAO extends DBContext {
 //        for (Brands mybr : br) {
 //            System.out.println(mybr.getBrand_id());
 //        }
-
 //        LocalDateTime currentDateTime = LocalDateTime.now();
 //        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
 //        String formattedDateTime = currentDateTime.format(formatter);
 //        // Print the current date and time
 //        System.out.println("Current Date and Time: " + formattedDateTime);
-
-        
     }
 }
