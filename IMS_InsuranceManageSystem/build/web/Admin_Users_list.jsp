@@ -95,9 +95,9 @@
                                     <button class="btn btn-success mb-3 " style="margin-left: 200px" >
                                         <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Danh sách nhân viên</a>
                                     </button>
-                                    <form action="admin_Users_search" method="get" class="form-inline my-2 my-lg-0">
+                                    <form action="admin_Users_search" method="post" class="form-inline my-2 my-lg-0">
                                         <div class="input-group input-group-sm">
-                                            <input value ="${txtname}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                                            <input value ="${txtname}" name="txtname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-secondary btn-number">
                                                 <i class="fa fa-search"></i>

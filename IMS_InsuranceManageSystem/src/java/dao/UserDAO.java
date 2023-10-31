@@ -495,8 +495,8 @@ public class UserDAO extends DBContext {
         return false;
     }
 
-    public List<User> searchByName(String txtsearch) {
-        List<User> list = new ArrayList<>();
+    public ArrayList<User> searchByName(String txtsearch) {
+        ArrayList<User> list = new ArrayList<>();
         String strSQL = "select * from Users\n"
                 + "where [user_fullname] like ? and (user_role='customer' or user_role='staff')";
         try {
@@ -514,9 +514,7 @@ public class UserDAO extends DBContext {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10),
-                        rs.getString(11),
-                        rs.getString(12)));
+                        rs.getString(10)));
             }
         } catch (Exception e) {
         }
