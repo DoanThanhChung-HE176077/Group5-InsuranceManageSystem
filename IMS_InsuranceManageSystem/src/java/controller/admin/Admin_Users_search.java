@@ -30,6 +30,20 @@ public class Admin_Users_search extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
+    } 
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /** 
+     * Handles the HTTP <code>GET</code> method.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String txtname = request.getParameter("txtname");
         UserDAO ud = new UserDAO();
@@ -38,6 +52,7 @@ public class Admin_Users_search extends HttpServlet {
         int size = list.size();
         int num = (size%5==0?(size/5):((size/5))+1);
         String xpage = request.getParameter("page");
+        
         if (xpage == null){
             page = 1;
         }else{
@@ -54,20 +69,6 @@ public class Admin_Users_search extends HttpServlet {
         request.setAttribute("listNU", list1);
         request.setAttribute("txtname", txtname);
         request.getRequestDispatcher("Admin_Users_search.jsp").forward(request,response);
-    } 
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
     } 
 
     /** 
@@ -87,9 +88,6 @@ public class Admin_Users_search extends HttpServlet {
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+
 
 }
