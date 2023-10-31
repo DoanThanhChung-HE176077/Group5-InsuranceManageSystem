@@ -36,7 +36,36 @@
 
     </head>
     <body>
+<style>
+            .pagination {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
+.pagination a {
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+}
+
+.current-page {
+    background-color: #333; /* Màu nền của trang hiện tại khi được chọn */
+    color: #fff; /* Màu chữ của trang hiện tại khi được chọn */
+    
+}
+
+.pagination a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+
+        </style>
         <!--header-->
         <jsp:include page="Part/header.jsp"></jsp:include>
 
@@ -113,7 +142,13 @@
                                         <!-- Repeat rows for each blog post -->
                                     </tbody>
                                 </table>
-
+<c:set var="page" value="${requestScope.page}"/>
+<div class="pagination">
+    <c:forEach begin="${1}" end="${requestScope.num}" var="i">
+        <c:set var="currentPage" value="${i == page}"/>
+        <a href="admin_Staff_list?page=${i}" class="${currentPage ? 'current-page' : ''}">${i}</a>
+    </c:forEach>
+</div>
                             </div>
 
                             <!-- Column 2: Edit History Table -->

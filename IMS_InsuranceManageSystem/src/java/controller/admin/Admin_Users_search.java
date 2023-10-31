@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,12 +31,30 @@ public class Admin_Users_search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtsearch = request.getParameter("txtname");
+        String txtname = request.getParameter("txtname");
         UserDAO ud = new UserDAO();
-        List<User> list = ud.searchByName(txtsearch);
-        request.setAttribute("listU", list);
-        request.setAttribute("txtname", txtsearch);
-        request.getRequestDispatcher("admin_Users_list").forward(request,response);
+        ArrayList<User> list = ud.searchByName(txtname);
+        int page, numberpage=5;
+        int size = list.size();
+        int num = (size%5==0?(size/5):((size/5))+1);
+        String xpage = request.getParameter("page");
+        
+        if (xpage == null){
+            page = 1;
+        }else{
+            page = Integer.parseInt(xpage);
+        }
+        int start, end;
+        start = (page-1)*numberpage;
+        end = Math.min(page*numberpage,size);
+        List <User> listU= ud.getListbyPage(list, start, end);
+        request.setAttribute("listU", listU);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
+        ArrayList<User> list1 = ud.getNewUser();
+        request.setAttribute("listNU", list1);
+        request.setAttribute("txtname", txtname);
+        request.getRequestDispatcher("Admin_Users_search.jsp").forward(request,response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -69,9 +88,6 @@ public class Admin_Users_search extends HttpServlet {
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+
 
 }

@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 import model.Blogs;
 import model.NewBl;
 
@@ -37,9 +38,24 @@ public class Admin_Staff_list extends HttpServlet {
         UserDAO ud = new UserDAO();
         BlogDAO bd = new BlogDAO();
         ArrayList<User> list = ud.getALLStaff();
-        request.setAttribute("listU", list);
-        ArrayList<NewBl> list1 = bd.getNewBlogsWithUserName();
-        request.setAttribute("listNB", list1);
+        int page, numberpage=5;
+        int size = list.size();
+        int num = (size%5==0?(size/5):((size/5))+1);
+        String xpage = request.getParameter("page");
+        if (xpage == null){
+            page = 1;
+        }else{
+            page = Integer.parseInt(xpage);
+        }
+        int start, end;
+        start = (page-1)*numberpage;
+        end = Math.min(page*numberpage,size);
+        List <User> listU= ud.getListbyPage(list, start, end);
+        request.setAttribute("listU", listU);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
+        ArrayList<NewBl> list2 = bd.getNewBlogsWithUserName();
+        request.setAttribute("listNB", list2);
         request.getRequestDispatcher("Admin_Staff_list.jsp").forward(request, response);
     } 
 
