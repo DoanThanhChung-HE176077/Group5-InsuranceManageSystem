@@ -52,8 +52,6 @@ public class Contract {
         this.total_price = total_price;
     }
 
-
-
     public int getContract_id() {
         return contract_id;
     }

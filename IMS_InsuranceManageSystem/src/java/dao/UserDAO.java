@@ -234,6 +234,7 @@ public class UserDAO extends DBContext {
         }
         return false;
     }
+    
 
     public int getLastId() {
         int lastId;

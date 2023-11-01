@@ -92,10 +92,10 @@
                                                     onchange="updateCarModels()">
                                                     <option id="mySelect" value="" disabled selected>Lựa chọn hãng xe
                                                         của bạn</option>
-                                                    <c:forEach items="${listBrands}" var="brand">
+                                                <c:forEach items="${listBrands}" var="brand">
                                                         <option value="${brand.getBrand_id()}">${brand.getBrand_name()}
                                                             have id: ${brand.getBrand_id()}</option>
-                                                    </c:forEach>
+                                                </c:forEach>
                                                 </select>
                                             </div>
                                             <!--------------------- Hieu xe --------------------->
@@ -163,7 +163,7 @@
                                                             name="send-pt_id">
                                                             <option id="mySelect" disabled selected>Lựa chọn gói
                                                             </option>
-                                                            <c:forEach items="${listPackT}" var="pt">
+                                                        <c:forEach items="${listPackT}" var="pt">
                                                                 <option value="${pt.getPt_percent()}"
                                                                     id="${pt.getPt_id()}">${pt.getPt_percent()}%
                                                                 </option>
@@ -306,7 +306,7 @@
                         var carModelsDropdown = document.getElementById("motorBrandModel");
                         carModelsDropdown.innerHTML = "<option value=''>Lựa chọn loại xe</option>"; // Clear the current options
                         // Use JSTL to loop through the listModels attribute
-                        <c: forEach items="${listModels}" var="model">
+                        <c:forEach items="${listModels}" var="model">
                             if (${model.getBrand_id()} == selectedBrandId) {
                     var option = document.createElement("option");
                             option.value = "${model.getModel_price()}";
@@ -314,7 +314,7 @@
                             option.innerText = "${model.getModel_name()} thuoc: ${model.getBrand_id()}";
                             carModelsDropdown.appendChild(option);
                 }
-                        </c: forEach>
+                        </c:forEach>
                         document.getElementById("motorBrandModel-price").value = "";
                     }
                     //=====================update id send-model_id follow by model.getModel_id()
