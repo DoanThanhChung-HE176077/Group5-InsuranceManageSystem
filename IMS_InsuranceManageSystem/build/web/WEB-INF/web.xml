@@ -97,10 +97,6 @@
         <servlet-class>controller.formTNDS.SaveInfoVatChat</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Admin_Staff_uprole</servlet-name>
-        <servlet-class>controller.admin.Admin_Staff_uprole</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Admin_Users_verify</servlet-name>
         <servlet-class>controller.admin.Admin_Users_verify</servlet-class>
     </servlet>
@@ -111,6 +107,14 @@
     <servlet>
         <servlet-name>Admin_Contract_list</servlet-name>
         <servlet-class>controller.admin.Admin_Contract_list</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_Staff_load</servlet-name>
+        <servlet-class>controller.admin.Admin_Staff_load</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_Staff_update</servlet-name>
+        <servlet-class>controller.admin.Admin_Staff_update</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
@@ -201,10 +205,6 @@
         <url-pattern>/SaveInfoVatChat</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Admin_Staff_uprole</servlet-name>
-        <url-pattern>/Admin_Staff_uprole</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Admin_Users_verify</servlet-name>
         <url-pattern>/Admin_Users_verify</url-pattern>
     </servlet-mapping>
@@ -215,6 +215,14 @@
     <servlet-mapping>
         <servlet-name>Admin_Contract_list</servlet-name>
         <url-pattern>/Admin_Contract_list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Staff_load</servlet-name>
+        <url-pattern>/Admin_Staff_load</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Staff_update</servlet-name>
+        <url-pattern>/Admin_Staff_update</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -234,6 +234,31 @@ public class UserDAO extends DBContext {
         }
         return false;
     }
+        public boolean addStaff(String fullname, String mail, String password, Date dob, String address, String phoneNum, String iden) {
+        try {
+            int temp = getLastId() + 1;
+            String strSQL = "INSERT INTO Users (user_id, user_fullname, user_mail, user_password, user_dob, user_address, user_phoneNum, user_iden, user_img, user_role, user_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setInt(1, temp);
+            pstm.setString(2, fullname);
+            pstm.setString(3, mail);
+            pstm.setString(4, password);
+            java.sql.Date sqlDate = new java.sql.Date(dob.getTime());
+            pstm.setDate(5, (sqlDate));
+            pstm.setString(6, address);
+            pstm.setString(7, phoneNum);
+            pstm.setString(8, iden);
+            pstm.setString(9, "");
+            pstm.setString(10, "staff");
+            pstm.setString(11, "Verified");
+            pstm.execute();
+            return true;
+//                System.out.println("Add user successful");
+        } catch (Exception e) {
+            System.out.println("addStaff: " + e.getMessage());
+        }
+        return false;
+    }
 
     public int getLastId() {
         int lastId;
@@ -319,6 +344,41 @@ public class UserDAO extends DBContext {
 
         }
 
+    }
+    public void updateStaff( String user_fullname, String user_mail,
+             String user_dob, String user_address,
+            String user_phoneNum, String user_iden,int id) {
+        String sql = "UPDATE [dbo].[Users]\n"
+                + "   SET \n"
+                + "       [user_fullname] = ?\n"
+                + "      ,[user_mail] = ?\n"
+                + "      ,[user_dob] = ?\n"
+                + "      ,[user_address] =?\n"
+                + "      ,[user_phoneNum] =?\n"
+                + "      ,[user_iden] = ?\n"
+                + "      \n"
+                + " WHERE user_id = " +id;
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, user_fullname);
+            st.setString(2, user_mail);
+            st.setString(3, user_dob);
+            st.setString(4, user_address);
+            st.setString(5, user_phoneNum);
+            st.setString(6, user_iden);
+
+            
+            st.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("getALLUser: " + e.getMessage());
+        }
+
+    }
+    public static void main(String[] args) {
+        UserDAO ud = new UserDAO();
+        ud.updateStaff("Đoàn Thành Chung", "chungdthe176077@fpt.edu.vn", "2003-12-06", "Ninh Binh", "0123456789","111111111111", 1);
     }
 
     public ArrayList<User> getALLUser() {
@@ -504,14 +564,7 @@ public class UserDAO extends DBContext {
         }
     }
 //=============================TEST==========================
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-//        ArrayList<User> list = dao.getALLUser();
-//        System.out.println(list);
-        User u = dao.dislayFullInfo(6);
-        System.out.println(u.toString());
 
-    }
 
     public boolean changeForgetPassword(String inputLogin, String newPass) {
         try {
@@ -619,18 +672,6 @@ public ArrayList<User> searchStaffByName(String txtsearch) {
             System.out.println("deleteStaff:" + e);
         }
 
-    }
-
-    public void addStaff(String id) {
-        String strSQL = " update users set user_role = 'staff' where user_id = ?";
-        try {
-            PreparedStatement pstm = connection.prepareStatement(strSQL);
-            pstm.setString(1, id);
-            pstm.executeQuery();
-
-        } catch (SQLException e) {
-            System.out.println("addStaff:" + e);
-        }
     }
 
     public List<User> getListbyPage(List<User> list, int start, int end) {
