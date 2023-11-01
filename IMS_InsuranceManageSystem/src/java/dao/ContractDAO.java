@@ -21,7 +21,9 @@ import model.User;
  *
  * @author chun
  */
+
 public class ContractDAO extends DBContext {
+
 
     public ArrayList<NewC> getAllContractOfUser(int id) {
         try {
@@ -31,6 +33,7 @@ public class ContractDAO extends DBContext {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+
 
 
 
@@ -51,6 +54,7 @@ public class ContractDAO extends DBContext {
 
 
 
+
             }
             return list;
         } catch (SQLException ex) {
@@ -58,6 +62,7 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
+
 
     public static void main(String[] args) {
         ContractDAO cd = new ContractDAO();
@@ -123,5 +128,6 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
+
 
 }

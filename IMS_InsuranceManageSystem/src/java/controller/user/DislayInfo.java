@@ -66,7 +66,7 @@ public class DislayInfo extends HttpServlet {
 //        User user = dao.dislayInfo(user1.getUser_id());
         User user1 = dao.dislayFullInfo(user12.getUser_id());
         User user = dao.dislayFullInfo(user1.getUser_id());
-
+        System.out.println(user1.getUser_dob());
         
        response.setContentType("application/json");
        PrintWriter out = response.getWriter();
