@@ -235,6 +235,23 @@ public class UserDAO extends DBContext {
         }
         return null;
     }
+    //chung: display full info
+    public User dislayFullInfo(int user_id) {
+        String sql = "select * from Users where user_id = " + user_id;
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                User us = new User(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7),
+                        rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11), rs.getString(12));
+                return us;
+            }
+        } catch (Exception E) {
+
+        }
+        return null;
+    }
 
     public void updateUser(int user_id, String user_fullname, String user_mail,
             String user_password, java.sql.Date user_dob, String user_address,
@@ -446,11 +463,13 @@ public class UserDAO extends DBContext {
 
         }
     }
-
+//=============================TEST==========================
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        ArrayList<User> list = dao.getALLUser();
-        System.out.println(list);
+//        ArrayList<User> list = dao.getALLUser();
+//        System.out.println(list);
+        User u = dao.dislayFullInfo(6);
+        System.out.println(u.toString());
 
     }
 
@@ -554,10 +573,12 @@ public class UserDAO extends DBContext {
             return arr;
         }
 
+
+
         
     }
         
-    
+
     
 
 
