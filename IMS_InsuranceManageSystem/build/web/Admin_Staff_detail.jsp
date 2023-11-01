@@ -71,7 +71,7 @@
                                                 <th>Địa chỉ</th>
                                                 <th>Số điện thoại</th>
                                                 <th>CCCD</th>
-                                                <th>Ảnh</th>
+                                                <th>Ảnh CCCD</th>
                                             </tr>
                                         </thead>
                                         <tbody>

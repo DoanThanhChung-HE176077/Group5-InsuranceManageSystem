@@ -96,7 +96,7 @@
                                         <a href="admin_Users_list" class="my-btn btn btn-primary" style="margin-left: 200px;background-color: #076233">Quay lại</a>
                                         <a href="admin_Staff_add" class="my-btn btn btn-primary" style="background-color: #24262b">Thêm nhân viên</a>
                                     
-                                    <form action="admin_Users_search" method="post" class="form-inline my-2 my-lg-0">
+                                    <form action="Admin_Staff_search" method="post" class="form-inline my-2 my-lg-0">
                                         <div class="input-group input-group-sm">
                                             <input value ="${txtname}" name="txtname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                                         <div class="input-group-append">
