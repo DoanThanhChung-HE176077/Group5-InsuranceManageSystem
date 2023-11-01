@@ -138,10 +138,8 @@ public class Register extends HttpServlet {
             //input date
             SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
             
-            
-            // Tạo một đối tượng SimpleDateFormat
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             Date dateOfBirth = null;
             try {
@@ -163,7 +161,8 @@ public class Register extends HttpServlet {
             User u = new User();
             UserDAO uD = new UserDAO();
 
-            uD.addUser(fullname, mail, password, dateOfBirth, address, phoneNum, iden);
+            String status = "Unverified";
+            uD.addUser(fullname, mail, password, dateOfBirth, address, phoneNum, iden, status);
 
             response.sendRedirect("login");
         }

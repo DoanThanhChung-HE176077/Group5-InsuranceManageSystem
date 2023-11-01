@@ -5,7 +5,6 @@
 
 package controller.user;
 
-import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,15 +12,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.User;
-import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author Dell
+ * @author chun
  */
-@WebServlet(name="Info_user", urlPatterns={"/DislayInfo"})
-public class DislayInfo extends HttpServlet {
+@WebServlet(name="UserChangeEmail", urlPatterns={"/UserChangeEmail"})
+public class UserChangeEmail extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +35,10 @@ public class DislayInfo extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Info_user</title>");  
+            out.println("<title>Servlet UserChangeEmail</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Info_user at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet UserChangeEmail at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,34 +55,8 @@ public class DislayInfo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        UserDAO dao = new UserDAO();
-        HttpSession session = request.getSession();
         
-        User user12 = (User) session.getAttribute("user");
-//        User user1 = dao.dislayInfo(user12.getUser_id());
-//        User user = dao.dislayInfo(user1.getUser_id());
-        User user1 = dao.dislayFullInfo(user12.getUser_id());
-        User user = dao.dislayFullInfo(user1.getUser_id());
-        System.out.println(user1.getUser_dob());
-        
-       response.setContentType("application/json");
-       PrintWriter out = response.getWriter();
-        out.println("{"
-        + "\"user_id\": \"" + user1.getUser_id() + "\", "
-        + "\"user_fullname\": \"" + user1.getUser_fullName() + "\", "
-        + "\"user_email\": \"" + user1.getUser_email() + "\", "
-        + "\"user_password\": \"" + user1.getUser_password() + "\", "
-        + "\"user_dob\": \"" + user1.getUser_dob() + "\", "
-        + "\"user_address\": \"" + user1.getUser_address() + "\", "
-        + "\"user_phoneNum\": \"" + user1.getUser_phoneNum() + "\", "
-        + "\"user_iden\": \"" + user1.getUser_iden() + "\", "
-        + "\"user_image\": \"" + user1.getUser_image() + "\", "
-        + "\"user_image\": \"" + user1.getUser_image() + "\", "
-        + "\"user_iden_img\": \"" + user1.getUser_iden_img() + "\", "
-        + "\"user_status\": \"" + user1.getStatus()+ "\"}"
-);
-
-
+        response.sendRedirect("User_Change_Mail.jsp");
     } 
 
     /** 

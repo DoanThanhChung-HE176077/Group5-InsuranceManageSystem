@@ -21,7 +21,9 @@ import model.User;
  *
  * @author chun
  */
+
 public class ContractDAO extends DBContext {
+
 
     public ArrayList<NewC> getAllContractOfUser(int id) {
         try {
@@ -31,6 +33,7 @@ public class ContractDAO extends DBContext {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+
 
 
 
@@ -46,10 +49,11 @@ public class ContractDAO extends DBContext {
                 String user_fullname = rs.getString(10);
                 String ip_name = rs.getString(11);
 
-                
+                list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
                 NewC contract = new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status);
 
-                list.add(contract);
+
+
 
             }
             return list;
@@ -58,6 +62,7 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
+
 
     public static void main(String[] args) {
         ContractDAO cd = new ContractDAO();
@@ -123,5 +128,6 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
+
 
 }

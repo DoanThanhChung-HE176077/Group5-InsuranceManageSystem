@@ -29,7 +29,7 @@ public class Contract {
 
 
 
-   SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     public Contract(int contract_id, int user_id, Date contract_startDate, Date contract_endDate, int ip_id, int fvc_id, int ftnds_id, int total_price, String contract_status) {
         this.contract_id = contract_id;
         this.user_id = user_id;
@@ -42,6 +42,16 @@ public class Contract {
         this.contract_status = contract_status;
     }
 
+    public Contract(int user_id, Date contract_startDate, Date contract_endDate, int ip_id, int fvc_id, int ftnds_id, int total_price) {
+        this.user_id = user_id;
+        this.contract_startDate = contract_startDate;
+        this.contract_endDate = contract_endDate;
+        this.ip_id = ip_id;
+        this.fvc_id = fvc_id;
+        this.ftnds_id = ftnds_id;
+        this.total_price = total_price;
+    }
+    
     public Contract(int user_id, Date contract_startDate, Date contract_endDate, int ip_id, int ftnds_id, int total_price) {
         this.user_id = user_id;
         this.contract_startDate = contract_startDate;
@@ -51,8 +61,6 @@ public class Contract {
         this.ftnds_id = ftnds_id;
         this.total_price = total_price;
     }
-
-
 
     public int getContract_id() {
         return contract_id;

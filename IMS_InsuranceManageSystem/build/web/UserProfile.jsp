@@ -135,6 +135,8 @@
                                 <div style="margin-top:267px">
                                     <div id="btn-changePassword"></div>
                                     <br>
+                                    <div id="btn-changeGmail"></div>
+                                    <br>
                                     <c:if test="${sessionScope.user.getUser_iden_img() == null}">
                                         <div id="btn_xacMinhTK"></div>
                                     </c:if>
@@ -165,7 +167,11 @@
                                 document.getElementById("user_fullname2").value = data1.user_fullname;
                                 document.getElementById("user_email2").value = data1.user_email;
                                 document.getElementById("user_password2").value = data1.user_password;
-                                document.getElementById("user_dob2").value = data1.user_dob;
+                                
+                                var dobParts = data1.user_dob.split('/');
+                                var formattedDob = dobParts[2] + '-' + dobParts[0] + '-' + dobParts[1];
+                                document.getElementById("user_dob2").value = formattedDob;
+                                
                                 document.getElementById("user_address2").value = data1.user_address;
                                 document.getElementById("user_phoneNum2").value = data1.user_phoneNum;
                                 document.getElementById("user_iden2").value = data1.user_iden;
@@ -187,7 +193,7 @@
                     function editInfo() {
                         var inputs = document.querySelectorAll('.form-info input');
                         for (var i = 0; i < inputs.length; i++) {
-                            if (inputs[i].id !== 'user_status') {
+                            if (inputs[i].id !== 'user_status' && inputs[i].id !== 'user_email2') {
                                 inputs[i].removeAttribute('readonly'); // Xóa thuộc tính readOnly
                             }
                         }
@@ -203,17 +209,27 @@
                         btn_changePassword.innerHTML = '<button  onclick="changePassword()" class="btn btn-primary">Thay đổi mật khẩu</button>';
                         btn_Back.innerHTML = '<button onclick="goBackToUserProfile()" class="btn btn-secondary">Trở lại</button>';
                         btn_xacMinhTK.innerHTML  = '<button  onclick="xacMinhTK()" class="btn btn-success">Xác minh tài khoản</button>';
+                        
+                        let btn_changeGmail = document.getElementById('btn-changeGmail');
+                        btn_changeGmail.innerHTML = '<button  onclick="changeMail()" class="btn btn-primary">Thay đổi Gmail</button>'
                     }
+                    
+                    //change gmail
+                    function changeMail() {
+                        window.location.href = "User_Change_Mail.jsp";
+                        return false; 
+                    }
+                    
+                    //back button
                     function goBackToUserProfile() {
                         window.location.href = "UserProfile.jsp";
+                        return false; 
                     }
-
-
 
                     //Đổi password
                     function changePassword() {
                         window.location.href = 'ChangePassword.jsp';
-                        return false; // Ngăn chặn sự kiện mặc định của nút hoặc form
+                        // Ngăn chặn sự kiện mặc định của nút hoặc form
                     }
 
 

@@ -50,7 +50,7 @@
                                     </div>
                                     <div>
                                         <span>Số máy</span>
-                                        <input class="form-control" type="text" name="soMay" >
+                                        <input required="" class="form-control" type="text" name="soMay" >
                                     </div>
                                     <span style="color: hsl(29, 57%, 54%);">Bắt buộc cần nhập số biển kiểm soát</span>                        
                                 </div>
@@ -61,7 +61,7 @@
                                     </div>                            
                                     <div>
                                         <span>Số khung</span>
-                                        <input class="form-control" type="text" name="soKhung">
+                                        <input required="" class="form-control" type="text" name="soKhung">
                                     </div>
                                 </div>
                             </div>
