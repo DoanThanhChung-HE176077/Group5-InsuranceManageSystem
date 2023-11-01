@@ -5,6 +5,7 @@
 package dao;
 
 import static dao.DBContext.connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -26,18 +27,19 @@ public class ContractDAO {
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                list.add(new Contract(rs.getString(1),
-                        rs.getString(2),
-                        rs.getDate(3),
-                        rs.getDate(4),
-                        rs.getInt(5),
-                        rs.getInt(6),
-                        rs.getInt(7),
-                        rs.getString(8),
-                        rs.getString(9),
-                        rs.getString(10),
-                        rs.getString(11)
-                ));
+                int contractId = rs.getInt(1);
+                int userId = rs.getInt(2);
+                Date contractStartDate = rs.getDate(3);
+                Date contractEndDate = rs.getDate(4);
+                int ipId = rs.getInt(5);
+                int fvcId = rs.getInt(6);
+                int ftndsId = rs.getInt(7);
+                int totalPrice = rs.getInt(8);
+                String contractStatus = rs.getString(9);
+
+                Contract contract = new Contract(contractId, userId, contractStartDate, contractEndDate, ipId, fvcId, ftndsId, totalPrice, contractStatus);
+
+                list.add(contract);
             }
         } catch (Exception e) {
             System.out.println("getAllContractOfUser: " + e.getMessage());
