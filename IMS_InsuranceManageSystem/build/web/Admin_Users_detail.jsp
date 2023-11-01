@@ -76,8 +76,7 @@
                                                 <th>Địa chỉ</th>
                                                 <th>Số điện thoại</th>
                                                 <th>CCCD</th>
-                                                <th>Ảnh</th>
-                                                <th>Vai trò</th>
+                                                <th>Ảnh CCCD</th>
                                                 <th>Trạng thái</th>
                                             </tr>
                                         </thead>
@@ -85,20 +84,24 @@
                                             <!-- Example row, you can use a loop to generate rows dynamically -->
 
                                             <tr>
-                                            <td>${detail.user_fullName}</td>
+                                                <td>${detail.user_fullName}</td>
                                             <td>${detail.user_email}</td>
                                             <td>${detail.user_dob}</td>
                                             <td>${detail.user_address}</td>
                                             <td>${detail.user_phoneNum}</td>
                                             <td>${detail.user_iden}</td>
-                                            <td> <img src="${detail.user_image}" width="60px" height="60px"> </td>
-                                            <td>${detail.user_role}</td>
+                                            <td> <img src="${detail.user_iden_img}" width="60px" height="60px"> </td>
                                             <td>${detail.status}</td>
                                         </tr>
 
                                         <!-- Repeat rows for each blog post -->
                                     </tbody>
                                 </table>
+                                <c:if test="${detail.status eq 'Chưa xác minh'}">
+                                    <div style="text-align: center;">
+                                        <a href="Admin_Users_verify?id=${detail.getUser_id()}" class="my-btn btn btn-primary">Xác minh người dùng</a>
+                                    </div>
+                                </c:if>
 
                             </div>
 

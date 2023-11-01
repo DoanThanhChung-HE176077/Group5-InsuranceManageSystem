@@ -60,7 +60,6 @@ public class HandleFormVatChat extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 
-        
         FormDAO dao = new FormDAO();
         ArrayList<Models> listModels =  dao.getVatChatModels();
         ArrayList<Brands> listBrands = dao.getVatChatBrands();

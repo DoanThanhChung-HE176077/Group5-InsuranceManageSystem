@@ -35,7 +35,7 @@ public class Admin_Users_list extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         UserDAO ud = new UserDAO();
-        ArrayList<User> list = ud.getALLUser();
+        ArrayList<User> list = ud.getUser();
         int page, numberpage=5;
         int size = list.size();
         int num = (size%5==0?(size/5):((size/5))+1);

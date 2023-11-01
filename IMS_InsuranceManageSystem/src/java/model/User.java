@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -27,7 +28,7 @@ public class User {
      String status;
      
     
-
+SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     public User() {
     }
 
@@ -108,95 +109,17 @@ public class User {
     }
 
     public String getStatus() {
-        if(status.equals("Verified"))
-                return "Đã xác minh";
-        else
-        return "Chưa xác minh";
+        if(status.equals("Verified")){
+            return "Đã xác minh";
+        }else {
+            return "Chưa xác minh";
+        }
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
     
-    
-    
-
-
-//
-//    public int getUser_id() {
-//        return user_id;
-//    }
-//
-//    public String getUser_fullname() {
-//        return user_fullname;
-//    }
-//
-//    public String getUser_mail() {
-//        return user_mail;
-//    }
-//
-//    public String getUser_password() {
-//        return user_password;
-//    }
-//
-//    public String getUser_address() {
-//        return user_address;
-//    }
-//
-//    public String getUser_phoneNum() {
-//        return user_phoneNum;
-//    }
-//
-//    public String getUser_iden() {
-//        return user_iden;
-//    }
-//
-//    public String getUser_role() {
-//        return user_role;
-//    }
-//
-//    public Date getUser_dob() {
-//        return user_dob;
-//    }
-//
-//    public void setUser_id(int user_id) {
-//        this.user_id = user_id;
-//    }
-//
-//    public void setUser_fullname(String user_fullname) {
-//        this.user_fullname = user_fullname;
-//    }
-//
-//    public void setUser_mail(String user_mail) {
-//        this.user_mail = user_mail;
-//    }
-//
-//    public void setUser_password(String user_password) {
-//        this.user_password = user_password;
-//    }
-//
-//    public void setUser_address(String user_address) {
-//        this.user_address = user_address;
-//    }
-//
-//    public void setUser_phoneNum(String user_phoneNum) {
-//        this.user_phoneNum = user_phoneNum;
-//    }
-//
-//    public void setUser_iden(String user_iden) {
-//        this.user_iden = user_iden;
-//    }
-//
-//    public void setUser_role(String user_role) {
-//        System.out.println("thong tin: "+user_role);
-//        this.user_role = user_role;
-//    }
-//
-//    public void setUser_dob(Date user_dob) {
-//        this.user_dob = user_dob;
-//    }
-//    
-
     public int getUser_id() {
         return user_id;
     }
@@ -213,8 +136,8 @@ public class User {
         return user_password;
     }
 
-    public Date getUser_dob() {
-        return user_dob;
+    public String getUser_dob() {
+        return  dateFormat.format(user_dob);
     }
 
     public String getUser_address() {
@@ -240,6 +163,11 @@ public class User {
             return "Khách hàng";
         else
             return "Admin";
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "user_id=" + user_id + ", user_fullName=" + user_fullName + ", user_email=" + user_email + ", user_password=" + user_password + ", user_dob=" + user_dob + ", user_address=" + user_address + ", user_phoneNum=" + user_phoneNum + ", user_iden=" + user_iden + ", user_image=" + user_image + ", user_role=" + user_role + ", user_iden_img=" + user_iden_img + ", status=" + getStatus() + '}';
     }
 
 

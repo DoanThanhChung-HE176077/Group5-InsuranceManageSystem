@@ -100,6 +100,18 @@
         <servlet-name>Admin_Staff_uprole</servlet-name>
         <servlet-class>controller.admin.Admin_Staff_uprole</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_Users_verify</servlet-name>
+        <servlet-class>controller.admin.Admin_Users_verify</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_Staff_search</servlet-name>
+        <servlet-class>controller.admin.Admin_Staff_search</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_Contract_list</servlet-name>
+        <servlet-class>controller.admin.Admin_Contract_list</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -191,6 +203,18 @@
     <servlet-mapping>
         <servlet-name>Admin_Staff_uprole</servlet-name>
         <url-pattern>/Admin_Staff_uprole</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Users_verify</servlet-name>
+        <url-pattern>/Admin_Users_verify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Staff_search</servlet-name>
+        <url-pattern>/Admin_Staff_search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Contract_list</servlet-name>
+        <url-pattern>/Admin_Contract_list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

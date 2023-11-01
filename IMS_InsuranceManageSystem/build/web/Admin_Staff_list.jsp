@@ -55,7 +55,7 @@
 
 .current-page {
     background-color: #333; /* Màu nền của trang hiện tại khi được chọn */
-    color: #fff; /* Màu chữ của trang hiện tại khi được chọn */
+    color: #fff !important; /* Màu chữ của trang hiện tại khi được chọn */
     
 }
 
@@ -96,9 +96,9 @@
                                         <a href="admin_Users_list" class="my-btn btn btn-primary" style="margin-left: 200px;background-color: #076233">Quay lại</a>
                                         <a href="admin_Staff_add" class="my-btn btn btn-primary" style="background-color: #24262b">Thêm nhân viên</a>
                                     
-                                    <form action="admin_Users_search" method="post" class="form-inline my-2 my-lg-0">
+                                    <form action="Admin_Staff_search" method="post" class="form-inline my-2 my-lg-0">
                                         <div class="input-group input-group-sm">
-                                            <input value ="${txtname}" name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                                            <input value ="${txtname}" name="txtname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-secondary btn-number">
                                                 <i class="fa fa-search"></i>

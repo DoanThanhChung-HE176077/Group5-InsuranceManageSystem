@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Contract;
+import model.NewC;
 
 /**
  *
@@ -39,7 +40,7 @@ public class Admin_Users_detail extends HttpServlet {
         ContractDAO c = new ContractDAO();
         User detail = u.getDetailUser(id);
         request.setAttribute("detail", detail);
-        ArrayList<Contract> list1 = c.getAllContractOfUser(id);
+        ArrayList<NewC> list1 = c.getAllContractOfUser(id);
         request.setAttribute("listC", list1);
         request.getRequestDispatcher("Admin_Users_detail.jsp").forward(request, response);
     } 

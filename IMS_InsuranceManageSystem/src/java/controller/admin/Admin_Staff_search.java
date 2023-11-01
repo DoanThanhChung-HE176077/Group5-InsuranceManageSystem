@@ -5,21 +5,24 @@
 
 package controller.admin;
 
+import dao.BlogDAO;
 import dao.UserDAO;
-import model.User;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import model.NewBl;
+import model.User;
 
 /**
  *
  * @author ADMIN
  */
-public class Admin_Users_search extends HttpServlet {
+public class Admin_Staff_search extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -31,9 +34,10 @@ public class Admin_Users_search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtname = request.getParameter("txtname");
+         String txtname = request.getParameter("txtname");
         UserDAO ud = new UserDAO();
-        ArrayList<User> list = ud.searchUserByName(txtname);
+        BlogDAO bd = new BlogDAO();
+        ArrayList<User> list = ud.searchStaffByName(txtname);
         int page, numberpage=5;
         int size = list.size();
         int num = (size%5==0?(size/5):((size/5))+1);
@@ -54,7 +58,9 @@ public class Admin_Users_search extends HttpServlet {
         ArrayList<User> list1 = ud.getNewUser();
         request.setAttribute("listNU", list1);
         request.setAttribute("txtname", txtname);
-        request.getRequestDispatcher("Admin_Users_search.jsp").forward(request,response);
+        ArrayList<NewBl> list2 = bd.getNewBlogsWithUserName();
+        request.setAttribute("listNB", list2);
+        request.getRequestDispatcher("Admin_Staff_search.jsp").forward(request,response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -88,6 +94,9 @@ public class Admin_Users_search extends HttpServlet {
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */
-
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.sql.Date;
 import model.Blog_tag;
 import model.Blog_type;
 import model.Blogs;
@@ -11,6 +12,9 @@ import model.NewBl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +24,7 @@ import java.util.logging.Logger;
  * @author chun
  */
 public class BlogDAO extends DBContext {
+SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Định dạng ngày tháng năm
 
     //count view
     public boolean countView (int bl_idInput) {
@@ -67,6 +72,7 @@ public class BlogDAO extends DBContext {
 
     //get top 5 blog hving view cao
     public ArrayList<Blogs> getTop5Blogs() {
+        
         try {
             ArrayList<Blogs> getTop5Blogs = new ArrayList<>();
             String sql = "select top 5 * from Blogs order by bl_view desc";
@@ -80,12 +86,16 @@ public class BlogDAO extends DBContext {
                 String bl_img = rs.getString(5);
                 int user_id = rs.getInt(6);
                 String bl_creationdate = rs.getString(7);
+                java.sql.Date sqlDate = java.sql.Date.valueOf(bl_creationdate);
+                java.util.Date utilDate = new java.util.Date(sqlDate.getTime());
+                String formattedCreationDate = dateFormat.format(utilDate); // Định dạng lại thành chuỗi ngày tháng năm
                 String bl_type_name = rs.getString(8);
                 String bl_tag_tagname = rs.getString(9);
                 int bl_view = rs.getInt(10);
                 String bl_status = rs.getString(11);
                 
-                getTop5Blogs.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_view, bl_status));
+                // dinh dang date              
+                    getTop5Blogs.add(new Blogs(bl_id, bl_title, bl_content, bl_like, bl_img, user_id, formattedCreationDate, bl_type_name, bl_tag_tagname, bl_view, bl_status));
 
             }
             return getTop5Blogs;
@@ -114,6 +124,8 @@ public class BlogDAO extends DBContext {
                 String bl_status = rs.getString(11);
                 String username = rs.getString(12);
 
+                
+                
                 getBlogs.add(new  NewBl(username, bl_id, bl_title, bl_content, bl_like, bl_img, user_id, bl_creationdate, bl_type_name, bl_tag_tagname, bl_like, bl_status));
 
             }
@@ -384,11 +396,13 @@ public class BlogDAO extends DBContext {
 
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
-        if (dao.countView(1)) {
-            System.out.println("count ok");
-        } else {
-            System.out.println("ko on");
-        }
+//        if (dao.countView(1)) {
+//            System.out.println("count ok");
+//        } else {
+//            System.out.println("ko on");
+//        }
+        ArrayList<NewBl> list = dao.getNewBlogsWithUserNamebyID(1);
+        System.out.println(list);
     }
 
 }
