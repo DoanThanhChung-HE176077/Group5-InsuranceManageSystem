@@ -33,6 +33,7 @@ public class ContractDAO extends DBContext {
             while (rs.next()) {
 
 
+
                 int contract_id = rs.getInt(1);
                 int user_id = rs.getInt(2);
                 Date contract_startDate = rs.getDate(3);
@@ -47,6 +48,8 @@ public class ContractDAO extends DBContext {
 
                 list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
                 NewC contract = new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status);
+
+                Contract contract = new Contract(contractId, userId, contractStartDate, contractEndDate, ipId, fvcId, ftndsId, totalPrice, contractStatus);
                 list.add(contract);
 
             }
