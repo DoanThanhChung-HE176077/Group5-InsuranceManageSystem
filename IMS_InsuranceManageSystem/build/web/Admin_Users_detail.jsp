@@ -77,7 +77,6 @@
                                                 <th>Số điện thoại</th>
                                                 <th>CCCD</th>
                                                 <th>Ảnh CCCD</th>
-                                                <th>Vai trò</th>
                                                 <th>Trạng thái</th>
                                             </tr>
                                         </thead>
@@ -92,7 +91,6 @@
                                             <td>${detail.user_phoneNum}</td>
                                             <td>${detail.user_iden}</td>
                                             <td> <img src="${detail.user_iden_img}" width="60px" height="60px"> </td>
-                                            <td>${detail.user_role}</td>
                                             <td>${detail.status}</td>
                                         </tr>
 

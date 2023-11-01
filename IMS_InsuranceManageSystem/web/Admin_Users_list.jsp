@@ -116,7 +116,6 @@
                                             <th>Địa chỉ</th>
                                             <th>Số điện thoại</th>
                                             <th>Ảnh</th>
-                                            <th>Vai trò</th>
                                             <th>Trạng thái</th>
                                         </tr>
                                     </thead>
@@ -129,7 +128,6 @@
                                                 <td>${o.getUser_address()}</td>
                                                 <td>${o.getUser_phoneNum()}</td>
                                                 <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
-                                                <td>${o.getUser_role()}</td>
                                                 <td>${o.getStatus()}</td>
                                                 <td>
                                                     <a href="admin_Users_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>

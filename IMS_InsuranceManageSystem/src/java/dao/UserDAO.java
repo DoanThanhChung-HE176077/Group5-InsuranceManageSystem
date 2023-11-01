@@ -554,10 +554,10 @@ public class UserDAO extends DBContext {
         return false;
     }
 
-    public ArrayList<User> searchByName(String txtsearch) {
+    public ArrayList<User> searchUserByName(String txtsearch) {
         ArrayList<User> list = new ArrayList<>();
         String strSQL = "select * from Users\n"
-                + "where [user_fullname] like ? and (user_role='customer' or user_role='staff')";
+                + "where [user_fullname] like ? and (user_role='customer')";
         try {
 
             PreparedStatement pstm = connection.prepareStatement(strSQL);
@@ -573,13 +573,41 @@ public class UserDAO extends DBContext {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10)));
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12)));
             }
         } catch (Exception e) {
         }
         return list;
     }
+public ArrayList<User> searchStaffByName(String txtsearch) {
+        ArrayList<User> list = new ArrayList<>();
+        String strSQL = "select * from Users\n"
+                + "where [user_fullname] like ? and (user_role='staff')";
+        try {
 
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, "%" + txtsearch + "%");
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                list.add(new User(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
     public void deleteStaff(String id) {
         String strSQL = " update users set user_role = 'customer' where user_id = ?";
         try {
