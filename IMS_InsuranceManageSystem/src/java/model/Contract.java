@@ -13,20 +13,22 @@ import java.sql.Date;
  * @author chun
  */
 public class Contract {
-    String contract_id;
-    String user_id;
-    Date contract_startDate;
-    Date contract_endDate;
-    int ip_id;
-    int fvc_id;
-    int ftnds_id;
-    String total_price;
-    String contract_status;
-    String user_fullname;
-    String ip_name;
+   private int contract_id;
+   private int user_id;
+   private Date contract_startDate;
+  private  Date contract_endDate;
+  private  int ip_id;
+  private  int fvc_id;
+  private  int ftnds_id;
+  private  int total_price;
+  private  String contract_status;
+ 
+
     public Contract() {
     }
-    public Contract(String contract_id, String user_id, Date contract_startDate, Date contract_endDate, int ip_id, int fvc_id, int ftnds_id, String total_price, String contract_status,String user_fullname,String ip_name) {
+
+   
+    public Contract(int contract_id, int user_id, Date contract_startDate, Date contract_endDate, int ip_id, int fvc_id, int ftnds_id, int total_price, String contract_status) {
         this.contract_id = contract_id;
         this.user_id = user_id;
         this.contract_startDate = contract_startDate;
@@ -36,39 +38,32 @@ public class Contract {
         this.ftnds_id = ftnds_id;
         this.total_price = total_price;
         this.contract_status = contract_status;
-        this.user_fullname = user_fullname;
-        this.ip_name = ip_name;
     }
 
-    public String getUser_fullname() {
-        return user_fullname;
+    public Contract(int user_id, Date contract_startDate, Date contract_endDate, int ip_id, int ftnds_id, int total_price) {
+        this.user_id = user_id;
+        this.contract_startDate = contract_startDate;
+        this.contract_endDate = contract_endDate;
+        this.ip_id = ip_id;
+     
+        this.ftnds_id = ftnds_id;
+        this.total_price = total_price;
     }
+    
 
-    public void setUser_fullname(String user_fullname) {
-        this.user_fullname = user_fullname;
-    }
-
-    public String getIp_name() {
-        return ip_name;
-    }
-
-    public void setIp_name(String ip_name) {
-        this.ip_name = ip_name;
-    }
-
-    public String getContract_id() {
+    public int getContract_id() {
         return contract_id;
     }
 
-    public void setContract_id(String contract_id) {
+    public void setContract_id(int contract_id) {
         this.contract_id = contract_id;
     }
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
@@ -112,11 +107,11 @@ public class Contract {
         this.ftnds_id = ftnds_id;
     }
 
-    public String getTotal_price() {
+    public int getTotal_price() {
         return total_price;
     }
 
-    public void setTotal_price(String total_price) {
+    public void setTotal_price(int total_price) {
         this.total_price = total_price;
     }
 
@@ -127,10 +122,7 @@ public class Contract {
     public void setContract_status(String contract_status) {
         this.contract_status = contract_status;
     }
-    
-    public static void main(String[] args) {
-        
-    }
-    
+
+   
     
 }

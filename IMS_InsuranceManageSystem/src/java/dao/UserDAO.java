@@ -67,59 +67,57 @@ public class UserDAO extends DBContext {
             return "An error occurred during login.";
         }
     }
-    
+
     public boolean checkIdenExist(String iden) {
         try {
             String strSQL = "SELECT * FROM Users WHERE user_iden = ?";
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             pstm.setString(1, iden);
             ResultSet rs = pstm.executeQuery();
-            
+
             while (rs.next()) {
                 return true;
             }
         } catch (Exception e) {
             System.out.println("checkIdenExist: " + e.getMessage());
         }
-        
+
         return false;
     }
-    
+
     public boolean checkPhoneExist(String phonenumb) {
         try {
             String strSQL = "SELECT * FROM Users WHERE user_phoneNum = ?";
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             pstm.setString(1, phonenumb);
             ResultSet rs = pstm.executeQuery();
-            
+
             while (rs.next()) {
                 return true;
             }
         } catch (Exception e) {
             System.out.println("checkPhoneExist: " + e.getMessage());
         }
-        
+
         return false;
     }
-    
+
     public boolean checkEmailExist(String email) {
         try {
             String strSQL = "SELECT * FROM Users WHERE user_mail = ?";
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             pstm.setString(1, email);
             ResultSet rs = pstm.executeQuery();
-            
+
             while (rs.next()) {
                 return true;
             }
         } catch (Exception e) {
             System.out.println("checkEmailExist: " + e.getMessage());
         }
-        
+
         return false;
     }
-    
-    
 
     public String checkInfo(String input) {
         // Kiểm tra xem input có phải là email không
@@ -304,7 +302,9 @@ public class UserDAO extends DBContext {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10)
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12)
                 ));
             }
         } catch (Exception e) {
@@ -312,6 +312,7 @@ public class UserDAO extends DBContext {
         }
         return list;
     }
+
     public ArrayList<User> getUser() {
         ArrayList<User> list = new ArrayList<>();
 
@@ -339,6 +340,7 @@ public class UserDAO extends DBContext {
         }
         return list;
     }
+
     public User getDetailUser(int user_id) {
         String sql = "select * from Users where user_id = " + user_id;
         try {
@@ -365,6 +367,7 @@ public class UserDAO extends DBContext {
         }
         return null;
     }
+
     public ArrayList<User> getNewUser() {
         ArrayList<User> list = new ArrayList<>();
 
@@ -420,6 +423,7 @@ public class UserDAO extends DBContext {
         }
         return list;
     }
+
     public ArrayList<User> getNewStaff() {
         ArrayList<User> list = new ArrayList<>();
 
@@ -514,14 +518,14 @@ public class UserDAO extends DBContext {
         return false;
     }
 
-    public List<User> searchByName(String txtsearch) {
-        List<User> list = new ArrayList<>();
+    public ArrayList<User> searchByName(String txtsearch) {
+        ArrayList<User> list = new ArrayList<>();
         String strSQL = "select * from Users\n"
                 + "where [user_fullname] like ? and (user_role='customer' or user_role='staff')";
         try {
-            
-            PreparedStatement pstm = connection.prepareStatement(strSQL);  
-            pstm.setString(1,"%"+txtsearch+"%");
+
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, "%" + txtsearch + "%");
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 list.add(new User(rs.getInt(1),
@@ -533,50 +537,62 @@ public class UserDAO extends DBContext {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
-                        rs.getString(10),
-                        rs.getString(11),
-                        rs.getString(12)));
+                        rs.getString(10)));
             }
         } catch (Exception e) {
         }
         return list;
     }
+
     public void deleteStaff(String id) {
         String strSQL = " update users set user_role = 'customer' where user_id = ?";
         try {
-            PreparedStatement pstm = connection.prepareStatement(strSQL);  
-            pstm.setString(1,id);
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, id);
             pstm.executeQuery();
-            
+
         } catch (SQLException e) {
             System.out.println("deleteStaff:" + e);
         }
 
-        
     }
+
     public void addStaff(String id) {
         String strSQL = " update users set user_role = 'staff' where user_id = ?";
         try {
-            PreparedStatement pstm = connection.prepareStatement(strSQL);  
-            pstm.setString(1,id);
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, id);
             pstm.executeQuery();
-            
+
         } catch (SQLException e) {
             System.out.println("addStaff:" + e);
         }
     }
-        public List<User> getListbyPage(List <User> list, int start, int end){
-            ArrayList <User> arr = new ArrayList<>();
-            for (int i = start;i<end;i++){
-                arr.add(list.get(i));
-            }
-            return arr;
+
+    public List<User> getListbyPage(List<User> list, int start, int end) {
+        ArrayList<User> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
+
+    public void verifyUser(String id) {
+        String strSQL = " update users set user_status = 'Verified' where user_id = ?";
+        try {
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, id);
+            pstm.executeQuery();
+
+        } catch (SQLException e) {
+            System.out.println("verifyUser:" + e);
         }
 
 
 
         
     }
+}
         
 
     

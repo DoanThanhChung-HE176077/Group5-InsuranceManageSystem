@@ -38,16 +38,17 @@
             <div class="i_table">
               <div class="info" style="font-size: 17px; ">
                 <p>Họ tên khách hàng: ${requestScope.user.user_fullName}</p>
-                <fmt:formatDate value="${requestScope.obj.startDate}" pattern="dd/MM/yyyy" var="formattedStartDate" />
-                <p>Thời gian bắt đầu: ${formattedStartDate}</p>
-                <fmt:formatDate value="${requestScope.obj.endDate}" pattern="dd/MM/yyyy" var="formattedEndDate" />
-                <p>Thời gian kết thúc:  ${formattedEndDate}</p>
-                <p>Loại xe:  ${requestScope.obj.loaiXe}</p>
-                <p>Biển xe: ${requestScope.obj.bienXe}</p>
-                <p>Số máy: ${requestScope.obj.soMay}</p>
-                <p>Số khung: ${requestScope.obj.soKhung}</p>
-                <p>Mức chịu trách nhiệm:${requestScope.obj.mucTrachNhiem}</p>
-                <p>Số người:${requestScope.obj.soNguoi}</p>
+               
+                    <p>Thời gian bắt đầu: ${requestScope.obj.startDate}</p>
+               
+                <p>Thời gian kết thúc:  ${requestScope.obj.endDate}</p>
+                <p>Hãng xe:  ${requestScope.hangXe}</p>
+                <p>Hiệu xe: ${requestScope.hieuXe}</p>
+                <p>Biển xe: ${requestScope.obj.fvc_deviceNum}</p>
+                <p>Số máy: ${requestScope.obj.fvc_deviceChassisNum}</p>
+                <p>Số khung: ${requestScope.obj.fvc_licensePlates}</p>
+                <p>Gói bảo hiểm cơ bản:${requestScope.pk}</p>
+                <p>Mức khấu trừ:${requestScope.deduct}</p>
               </div>
              
             <div class="i_table_foot">
@@ -70,10 +71,10 @@
                 <div class="i_row grand_total_wrap">
                   <div style="width: 70%;">
                   </div>
-                  <fmt:formatNumber value="${requestScope.obj.tongChiPhi}" pattern="#,##0" var="formattedTongChiPhi" />
+               
                   <div style ="border: none; border-radius: 5px; margin-left: 30%;" class="i_col w_50">
                     <p style="font-size: 15px;"><span>Tổng phí: </span>
-                      <span>${formattedTongChiPhi}</span>
+                      <span>${requestScope.bill_total}</span>
                     </p>
                   </div>
                   

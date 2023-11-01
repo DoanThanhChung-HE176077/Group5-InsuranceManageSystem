@@ -16,5 +16,5 @@ public class Bill {
     String bill_user ;
     String bill_content ;
     String bill_creationDate ;
-    
+    int contract_id;
 }

@@ -166,6 +166,7 @@ public class SaveInfoTNDS extends HttpServlet {
             vnp_TxnRef = Config.generateRandomStringTNDS();
             //#L1+.....
         }
+        
         String vnp_IpAddr = Config.getIpAddress(request);
         String vnp_TmnCode = Config.vnp_TmnCode;
         
@@ -193,6 +194,7 @@ public class SaveInfoTNDS extends HttpServlet {
         }
         //vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
         vnp_Params.put("vnp_ReturnUrl", "http://localhost:9999/IMS_InsuranceManageSystem/HandleBill?ip_id=" + ip_id);
+        
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
@@ -235,6 +237,7 @@ public class SaveInfoTNDS extends HttpServlet {
         job.addProperty("code", "00");
         job.addProperty("message", "success");
         job.addProperty("data", paymentUrl);
+       System.out.println(vnp_TxnRef);
         Gson gson = new Gson();
         response.getWriter().write(gson.toJson(job));
         
