@@ -38,7 +38,6 @@ public class ContractDAO {
                 String contractStatus = rs.getString(9);
 
                 Contract contract = new Contract(contractId, userId, contractStartDate, contractEndDate, ipId, fvcId, ftndsId, totalPrice, contractStatus);
-
                 list.add(contract);
             }
         } catch (Exception e) {
