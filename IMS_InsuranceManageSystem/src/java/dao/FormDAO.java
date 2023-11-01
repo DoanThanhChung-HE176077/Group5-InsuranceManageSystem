@@ -400,6 +400,31 @@ public class FormDAO extends DBContext {
         }
 
     }
+         public void insertContractVatChat(Contract c) {
+        String sql = " INSERT INTO [Contract] \n" +
+"                ([contract_id],[user_id], [contract_startDate], [contract_endDate], [ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status])\n" +
+"                 VALUES \n" +
+"                   (((SELECT MAX(contract_id) AS max_contract_id\n" +
+"                FROM[Contract])+1),?, ?, ?, ?, ?,null, ?, 'Pending')";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+
+            st.setInt(1, c.getUser_id());
+            st.setDate(2, c.getContract_startDate());
+
+            st.setDate(3, c.getContract_endDate());
+            st.setInt(4, c.getIp_id());
+            st.setInt(5, c.getFvc_id());
+            
+            st.setInt(6, c.getTotal_price());
+
+            st.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println("Errol");
+        }
+
+    }
     //get branch by id
     public Brands getBranchById(int id){
         String sql = " select * from Brands where brand_id = ?";
@@ -440,7 +465,7 @@ public class FormDAO extends DBContext {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             if(rs.next()){
-                return new Package_Type(rs.getInt(1),rs.getInt(2));
+                return new Package_Type(rs.getInt(1),rs.getFloat(2));
             }
            
         }catch(Exception E){
@@ -455,7 +480,7 @@ public class FormDAO extends DBContext {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             if(rs.next()){
-                return new Deductible_Level(rs.getInt(1),rs.getInt(2));
+                return new Deductible_Level(rs.getInt(1),rs.getFloat(2));
             }
            
         }catch(Exception E){
@@ -467,9 +492,7 @@ public class FormDAO extends DBContext {
 
     public static void main(String[] args) {
         FormDAO dao = new FormDAO();
-        Form_Vatchat x = dao.getForm_VatChat();
-        System.out.println(dao.getModelById(x.getModel_id()).getModel_name());
-      
+     
 
 //        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
 //        for (Deductible_Level deductible_Level : de) {
