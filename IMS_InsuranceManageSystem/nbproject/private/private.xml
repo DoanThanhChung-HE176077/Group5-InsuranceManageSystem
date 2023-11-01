@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Github%20Local%20Store/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/DBContext.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/UserDAO.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/user/UserChangeEmail.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/home/Register.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/User_Change_Mail.jsp</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/HandleFormVatChat.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/User.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/UserProfile.jsp</file>
         </group>
     </open-files>
 </project-private>
