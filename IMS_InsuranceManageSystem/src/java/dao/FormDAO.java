@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -410,9 +411,9 @@ public class FormDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
 
             st.setInt(1, c.getUser_id());
-            st.setDate(2, c.getContract_startDate());
+            st.setString(2, c.getContract_startDate());
 
-            st.setDate(3, c.getContract_endDate());
+            st.setString(3, c.getContract_endDate());
             st.setInt(4, c.getIp_id());
             st.setInt(5, c.getFvc_id());
             
@@ -492,7 +493,7 @@ public class FormDAO extends DBContext {
 
     public static void main(String[] args) {
         FormDAO dao = new FormDAO();
-     
+         dao.insertContractVatChat(new Contract(1, Date.valueOf("2004-04-04"),Date.valueOf("2005-05-05") , 1, 1, 1, 1));
 
 //        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
 //        for (Deductible_Level deductible_Level : de) {

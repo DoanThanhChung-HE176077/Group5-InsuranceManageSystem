@@ -306,7 +306,7 @@
                         var carModelsDropdown = document.getElementById("motorBrandModel");
                         carModelsDropdown.innerHTML = "<option value=''>Lựa chọn loại xe</option>"; // Clear the current options
                         // Use JSTL to loop through the listModels attribute
-                        <c: forEach items="${listModels}" var="model">
+                        <c:forEach items="${listModels}" var="model">
                             if (${model.getBrand_id()} == selectedBrandId) {
                     var option = document.createElement("option");
                             option.value = "${model.getModel_price()}";
@@ -314,7 +314,7 @@
                             option.innerText = "${model.getModel_name()} thuoc: ${model.getBrand_id()}";
                             carModelsDropdown.appendChild(option);
                 }
-                        </c: forEach>
+                        </c:forEach>
                         document.getElementById("motorBrandModel-price").value = "";
                     }
                     //=====================update id send-model_id follow by model.getModel_id()
