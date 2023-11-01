@@ -172,6 +172,42 @@ public class UserDAO extends DBContext {
         }
         return null;
     }
+    
+    //get full user 
+    public User getUsers1(String userlogin, String password) {
+        try {
+            String strSQL = null;
+            if (checkInfo(userlogin) == "email") {
+                strSQL = "SELECT * FROM Users WHERE user_mail = ? AND user_password = ?";
+            } else if (checkInfo(userlogin) == "phone") {
+                strSQL = "SELECT * FROM Users WHERE user_phoneNum = ? AND user_password = ?";
+            }
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, userlogin);
+            pstm.setString(2, password);
+            ResultSet rs = pstm.executeQuery();
+            if (rs.next()) {
+                // Đăng nhập thành công
+                User u = new User();
+                u.setUser_id(rs.getInt(1));
+                u.setUser_fullName(rs.getString(2));
+                u.setUser_email(rs.getString(3));
+                u.setUser_password(rs.getString(4));
+                u.setUser_dob(rs.getDate(5));
+                u.setUser_address(rs.getString(6));
+                u.setUser_phoneNum(rs.getString(7));
+                u.setUser_iden(rs.getString(8));
+                u.setUser_image(rs.getString(9));
+                u.setUser_role(rs.getString(10));
+                u.setUser_iden_img(rs.getString(11));
+                u.setStatus(rs.getString(12));
+                return u;
+            }
+        } catch (Exception e) {
+            System.out.println("checkLogin: " + e.getMessage());
+        }
+        return null;
+    }
 
     //register method
     public boolean addUser(String fullname, String mail, String password, Date dob, String address, String phoneNum, String iden) {
@@ -573,7 +609,7 @@ public ArrayList<User> searchStaffByName(String txtsearch) {
         return list;
     }
     public void deleteStaff(String id) {
-        String strSQL = " update users set user_role = 'customer' where user_id = ?";
+        String strSQL = " delete from users where user_id = ?";
         try {
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             pstm.setString(1, id);

@@ -1,6 +1,7 @@
 <%-- Document : UserProfile Created on : Oct 17, 2023, 12:06:37 AM Author : Dell --%>
 
-    <%@page contentType="text/html" pageEncoding="UTF-8" %>
+        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <%@page contentType="text/html" pageEncoding="UTF-8" %>
         <%@ page import="model.User" %>
             <!DOCTYPE html>
             <html>
@@ -41,8 +42,10 @@
                                     <img id="profileImage" class="rounded-circle mt-5 myimg" width="150px" src="">
                                 </div>
                                 <!-- Image thumbnail -->
-                                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                                    <img id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal">
+                                <!--tk xac nhan-->
+                            <c:if test="${sessionScope.user.getUser_iden_img() == null}">
+                                <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
+                                    <img id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" hidden="">
                                 </div>
                                 <!-- Modal -->
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -60,6 +63,30 @@
                                         </div>
                                     </div>
                                 </div>
+                            </c:if>
+                                
+                            <c:if test="${sessionScope.user.getUser_iden_img() != null}">
+                                <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
+                                    <img id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" >
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">Full Image</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img id="idenImageModal" class="img-fluid " src="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
+                             
                             </div>
                             <div class="col-md-5 border-right">
                                 <div class="p-3 py-5">
@@ -108,7 +135,9 @@
                                 <div style="margin-top:267px">
                                     <div id="btn-changePassword"></div>
                                     <br>
-                                    <div id="btn-xacMinhTK"></div>
+                                    <c:if test="${sessionScope.user.getUser_iden_img() == null}">
+                                        <div id="btn_xacMinhTK"></div>
+                                    </c:if>
                                 </div>
                             </div>
 
@@ -169,7 +198,7 @@
                         let btn_changePassword = document.getElementById('btn-changePassword');
                         let btn_sentRequest = document.getElementById('btn-sentRequest');
                         let btn_Back = document.getElementById('btn-back');
-                        let btn_xacMinhTK = document.getElementById('btn-xacMinhTK');
+                        let btn_xacMinhTK = document.getElementById('btn_xacMinhTK');
                         btn_Save.innerHTML = '<button type="submit" onclick="saveInfo()" class="btn btn-success">Lưu</button>';
                         btn_changePassword.innerHTML = '<button  onclick="changePassword()" class="btn btn-primary">Thay đổi mật khẩu</button>';
                         btn_Back.innerHTML = '<button onclick="goBackToUserProfile()" class="btn btn-secondary">Trở lại</button>';
@@ -182,9 +211,7 @@
 
 
                     //Đổi password
-
                     function changePassword() {
-                        window.alert('hello');
                         window.location.href = 'ChangePassword.jsp';
                         return false; // Ngăn chặn sự kiện mặc định của nút hoặc form
                     }
@@ -247,26 +274,7 @@
                     }
                     
                     
-                  document.addEventListener("DOMContentLoaded", function() {
-                    // Get the user status input element
-                    const userStatusInput = document.getElementById("user_status");
 
-                    // Get the div to show/hide
-                    const btnXacMinhTKDiv = document.getElementById("btn-xacMinhTK");
-
-                    // Add an event listener to the input element
-                    userStatusInput.addEventListener("input", function() {
-                      // Check if the value of the input is "Chưa xác minh"
-                      if (userStatusInput.value == "Chưa xác minh") {
-                        // Show the other div
-                        btnXacMinhTKDiv.style.display = "block";
-                        console.log(userStatusInput.value.trim() );
-                      } else if(userStatusInput.value=="Đã xác minh") {
-                        // Hide the other div
-                        btnXacMinhTKDiv.style.display = "none";
-                      }
-                    });
-                  });
                 </script>
             </body>
 

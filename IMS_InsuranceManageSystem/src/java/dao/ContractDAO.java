@@ -8,42 +8,118 @@ import static dao.DBContext.connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Contract;
+import model.NewBl;
+import model.NewC;
 import model.User;
-
-
 
 /**
  *
  * @author chun
  */
-public class ContractDAO {
-    public ArrayList<Contract> getAllContractOfUser(int id) {
-        ArrayList<Contract> list = new ArrayList<>();
+public class ContractDAO extends DBContext {
 
+    public ArrayList<NewC> getAllContractOfUser(int id) {
         try {
-            String strSQL = "  select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where u.user_id=" +id ;
-            PreparedStatement pstm = connection.prepareStatement(strSQL);
-            ResultSet rs = pstm.executeQuery();
+            ArrayList<NewC> list = new ArrayList<>();
+            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where u.user_id =?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int contractId = rs.getInt(1);
-                int userId = rs.getInt(2);
-                Date contractStartDate = rs.getDate(3);
-                Date contractEndDate = rs.getDate(4);
-                int ipId = rs.getInt(5);
-                int fvcId = rs.getInt(6);
-                int ftndsId = rs.getInt(7);
-                int totalPrice = rs.getInt(8);
-                String contractStatus = rs.getString(9);
 
-                Contract contract = new Contract(contractId, userId, contractStartDate, contractEndDate, ipId, fvcId, ftndsId, totalPrice, contractStatus);
 
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                String user_fullname = rs.getString(10);
+                String ip_name = rs.getString(11);
+
+                list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+                NewC contract = new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status);
                 list.add(contract);
+
             }
-        } catch (Exception e) {
-            System.out.println("getAllContractOfUser: " + e.getMessage());
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return list;
+        return null;
     }
+
+    public static void main(String[] args) {
+        ContractDAO cd = new ContractDAO();
+        ArrayList<NewC> list = cd.getAllContractOfUser(1);
+        System.out.println(list);
+    }
+    public ArrayList<NewC> getAllContract() {
+        try {
+            ArrayList<NewC> list = new ArrayList<>();
+            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                String user_fullname = rs.getString(10);
+                String ip_name = rs.getString(11);
+
+                list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public ArrayList<NewC> getNewContract() {
+        try {
+            ArrayList<NewC> list = new ArrayList<>();
+            String sql = "	select top 3 [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id order by contract_id desc";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                String user_fullname = rs.getString(10);
+                String ip_name = rs.getString(11);
+
+                list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

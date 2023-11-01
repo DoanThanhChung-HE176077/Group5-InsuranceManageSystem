@@ -98,18 +98,14 @@
                                             <div>
                                                 <span>Phí</span>
                                                 <div class="row">
-
                                                     <div class="col-md-6">
-
                                                         <input name="lv-fee"  class="form-control" type="text" id="lv-fee" placeholder="" readonly>
-
                                                     </div>
                                                     <div class="col-md-6">
                                                         <input name="tax-fee" class="form-control" type="text" id="tax-fee" placeholder="" readonly>
-
-
                                                     </div>
-                                                </div>                                    </div>
+                                                </div>                                   
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div>
@@ -119,8 +115,6 @@
                                                         <option value="${c}">${c}</option>
                                                     </c:forEach>
                                                 </select>
-
-
                                             </div>                            
                                             <div>
                                                 <span>Tổng phí</span>
@@ -144,26 +138,17 @@
                                             <input id="user_email2" class="form-control" type="email"" readonly="">
                                         </div>
                                         <div class="col-md-6">
-
-                                            <span>Số mobile</span>
+                                            <span>Số điện thoại</span>
                                             <input id="user_phoneNum2" class="form-control" type="number" readonly >
                                             <span>Ngày sinh</span>
                                             <input id="user_dob2" class="form-control" type="date" readonly>
-
-
-
-
-
                                             <span>Địa chỉ</span>
                                             <input id="user_address2" class="form-control" type="text" readonly >
-
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                     <div class="col-md-4 ">
                         <div class="payment">
@@ -177,9 +162,16 @@
                                 <span>Tổng phí</span>
                                 <h6 id="b" style="float: right;"></h6>
                             </div>
-                            <button type="submit" class="btn ">Thanh toán</button>
+                            <c:if test="${sessionScope.user.user_role.equals('Khách hàng') }">
+                                <button type="submit" class="btn ">Thanh toán</button>
+                            </c:if>
+                            <c:if test="${sessionScope.user.user_role.equals('Admin') }">
+                                
+                            </c:if>
+                            <c:if test="${sessionScope.user.user_role.equals('Nhân viên') }">
+                                
+                            </c:if>
                         </div>
-
                     </div>
                 </div>
             </div>
