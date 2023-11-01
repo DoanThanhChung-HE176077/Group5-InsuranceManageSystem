@@ -609,7 +609,7 @@ public ArrayList<User> searchStaffByName(String txtsearch) {
         return list;
     }
     public void deleteStaff(String id) {
-        String strSQL = " update users set user_role = 'customer' where user_id = ?";
+        String strSQL = " delete from users where user_id = ?";
         try {
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             pstm.setString(1, id);

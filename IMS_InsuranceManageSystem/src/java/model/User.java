@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -27,7 +28,7 @@ public class User {
      String status;
      
     
-
+SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     public User() {
     }
 
@@ -135,8 +136,8 @@ public class User {
         return user_password;
     }
 
-    public Date getUser_dob() {
-        return user_dob;
+    public String getUser_dob() {
+        return  dateFormat.format(user_dob);
     }
 
     public String getUser_address() {

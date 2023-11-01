@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author chun
@@ -16,7 +19,7 @@ public class Blogs {
     int bl_like;
     String bl_img;
     int user_id;
-    String bl_creationdate;
+    Date bl_creationdate;
     String  bl_type_name ;
     String bl_tag_tagname;
     int bl_view;
@@ -24,8 +27,8 @@ public class Blogs {
 
     public Blogs() {
     }
-
-    public Blogs(int bl_id, String bl_title, String bl_content, int bl_like, String bl_img, int user_id, String bl_creationdate, String bl_type_name, String bl_tag_tagname, int bl_view, String bl_status) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    public Blogs(int bl_id, String bl_title, String bl_content, int bl_like, String bl_img, int user_id, Date bl_creationdate, String bl_type_name, String bl_tag_tagname, int bl_view, String bl_status) {
         this.bl_id = bl_id;
         this.bl_title = bl_title;
         this.bl_content = bl_content;
@@ -88,10 +91,11 @@ public class Blogs {
     }
 
     public String getBl_creationdate() {
-        return bl_creationdate;
+        
+        return dateFormat.format(bl_creationdate);
     }
 
-    public void setBl_creationdate(String bl_creationdate) {
+    public void setBl_creationdate(Date bl_creationdate) {
         this.bl_creationdate = bl_creationdate;
     }
 

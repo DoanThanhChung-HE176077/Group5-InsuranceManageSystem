@@ -6,8 +6,7 @@
 package controller.admin;
 
 import dao.ContractDAO;
-import dao.UserDAO;
-import model.User;
+import dao.IPDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,14 +14,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.Contract;
+import model.InsuranceProduct;
 import model.NewC;
 
 /**
  *
  * @author ADMIN
  */
-public class Admin_Users_detail extends HttpServlet {
+public class Admin_Contract_list extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,15 +33,12 @@ public class Admin_Users_detail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       int id = Integer.parseInt(request.getParameter("id"));
-                
-        UserDAO  u = new UserDAO();
-        ContractDAO c = new ContractDAO();
-        User detail = u.getDetailUser(id);
-        request.setAttribute("detail", detail);
-        ArrayList<NewC> list1 = c.getAllContractOfUser(id);
-        request.setAttribute("listC", list1);
-        request.getRequestDispatcher("Admin_Users_detail.jsp").forward(request, response);
+        ContractDAO cd = new ContractDAO();
+        ArrayList<NewC> list = cd.getAllContract();
+        request.setAttribute("listC", list);
+        ArrayList<NewC> listNew = cd.getNewContract();
+        request.setAttribute("listNC", listNew);
+        request.getRequestDispatcher("Admin_Contract_list.jsp").forward(request, response);
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -56,29 +56,36 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-6">
-                                    <h2 style="display: inline-block;">Danh sách sản phẩm bảo hiểm</h2>
+                                <div class="my-column1 col-md-8">
+                                    <h2 style="display: inline-block;">Danh sách hợp đồng</h2>
                                     <!--                                    go to blog page-->
 
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
+                                                <th>Khách hàng</th>
                                                 <th>Tên sản phẩm</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Ngày kết thúc</th>
+                                                <th>Thanh toán</th>
+                                                <th>Trạng thái</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <!-- Example row, you can use a loop to generate rows dynamically -->
-                                        <c:forEach items="${listIP}" var="o">
+                                        <c:forEach items="${listC}" var="o">
                                             <tr>
 
-                                                <td>${o.getIp_id()}</td>
+                                                <td>${o.getUser_fullname()}</td>
                                                 <td>${o.getIp_name()}</td>
-
+                                                <td>${o.getContract_startDate()}</td>
+                                                <td>${o.getContract_endDate()}</td>
+                                                <td>${o.getTotal_price()}d</td>
+                                                <td>${o.getContract_status()}</td>
                                                 <td>
                                                     <!-- Edit Button -->
-                                                    <a href="admin_IP_detail?ip_id=${o.getIp_id()} " class="my-btn btn btn-primary">Chi tiết</a>
+                                                    <a href="admin_Contract_detail?contract_id=${o.getContract_id()} " class="my-btn btn btn-primary">Chi tiết</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>    
@@ -89,31 +96,30 @@
                             </div>
 
                             <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-6">
-                                <h2 style="display: inline-block;">Doanh Thu</h2>
+                            <div class="my-column1 col-md-4">
+                                <h2 style="display: inline-block;">Hợp đồng mới</h2><!--
                                 <!-- togler -->
 
                                 <!-- Edit History Table -->
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>Khách hàng</th>
                                             <th>Tên sản phẩm</th>
-                                            <th>Doanh thu</th>
+                                            <th>Ngày bắt đầu</th>
+                                            <th>Ngày kết thúc</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
-                                        <tr>
-                                            <td>1</td>
-                                            <td>TNDS</td>
-                                            <td>1000000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Vatchat</td>
-                                            <td>500000</td>
-                                        </tr>
+                                        <c:forEach items="${listNC}" var="o">
+                                            <tr>
+                                                <td>${o.getUser_fullname()}</td>
+                                                <td>${o.getIp_name()}</td>
+                                                <td>${o.getContract_startDate()}</td>
+                                                <td>${o.getContract_endDate()}</td>
+                                            </tr>
+                                        </c:forEach>
 
                                         <!-- Repeat rows for each edit history entry -->
                                     </tbody>
@@ -134,8 +140,5 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    </body>
-</html>
-
     </body>
 </html>
