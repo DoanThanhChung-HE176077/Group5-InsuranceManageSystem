@@ -210,10 +210,10 @@ public class UserDAO extends DBContext {
     }
 
     //register method
-    public boolean addUser(String fullname, String mail, String password, Date dob, String address, String phoneNum, String iden) {
+    public boolean addUser(String fullname, String mail, String password, Date dob, String address, String phoneNum, String iden, String status) {
         try {
             int temp = getLastId() + 1;
-            String strSQL = "INSERT INTO Users (user_id, user_fullname, user_mail, user_password, user_dob, user_address, user_phoneNum, user_iden, user_img, user_role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String strSQL = "INSERT INTO Users (user_id, user_fullname, user_mail, user_password, user_dob, user_address, user_phoneNum, user_iden, user_img, user_role, user_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             pstm.setInt(1, temp);
             pstm.setString(2, fullname);
@@ -226,6 +226,7 @@ public class UserDAO extends DBContext {
             pstm.setString(8, iden);
             pstm.setString(9, "");
             pstm.setString(10, "customer");
+            pstm.setString(11, "Unverified");
             pstm.execute();
             return true;
 //                System.out.println("Add user successful");
