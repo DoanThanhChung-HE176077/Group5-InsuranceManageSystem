@@ -116,6 +116,10 @@
         <servlet-name>Admin_Staff_update</servlet-name>
         <servlet-class>controller.admin.Admin_Staff_update</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Staff_ContractRequest_list</servlet-name>
+        <servlet-class>controller.staff.Staff_ContractRequest_list</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -223,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>Admin_Staff_update</servlet-name>
         <url-pattern>/Admin_Staff_update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Staff_ContractRequest_list</servlet-name>
+        <url-pattern>/contract_request_list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
