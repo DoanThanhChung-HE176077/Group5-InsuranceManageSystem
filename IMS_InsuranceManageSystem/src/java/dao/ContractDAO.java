@@ -28,7 +28,7 @@ public class ContractDAO extends DBContext {
     public ArrayList<NewC> getAllContractOfUser(int id) {
         try {
             ArrayList<NewC> list = new ArrayList<>();
-            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where u.user_id =?";
+            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where u.user_id =? and (contract_status='Active' or contract_status='Reject' or contract_status='Expired' )";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -72,7 +72,7 @@ public class ContractDAO extends DBContext {
     public ArrayList<NewC> getAllContract() {
         try {
             ArrayList<NewC> list = new ArrayList<>();
-            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id ";
+            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where contract_status='Active' or contract_status='Reject' or contract_status='Expired' ";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -102,7 +102,12 @@ public class ContractDAO extends DBContext {
     public ArrayList<NewC> getNewContract() {
         try {
             ArrayList<NewC> list = new ArrayList<>();
-            String sql = "	select top 3 [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id order by contract_id desc";
+            String sql ="SELECT TOP 3 [contract_id], u.[user_id], contract_startDate, contract_endDate, ip.[ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status], user_fullname, ip_name\n" +
+"FROM [Contract] c\n" +
+"JOIN Users u ON c.user_id = u.user_id\n" +
+"JOIN Insurance_Products ip ON c.ip_id = ip.ip_id\n" +
+"WHERE contract_status IN ('Active', 'Reject', 'Expired')\n" +
+"ORDER BY contract_id DESC;";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

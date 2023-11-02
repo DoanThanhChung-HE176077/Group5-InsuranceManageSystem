@@ -386,9 +386,9 @@ public class FormDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
 
             st.setInt(1, c.getUser_id());
-            st.setString(2, c.getContract_startDate());
+            st.setDate(2, c.getContract_startDate());
 
-            st.setString(3, c.getContract_endDate());
+            st.setDate(3, c.getContract_endDate());
             st.setInt(4, c.getIp_id());
             st.setInt(5, c.getFtnds_id());
             
@@ -411,9 +411,9 @@ public class FormDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
 
             st.setInt(1, c.getUser_id());
-            st.setString(2, c.getContract_startDate());
+            st.setDate(2, c.getContract_startDate());
 
-            st.setString(3, c.getContract_endDate());
+            st.setDate(3, c.getContract_endDate());
             st.setInt(4, c.getIp_id());
             st.setInt(5, c.getFvc_id());
             

@@ -116,6 +116,14 @@
         <servlet-name>Admin_Staff_update</servlet-name>
         <servlet-class>controller.admin.Admin_Staff_update</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_Contract_detailTNDS</servlet-name>
+        <servlet-class>controller.admin.Admin_Contract_detailTNDS</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_Contract_detailVatchat</servlet-name>
+        <servlet-class>controller.admin.Admin_Contract_detailVatchat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -223,6 +231,14 @@
     <servlet-mapping>
         <servlet-name>Admin_Staff_update</servlet-name>
         <url-pattern>/Admin_Staff_update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Contract_detailTNDS</servlet-name>
+        <url-pattern>/Admin_Contract_detailTNDS</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Contract_detailVatchat</servlet-name>
+        <url-pattern>/Admin_Contract_detailVatchat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
