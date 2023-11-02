@@ -125,7 +125,7 @@
                                     <div class="modal-footer">
                                             <!-- Example split danger button -->
                                             <div class="btn-group" id="drop1" hidden>
-                                                <button type="button" class="btn btn-danger">Action</button>
+                                                <button type="button" class="btn btn-danger">Lựa chọn</button>
                                                 <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
@@ -140,25 +140,14 @@
                                             <button id="btn-edit1" type="button" onclick="editInfo()" class="btn btn-primary">Chỉnh sửa thông tin</button>
                                             <div id="btn-Save"></div>
                                             <div id="btn-back"></div>
-                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2 border-right">
-                                <div style="margin-top:267px">
-                                    <div id="btn-changePassword"></div>
-                                    <br>
-                                    <div id="btn-changeGmail"></div>
-                                    <br>
-                                    <c:if test="${sessionScope.user.getUser_iden_img() == null}">
-                                        <div id="btn_xacMinhTK"></div>
-                                    </c:if>
-                                </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
-
                 </form>
                 <script>
                     // <!--info user-->
@@ -221,24 +210,24 @@
                         let btn_edit = document.getElementById('btn-edit1');
                         btn_edit.style.display = 'none';
                         let btn_Save = document.getElementById('btn-Save');
-                        let btn_changePassword = document.getElementById('btn-changePassword');
+//                        let btn_changePassword = document.getElementById('btn-changePassword');
                         let btn_sentRequest = document.getElementById('btn-sentRequest');
                         let btn_Back = document.getElementById('btn-back');
-                        let btn_xacMinhTK = document.getElementById('btn_xacMinhTK');
+//                        let btn_xacMinhTK = document.getElementById('btn_xacMinhTK');
                         btn_Save.innerHTML = '<button type="submit" onclick="saveInfo()" class="btn btn-success">Lưu</button>';
-                        btn_changePassword.innerHTML = '<button  onclick="changePassword()" class="btn btn-primary">Thay đổi mật khẩu</button>';
+//                        btn_changePassword.innerHTML = '<button  onclick="changePassword()" class="btn btn-primary">Thay đổi mật khẩu</button>';
                         btn_Back.innerHTML = '<button onclick="goBackToUserProfile()" class="btn btn-secondary">Trở lại</button>';
-                        btn_xacMinhTK.innerHTML  = '<button  onclick="xacMinhTK()" class="btn btn-success">Xác minh tài khoản</button>';
+//                        btn_xacMinhTK.innerHTML  = '<button  onclick="xacMinhTK()" class="btn btn-success">Xác minh tài khoản</button>';
                         
-                        let btn_changeGmail = document.getElementById('btn-changeGmail');
-                        btn_changeGmail.innerHTML = '<button  onclick="changeMail()" class="btn btn-primary">Thay đổi Gmail</button>'
+//                        let btn_changeGmail = document.getElementById('btn-changeGmail');
+//                        btn_changeGmail.innerHTML = '<button  onclick="changeMail()" class="btn btn-primary">Thay đổi Gmail</button>'
                     }
                     
-                    //change gmail
-                    function changeMail() {
-                        window.location.href = "User_Change_Mail.jsp";
-                        return false; 
-                    }
+//                    //change gmail
+//                    function changeMail() {
+//                        window.location.href = "User_Change_Mail.jsp";
+//                        return false; 
+//                    }
                     
                     //back button
                     function goBackToUserProfile() {
@@ -246,11 +235,11 @@
                         return false; 
                     }
 
-                    //Đổi password
-                    function changePassword() {
-                        window.location.href = 'ChangePassword.jsp';
-                        // Ngăn chặn sự kiện mặc định của nút hoặc form
-                    }
+//                    //Đổi password
+//                    function changePassword() {
+//                        window.location.href = 'ChangePassword.jsp';
+//                        // Ngăn chặn sự kiện mặc định của nút hoặc form
+//                    }
 
 
 

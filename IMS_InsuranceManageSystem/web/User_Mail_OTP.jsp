@@ -56,6 +56,7 @@
                                         <input  type="text"class="form-control" placeholder="Email mới" id="user_email2" name="enterOTP" required="">
                                     </div>
                                 </div>
+                                <input type="text" value="${newMail}" hidden name="newMail"/>
                                 <div class="modal-footer">
                                     <button id="btn-edit1" type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
                                 </div>
