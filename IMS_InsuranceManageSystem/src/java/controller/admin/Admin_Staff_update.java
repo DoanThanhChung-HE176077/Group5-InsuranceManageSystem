@@ -5,7 +5,6 @@
 
 package controller.admin;
 
-import dao.BlogDAO;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,15 +12,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import model.NewBl;
-import model.User;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  *
  * @author ADMIN
  */
-public class Admin_Staff_uprole extends HttpServlet {
+public class Admin_Staff_update extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -32,11 +30,17 @@ public class Admin_Staff_uprole extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        UserDAO ud = new UserDAO();
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id");
-        UserDAO  u = new UserDAO();
-        u.addStaff(id);
-        request.getRequestDispatcher("admin_Staff_list").forward(request, response);
+        int id = Integer.parseInt(request.getParameter("id"));
+        String phoneNum = request.getParameter("input-phoneNum");
+        String mail = request.getParameter("input-mail");
+        String fullname = request.getParameter("input-fullname");
+        String dob = request.getParameter("input-dob");
+        String address = request.getParameter("input-address");
+        String iden = request.getParameter("input-iden");      
+        ud.updateStaff(fullname,mail,dob,address,phoneNum,iden,id);
+        response.sendRedirect("admin_Staff_list");
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

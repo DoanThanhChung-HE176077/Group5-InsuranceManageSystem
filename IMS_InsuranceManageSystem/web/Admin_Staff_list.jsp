@@ -94,7 +94,7 @@
                                     <!--                                    go to blog page-->
                                     
                                         <a href="admin_Users_list" class="my-btn btn btn-primary" style="margin-left: 200px;background-color: #076233">Quay lại</a>
-                                        <a href="admin_Staff_add" class="my-btn btn btn-primary" style="background-color: #24262b">Thêm nhân viên</a>
+                                        <a href="Admin_Staff_add.jsp" class="my-btn btn btn-primary" style="background-color: #24262b">Thêm nhân viên</a>
                                     
                                     <form action="Admin_Staff_search" method="post" class="form-inline my-2 my-lg-0">
                                         <div class="input-group input-group-sm">
@@ -132,7 +132,7 @@
                                                     <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
                                                 </td>
                                                 <td>
-                                                    <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: #B78181">Chỉnh sửa</a>
+                                                    <a href="Admin_Staff_load?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: #B78181">Chỉnh sửa</a>
                                                 </td>
                                                 <td>
                                                     <a href="Admin_Staff_delete?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: red">Xóa</a>
