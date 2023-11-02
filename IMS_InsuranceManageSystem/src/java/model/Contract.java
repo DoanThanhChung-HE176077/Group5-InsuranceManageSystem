@@ -82,6 +82,8 @@ public class Contract {
         return contract_startDate;
     }
 
+
+
     public void setContract_startDate(Date contract_startDate) {
         this.contract_startDate = contract_startDate;
     }
@@ -89,6 +91,8 @@ public class Contract {
     public Date getContract_endDate() {
         return contract_endDate;
     }
+
+
 
     public void setContract_endDate(Date contract_endDate) {
         this.contract_endDate = contract_endDate;

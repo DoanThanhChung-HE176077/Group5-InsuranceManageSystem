@@ -38,119 +38,37 @@
     </head>
     <body style="background-color: hsl(47,98%,58%);">
         <jsp:include page="Part/header.jsp"></jsp:include>
-            <form class="form-info" style="margin-top: 150px">
+            <form class="form-info" style="margin-top: 150px" method="POST" action="UserChangeEmail">
                 <div class="container  bg-white mt-5 mb-5" id="main-container">
                     <div class="row">
                         <div class="col-md-5 border-right">
                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                                 <img id="profileImage" class="rounded-circle mt-5 myimg" width="150px" src="">
                             </div>
-                            <!-- Image thumbnail -->
-                            <!--tk xac nhan-->
-                            <c:if test="${sessionScope.user.getUser_iden_img() == null}">
-                            <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
-                                <img id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" hidden="">
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="myModalLabel">Full Image</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <img id="idenImageModal" class="img-fluid " src="">
-                                        </div>
+                        </div>
+                        <div class="col-md-5 border-right">
+                            <div class="p-3 py-5">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-right">Thay đổi địa chỉ Mail</h4>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <label class="labels">Email cũ của bạn:</label>
+                                        <input value="${sessionScope.user.getUser_email()}" type="email"class="form-control" placeholder="Email cũ" id="user_email2" name="oldMail" readonly>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="labels">Nhập Email mới:</label>
+                                        <input  type="email"class="form-control" placeholder="Email mới" id="user_email2" name="newMail" required="">
                                     </div>
                                 </div>
-                            </div>
-                        </c:if>
-
-                        <c:if test="${sessionScope.user.getUser_iden_img() != null}">
-                            <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
-                                <img id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" >
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="myModalLabel">Full Image</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <img id="idenImageModal" class="img-fluid " src="">
-                                        </div>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button id="btn-edit1" type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
                                 </div>
-                            </div>
-                        </c:if>
-
-                    </div>
-                    <div class="col-md-5 border-right">
-                        <div class="p-3 py-5">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="text-right">Quản lý Profile</h4>
-                            </div>
-
-                            <div class="row ">
-                                <div class="col-md-12"> <input type="text" id="user_id2" class="form-control"
-                                                               placeholder="UserID" hidden></div>
-                                <div class="col-md-12"><label class="labels">Họ và tên:</label><input
-                                        type="text" class="form-control" id="user_fullname2"
-                                        placeholder="Fullname" readonly></div>
-                                <div class="col-md-12"><label class="labels">Email:</label><input type="email"
-                                                                                                  class="form-control" placeholder="Email" id="user_email2" readonly>
-                                </div>
-                                <input type="password" class="form-control" id="user_password2"
-                                       placeholder="Password" hidden>
-                                <div class="col-md-12"><label class="labels">Ngày sinh:</label> <input
-                                        type="date" class="form-control" id="user_dob2" name="dateInput"
-                                        readonly></div>
-                                <div class="col-md-12"><label class="labels">Địa chỉ: </label><input type="text"
-                                                                                                     class="form-control" id="user_address2" placeholder="Address" readonly>
-                                </div>
-                                <div class="col-md-12"><label class="labels">Số điện thoại:</label><input
-                                        type="number" class="form-control" id="user_phoneNum2"
-                                        placeholder="Phone Number" readonly></div>
-                                <div class="col-md-12"><label class="labels">Số CMTND/CCCD</label> <input
-                                        type="number" class="form-control" id="user_iden2"
-                                        placeholder="Identification" readonly></div>
-                                <div class="col-md-12"><label class="labels">Trạng thái tài khoản</label>
-                                    <input type="text" class="form-control" id="user_status" value="" readonly>
-                                </div>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button id="btn-edit1" type="button" onclick="editInfo()"
-                                        class="btn btn-primary">Chỉnh sửa thông tin</button>
-
-                                <div id="btn-Save"></div>
-                                <div id="btn-back"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 border-right">
-                        <div style="margin-top:267px">
-                            <div id="btn-changePassword"></div>
-                            <div id="btn-changeGmail"></div>
-                            <br>
-                            <c:if test="${sessionScope.user.getUser_iden_img() == null}">
-                                <div id="btn_xacMinhTK"></div>
-                            </c:if>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-
-        </form>
-
+            </form>
     </body>
 
 </html>

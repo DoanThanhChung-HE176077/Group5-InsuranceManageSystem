@@ -1,12 +1,10 @@
-package controller.home;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
+package controller.user;
 
-import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,16 +13,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.User;
 
 /**
  *
- * @author thant
+ * @author chun
  */
-@WebServlet(urlPatterns={"/login"})
-public class Login extends HttpServlet {
-    
-    
+@WebServlet(name="UserChangeEmailOTP", urlPatterns={"/UserChangeEmailOTP"})
+public class UserChageEmailOTP extends HttpServlet {
+   
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -40,10 +36,10 @@ public class Login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");  
+            out.println("<title>Servlet UserChageEmailOTP</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet UserChageEmailOTP at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,8 +56,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
-
+        processRequest(request, response);
     } 
 
     /** 
@@ -74,32 +69,30 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String userlogin = request.getParameter("input-login");
-        String password = request.getParameter("input-password");
+        
+        HttpSession sessionOTP = request.getSession();
+        String otp = (String) sessionOTP.getAttribute("otp");
+        // OTP session exists, check if the user-provided OTP matches
+        String userOTP = request.getParameter("enterOTP");
+        if (userOTP != null && userOTP.equals(otp)) {
+            // User provided correct OTP
+            // Display a success notification modal
+            request.setAttribute("successMessage", "Thay đổi email thành công.");
 
-        User u = new User();
-        UserDAO uD = new UserDAO();
-        
-        String msg = uD.checkLogin(userlogin, password);
-        System.out.println(msg);
-        request.setAttribute("msg", msg);
-        
-        HttpSession session = request.getSession();
-//        u = uD.getUsers(userlogin, password);
-        u = uD.getUsers1(userlogin, password);
-        session.setAttribute("user", u);
-        
-        
-        //sua ntn de co the show dc slick slider
-        if(msg.isEmpty() || msg.equals("Login successful!")){
-            response.sendRedirect("/IMS_InsuranceManageSystem/");
-        }else {
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            // Redirect the user to the home page
+            response.sendRedirect("/IMS_InsuranceManageSystem/UserProfile.jsp");
+
+            // Delete the OTP session
+            sessionOTP.removeAttribute("otp");
+            // update user email function();
+            
+            
+        } else {
+            // User provided incorrect OTP
+            // Handle this case, you can display an error message or 
+            
         }
         
-        
-        
-
     }
 
     /** 

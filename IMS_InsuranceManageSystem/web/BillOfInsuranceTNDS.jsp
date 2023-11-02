@@ -81,7 +81,7 @@
                 <div style="margin-top: 0;" class="i_row grand_total_wrap">
                   <div style="width: 71%;">
                   </div>
-                  <button  onclick="goToHome() style ="border: none; border-radius: 5px; width: 120px;" class="i_col  grand_total">
+                  <button  onclick="goToHome()" style ="border: none; border-radius: 5px; width: 120px;" class="i_col  grand_total">
                     <p style="font-size: 15px;"><span>Hoàn thành</span>
                       
                     </p>
@@ -111,6 +111,7 @@
       <script>
            function goToHome() {
         // Chuyển hướng về trang Home
+//        window.location.aler = 'thanh toan thanh cong'
         window.location.href = '/IMS_InsuranceManageSystem'; // Thay đổi '/path/to/home' bằng đường dẫn thực tế của trang Home
     }
     </script>

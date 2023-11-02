@@ -1,9 +1,8 @@
 <%-- 
-    Document   : User_Change_Mail
-    Created on : Nov 1, 2023, 10:43:49 PM
+    Document   : User_Mail_OTP
+    Created on : Nov 2, 2023, 1:44:59 AM
     Author     : chun
 --%>
-
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
@@ -38,7 +37,7 @@
     </head>
     <body style="background-color: hsl(47,98%,58%);">
         <jsp:include page="Part/header.jsp"></jsp:include>
-            <form class="form-info" style="margin-top: 150px" method="POST" action="UserChangeEmail">
+            <form class="form-info" style="margin-top: 150px" method="POST" action="UserChangeEmailOTP">
                 <div class="container  bg-white mt-5 mb-5" id="main-container">
                     <div class="row">
                         <div class="col-md-5 border-right">
@@ -49,16 +48,12 @@
                         <div class="col-md-5 border-right">
                             <div class="p-3 py-5">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="text-right">Thay đổi địa chỉ Mail</h4>
+                                    <h4 class="text-right">Xác nhận thay đổi</h4>
                                 </div>
                                 <div class="row ">
                                     <div class="col-md-12">
-                                        <label class="labels">Email cũ của bạn:</label>
-                                        <input value="${sessionScope.user.getUser_email()}" type="email"class="form-control" placeholder="Email cũ" id="user_email2" name="oldMail" readonly>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="labels">Nhập Email mới:</label>
-                                        <input  type="email"class="form-control" placeholder="Email mới" id="user_email2" name="newMail" required="">
+                                        <label class="labels">Nhập OTP</label>
+                                        <input  type="text"class="form-control" placeholder="Email mới" id="user_email2" name="enterOTP" required="">
                                     </div>
                                 </div>
                                 <div class="modal-footer">

@@ -45,7 +45,7 @@
                                 <!--tk xac nhan-->
                             <c:if test="${sessionScope.user.getUser_iden_img() == null}">
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
-                                    <img id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" hidden="">
+                                    <img id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" hidden>
                                 </div>
                                 <!-- Modal -->
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -123,11 +123,24 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button id="btn-edit1" type="button" onclick="editInfo()"
-                                            class="btn btn-primary">Chỉnh sửa thông tin</button>
-
-                                        <div id="btn-Save"></div>
-                                        <div id="btn-back"></div>
+                                            <!-- Example split danger button -->
+                                            <div class="btn-group" id="drop1" hidden>
+                                                <button type="button" class="btn btn-danger">Action</button>
+                                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu" >
+                                                    <c:if test="${sessionScope.user.getUser_iden_img() == null}">
+                                                        <a class="dropdown-item" href="#">Xác minh tài khoản</a>
+                                                    </c:if>
+                                                        <a class="dropdown-item" href="User_Change_Mail.jsp">Thay đổi Email</a>
+                                                        <a class="dropdown-item" href="ChangePassword.jsp">Thay đổi Mật khẩu</a>
+                                                </div>
+                                            </div>
+                                            <button id="btn-edit1" type="button" onclick="editInfo()" class="btn btn-primary">Chỉnh sửa thông tin</button>
+                                            <div id="btn-Save"></div>
+                                            <div id="btn-back"></div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -195,8 +208,15 @@
                         for (var i = 0; i < inputs.length; i++) {
                             if (inputs[i].id !== 'user_status' && inputs[i].id !== 'user_email2') {
                                 inputs[i].removeAttribute('readonly'); // Xóa thuộc tính readOnly
+                                
                             }
                         }
+                        // Remove the 'hidden' attribute from the element with ID 'drop1'
+                        var drop1 = document.getElementById('drop1');
+                        if (drop1) {
+                          drop1.removeAttribute('hidden');
+                        }
+
 
                         let btn_edit = document.getElementById('btn-edit1');
                         btn_edit.style.display = 'none';
