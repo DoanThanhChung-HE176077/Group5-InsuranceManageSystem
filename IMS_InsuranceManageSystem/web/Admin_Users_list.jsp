@@ -92,9 +92,11 @@
                                 <div class="my-column1 col-md-8">
                                     <h2 style="display: inline-block;">Danh sách người dùng</h2>
                                     <!--                                    go to blog page-->
+                                <c:if test="${sessionScope.user.user_role.equals('Admin')}">
                                     <button class="btn btn-success mb-3 " style="margin-left: 200px" >
                                         <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Danh sách nhân viên</a>
                                     </button>
+                                    </c:if>
                                     <form action="admin_Users_search" method="post" class="form-inline my-2 my-lg-0">
                                         <div class="input-group input-group-sm">
                                             <input value ="${txtname}" name="txtname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">

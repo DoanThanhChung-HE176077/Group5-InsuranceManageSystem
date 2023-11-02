@@ -62,34 +62,37 @@
                                     </button>
 
                                     <!-- Blog Post Table -->
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Họ Tên</th>
-                                                <th>Email</th>
-                                                <th>Ngày sinh</th>
-                                                <th>Địa chỉ</th>
-                                                <th>Số điện thoại</th>
-                                                <th>CCCD</th>
-                                                <th>Ảnh CCCD</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Example row, you can use a loop to generate rows dynamically -->
-
-                                            <tr>
-                                                <td>${detail.user_fullName}</td>
-                                                <td>${detail.user_email}</td>
-                                                <td>${detail.user_dob}</td>
-                                                <td>${detail.user_address}</td>
-                                                <td>${detail.user_phoneNum}</td>
-                                                <td>${detail.user_iden}</td>
-                                                <td> <img src="${detail.user_image}" width="60px" height="60px"> </td>
-                                        </tr>
-
-                                        <!-- Repeat rows for each blog post -->
-                                    </tbody>
-                                </table>
+                                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="detail-label">Họ Tên:</span>
+                                <span>${detail.user_fullName}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Email:</span>
+                                <span>${detail.user_email}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Ngày sinh:</span>
+                                <span>${detail.user_dob}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Địa chỉ:</span>
+                                <span>${detail.user_address}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Số điện thoại:</span>
+                                <span>${detail.user_phoneNum}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">CCCD:</span>
+                                <span>${detail.user_iden}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Ảnh CCCD:</span>
+                                <img src="${detail.user_iden_img}" width="60px" height="60px">
+                            </li>
+                            
+                        </ul>
 
                             </div>
 

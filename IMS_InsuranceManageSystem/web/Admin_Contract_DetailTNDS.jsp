@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Admin_blog_dashboard
-    Created on : Oct 2, 2023, 7:46:10 PM
-    Author     : chun
---%>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -44,7 +40,13 @@
             <!--sidebar-->
         <jsp:include page="Part/sidebar_vip.jsp"></jsp:include>
 
+
+
+
+
             <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
+
+
 
             <div class="container-fluid">
                 <div class="row">
@@ -54,76 +56,56 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-8">
-                                    <h2 style="display: inline-block;">Chi tiết thông tin nhân viên</h2>
+                                <div class="my-column1 col-md-10">
+                                    <h2 style="display: inline-block;">Chi tiết sản phẩm bảo hiểm</h2>
                                     <!--                                    go to blog page-->
                                     <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Quay lại</a>
+                                        <a href="admin_IP_list" style="text-decoration: none; color: #fff;">Quay lại</a>
                                     </button>
-
                                     <!-- Blog Post Table -->
                                     <ul class="list-group">
                             <li class="list-group-item">
-                                <span class="detail-label">Họ Tên:</span>
+                                <span class="detail-label">Khách hàng:</span>
                                 <span>${detail.user_fullName}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">Email:</span>
+                                <span class="detail-label">Mã sản phẩm:</span>
                                 <span>${detail.user_email}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">Ngày sinh:</span>
+                                <span class="detail-label">Tên sản phẩm:</span>
                                 <span>${detail.user_dob}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">Địa chỉ:</span>
+                                <span class="detail-label">Loại xe đăng kí:</span>
                                 <span>${detail.user_address}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">Số điện thoại:</span>
+                                <span class="detail-label">Số máy đăng kí:</span>
                                 <span>${detail.user_phoneNum}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">CCCD:</span>
+                                <span class="detail-label">Biển xe đăng kí:</span>
                                 <span>${detail.user_iden}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">Ảnh CCCD:</span>
-                                <img src="${detail.user_iden_img}" width="60px" height="60px">
+                                <span class="detail-label">Số khung đăng kí:</span>
+                                <span>${detail.user_iden}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Biển xe đăng kí:</span>
+                                <span>${detail.user_iden}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Biển xe đăng kí:</span>
+                                <span>${detail.user_iden}</span>
                             </li>
                             
                         </ul>
 
                             </div>
 
-                            <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-4">
-                                <h2 style="display: inline-block;">Bài viết của nhân viên</h2>
-                                <!-- togler -->
-
-                                <!-- Edit History Table -->
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Người tạo</th>
-                                            <th>Ngày tạo</th>
-                                            <th>Tiêu đề</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
-                                        <c:forEach items="${listNB}" var="o">
-                                            <tr>
-                                                <td>${o.getUsernameString()}</td>
-                                                <td>${o.getBl_creationdate()}</td>
-                                                <td>${o.getBl_title()}</td>
-                                            </tr>
-                                        </c:forEach>
-
-                                        <!-- Repeat rows for each edit history entry -->
-                                    </tbody>
-                                </table>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
