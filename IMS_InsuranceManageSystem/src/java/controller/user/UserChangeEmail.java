@@ -2,9 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller.user;
 
+import controller.home.Reset_pass;
+import dao.UserDAO;
+import jakarta.mail.MessagingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,41 +14,50 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static model.SendVerifyCodeMail.sendMail;
 
 /**
  *
  * @author chun
  */
-@WebServlet(name="UserChangeEmail", urlPatterns={"/UserChangeEmail"})
+@WebServlet(name = "UserChangeEmail", urlPatterns = {"/UserChangeEmail"})
 public class UserChangeEmail extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserChangeEmail</title>");  
+            out.println("<title>Servlet UserChangeEmail</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserChangeEmail at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet UserChangeEmail at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -54,13 +65,13 @@ public class UserChangeEmail extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        
-        response.sendRedirect("User_Change_Mail.jsp");
-    } 
+            throws ServletException, IOException {
 
-    /** 
+    }
+
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -68,12 +79,65 @@ public class UserChangeEmail extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException {
+
+        HttpSession sessionOTP = request.getSession();
+        String otp = (String) sessionOTP.getAttribute("otp");
+
+        if (otp == null || otp.isEmpty()) {
+            // OTP is empty, generate a new one and send it
+            String mailTo = request.getParameter("newMail");
+
+            // Generate a random OTP
+            String verifyCode = generateVerifyCode();
+
+            try {
+                // Send the OTP to the new email address
+                sendMail(verifyCode, mailTo);
+
+                // Store the OTP in the session for verification later
+                sessionOTP.setAttribute("otp", verifyCode);
+            } catch (MessagingException e) {
+                // Handle email sending error
+                e.printStackTrace();
+            }
+            // Redirect the user to a JSP page to enter the received OTP
+            request.getRequestDispatcher("User_Mail_OTP.jsp").forward(request, response);
+        } else {
+            sessionOTP.removeAttribute("otp");
+            // OTP is empty, generate a new one and send it
+            String mailTo = request.getParameter("newMail");
+
+            // Generate a random OTP
+            String verifyCode = generateVerifyCode();
+
+            try {
+                // Send the OTP to the new email address
+                sendMail(verifyCode, mailTo);
+
+                // Store the OTP in the session for verification later
+                sessionOTP.setAttribute("otp", verifyCode);
+            } catch (MessagingException e) {
+                // Handle email sending error
+                e.printStackTrace();
+            }
+            // Redirect the user to a JSP page to enter the received OTP
+            request.getRequestDispatcher("User_Mail_OTP.jsp").forward(request, response);
+        }
+
     }
 
-    /** 
+    public String generateVerifyCode() {
+        // Tạo mã xác minh ngẫu nhiên
+        int verifyCode = (int) (Math.random() * 999999 + 1);
+        // Đảm bảo rằng mã xác minh có 6 chữ số
+        String verifyCodeString = String.format("%06d", verifyCode);
+        return verifyCodeString;
+    }
+
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

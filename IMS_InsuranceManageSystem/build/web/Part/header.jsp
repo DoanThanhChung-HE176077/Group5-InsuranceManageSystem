@@ -68,7 +68,6 @@
                             <a class="dropdown-item" href="#">Thông tin bảo hiểm</a>
                             <a class="dropdown-item" href="#">Tra cứu bảo hiểm</a>
                             <a class="dropdown-item" href="blog_home_show">Tin tức bảo hiểm</a>
-
                         </div>
                     </li>
                     <li class="dropdown">

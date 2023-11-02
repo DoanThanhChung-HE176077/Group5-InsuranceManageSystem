@@ -123,11 +123,22 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button id="btn-edit1" type="button" onclick="editInfo()"
-                                            class="btn btn-primary">Chỉnh sửa thông tin</button>
-
-                                        <div id="btn-Save"></div>
-                                        <div id="btn-back"></div>
+                                            <!-- Example split danger button -->
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger">Action</button>
+                                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">Xác minh tài khoản</a>
+                                                    <a class="dropdown-item" href="#">Thay đổi Email</a>
+                                                    <a class="dropdown-item" href="#">Thay đổi Mật khẩu</a>
+                                                </div>
+                                            </div>
+                                            <button id="btn-edit1" type="button" onclick="editInfo()" class="btn btn-primary">Chỉnh sửa thông tin</button>
+                                            <div id="btn-Save"></div>
+                                            <div id="btn-back"></div>
+                                        
                                     </div>
                                 </div>
                             </div>
