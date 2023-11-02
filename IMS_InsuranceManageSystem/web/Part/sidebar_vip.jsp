@@ -3,7 +3,7 @@
     Created on : Oct 4, 2023, 5:12:56 AM
     Author     : thant
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -143,12 +143,24 @@
                             <span style="margin-right: 1px">Quản Lý Bài Viết</span>
                         </a>
                     </li>
-                    <li class="list-group-item my-btn1">
-                        <a href="Admin_Contract_list" class="my-sidebar-item">
-                            <i class="fas fa-users"></i> 
-                            <span style="margin-left: -4px">Quản lí Hợp Đồng</span>
-                        </a>
-                    </li>
+                    <!-- Phân quyền admin -->
+                    <c:if test="${sessionScope.user.getUser_role().equals('Admin')}">
+                        <li class="list-group-item my-btn1">
+                            <a href="Admin_Contract_list" class="my-sidebar-item">
+                                <i class="fas fa-users"></i> 
+                                <span style="margin-left: -4px">Quản lí Hợp Đồng</span>
+                            </a>
+                        </li>
+                    </c:if>
+                        <!-- Phân quyền nhân viên -->
+                    <c:if test="${sessionScope.user.getUser_role().equals('Nhân viên')}">
+                        <li class="list-group-item my-btn1">
+                            <a href="contract_request_list" class="my-sidebar-item">
+                                <i class="fas fa-users"></i> 
+                                <span style="margin-left: -4px">Quản lí Hợp Đồng</span>
+                            </a>
+                        </li>
+                    </c:if>
                     <li class="list-group-item my-btn1">
                         <a href="admin_IP_list" class="my-sidebar-item">
                             <i class="fas fa-shield-alt"></i> 

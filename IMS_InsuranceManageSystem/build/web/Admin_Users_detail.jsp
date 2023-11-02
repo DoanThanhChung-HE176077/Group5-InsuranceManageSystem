@@ -52,94 +52,94 @@
 
 
 
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col min-vh-100 p-4">
-                        <div class="container mt-5">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col min-vh-100 p-4">
+            <div class="container mt-5">
 
-                            <div class="my-row row">
+                <div class="my-row row">
 
-                                <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-8">
-                                    <h2 style="display: inline-block;">Chi tiết người dùng</h2>
-                                    <!--                                    go to blog page-->
-                                    <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="admin_Users_list" style="text-decoration: none; color: #fff;">Quay lại</a>
-                                    </button>
-                                    <!-- Blog Post Table -->
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Họ Tên</th>
-                                                <th>Email</th>
-                                                <th>Ngày sinh</th>
-                                                <th>Địa chỉ</th>
-                                                <th>Số điện thoại</th>
-                                                <th>CCCD</th>
-                                                <th>Ảnh CCCD</th>
-                                                <th>Trạng thái</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Example row, you can use a loop to generate rows dynamically -->
-
-                                            <tr>
-                                                <td>${detail.user_fullName}</td>
-                                            <td>${detail.user_email}</td>
-                                            <td>${detail.user_dob}</td>
-                                            <td>${detail.user_address}</td>
-                                            <td>${detail.user_phoneNum}</td>
-                                            <td>${detail.user_iden}</td>
-                                            <td> <img src="${detail.user_iden_img}" width="60px" height="60px"> </td>
-                                            <td>${detail.status}</td>
-                                        </tr>
-
-                                        <!-- Repeat rows for each blog post -->
-                                    </tbody>
-                                </table>
-                                <c:if test="${detail.status eq 'Chưa xác minh'}">
-                                    <div style="text-align: center;">
-                                        <a href="Admin_Users_verify?id=${detail.getUser_id()}" class="my-btn btn btn-primary">Xác minh người dùng</a>
-                                    </div>
-                                </c:if>
-
+                    <!-- Column 1: Chi tiết người dùng -->
+                    <div class="my-column1 col-md-8">
+                        <h2 style="display: inline-block;">Chi tiết người dùng</h2>
+                        <button class="btn btn-success mb-3" style="margin-left: 200px;">
+                            <a href="admin_Users_list" style="text-decoration: none; color: #fff;">Quay lại</a>
+                        </button>
+                        <!-- Danh sách chi tiết người dùng -->
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="detail-label">Họ Tên:</span>
+                                <span>${detail.user_fullName}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Email:</span>
+                                <span>${detail.user_email}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Ngày sinh:</span>
+                                <span>${detail.user_dob}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Địa chỉ:</span>
+                                <span>${detail.user_address}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Số điện thoại:</span>
+                                <span>${detail.user_phoneNum}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">CCCD:</span>
+                                <span>${detail.user_iden}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Ảnh CCCD:</span>
+                                <img src="${detail.user_iden_img}" width="60px" height="60px">
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Trạng thái:</span>
+                                <span>${detail.status}</span>
+                            </li>
+                        </ul>
+                        <c:if test="${detail.status eq 'Chưa xác minh'}">
+                            <div style="text-align: center;">
+                                <a href="Admin_Users_verify?id=${detail.getUser_id()}" class="my-btn btn btn-primary">Xác minh người dùng</a>
                             </div>
-
-                            <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-4">
-                                <h2 style="display: inline-block;">Hợp đồng người dùng</h2>
-                                <!-- togler -->
-
-                                <!-- Edit History Table -->
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Họ Tên</th>
-                                            <th>Tên hợp đồng</th>
-                                            <th>Ngày bắt đầu</th>
-                                            <th>Ngày kết thúc</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
-                                        <c:forEach items="${listC}" var="o">
-                                            <tr>
-                                                <td>${o.user_fullname}</td>
-                                                <td>${o.ip_name}</td>
-                                                <td>${o.contract_startDate}</td>
-                                                <td>${o.contract_endDate}</td>
-                                            </tr>
-                                        </c:forEach>
-
-                                        <!-- Repeat rows for each edit history entry -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        </c:if>
+                    </div>
+                            
+                    <!-- Column 2: Hợp đồng người dùng -->
+                    <div class="my-column1 col-md-4">
+                        <h2 style="display: inline-block;">Hợp đồng người dùng</h2>
+                        <!-- Edit History Table -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Họ Tên</th>
+                                    <th>Tên hợp đồng</th>
+                                    <th>Ngày bắt đầu</th>
+                                    <th>Ngày kết thúc</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
+                                <c:forEach items="${listC}" var="o">
+                                    <tr>
+                                        <td>${o.user_fullname}</td>
+                                        <td>${o.ip_name}</td>
+                                        <td>${o.contract_startDate}</td>
+                                        <td>${o.contract_endDate}</td>
+                                    </tr>
+                                </c:forEach>
+                                <!-- Repeat rows for each edit history entry -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
 
 
 

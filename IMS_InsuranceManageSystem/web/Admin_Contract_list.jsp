@@ -64,11 +64,11 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
+                                                
                                                 <th>Khách hàng</th>
                                                 <th>Tên sản phẩm</th>
                                                 <th>Ngày bắt đầu</th>
-                                                <th>Ngày kết thúc</th>
-                                                <th>Thanh toán</th>
+                                                <th>Ngày kết thúc</th>                       
                                                 <th>Trạng thái</th>
                                             </tr>
                                         </thead>
@@ -76,17 +76,22 @@
                                             <!-- Example row, you can use a loop to generate rows dynamically -->
                                         <c:forEach items="${listC}" var="o">
                                             <tr>
-
+                                                
                                                 <td>${o.getUser_fullname()}</td>
                                                 <td>${o.getIp_name()}</td>
                                                 <td>${o.getContract_startDate()}</td>
                                                 <td>${o.getContract_endDate()}</td>
-                                                <td>${o.getTotal_price()}d</td>
+                                                
                                                 <td>${o.getContract_status()}</td>
                                                 <td>
                                                     <!-- Edit Button -->
-                                                    <a href="admin_Contract_detail?contract_id=${o.getContract_id()} " class="my-btn btn btn-primary">Chi tiết</a>
-                                                </td>
+                                                    <c:if test = "${o.getIp_name() eq 'Bảo hiểm TNDS'}">
+                                                    <a href="Admin_Contract_detailTNDS?contract_id=${o.getContract_id()} " class="my-btn btn btn-primary">Chi tiết</a>
+                                                    </c:if>
+                                                    <c:if test = "${o.getIp_name() eq 'Bảo hiểm vật chất'}">
+                                                    <a href="Admin_Contract_detailVatchat?contract_id=${o.getContract_id()} " class="my-btn btn btn-primary">Chi tiết</a>
+                                                    </c:if>
+                                                    </td>
                                             </tr>
                                         </c:forEach>    
                                         <!-- Repeat rows for each blog post -->
