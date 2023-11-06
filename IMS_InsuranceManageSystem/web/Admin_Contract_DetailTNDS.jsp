@@ -93,11 +93,11 @@
                                 <span>${detail.user_iden}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">Biển xe đăng kí:</span>
+                                <span class="detail-label">Ngày bắt đầu:</span>
                                 <span>${detail.user_iden}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">Biển xe đăng kí:</span>
+                                <span class="detail-label">Ngày kết thúc:</span>
                                 <span>${detail.user_iden}</span>
                             </li>
                             

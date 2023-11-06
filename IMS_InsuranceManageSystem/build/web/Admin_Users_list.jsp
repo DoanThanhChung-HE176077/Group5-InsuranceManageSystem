@@ -126,7 +126,7 @@
                                         <c:forEach items="${listU}" var="o">
                                             <tr>
                                                 <td>${o.getUser_fullName()}</td>
-                                                <td>${o.getUser_dob()}</td>
+                                                <td class="date-column">${o.getUser_dob()}</td>
                                                 <td>${o.getUser_address()}</td>
                                                 <td>${o.getUser_phoneNum()}</td>
                                                 <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
@@ -173,7 +173,7 @@
                                         <c:forEach items="${listNU}" var="o">
                                             <tr>
                                                 <td>${o.getUser_fullName()}</td>
-                                                <td>${o.getUser_dob()}</td>
+                                                <td class="date-column">${o.getUser_dob()}</td>
                                                 <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
                                             </tr>
                                         </c:forEach>
@@ -196,6 +196,27 @@
         <!-- quan trong cua dropdowntable -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+                crossorigin="anonymous">    
+        </script>
+        <script>
+    // Chuyển đổi định dạng ngày trong tất cả các phần tử trong cột "date-column"
+    document.querySelectorAll('.date-column').forEach(function (element) {
+        var originalDate = element.textContent; // Lấy ngày ban đầu
+        var formattedDate = formatDate(originalDate); // Gọi hàm formatDate để chuyển đổi định dạng
+        element.textContent = formattedDate; // Hiển thị ngày đã được định dạng
+    });
+
+    // Hàm để chuyển đổi định dạng ngày (VD: từ "YYYY-MM-DD" thành "DD/MM/YYYY")
+    function formatDate(inputDate) {
+        var dateParts = inputDate.split('-');
+        if (dateParts.length === 3) {
+            var year = dateParts[0];
+            var month = dateParts[1];
+            var day = dateParts[2];
+            return day + '/' + month + '/' + year;
+        }
+        return inputDate; // Trả về nguyên dạng nếu không thể chuyển đổi
+    }
+</script>
     </body>
 </html>
