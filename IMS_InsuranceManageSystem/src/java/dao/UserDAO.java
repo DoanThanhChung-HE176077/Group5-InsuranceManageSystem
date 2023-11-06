@@ -14,6 +14,8 @@ import java.util.regex.Pattern;
 import model.User;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -695,11 +697,24 @@ public ArrayList<User> searchStaffByName(String txtsearch) {
         } catch (SQLException e) {
             System.out.println("verifyUser:" + e);
         }
-
-
-
-        
+  
     }
+    
+    public void updateMailUser(String mailString, int id){
+        String sql = "UPDATE Users\n" +
+                    "SET user_mail = ? \n" +
+                    "WHERE user_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, mailString);
+            st.setInt(2, id);
+            st.executeUpdate();
+        } catch (Exception E) {
+            System.out.println("updateMailUser:" + E);
+        }
+    }
+  
+
    
 }
         

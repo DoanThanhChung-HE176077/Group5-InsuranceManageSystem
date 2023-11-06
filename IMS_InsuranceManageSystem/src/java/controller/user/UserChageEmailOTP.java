@@ -5,6 +5,7 @@
 
 package controller.user;
 
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
@@ -74,6 +76,8 @@ public class UserChageEmailOTP extends HttpServlet {
         String otp = (String) sessionOTP.getAttribute("otp");
         // OTP session exists, check if the user-provided OTP matches
         String userOTP = request.getParameter("enterOTP");
+        System.out.println(userOTP);
+        
         if (userOTP != null && userOTP.equals(otp)) {
             // User provided correct OTP
             // Display a success notification modal
@@ -85,8 +89,13 @@ public class UserChageEmailOTP extends HttpServlet {
             // Delete the OTP session
             sessionOTP.removeAttribute("otp");
             // update user email function();
-            
-            
+            UserDAO udao = new UserDAO();
+            String newMail = request.getParameter("newMail");
+            System.out.println(newMail);
+            HttpSession session = request.getSession();
+            User user1 = (User) session.getAttribute("user");
+            udao.updateMailUser(newMail, user1.getUser_id());
+
         } else {
             // User provided incorrect OTP
             // Handle this case, you can display an error message or 

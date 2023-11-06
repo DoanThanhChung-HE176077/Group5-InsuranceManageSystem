@@ -81,51 +81,58 @@ public class UserChangeEmail extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //lấy otp trên session để kiểm tra có null hay không
         HttpSession sessionOTP = request.getSession();
         String otp = (String) sessionOTP.getAttribute("otp");
 
-        if (otp == null || otp.isEmpty()) {
-            // OTP is empty, generate a new one and send it
-            String mailTo = request.getParameter("newMail");
-
-            // Generate a random OTP
-            String verifyCode = generateVerifyCode();
-
-            try {
-                // Send the OTP to the new email address
-                sendMail(verifyCode, mailTo);
-
-                // Store the OTP in the session for verification later
-                sessionOTP.setAttribute("otp", verifyCode);
-            } catch (MessagingException e) {
-                // Handle email sending error
-                e.printStackTrace();
+        //kiểm tra mail đã tồn tại trong hệ thống chưa
+        String newMail = request.getParameter("newMail");
+        UserDAO udao = new UserDAO();
+        //mail chưa tồn tại
+        if(udao.checkEmailExist(newMail) == false){
+            //neu otp session ma rong
+            if(otp == null || otp.isEmpty()){
+                // tạo otp mới
+                String verifyCode = generateVerifyCode();
+                try {
+                    sendMail(verifyCode, newMail);
+                    //Lưu OTP vào session để check ở web otp
+                    sessionOTP.setAttribute("otp", verifyCode);
+                    request.setAttribute("newMail", newMail);
+                    request.getRequestDispatcher("User_Mail_OTP.jsp").forward(request, response);
+                }catch (MessagingException e) {
+                    // Handle email sending error
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("========OTP EMAIL==========");
+                System.out.println("otp dang ko rong, can xoa");
+                sessionOTP.removeAttribute("otp");
+                // tạo otp mới
+                String verifyCode2 = generateVerifyCode();
+                try {
+                    sendMail(verifyCode2, newMail);
+                    //Lưu OTP vào session để check ở web otp
+                    sessionOTP.setAttribute("otp", verifyCode2);
+                    request.setAttribute("newMail", newMail);
+                    request.getRequestDispatcher("User_Mail_OTP.jsp").forward(request, response);
+                } catch (MessagingException e) {
+                    // Handle email sending error
+                    e.printStackTrace();
+                }
             }
-            // Redirect the user to a JSP page to enter the received OTP
-            request.getRequestDispatcher("User_Mail_OTP.jsp").forward(request, response);
-        } else {
-            sessionOTP.removeAttribute("otp");
-            // OTP is empty, generate a new one and send it
-            String mailTo = request.getParameter("newMail");
+            //mail đã tồn tại
+        }else {
+            //nếu mail tồn tại, tạo thông báo: Email đã tồn tại trong hệ thống
+            //gửi thông báo và chuyển gnười dùng về trang : User_Change_mail.jsp
+            String errorMessage = "Email đã tồn tại trong hệ thống.";
+            request.setAttribute("errorMessage", errorMessage);
 
-            // Generate a random OTP
-            String verifyCode = generateVerifyCode();
-
-            try {
-                // Send the OTP to the new email address
-                sendMail(verifyCode, mailTo);
-
-                // Store the OTP in the session for verification later
-                sessionOTP.setAttribute("otp", verifyCode);
-            } catch (MessagingException e) {
-                // Handle email sending error
-                e.printStackTrace();
-            }
-            // Redirect the user to a JSP page to enter the received OTP
-            request.getRequestDispatcher("User_Mail_OTP.jsp").forward(request, response);
+            // Forward the user to the User_Change_mail.jsp page
+            request.getRequestDispatcher("User_Change_Mail.jsp").forward(request, response);
         }
-
     }
+
 
     public String generateVerifyCode() {
         // Tạo mã xác minh ngẫu nhiên

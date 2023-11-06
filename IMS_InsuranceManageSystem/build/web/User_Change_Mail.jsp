@@ -60,6 +60,9 @@
                                         <label class="labels">Nhập Email mới:</label>
                                         <input  type="email"class="form-control" placeholder="Email mới" id="user_email2" name="newMail" required="">
                                     </div>
+                                    <div >
+                                        <p style="font-style: italic ;color:red; margin-left: 15px; margin-top: 10px;">${errorMessage}</p>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button id="btn-edit1" type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
