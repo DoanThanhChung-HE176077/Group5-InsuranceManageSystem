@@ -85,12 +85,9 @@
                                                 <td>${o.getContract_status()}</td>
                                                 <td>
                                                     <!-- Edit Button -->
-                                                    <c:if test = "${o.getIp_name() eq 'Bảo hiểm TNDS'}">
-                                                    <a href="Admin_Contract_detailTNDS?contract_id=${o.getContract_id()} " class="my-btn btn btn-primary">Chi tiết</a>
-                                                    </c:if>
-                                                    <c:if test = "${o.getIp_name() eq 'Bảo hiểm vật chất'}">
-                                                    <a href="Admin_Contract_detailVatchat?contract_id=${o.getContract_id()} " class="my-btn btn btn-primary">Chi tiết</a>
-                                                    </c:if>
+                                                    
+                                                    <a href="Admin_Contract_detail?contract_id=${o.getContract_id()}&ip_name=${o.getIp_name()}" class="my-btn btn btn-primary">Chi tiết</a>
+                                                    
                                                     </td>
                                             </tr>
                                         </c:forEach>    

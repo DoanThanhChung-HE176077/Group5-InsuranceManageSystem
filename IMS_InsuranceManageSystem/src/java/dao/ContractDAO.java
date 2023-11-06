@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Contract;
+import model.ContractTNDS;
+import model.ContractVatchat;
+import model.Form_Vatchat;
 import model.NewBl;
 import model.NewC;
 import model.User;
@@ -64,11 +67,7 @@ public class ContractDAO extends DBContext {
     }
 
 
-    public static void main(String[] args) {
-        ContractDAO cd = new ContractDAO();
-        ArrayList<NewC> list = cd.getAllContractOfUser(1);
-        System.out.println(list);
-    }
+   
     public ArrayList<NewC> getAllContract() {
         try {
             ArrayList<NewC> list = new ArrayList<>();
@@ -205,4 +204,71 @@ public class ContractDAO extends DBContext {
         return null;
 
     }
+    public ContractTNDS getTNDSbyId(int id) {
+        String sql = "  select c.contract_id, u.user_fullname,ip.ip_name,ftnds.ftnds_id, ftnds_loaiXe,[ftnds_soMay],[ftnds_bienXe],[ftnds_soKhung],[ftnds_startDate],[ftnds_endDate],[ftnds_mucTrachNhiem],[ftnds_soNguoi],[ftnds_tongChiPhi],[ftnds_status] from [Contract] c join [Form_TNDS] ftnds on c.ftnds_id = ftnds.ftnds_id join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id  where c.contract_id=?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return( new ContractTNDS(rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getInt(4),
+                    rs.getString(5),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getString(8),
+                    rs.getDate(9),
+                    rs.getDate(10),
+                    rs.getString(11),
+                    rs.getString(12),
+                    rs.getString(13),
+                    rs.getString(14)));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return null;
+    }
+    public ContractVatchat getVatchatbyId(int id) {    
+    try {
+            String sql = "SELECT c.contract_id, fvc.fvc_id, u.user_fullname, ip.ip_name, b.brand_name, m.model_name, fvc.[fvc_deviceNum], fvc.fvc_deviceChassisNum, fvc.fvc_licensePlates, fvc.[startDate], fvc.[endDate], pt.pt_percent, dl.deduc_percent, fvc.fvc_totalPrice, fvc.fvc_status FROM [Contract] c JOIN [Form_Vatchat] fvc ON c.fvc_id = fvc.fvc_id JOIN Users u ON c.user_id = u.user_id JOIN Insurance_Products ip ON c.ip_id = ip.ip_id JOIN Brands b ON fvc.brand_id = b.brand_id JOIN Models m ON m.model_id = fvc.model_id JOIN Package_Type pt ON fvc.pt_id = pt.pt_id JOIN Deductible_Level dl ON fvc.deduc_id = dl.deduc_id WHERE c.contract_id = ?";
+        PreparedStatement st = connection.prepareStatement(sql);
+        st.setInt(1, id);
+        ResultSet rs = st.executeQuery();
+        if (rs.next()) {
+            return( new ContractVatchat(rs.getInt(1),
+                    rs.getInt(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getString(8),
+                    rs.getString(9),
+                    rs.getDate(10),
+                    rs.getDate(11),
+                    rs.getString(12),
+                    rs.getString(13),
+                    rs.getString(14),
+                    rs.getString(15)));
+            
+        }
+    } catch (Exception ex) {
+        Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return null;
+}
+
+
+     public static void main(String[] args) {
+        ContractDAO cd = new ContractDAO();
+
+        ContractTNDS b = cd.getTNDSbyId(1);
+         System.out.println(b.toString());
+
+    }
+    
 }
