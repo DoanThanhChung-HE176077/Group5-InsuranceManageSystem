@@ -91,7 +91,13 @@
                                 style="background-color: #fdd12d;">
                                 <!-- Dropdown menu items -->
                                 <a class="dropdown-item" href="UserProfile.jsp">Profile</a>
-
+                                
+                                
+                                <!--phân quyền customer-->
+                                <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
+                                    <a class="dropdown-item" href="UserInsuranceList">Trang chủ của tôi</a>
+                                </c:if>
+                                    
                                 <!--phân quyền staff-->
                                 <c:if test="${sessionScope.user.user_role.equals('Nhân viên')}">
                                     <a class="dropdown-item" href="admin_dashboard">Bảng điều khiển</a>

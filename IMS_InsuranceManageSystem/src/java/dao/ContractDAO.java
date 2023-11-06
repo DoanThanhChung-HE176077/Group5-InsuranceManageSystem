@@ -97,6 +97,8 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
+    
+    
 
     public ArrayList<NewC> getNewContract() {
         try {

@@ -135,37 +135,33 @@
                                             <div class="card text-dark h-100 fade-yellow" style="font-size: 16px; line-height: 5px;">
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px; margin-top: 10px;">
-                                                    CHỦ XE:...
+                                                    CHỦ XE: ${contract.fullname}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    ĐỊA CHỈ::...
+                                                    ĐỊA CHỈ: 
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    CHỦ XE:...
+                                                    ĐIỆN THOẠI:
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    ĐIỆN THOẠI:...
+                                                    SỐ BIỂN KIỂM SOÁT: ${contract.bienxe}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    SỐ BIỂN KIỂM SOÁT:...
+                                                    SỐ KHUNG: ${contract.sokhung}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    SỐ KHUNG:...
+                                                    SỐ MÁY: ${contract.somay}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    SỐ MÁY:...
-                                                </p>
-                                                
-                                                <p style="margin-left: 10px; margin-right: 10px;">
-                                                    LOẠI XE:  
-                                                    Trên 50cc<input type="checkbox">  
-                                                    50cc trở xuống<input type="checkbox">
+                                                    LOẠI XE:  ${contract.loaixe}
+<!--                                                    Trên 50cc<input type="checkbox">  
+                                                    50cc trở xuống<input type="checkbox">-->
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
@@ -177,8 +173,8 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    - Về người:
-                                                    - Về tài sản:
+                                                    - Về người: ${contract.muctrachnhiem}
+<!--                                                    - Về tài sản:-->
                                                 </p>
                                                  
                                                 <p class="fade-red-text" style="margin-left: 10px; margin-right: 10px;">
@@ -186,8 +182,10 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    Từ ngày...tháng....năm 20..
-                                                    Đến ngày...tháng....năm 20..
+                                                    Từ ${contract.ngaybd}
+                                                    Đến ${contract.ngaykt}
+<!--                                                    Từ ngày...tháng....năm 20..
+                                                    Đến ngày...tháng....năm 20..-->
                                                 </p>
                                                 
                                             </div>
@@ -213,7 +211,7 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    Phí bảo hiểm phải nộp (có VAT):.....đồng
+                                                    Phí bảo hiểm phải nộp (có VAT): ${contract.tongchiphi} đồng
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
@@ -228,7 +226,8 @@
                                                 
                                                 <div style="margin-left: 100px; margin-right: 10px; text-align: center;">
                                                     <p>
-                                                        Cấp ngày... tháng... năm 20..
+                                                        Cấp ngày ${contract.ngaybd}
+<!--                                                        Cấp ngày... tháng... năm 20..-->
                                                     </p>
 
                                                     <p>

@@ -90,10 +90,11 @@
                                     
                                     <div class="row" style="margin-top: 20px;">
 
+                                    <c:forEach items="${contractList}" var="cL">
 
                                         <div class="col-md-6 mb-3">
                                             <div class="card text-dark h-100">
-                                                <a href="Contract_detail.jsp" style="text-decoration: none !important; color: black;">
+                                                <a href="UserContractDetail?cid=${cL.contract_id}&ip_id=${cL.ip_id}" style="text-decoration: none !important; color: black;">
                                                     <div class="card-body py-5 d-flex">
                                                         <div class="col-sm-6">
                                                             <span class="left-info">Người được bảo hiểm:</span>
@@ -108,22 +109,22 @@
                                                             <span class="left-info">Trạng thái:</span>
                                                         </div>
                                                         <div class="col-sm-6 " style="text-align: right">
-                                                            <span class="right-info">Nguyen Van A</span>
+                                                            <span class="right-info">${cL.user_fullname}</span>
                                                             <br>
                                                             <br>
-                                                            <span class="right-info">05/02/2023</span>
+                                                            <span class="right-info">${cL.contract_startDate}</span>
                                                             <br>
                                                             <br>
-                                                            <span class="right-info">30/06/2023</span>
+                                                            <span class="right-info">${cL.contract_endDate}</span>
                                                             <br>
                                                             <br>
-                                                            <span class="right-info">Đang hiệu lực</span>
+                                                            <span class="right-info">${cL.contract_status}</span>
                                                         </div>
                                                         
                                                     </div>
                                                     <div class="card-footer d-flex">
                                                         <i class="fa-solid fa-user-shield fa-xl card-i"></i>
-                                                        <span>Bảo hiểm sức khỏe </span>
+                                                        <span>Bảo hiểm TNDS</span>
                                                         <span class="ms-auto">
                                                             <i class="bi bi-chevron-right"></i>
                                                         </span>
@@ -133,7 +134,7 @@
                                             </div>
                                         </div>
 
-
+                                    </c:forEach>
 
 
 
