@@ -490,11 +490,52 @@ public class FormDAO extends DBContext {
         return null;
         
     }
+      
+      
+      //get 1 form vc by fvc_id
+      public Form_Vatchat get1VatChat(int fvc_id) {
+          String sql = " select * from Form_Vatchat where fvc_id = ?";
+          try {
+              PreparedStatement st = connection.prepareStatement(sql);
+              st.setInt(1, fvc_id);
+              ResultSet rs = st.executeQuery();
+              if (rs.next()) {
+                  return new Form_Vatchat(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getInt(9), rs.getString(10), rs.getString(11), 
+                          rs.getString(12), rs.getString(13), rs.getString(14));
+              }
+
+          } catch (Exception E) {
+
+          }
+          return null;
+          
+      }
+      
+      //get nhiều form vc có cùng 1 fvc_id
+//          public ArrayList<Form_Vatchat> getVatChatByVCId( int fvc_id) {
+//        try {
+//            ArrayList<Package_Type> getAllVcID = new ArrayList<>();
+//            String sql = "select * from Package_Type";
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                int pt_id = rs.getInt(1);
+//                float pt_percent = rs.getFloat(2);
+//                getAllVcID.add(new );
+//            }
+//            return getAllVcID;
+//        } catch (SQLException ex) {
+//            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return null;
+//    }
 
     public static void main(String[] args) {
+        
+//         dao.insertContractVatChat(new Contract(1, Date.valueOf("2004-04-04"),Date.valueOf("2005-05-05") , 1, 1, 1, 1));
         FormDAO dao = new FormDAO();
-         dao.insertContractVatChat(new Contract(1, Date.valueOf("2004-04-04"),Date.valueOf("2005-05-05") , 1, 1, 1, 1));
-
+Form_Vatchat vc = dao.get1VatChat(1);
+        System.out.println(vc.toString());
 //        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
 //        for (Deductible_Level deductible_Level : de) {
 //            System.out.println(de.toString());

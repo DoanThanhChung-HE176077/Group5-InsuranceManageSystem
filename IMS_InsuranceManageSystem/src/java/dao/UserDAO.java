@@ -121,7 +121,7 @@ public class UserDAO extends DBContext {
         return false;
     }
 
-    public String checkInfo(String input) {
+    public static String checkInfo(String input) {
         // Kiểm tra xem input có phải là email không
         Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$");
         Matcher emailMatcher = emailPattern.matcher(input);
@@ -142,7 +142,7 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public User getUsers(String userlogin, String password) {
+    public  User getUsers(String userlogin, String password) {
         try {
             String strSQL = null;
             if (checkInfo(userlogin) == "email") {
