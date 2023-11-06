@@ -60,14 +60,14 @@
                 <div class="my-row row">
 
                     <!-- Column 1: Chi tiết người dùng -->
-                    <div class="my-column1 col-md-12">
+                    
                         <h2 style="display: inline-block;">Chi tiết hợp đồng</h2>
                         <button class="btn btn-success mb-3" style="margin-left: 200px;">
                             <a href="Admin_Contract_list" style="text-decoration: none; color: #fff;">Quay lại</a>
                         </button>
+                        <div class="my-column1 col-md-6">
                         <!-- Danh sách chi tiết người dùng -->
                     <c:if test="${contract.nameip eq 'Bảo hiểm TNDS'}" >
-                        <ul class="list-group" style="display: flex; flex-wrap: wrap;">
     <div class="column" style="flex: 1; padding: 10px;">
         <li class="list-group-item">
             <span class="detail-label">Khách hàng:</span>
@@ -78,7 +78,7 @@
             <span>${contract.tnds_id}</span>
         </li>
         <li class="list-group-item">
-            <span class="detail-label">Tên hợp đồng:</span>
+            <span class="detail-label">Loại hợp đồng:</span>
             <span>${contract.nameip}</span>
         </li>
         <li class="list-group-item">
@@ -93,8 +93,10 @@
             <span class="detail-label">Biển xe:</span>
             <span>${contract.bienxe}</span>
         </li>
+                        
     </div>
-
+                    </div>
+        <div class="my-column1 col-md-6">
     <div class="column" style="flex: 1; padding: 10px;">
         <li class="list-group-item">
             <span class="detail-label">Số khung:</span>
@@ -125,7 +127,7 @@
             <span>${contract.trangthai}</span>
         </li>
     </div>
-</ul>
+
 
 
                             </c:if>
@@ -141,7 +143,7 @@
                                 <span>${contract.vatchat_id}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">Tên hợp đồng:</span>
+                                <span class="detail-label">Loại hợp đồng:</span>
                                 <span>${contract.nameip}</span>
                             </li>
                             <li class="list-group-item">
