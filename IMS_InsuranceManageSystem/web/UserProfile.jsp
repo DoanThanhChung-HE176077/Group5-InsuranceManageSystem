@@ -58,7 +58,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <img id="idenImageModal" class="img-fluid " src="">
+                                                <img id="idenImageModal" class="img-fluid " >
                                             </div>
                                         </div>
                                     </div>
@@ -120,26 +120,33 @@
                                         <div class="col-md-12"><label class="labels">Trạng thái tài khoản</label>
                                             <input type="text" class="form-control" id="user_status" value="" readonly>
                                         </div>
+                                        
+                                    <c:if test="${sessionScope.user.getUser_iden_img() != null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
+                                        <br>
+                                        <span style="color: red;font-style: italic;font-weight: bold;font-size: 12px;margin-left: 13px;margin-top: 10px;">Yêu cầu đang chờ phê duyệt.</span>
+                                    </c:if>
                                     </div>
 
                                     <div class="modal-footer">
-                                            <!-- Example split danger button -->
-                                            <div class="btn-group" id="drop1" hidden>
-                                                <button type="button" class="btn btn-danger">Lựa chọn</button>
-                                                <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
-                                                    <span class="sr-only">Toggle Dropdown</span>
-                                                </button>
-                                                <div class="dropdown-menu" >
-                                                    <c:if test="${sessionScope.user.getUser_iden_img() == null}">
-                                                        <a class="dropdown-item" href="#">Xác minh tài khoản</a>
-                                                    </c:if>
-                                                        <a class="dropdown-item" href="User_Change_Mail.jsp">Thay đổi Email</a>
-                                                        <a class="dropdown-item" href="ChangePassword.jsp">Thay đổi Mật khẩu</a>
-                                                </div>
+                                        <!-- Example split danger button -->
+                                        <div class="btn-group" id="drop1" hidden>
+                                            <button type="button" class="btn btn-danger">Lựa chọn</button>
+                                            <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <div class="dropdown-menu" >
+                                                <c:if test="${sessionScope.user.getUser_iden_img() == null}">
+                                                    <a class="dropdown-item" href="User_verify.jsp">Xác minh tài khoản</a>
+                                                </c:if>
+                                                <a class="dropdown-item" href="User_Change_Mail.jsp">Thay đổi Email</a>
+                                                <a class="dropdown-item" href="ChangePassword.jsp">Thay đổi Mật khẩu</a>
                                             </div>
-                                            <button id="btn-edit1" type="button" onclick="editInfo()" class="btn btn-primary">Chỉnh sửa thông tin</button>
-                                            <div id="btn-Save"></div>
-                                            <div id="btn-back"></div>
+                                        </div>
+                                    <c:if test="${sessionScope.user.getUser_role().equals('Khách hàng') == true }">
+                                        <button id="btn-edit1" type="button" onclick="editInfo()" class="btn btn-primary">Chỉnh sửa thông tin</button>
+                                    </c:if>
+                                        <div id="btn-Save"></div>
+                                        <div id="btn-back"></div>
                                     </div>
                                 </div>
                             </div>
@@ -170,9 +177,15 @@
                                 document.getElementById("user_email2").value = data1.user_email;
                                 document.getElementById("user_password2").value = data1.user_password;
                                 
-                                var dobParts = data1.user_dob.split('/');
-                                var formattedDob = dobParts[2] + '-' + dobParts[0] + '-' + dobParts[1];
-                                document.getElementById("user_dob2").value = formattedDob;
+                                var dobParts = data1.user_dob.split('-'); // Assuming the date is in the format 'yyyy-MM-dd'
+                                if (dobParts.length === 3) {
+                                    var formattedDob = dobParts[0] + '-' + dobParts[1] + '-' + dobParts[2];
+                                    document.getElementById("user_dob2").value = formattedDob;
+                                } else {
+                                    // Handle the case where the date is not valid
+                                    console.log("Invalid date format: " + data1.user_dob);
+                                }
+
                                 
                                 document.getElementById("user_address2").value = data1.user_address;
                                 document.getElementById("user_phoneNum2").value = data1.user_phoneNum;
@@ -195,7 +208,7 @@
                     function editInfo() {
                         var inputs = document.querySelectorAll('.form-info input');
                         for (var i = 0; i < inputs.length; i++) {
-                            if (inputs[i].id !== 'user_status' && inputs[i].id !== 'user_email2') {
+                            if (inputs[i].id !== 'user_status' && inputs[i].id !== 'user_email2' && inputs[i].id !== 'user_iden2') {
                                 inputs[i].removeAttribute('readonly'); // Xóa thuộc tính readOnly
                                 
                             }
@@ -210,24 +223,13 @@
                         let btn_edit = document.getElementById('btn-edit1');
                         btn_edit.style.display = 'none';
                         let btn_Save = document.getElementById('btn-Save');
-//                        let btn_changePassword = document.getElementById('btn-changePassword');
                         let btn_sentRequest = document.getElementById('btn-sentRequest');
                         let btn_Back = document.getElementById('btn-back');
-//                        let btn_xacMinhTK = document.getElementById('btn_xacMinhTK');
                         btn_Save.innerHTML = '<button type="submit" onclick="saveInfo()" class="btn btn-success">Lưu</button>';
-//                        btn_changePassword.innerHTML = '<button  onclick="changePassword()" class="btn btn-primary">Thay đổi mật khẩu</button>';
                         btn_Back.innerHTML = '<button onclick="goBackToUserProfile()" class="btn btn-secondary">Trở lại</button>';
-//                        btn_xacMinhTK.innerHTML  = '<button  onclick="xacMinhTK()" class="btn btn-success">Xác minh tài khoản</button>';
-                        
-//                        let btn_changeGmail = document.getElementById('btn-changeGmail');
-//                        btn_changeGmail.innerHTML = '<button  onclick="changeMail()" class="btn btn-primary">Thay đổi Gmail</button>'
+
                     }
                     
-//                    //change gmail
-//                    function changeMail() {
-//                        window.location.href = "User_Change_Mail.jsp";
-//                        return false; 
-//                    }
                     
                     //back button
                     function goBackToUserProfile() {

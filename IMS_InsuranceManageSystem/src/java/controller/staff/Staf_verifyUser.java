@@ -3,11 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+package controller.staff;
 
-import dao.ContractDAO;
 import dao.UserDAO;
-import model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,14 +13,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.Contract;
-import model.NewC;
+import model.User;
 
 /**
  *
- * @author ADMIN
+ * @author chun
  */
-public class Admin_Users_detail extends HttpServlet {
+public class Staf_verifyUser extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,16 +31,18 @@ public class Admin_Users_detail extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       int id = Integer.parseInt(request.getParameter("id"));
-                
-        UserDAO  u = new UserDAO();
-        ContractDAO c = new ContractDAO();
-        User detail = u.getDetailUser(id);
-        request.setAttribute("detail", detail);
-        ArrayList<NewC> list1 = c.getAllContractOfUser(id);
-        request.setAttribute("listC", list1);
-        request.getRequestDispatcher("Admin_Users_detail.jsp").forward(request, response);
-    
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Staf_verifyUser</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Staf_verifyUser at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -57,7 +56,14 @@ public class Admin_Users_detail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        //lấy ra danh sách tài khoản có trạng thái chưa xác minh nhưng có số cmt và ảnh
+        UserDAO udao = new UserDAO();
+        ArrayList<User> uget = udao.getListUserDangChoXacMinh();
+        ArrayList<User> uget2 = udao.getListUserFull();
+        
+        request.setAttribute("uget2", uget2);
+        request.setAttribute("uget", uget);
+        request.getRequestDispatcher("Staff_verify_user.jsp").forward(request, response);
     } 
 
     /** 
@@ -70,7 +76,8 @@ public class Admin_Users_detail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+       
+
     }
 
     /** 

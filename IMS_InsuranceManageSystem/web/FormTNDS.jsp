@@ -21,11 +21,6 @@
         
     </head>
     <body>
-
-             
-
-
-
              <jsp:include page="Part/header.jsp"></jsp:include>
              <form  action="saveInfoTNDS" method="get" id="frmCreateOrder" style="margin-top: 100px ; background-color: #fdcf2b ; padding: 20px 0" >
                  <input type="hidden" Checked="True" id="bankCode" name="bankCode" value="" >
@@ -162,8 +157,19 @@
                                 <span>Tổng phí</span>
                                 <h6 id="b" style="float: right;"></h6>
                             </div>
-                            <c:if test="${sessionScope.user.user_role.equals('Khách hàng') }">
+                            <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Đã xác minh')}">
                                 <button type="submit" class="btn ">Thanh toán</button>
+                            </c:if>
+                            <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Chưa xác minh')}">
+                                <div class="d-flex justify-content-center" style="margin-top: 0px">
+                                    <div class="d-flex justify-content-center" style="color: red; font-style: italic; font-weight: bold">
+                                        Bạn cần xác minh tài khoản để thực hiện thao tác này.
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="d-flex justify-content-center">
+                                    <a type="button" href="#" class="btn btn-danger">Xác minh tài khoản</a>
+                                </div>
                             </c:if>
                             <c:if test="${sessionScope.user.user_role.equals('Admin') }">
                                 

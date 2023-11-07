@@ -53,7 +53,7 @@
                                 <div class="row ">
                                     <div class="col-md-12">
                                         <label class="labels">Nhập OTP</label>
-                                        <input  type="text"class="form-control" placeholder="Email mới" id="user_email2" name="enterOTP" required="">
+                                        <input  type="text"class="form-control" placeholder="OTP" id="user_email2" name="enterOTP" required="">
                                     </div>
                                 </div>
                                 <input type="text" value="${newMail}" hidden name="newMail"/>

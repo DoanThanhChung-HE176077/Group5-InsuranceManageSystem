@@ -132,6 +132,18 @@
         <servlet-name>UserContractDetail</servlet-name>
         <servlet-class>controller.user.UserContractDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserVerify</servlet-name>
+        <servlet-class>controller.user.UserVerify</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Staf_verifyUser</servlet-name>
+        <servlet-class>controller.staff.Staf_verifyUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Staff_verifyUser_done</servlet-name>
+        <servlet-class>controller.staff.Staff_verifyUser_done</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -255,6 +267,18 @@
     <servlet-mapping>
         <servlet-name>UserContractDetail</servlet-name>
         <url-pattern>/UserContractDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserVerify</servlet-name>
+        <url-pattern>/UserVerify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Staf_verifyUser</servlet-name>
+        <url-pattern>/Staf_verifyUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Staff_verifyUser_done</servlet-name>
+        <url-pattern>/Staff_verifyUser_done</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -142,7 +142,7 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public  User getUsers(String userlogin, String password) {
+    public User getUsers(String userlogin, String password) {
         try {
             String strSQL = null;
             if (checkInfo(userlogin) == "email") {
@@ -174,7 +174,7 @@ public class UserDAO extends DBContext {
         }
         return null;
     }
-    
+
     //get full user 
     public User getUsers1(String userlogin, String password) {
         try {
@@ -264,10 +264,6 @@ public class UserDAO extends DBContext {
         }
         return false;
     }
-//public static void main(String[] args) {
-//        UserDAO ud = new UserDAO();
-//        ud.addStaff("user12", "user@fpt.edu.vn", "2003-12-06", "Ninh Binh", "0123456789","111111111111", 1);
-//    }
 
     public int getLastId() {
         int lastId;
@@ -303,6 +299,7 @@ public class UserDAO extends DBContext {
         }
         return null;
     }
+
     //chung: display full info
     public User dislayFullInfo(int user_id) {
         String sql = "select * from Users where user_id = " + user_id;
@@ -312,7 +309,7 @@ public class UserDAO extends DBContext {
             if (rs.next()) {
                 User us = new User(rs.getInt(1), rs.getString(2), rs.getString(3),
                         rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7),
-                        rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11), rs.getString(12));
+                        rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12));
                 return us;
             }
         } catch (Exception E) {
@@ -354,9 +351,10 @@ public class UserDAO extends DBContext {
         }
 
     }
-    public void updateStaff( String user_fullname, String user_mail,
-             String user_dob, String user_address,
-            String user_phoneNum, String user_iden,int id) {
+
+    public void updateStaff(String user_fullname, String user_mail,
+            String user_dob, String user_address,
+            String user_phoneNum, String user_iden, int id) {
         String sql = "UPDATE [dbo].[Users]\n"
                 + "   SET \n"
                 + "       [user_fullname] = ?\n"
@@ -366,7 +364,7 @@ public class UserDAO extends DBContext {
                 + "      ,[user_phoneNum] =?\n"
                 + "      ,[user_iden] = ?\n"
                 + "      \n"
-                + " WHERE user_id = " +id;
+                + " WHERE user_id = " + id;
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -377,7 +375,6 @@ public class UserDAO extends DBContext {
             st.setString(5, user_phoneNum);
             st.setString(6, user_iden);
 
-            
             st.executeUpdate();
 
         } catch (Exception e) {
@@ -385,7 +382,6 @@ public class UserDAO extends DBContext {
         }
 
     }
-    
 
     public ArrayList<User> getALLUser() {
         ArrayList<User> list = new ArrayList<>();
@@ -571,7 +567,6 @@ public class UserDAO extends DBContext {
     }
 //=============================TEST==========================
 
-
     public boolean changeForgetPassword(String inputLogin, String newPass) {
         try {
             String strSQL = null;
@@ -640,7 +635,8 @@ public class UserDAO extends DBContext {
         }
         return list;
     }
-public ArrayList<User> searchStaffByName(String txtsearch) {
+
+    public ArrayList<User> searchStaffByName(String txtsearch) {
         ArrayList<User> list = new ArrayList<>();
         String strSQL = "select * from Users\n"
                 + "where [user_fullname] like ? and (user_role='staff')";
@@ -667,6 +663,7 @@ public ArrayList<User> searchStaffByName(String txtsearch) {
         }
         return list;
     }
+
     public void deleteStaff(String id) {
         String strSQL = " delete from users where user_id = ?";
         try {
@@ -698,13 +695,73 @@ public ArrayList<User> searchStaffByName(String txtsearch) {
         } catch (SQLException e) {
             System.out.println("verifyUser:" + e);
         }
-  
+
     }
-    
-    public void updateMailUser(String mailString, int id){
-        String sql = "UPDATE Users\n" +
-                    "SET user_mail = ? \n" +
-                    "WHERE user_id = ?";
+
+    //update cccd + img cccd
+    public boolean verifyUserRequest(String user_iden_img, String user_idenString, int id) {
+        String strSQL = " update Users set user_iden_img = ?, user_iden = ? where user_id = ?";
+        try {
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setString(1, user_iden_img);
+            pstm.setString(2, user_idenString);
+            pstm.setInt(3, id);
+            pstm.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("verifyUser:" + e);
+        }
+        return false;
+    }
+
+    //lấy ra danh sách tài khoản có trạng thái chưa xác minh nhưng có số cmt và ảnh
+    public ArrayList<User> getListUserDangChoXacMinh() {
+        ArrayList<User> list = new ArrayList<>();
+        String strSQL = "SELECT *\n"
+                + "FROM Users\n"
+                + "WHERE user_status = 'Unverified' AND user_iden IS NOT NULL AND user_iden_img IS NOT NULL;";
+        try {
+
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                list.add(new User(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    //update user status from staff duyet
+    public boolean updateUserStatusByStaff(int user_id_canupdate) {
+        String strSQL = " update Users set user_status = 'Verified' where user_id = ?";
+        try {
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            pstm.setInt(1, user_id_canupdate);
+            pstm.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("update status user by staff:" + e);
+        }
+        return false;
+    }
+
+    //update mail usser
+    public void updateMailUser(String mailString, int id) {
+        String sql = "UPDATE Users\n"
+                + "SET user_mail = ? \n"
+                + "WHERE user_id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, mailString);
@@ -714,12 +771,41 @@ public ArrayList<User> searchStaffByName(String txtsearch) {
             System.out.println("updateMailUser:" + E);
         }
     }
-  
 
-   
+    //lấy ra danh sách tài khoản 
+    public ArrayList<User> getListUserFull() {
+        ArrayList<User> list = new ArrayList<>();
+        String strSQL = "SELECT * from Users ";
+        try {
+            PreparedStatement pstm = connection.prepareStatement(strSQL);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+                list.add(new User(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12)));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+//    ====================================================|TEST |========================================
+    public static void main(String[] args) {
+        UserDAO ud = new UserDAO();
+//        ud.verifyUserRequest("000000000011", "Image/cccd/341950810_226418940067777_3382559294940831201_n.png", 16);
+        ArrayList<User> u = ud.getListUserDangChoXacMinh();
+        for (User user : u) {
+            System.out.println(u.toString());
+        }
+    }
+
 }
-        
-
-    
-
-
