@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/ContractDAO.java</file>
-            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/UserDAO.java</file>
-            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/BlogDAO.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/home/Register.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/DBContext.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/Blogs.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/FormDAO.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/Form_Vatchat.java</file>
         </group>
     </open-files>
 </project-private>
