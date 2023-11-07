@@ -194,4 +194,5 @@ public class Form_Vatchat {
         return "Form_Vatchat{" + "fvc_id=" + fvc_id + ", brand_id=" + brand_id + ", model_id=" + model_id + ", pt_id=" + pt_id + ", deduc_id=" + deduc_id + ", startDate=" + startDate + ", endDate=" + endDate + ", totalPrice=" + totalPrice + ", user_id=" + user_id + ", fvc_deviceNum=" + fvc_deviceNum + ", fvc_deviceChassisNum=" + fvc_deviceChassisNum + ", fvc_licensePlates=" + fvc_licensePlates + ", ip_id=" + ip_id + ", fvc_status=" + fvc_status + '}';
     }
 
+
 }

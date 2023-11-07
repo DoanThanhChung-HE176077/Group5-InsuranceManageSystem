@@ -5,18 +5,21 @@
 
 package controller.admin;
 
+import dao.ContractDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.ContractTNDS;
+import model.ContractVatchat;
 
 /**
  *
  * @author ADMIN
  */
-public class Admin_Contract_detailTNDS extends HttpServlet {
+public class Admin_Contract_detail extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,17 +31,19 @@ public class Admin_Contract_detailTNDS extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Admin_Contract_detailTNDS</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Admin_Contract_detailTNDS at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        int id = Integer.parseInt(request.getParameter("contract_id"));
+        String name = request.getParameter("ip_name");
+        if(name.equals("Bảo hiểm TNDS")){
+            ContractDAO  c = new ContractDAO();
+            ContractTNDS contract = c.getTNDSbyId(id);
+            request.setAttribute("contract", contract);
+            request.getRequestDispatcher("Admin_Contract_detail.jsp").forward(request, response);
+        }
+        else if(name.equals("Bảo hiểm vật chất")) {
+            ContractDAO  c = new ContractDAO();
+            ContractVatchat contract = c.getVatchatbyId(id);
+            request.setAttribute("contract", contract);
+            request.getRequestDispatcher("Admin_Contract_detail.jsp").forward(request, response);
         }
     } 
 
@@ -79,3 +84,6 @@ public class Admin_Contract_detailTNDS extends HttpServlet {
     }// </editor-fold>
 
 }
+//Vatchat: ten khach hang, ma hop dong, ten hop dong, hang xe, hieu xe, so may, bien kiem soat, so khung, ngay bd, ngay kt, goi bao hiem co ban, muc khau tru, tong chi phi , trang thai
+
+//TNDS: ten khach hang, ma hop dong, ten hop dong, loai xe, so may, bien xe, so khung, ngay bd, ngay kt, muc trach nhiem, so nguoi, tong chi phi, trang thai

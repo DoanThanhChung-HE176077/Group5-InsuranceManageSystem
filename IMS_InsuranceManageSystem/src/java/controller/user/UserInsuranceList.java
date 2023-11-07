@@ -3,20 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+package controller.user;
 
+import dao.ContractDAO;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import model.Contract;
+import model.NewC;
+import model.User;
 
 /**
  *
- * @author ADMIN
+ * @author thant
  */
-public class Admin_Contract_detailVatchat extends HttpServlet {
+public class UserInsuranceList extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,10 +40,10 @@ public class Admin_Contract_detailVatchat extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Admin_Contract_detailVatchat</title>");  
+            out.println("<title>Servlet UserInsuranceList</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Admin_Contract_detailVatchat at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet UserInsuranceList at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -53,7 +60,21 @@ public class Admin_Contract_detailVatchat extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        User u = new User();
+        
+        HttpSession session = request.getSession();
+        u = (User) session.getAttribute("user");
+        System.out.println("user insurance list check userID: "+ u.getUser_id());
+        
+        ContractDAO cd = new ContractDAO();
+        
+        NewC nC = new NewC();
+        
+        ArrayList<NewC> cL = cd.getAllContractOfUser(u.getUser_id());
+        
+        request.setAttribute("contractList", cL);
+        
+        request.getRequestDispatcher("User_inslist.jsp").forward(request, response);
     } 
 
     /** 
@@ -66,7 +87,23 @@ public class Admin_Contract_detailVatchat extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        User u = new User();
+        
+        HttpSession session = request.getSession();
+        u = (User) session.getAttribute("user");
+        System.out.println("user insurance list check userID: "+ u.getUser_id());
+        
+        ContractDAO cd = new ContractDAO();
+        
+        NewC nC = new NewC();
+        
+        ArrayList<NewC> cL = cd.getAllContractOfUser(u.getUser_id());
+        
+        request.setAttribute("contractList", cL);
+        
+        request.getRequestDispatcher("User_inslist.jsp").forward(request, response);
+        
+        
     }
 
     /** 

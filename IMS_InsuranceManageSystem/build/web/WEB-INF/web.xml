@@ -120,6 +120,18 @@
         <servlet-name>Staff_ContractRequest_list</servlet-name>
         <servlet-class>controller.staff.Staff_ContractRequest_list</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_Contract_detail</servlet-name>
+        <servlet-class>controller.admin.Admin_Contract_detail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserInsuranceList</servlet-name>
+        <servlet-class>controller.user.UserInsuranceList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserContractDetail</servlet-name>
+        <servlet-class>controller.user.UserContractDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -231,6 +243,18 @@
     <servlet-mapping>
         <servlet-name>Staff_ContractRequest_list</servlet-name>
         <url-pattern>/contract_request_list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Contract_detail</servlet-name>
+        <url-pattern>/Admin_Contract_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInsuranceList</servlet-name>
+        <url-pattern>/UserInsuranceList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserContractDetail</servlet-name>
+        <url-pattern>/UserContractDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -238,8 +238,9 @@ public class UserDAO extends DBContext {
         return false;
     }
 
-        public boolean addStaff(String fullname, String mail, String password, Date dob, String address, String phoneNum, String iden) {
+    public boolean addStaff(String fullname, String mail, String password, Date dob, String address, String phoneNum, String iden, String status) {
         try {
+            System.out.println("alo");
             int temp = getLastId() + 1;
             String strSQL = "INSERT INTO Users (user_id, user_fullname, user_mail, user_password, user_dob, user_address, user_phoneNum, user_iden, user_img, user_role, user_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
             PreparedStatement pstm = connection.prepareStatement(strSQL);
@@ -263,7 +264,10 @@ public class UserDAO extends DBContext {
         }
         return false;
     }
-
+//public static void main(String[] args) {
+//        UserDAO ud = new UserDAO();
+//        ud.addStaff("user12", "user@fpt.edu.vn", "2003-12-06", "Ninh Binh", "0123456789","111111111111", 1);
+//    }
 
     public int getLastId() {
         int lastId;
@@ -381,10 +385,7 @@ public class UserDAO extends DBContext {
         }
 
     }
-    public static void main(String[] args) {
-        UserDAO ud = new UserDAO();
-        ud.updateStaff("Đoàn Thành Chung", "chungdthe176077@fpt.edu.vn", "2003-12-06", "Ninh Binh", "0123456789","111111111111", 1);
-    }
+    
 
     public ArrayList<User> getALLUser() {
         ArrayList<User> list = new ArrayList<>();

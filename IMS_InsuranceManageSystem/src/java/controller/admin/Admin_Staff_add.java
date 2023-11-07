@@ -58,7 +58,7 @@ public class Admin_Staff_add extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("Admin_Staff_add.jsp").forward(request, response);
     } 
 
     /** 
@@ -149,13 +149,15 @@ public class Admin_Staff_add extends HttpServlet {
             } catch (ParseException ex) {
                 Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            System.out.println(dateOfBirth);
             User u = new User();
             UserDAO uD = new UserDAO();
+            String status = "Verified";
+           uD.addStaff(fullname, mail, password, dateOfBirth, address, phoneNum, iden,status);
+               response.sendRedirect("admin_Staff_list");
+        
 
-            uD.addStaff(fullname, mail, password, dateOfBirth, address, phoneNum, iden);
-
-            response.sendRedirect("admin_Staff_list");
+            
         }
     }
     public static String checkFullname(String username) {
