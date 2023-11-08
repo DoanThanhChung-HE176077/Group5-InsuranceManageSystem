@@ -117,7 +117,9 @@ public class SaveInfoTNDS extends HttpServlet {
         else if(check.equals("vatchat")){
             //lay thong tin tu form => save cac id vao db tam unpaid + update ip_id = 2 + lay ra cac deduc_name, pt_name
             //de mang cho vao bangr bill, chu o bill ko de hien id dc 
-             String fvc_brand_id = request.getParameter("send-brand_id");
+               System.out.println("===================================== |Check save to contract vat chat ========================|");
+               System.out.println("check: " + check);
+              String fvc_brand_id = request.getParameter("send-brand_id");
              String fvc_model_id = request.getParameter("send-model_id");
              String fvc_pt_id = request.getParameter("send-pt_id1");
              String fvc_deduc_id = request.getParameter("send-deduc_id1");
@@ -128,10 +130,23 @@ public class SaveInfoTNDS extends HttpServlet {
              String fvc_soMay = request.getParameter("soMay"); //Device number
              String fvc_soKhung = request.getParameter("soKhung"); //Device chassis number
              String fvc_bienXe = request.getParameter("bienXe"); //License plates
+             
+             System.out.println("====================| input data | =======================");
+             System.out.println("fvc_brand_id: " + fvc_brand_id);
+            System.out.println("fvc_model_id: " + fvc_model_id);
+            System.out.println("fvc_pt_id: " + fvc_pt_id);
+            System.out.println("fvc_deduc_id: " + fvc_deduc_id);
+            System.out.println("fvc_startDate: " + fvc_startDate);
+            System.out.println("fvc_endDate: " + fvc_endDate);
+            System.out.println("fvc_totalPrice: " + fvc_totalPrice);
+            System.out.println("fvc_soMay: " + fvc_soMay);
+            System.out.println("fvc_soKhung: " + fvc_soKhung);
+            System.out.println("fvc_bienXe: " + fvc_bienXe);
+
              //update ip_id
             ip_id = "2";
             
-             //parse id from string to int to save to db
+            //parse id from string to int to save to db
             int parsedBrandId = Integer.parseInt(fvc_brand_id);
             int parsedModelId = Integer.parseInt(fvc_model_id);
             int parsedPtId = Integer.parseInt(fvc_pt_id);
@@ -144,14 +159,21 @@ public class SaveInfoTNDS extends HttpServlet {
 
             FormDAO dao = new FormDAO();
             //add vào db
-            dao.insertVatChatToFormVatChat(parsedBrandId, parsedModelId, parsedPtId, parsedDeducId, fvc_startDate, fvc_endDate, parseTotal,user_id, fvc_soMay, fvc_soKhung, fvc_bienXe,ip_id, "unpaid");
+            if(dao.insertVatChatToFormVatChat(parsedBrandId, parsedModelId, parsedPtId, parsedDeducId, fvc_startDate, fvc_endDate, parseTotal, user_id, fvc_soMay, fvc_soKhung, fvc_bienXe, ip_id, "unpaid")){
+                System.out.println("===============| SAVE TO VATCHAT: |=============");
+                System.out.println("Save: DONE");
+            }
+            else {
+                System.out.println("===============| SAVE TO VATCHAT: |=============");
+                System.out.println("Save: FALSE -> VATCHAT O ADD DC VAO CONTRACT!!!!!!!!");
+            }
             // update amount to send to vnpay
             amount = (removeDotsFromNumber(amountsString)) * 100;
-            
 
         }
 
-        
+        System.out.println("======================| IP_ID | ===============");
+        System.out.println("ip_id: "+ ip_id);
        
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";

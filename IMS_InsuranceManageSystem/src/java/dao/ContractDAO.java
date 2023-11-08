@@ -25,9 +25,7 @@ import model.User;
  *
  * @author chun
  */
-
 public class ContractDAO extends DBContext {
-
 
     public ArrayList<NewC> getAllContractOfUser(int id) {
         try {
@@ -60,8 +58,6 @@ public class ContractDAO extends DBContext {
         return null;
     }
 
-
-   
     public ArrayList<NewC> getAllContract() {
         try {
             ArrayList<NewC> list = new ArrayList<>();
@@ -91,18 +87,16 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
-    
-    
 
     public ArrayList<NewC> getNewContract() {
         try {
             ArrayList<NewC> list = new ArrayList<>();
-            String sql ="SELECT TOP 3 [contract_id], u.[user_id], contract_startDate, contract_endDate, ip.[ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status], user_fullname, ip_name\n" +
-"FROM [Contract] c\n" +
-"JOIN Users u ON c.user_id = u.user_id\n" +
-"JOIN Insurance_Products ip ON c.ip_id = ip.ip_id\n" +
-"WHERE contract_status IN ('Active', 'Reject', 'Expired')\n" +
-"ORDER BY contract_id DESC;";
+            String sql = "SELECT TOP 3 [contract_id], u.[user_id], contract_startDate, contract_endDate, ip.[ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status], user_fullname, ip_name\n"
+                    + "FROM [Contract] c\n"
+                    + "JOIN Users u ON c.user_id = u.user_id\n"
+                    + "JOIN Insurance_Products ip ON c.ip_id = ip.ip_id\n"
+                    + "WHERE contract_status IN ('Active', 'Reject', 'Expired')\n"
+                    + "ORDER BY contract_id DESC;";
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -164,7 +158,7 @@ public class ContractDAO extends DBContext {
         return null;
 
     }
-    
+
     public ArrayList<NewC> getActiveContracts() {
         try {
             ArrayList<NewC> list = new ArrayList<>();
@@ -200,6 +194,7 @@ public class ContractDAO extends DBContext {
         return null;
 
     }
+
     public ContractTNDS getTNDSbyId(int id) {
         String sql = "  select c.contract_id, u.user_fullname,ip.ip_name,ftnds.ftnds_id, ftnds_loaiXe,[ftnds_soMay],[ftnds_bienXe],[ftnds_soKhung],[ftnds_startDate],[ftnds_endDate],[ftnds_mucTrachNhiem],[ftnds_soNguoi],[ftnds_tongChiPhi],[ftnds_status] from [Contract] c join [Form_TNDS] ftnds on c.ftnds_id = ftnds.ftnds_id join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id  where c.contract_id=?";
         try {
@@ -207,20 +202,20 @@ public class ContractDAO extends DBContext {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                return( new ContractTNDS(rs.getInt(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getInt(4),
-                    rs.getString(5),
-                    rs.getString(6),
-                    rs.getString(7),
-                    rs.getString(8),
-                    rs.getDate(9),
-                    rs.getDate(10),
-                    rs.getString(11),
-                    rs.getString(12),
-                    rs.getString(13),
-                    rs.getString(14)));
+                return (new ContractTNDS(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getDate(9),
+                        rs.getDate(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13),
+                        rs.getString(14)));
             }
         } catch (Exception ex) {
             Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -228,37 +223,38 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
-    public ContractVatchat getVatchatbyId(int id) {    
-    try {
+
+    public ContractVatchat getVatchatbyId(int id) {
+        try {
             String sql = "SELECT c.contract_id, fvc.fvc_id, u.user_fullname, ip.ip_name, b.brand_name, m.model_name, fvc.[fvc_deviceNum], fvc.fvc_deviceChassisNum, fvc.fvc_licensePlates, fvc.[startDate], fvc.[endDate], pt.pt_percent, dl.deduc_percent, fvc.fvc_totalPrice, fvc.fvc_status FROM [Contract] c JOIN [Form_Vatchat] fvc ON c.fvc_id = fvc.fvc_id JOIN Users u ON c.user_id = u.user_id JOIN Insurance_Products ip ON c.ip_id = ip.ip_id JOIN Brands b ON fvc.brand_id = b.brand_id JOIN Models m ON m.model_id = fvc.model_id JOIN Package_Type pt ON fvc.pt_id = pt.pt_id JOIN Deductible_Level dl ON fvc.deduc_id = dl.deduc_id WHERE c.contract_id = ?";
-        PreparedStatement st = connection.prepareStatement(sql);
-        st.setInt(1, id);
-        ResultSet rs = st.executeQuery();
-        if (rs.next()) {
-            return( new ContractVatchat(rs.getInt(1),
-                    rs.getInt(2),
-                    rs.getString(3),
-                    rs.getString(4),
-                    rs.getString(5),
-                    rs.getString(6),
-                    rs.getString(7),
-                    rs.getString(8),
-                    rs.getString(9),
-                    rs.getDate(10),
-                    rs.getDate(11),
-                    rs.getString(12),
-                    rs.getString(13),
-                    rs.getString(14),
-                    rs.getString(15)));
-            
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return (new ContractVatchat(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getDate(10),
+                        rs.getDate(11),
+                        rs.getString(12),
+                        rs.getString(13),
+                        rs.getString(14),
+                        rs.getString(15)));
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } catch (Exception ex) {
-        Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        return null;
+
     }
-    return null;
-    
-    
-}
+
     public NewC getContractById(int contract_id) {
         try {
             String sql = "select u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],\n"
@@ -342,22 +338,21 @@ public class ContractDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, contractStatus);
             ps.setInt(2, contractID);
-            
+
             ps.executeUpdate();
             return true;
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, e.getMessage());
         }
         return false;
     }
 
-     public static void main(String[] args) {
+    public static void main(String[] args) {
         ContractDAO cd = new ContractDAO();
 
         ContractTNDS b = cd.getTNDSbyId(1);
-         System.out.println(b.toString());
+        System.out.println(b.toString());
 
     }
-    
+
 }

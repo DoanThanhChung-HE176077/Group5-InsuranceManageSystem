@@ -286,9 +286,13 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Đã xác minh')}">
-                                <button type="submit" class="btn ">Thanh toán</button>
+                            
+                            <c:if test = "${sessionScope.user.getUser_role().equals('Khách hàng')}">
+                                <c:if test = "${sessionScope.user.getStatus().equals('Đã xác minh')}">
+                                    <button type="submit" class="btn ">Thanh toán</button>
+                                </c:if>
                             </c:if>
+                                    
                             <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Chưa xác minh')}">
                                 <div class="d-flex justify-content-center" style="margin-top: 0px">
                                     <div class="d-flex justify-content-center" style="color: red; font-style: italic; font-weight: bold">
@@ -300,11 +304,17 @@
                                     <a type="button" href="User_verify.jsp" class="btn btn-danger">Xác minh tài khoản</a>
                                 </div>
                             </c:if>
+                                
                             <c:if test="${sessionScope.user.user_role.equals('Admin') }">
-
+                                <div class="d-flex justify-content-center" style="color: red; font-style: italic; font-weight: bold">
+                                    Tài khoản của bạn không thuộc phạm vi thao tác chức năng này!.
+                                </div>
                             </c:if>
+                                
                             <c:if test="${sessionScope.user.user_role.equals('Nhân viên') }">
-
+                                <div class="d-flex justify-content-center" style="color: red; font-style: italic; font-weight: bold">
+                                    Tài khoản của bạn không thuộc phạm vi thao tác chức năng này!
+                                </div>
                             </c:if>
 
                         </div>
