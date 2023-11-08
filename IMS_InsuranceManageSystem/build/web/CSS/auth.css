@@ -1,0 +1,151 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Sep 23, 2023, 1:16:58 PM
+    Author     : thant
+*/
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#banner-top {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    clear: both;
+    -webkit-animation: banner .4s linear;
+    animation: banner .4s linear;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-banner-top-item {
+    position: relative;
+}
+
+.carousel-banner-top-item img {
+    width: 100%;
+    height: 150px;
+}
+
+.wraper-content-carosel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    height: 60px;
+    font-size: 45px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    z-index: 1;
+    -webkit-animation: fade .7s linear;
+    animation: fade .7s linear;
+}
+
+.login-default {
+    -webkit-animation: fadeInLeft .4s ease-out;
+    animation: fadeInLeft .4s ease-out;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.form-group {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    padding-bottom: 0px;
+    margin: 8px 0px;
+    clear: both;
+}
+
+form {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.form-group .form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 6px);
+    padding: 0.375rem 0.75rem;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: rgb(73, 80, 87);
+    background-color: rgb(255, 255, 255);
+    background-clip: padding-box;
+    border: 1px solid rgb(206, 212, 218);
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+    text-transform: none;
+}
+
+.form-group .input_label {
+    position: absolute;
+    background: 0 0;
+    top: -10px;
+    left: 23px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #a4a6a8;
+    font-size: 12px;
+    font-weight: 400;
+    max-width: calc(100% - (2 * 8px));
+    overflow: hidden;
+    padding: 0 8px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    white-space: nowrap;
+    width: auto;
+    pointer-events: none;
+    z-index: 9;
+    line-height: 18px;
+}
+
+.input-group {
+  margin-bottom: 10px;
+}
+
+
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 0.5px solid #ccc;
+  margin-bottom: 10px;
+}
+
+input:focus {
+  border: 0.5px solid green;
+
+}
+
+
+button {
+  width: 100%;
+  background-color: #000;
+  color: #c4dad5;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
