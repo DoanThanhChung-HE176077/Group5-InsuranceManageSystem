@@ -5,7 +5,7 @@
 
 package controller.user;
 
-import dao.BlogDAO;
+import dao.ContractDAO;
 import dao.UserDAO;
 import jakarta.servlet.ServletContext;
 import java.io.IOException;
@@ -28,7 +28,7 @@ import model.User;
  * @author chun
  */
 @MultipartConfig
-public class UserVerify extends HttpServlet {
+public class UserClaimListSV extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -45,10 +45,10 @@ public class UserVerify extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserVerify</title>");  
+            out.println("<title>Servlet UserClaimListSV</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserVerify at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet UserClaimListSV at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -78,30 +78,46 @@ public class UserVerify extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        //socccd
-        String cccd = request.getParameter("soCCCD");
-        System.out.println("========================= so CCCD ===============");
-        System.out.println(cccd);
-        //user_id 
+//        int claim_id = Integer.parseInt(request.getParameter("user_id"));
+
         HttpSession session = request.getSession();
         User user1 = (User) session.getAttribute("user");
         int user_id = user1.getUser_id();
-        System.out.println("=========================| User id ===============");
+        int contract_id = Integer.parseInt(request.getParameter("contract_id"));
+        String creationDate = request.getParameter("creationDate");
+        String claim_description = request.getParameter("claim_description");
+        String claim_img_des = "";
+        String claim_file_des = "";
+        String claim_bank = request.getParameter("claim_bank");
+        String claim_bank_number = request.getParameter("claim_bank_number");
+        //Pending + Accept + Reject
+        String claim_status = "pending";
+        //check data input
         System.out.println(user_id);
-        System.out.println("==================================================");
-        //image
-        Part filePart = request.getPart("file");
+        System.out.println(contract_id);
+        System.out.println(creationDate);
+        System.out.println(claim_description);
+        System.out.println(claim_img_des);
+        System.out.println(claim_file_des);
+        System.out.println(claim_bank);
+        System.out.println(claim_bank_number);
+        System.out.println(claim_status);
+
+        //====================================================================================================================
+        //solve file
+        System.out.println("============================| SOLVE FILE IMG |============================");
+        Part filePart = request.getPart("claim_img_des");
         String fileName = filePart.getSubmittedFileName();
         
-        //=============solve file image============
+        //============= solve file image============
         ServletContext context = getServletContext();// Get the ServletContext
-        String imageSaveAt = "image\\cccd\\";// URL to the folder where the image will be saved, e.g., "image/chung.png"
+        String imageSaveAt = "image\\claim\\";// URL to the folder where the image will be saved, e.g., "image/chung.png"
         String rootProjectUrl = context.getRealPath("/"); // Root project URL is in the "build" folder
         String newRootProjectUrl = rootProjectUrl.replace("build\\web\\", "web\\");// Change URL to the web context
         String finalUrl = newRootProjectUrl + imageSaveAt;// Construct the absolute path to the image
-        
-        //========Image solve check===============
-        System.out.println("==================image solved check==============");
+
+        //======== Image solve check===============
+        System.out.println("================== Image solved check==============");
         System.out.println("+-----------------------------+------------------------+");
         System.out.println("| Name                        | Data                   |");
         System.out.println("+-----------------------------+------------------------+");
@@ -116,7 +132,7 @@ public class UserVerify extends HttpServlet {
         //========================SAVE TO DB ==========================
         // Print a message indicating whether the file exists or not
         if (fileExists(finalUrl, fileName)) {
-            System.out.println("=====================Check file exist=======================");
+            System.out.println("=====================Check file exist2=======================");
             System.out.println("File (" + fileName + ") exists in the provided path: " + finalUrl);
             String fileNameNew = renameIfFileExists(finalUrl, fileName);
             System.out.println("File with the same name already exists. Renamed to: " + fileNameNew);
@@ -141,22 +157,15 @@ public class UserVerify extends HttpServlet {
                 System.out.println("File name TO SAVE: " + imageFileName);
                 System.out.println("File uploaded successfully.");
 
-                //save to db
-                UserDAO dao = new UserDAO();
-                System.out.println("-------Check saving to db -------");
-                if (dao.verifyUserRequest(imageFileName, cccd, user_id)) {
-                    System.out.println("Saving file to db : DONE.");
-                } else {
-                    System.err.println("Saving file to db : FAILSE.");
-                }
-                System.out.println("===========================================");
+                //UPDATE claim_img_des TO SAVE TO DB
+                claim_img_des = imageFileName;
 
             } catch (Exception e) {
                 System.err.print("Error upload: " + e.getMessage());
                 System.err.println("Error: " + e.getMessage());
             }
         } else {
-            System.out.println("=====================Check file exist=======================");
+            System.out.println("=====================Check file exist2=======================");
             System.out.println("File " + fileName + " does NOT exist in the provided path: " + finalUrl);
             System.out.println("File name: " + fileName);
             System.out.println("=========================================================");
@@ -177,26 +186,124 @@ public class UserVerify extends HttpServlet {
                 System.out.println("File name TO SAVE: " + imageFileName);
                 System.out.println("File uploaded successfully.");
 
-                //save to db
-                UserDAO dao = new UserDAO();
-                System.out.println("-------Check saving to db -------");
-                if (dao.verifyUserRequest(imageFileName, cccd, user_id)) {
-                    System.out.println("Saving file to db : DONE.");
-                } else {
-                    System.err.println("Saving file to db : FAILSE.");
-                }
-                System.out.println("===========================================");
+                //UPDATE claim_img_des TO SAVE TO DB
+                claim_img_des = imageFileName;
 
             } catch (Exception e) {
                 System.err.print("Error upload: " + e.getMessage());
                 System.err.println("Error: " + e.getMessage());
             }
         }
+        
 
-        response.sendRedirect("UserProfile.jsp");
+        //=======================================================================================================================
+        
+        
+        
+        System.out.println("============================| SOLVE FILE DOC |============================");
+        Part filePartdoc = request.getPart("claim_file_des");
+        String fileNamedoc = filePartdoc.getSubmittedFileName();
+        //============= solve file doc============
+        ServletContext contextdoc = getServletContext();// Get the ServletContext
+        String imageSaveAtdoc = "Documents\\";// URL to the folder where the image will be saved, e.g., "image/chung.png"
+        String rootProjectUrldoc = contextdoc.getRealPath("/"); // Root project URL is in the "build" folder
+        String newRootProjectUrldoc = rootProjectUrldoc.replace("build\\web\\", "web\\");// Change URL to the web context
+        String finalUrldoc = newRootProjectUrldoc + imageSaveAtdoc;// Construct the absolute path to the image
 
+        //======== DOC solve check===============
+        System.out.println("==================| DOC solved check |==============");
+        System.out.println("+-----------------------------+------------------------+");
+        System.out.println("| Name                        | Data                   |");
+        System.out.println("+-----------------------------+------------------------+");
+        System.out.printf("| %-50s | %s%n", "File Name DOC", fileNamedoc);
+        System.out.printf("| %-50s | %s%n", "DOC Save At", imageSaveAtdoc);
+        System.out.printf("| %-50s | %s%n", "Root Project URL (build)", rootProjectUrldoc);
+        System.out.printf("| %-50s | %s%n", "New Root Project URL", newRootProjectUrldoc);
+        System.out.printf("| %-50s | %s%n", "New Root Project URL + Image", newRootProjectUrldoc + imageSaveAtdoc);
+        System.out.printf("| %-50s | %s%n", "True Final Folder URL", finalUrldoc);
+        System.out.println("+-----------------------------+------------------------+");
+
+        //========================SAVE TO DB ==========================
+        // Print a message indicating whether the file exists or not
+        if (fileExists(finalUrldoc, fileNamedoc)) {
+            System.out.println("=====================Check file exist=======================");
+            System.out.println("File (" + fileNamedoc + ") exists in the provided path: " + finalUrldoc);
+            String fileNameNewdoc = renameIfFileExists(finalUrldoc, fileNamedoc);
+            System.out.println("File with the same name already exists. Renamed to: " + fileNameNewdoc);
+            System.out.print("File name new: " + fileNameNewdoc);
+            System.out.println("Receive location: " + finalUrldoc);
+            System.out.println("Receive file name: " + fileNameNewdoc);
+            //=========================================
+            OutputStream os = null;
+            InputStream is = null;
+            try {
+                // Ready to save
+                os = new FileOutputStream(new File(finalUrldoc + File.separator + fileNameNewdoc));
+                is = filePart.getInputStream();
+                int read = 0;
+                while ((read = is.read()) != -1) {
+                    os.write(read);
+                }
+                System.out.println("========READY SAVING TO DB=========");
+                System.out.println("File location will be saved to: " + finalUrldoc);
+                System.out.println("File name ORIGIN: " + fileNameNewdoc);
+                String docFileName = "Documents/" + fileNameNewdoc;
+                System.out.println("File name TO SAVE: " + docFileName);
+                System.out.println("File uploaded successfully.");
+
+                //UPDATE claim_img_des TO SAVE TO DB
+                claim_file_des = docFileName;
+
+            } catch (Exception e) {
+                System.err.print("Error upload: " + e.getMessage());
+                System.err.println("Error: " + e.getMessage());
+            }
+        } else {
+            System.out.println("=====================Check file exist=======================");
+            System.out.println("File " + fileNamedoc + " does NOT exist in the provided path: " + finalUrldoc);
+            System.out.println("File name: " + fileNamedoc);
+            System.out.println("=========================================================");
+            OutputStream os = null;
+            InputStream is = null;
+            try {
+                // Ready to save
+                os = new FileOutputStream(new File(finalUrldoc + File.separator + fileNamedoc));
+                is = filePart.getInputStream();
+                int read = 0;
+                while ((read = is.read()) != -1) {
+                    os.write(read);
+                }
+                System.out.println("========READY SAVING TO DB=========");
+                System.out.println("File location will be saved to: " + finalUrldoc);
+                System.out.println("File name ORIGIN: " + fileNamedoc);
+                String docFileName = "Documents/" + fileNamedoc;
+                System.out.println("File name TO SAVE: " + docFileName);
+                System.out.println("File uploaded successfully.");
+
+
+                //UPDATE claim_img_des TO SAVE TO DB
+                claim_file_des = docFileName;
+                
+            } catch (Exception e) {
+                System.err.print("Error upload: " + e.getMessage());
+                System.err.println("Error: " + e.getMessage());
+            }
+        }
+        
+        
+        //save vao table claim
+        ContractDAO cdao = new ContractDAO();
+        if(cdao.createClaim(user_id, contract_id, creationDate, claim_description, claim_img_des, claim_file_des, claim_bank, claim_bank_number, claim_status)){
+            System.out.println("========================== SAVE CALIM OK ==================");
+            System.out.println("claim_file_des: " + claim_file_des);
+            System.out.println("claim_img_des : " + claim_img_des);
+        }else {
+            System.out.println("========================== SAVE CALIM FAILSEEEEEEEE ==================");
+        }
+        
         
     }
+    
 
     /** 
      * Returns a short description of the servlet.
@@ -206,8 +313,8 @@ public class UserVerify extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
     // Method to check if the file exists in the provided path
+
     private boolean fileExists(String location, String fileName) {
         File file = new File(location + File.separator + fileName);
         return file.exists();
@@ -234,5 +341,4 @@ public class UserVerify extends HttpServlet {
         }
         return newFileName;
     }
-
 }

@@ -148,6 +148,14 @@
         <servlet-name>Staff_ContractRequest_detail</servlet-name>
         <servlet-class>controller.staff.Staff_ContractRequest_detail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserClaimListSV</servlet-name>
+        <servlet-class>controller.user.UserClaimListSV</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserClaimListShow</servlet-name>
+        <servlet-class>controller.user.UserClaimListShow</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -287,6 +295,14 @@
     <servlet-mapping>
         <servlet-name>Staff_ContractRequest_detail</servlet-name>
         <url-pattern>/contract_request_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserClaimListSV</servlet-name>
+        <url-pattern>/UserClaimListSV</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserClaimListShow</servlet-name>
+        <url-pattern>/UserClaimListShow</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

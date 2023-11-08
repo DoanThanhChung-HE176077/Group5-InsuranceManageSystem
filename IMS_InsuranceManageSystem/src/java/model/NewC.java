@@ -38,5 +38,11 @@ public class NewC extends Contract{
     public void setIp_name(String ip_name) {
         this.ip_name = ip_name;
     }
+
+    @Override
+    public String toString() {
+        return "NewC{" + "user_fullname=" + user_fullname + ", ip_name=" + ip_name + '}';
+    }
+    
     
 }

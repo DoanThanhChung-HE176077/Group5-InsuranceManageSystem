@@ -17,12 +17,12 @@ public class Contract {
    private int contract_id;
    private int user_id;
    private Date contract_startDate;
-  private  Date contract_endDate;
-  private  int ip_id;
-  private  int fvc_id;
-  private  int ftnds_id;
-  private  int total_price;
-  private  String contract_status;
+    private  Date contract_endDate;
+    private  int ip_id;
+    private  int fvc_id;
+    private  int ftnds_id;
+    private  int total_price;
+    private  String contract_status;
 
     public Contract() {
     }
@@ -136,6 +136,11 @@ public class Contract {
 
     public void setContract_status(String contract_status) {
         this.contract_status = contract_status;
+    }
+
+    @Override
+    public String toString() {
+        return "Contract{" + "contract_id=" + contract_id + ", user_id=" + user_id + ", contract_startDate=" + contract_startDate + ", contract_endDate=" + contract_endDate + ", ip_id=" + ip_id + ", fvc_id=" + fvc_id + ", ftnds_id=" + ftnds_id + ", total_price=" + total_price + ", contract_status=" + contract_status + '}';
     }
 
    

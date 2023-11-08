@@ -97,7 +97,11 @@
                                 <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
                                     <a class="dropdown-item" href="UserInsuranceList">Hợp đồng của tôi</a>
                                 </c:if>
-                                    
+                                
+                                    <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
+                                        <a class="dropdown-item" href="UserClaimListShow">Tạo yêu cầu bồi thường</a>
+                                    </c:if>
+                                        
                                 <!--phân quyền staff-->
                                 <c:if test="${sessionScope.user.user_role.equals('Nhân viên')}">
                                     <a class="dropdown-item" href="admin_dashboard">Bảng điều khiển</a>

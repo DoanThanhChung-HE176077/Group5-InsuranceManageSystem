@@ -160,17 +160,28 @@
                             <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Đã xác minh')}">
                                 <button type="submit" class="btn ">Thanh toán</button>
                             </c:if>
+
+                                
                             <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Chưa xác minh')}">
-                                <div class="d-flex justify-content-center" style="margin-top: 0px">
-                                    <div class="d-flex justify-content-center" style="color: red; font-style: italic; font-weight: bold">
-                                        Bạn cần xác minh tài khoản để thực hiện thao tác này.
+                                <c:if test="${sessionScope.user.getUser_iden_img() == null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
+                                    <div class="d-flex justify-content-center" style="margin-top: 0px">
+                                        <div class="d-flex justify-content-center" style="color: red; font-style: italic; font-weight: bold">
+                                            Bạn cần xác minh tài khoản để thực hiện thao tác này.
+                                        </div>
                                     </div>
-                                </div>
-                                <br>
-                                <div class="d-flex justify-content-center">
-                                    <a type="button" href="User_verify.jsp" class="btn btn-danger">Xác minh tài khoản</a>
-                                </div>
-                            </c:if>
+                                    <br>
+                                    <div class="d-flex justify-content-center">
+                                        <a type="button" href="User_verify.jsp" class="btn btn-danger">Xác minh tài khoản</a>
+                                    </div>
+                                </c:if>
+                                <c:if test="${sessionScope.user.getUser_iden_img() != null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
+                                    <br>
+                                    <span style="color: red;font-style: italic;font-weight: bold;font-size: 12px;margin-left: 13px;margin-top: 10px;">Yêu cầu xác minh tài khoản đang chờ phê duyệt.</span>
+                                </c:if>
+                            </c:if>    
+                                
+                                
+                                
                             <c:if test="${sessionScope.user.user_role.equals('Admin') }">
                                 
                             </c:if>

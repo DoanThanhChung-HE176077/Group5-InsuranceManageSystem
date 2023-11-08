@@ -57,6 +57,33 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
+    //for calim = dat trang thai la Active
+    public ArrayList<Contract> getAllContractOfUserThatActive(int id) {
+        try {
+            ArrayList<Contract> list = new ArrayList<>();
+            String sql = "select * from Contract where user_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                list.add(new Contract(contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
 
     public ArrayList<NewC> getAllContract() {
         try {
@@ -346,12 +373,57 @@ public class ContractDAO extends DBContext {
         }
         return false;
     }
+    
+    
+    //claim solve
+    //create new blog
+    public boolean createClaim(
+            int user_id,
+            int contract_id,
+            String creationDate,
+            String claim_description,
+            String claim_img_des,
+            String claim_file_des,
+            String claim_bank,
+            String claim_bank_number,
+            //Pending + Accept + Reject
+            String claim_status) {
+        try {
+            String sql = "insert into Claims values((SELECT COALESCE(MAX(claim_id), 0) from Claims)+1,?,?,?,?,?,?,?,?,?) ;";
+            PreparedStatement pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, user_id);
+            pstm.setInt(2, contract_id);
+            pstm.setString(3, creationDate);
+            pstm.setString(4, claim_description);
+            pstm.setString(5, claim_img_des);
+            pstm.setString(6, claim_file_des);
+            pstm.setString(7, claim_bank);
+            pstm.setString(8, claim_bank_number);
+            pstm.setString(9, claim_status);
+            
+
+            pstm.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(BlogDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         ContractDAO cd = new ContractDAO();
 
-        ContractTNDS b = cd.getTNDSbyId(1);
-        System.out.println(b.toString());
+//        ContractTNDS b = cd.getTNDSbyId(1);
+//        System.out.println(b.toString());
+        
+//        ArrayList<Contract> ct = cd.getAllContractOfUserThatActive(18);
+//        for (Contract newC : ct) {
+//            System.out.println(newC.toString());
+//        }
+
+cd.createClaim(1, 1, "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06");
+        
+        
 
     }
 
