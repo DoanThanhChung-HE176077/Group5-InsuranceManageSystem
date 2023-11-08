@@ -18,7 +18,6 @@ import model.ContractVatchat;
 import model.Form_Vatchat;
 import model.NewBl;
 import model.NewC;
-import model.NewFt;
 import model.User;
 
 /**
@@ -48,8 +47,6 @@ public class ContractDAO extends DBContext {
                 String ip_name = rs.getString(11);
 
                 list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
-                NewC contract = new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status);
-
             }
             return list;
         } catch (SQLException ex) {
@@ -285,7 +282,8 @@ public class ContractDAO extends DBContext {
     public NewC getContractById(int contract_id) {
         try {
             String sql = "select u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],\n"
-                    + "	[total_price],[contract_status],user_fullname,ip_name \n"
+                    + "	[total_price],[contract_status], ip_name, u.user_iden, u.user_fullname, u.user_mail,\n"
+                    + "u.user_phoneNum, u.user_dob, u.user_address\n"
                     + "from [Contract] c \n"
                     + "	join Users u on c.user_id = u.user_id \n"
                     + "	join Insurance_Products ip on c.ip_id=ip.ip_id \n"
@@ -302,53 +300,15 @@ public class ContractDAO extends DBContext {
                 int ftnds_id = rs.getInt(6);
                 int total_price = rs.getInt(7);
                 String contract_status = rs.getString(8);
-                String user_fullname = rs.getString(9);
-                String ip_name = rs.getString(10);
-
-                NewC newC = new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status);
+                String ip_name = rs.getString(9);
+                String user_iden = rs.getString(10);
+                String user_fullname = rs.getString(11);
+                String user_mail = rs.getString(12);
+                String user_phoneNum = rs.getString(13);
+                Date user_dob = rs.getDate(14);
+                String user_address = rs.getString(15);
+                NewC newC = new NewC(user_iden, user_phoneNum, user_fullname, user_dob, user_mail, user_address, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status);
                 return newC;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-
-    }
-
-    public NewFt getDetailedContractById(int contract_id) {
-        try {
-            String sql = "select ft.ftnds_loaiXe, ft.ftnds_soMay, ft.ftnds_bienXe, ft.ftnds_soKhung, ft.ftnds_startDate, ft.ftnds_endDate, \n"
-                    + "ft.ftnds_mucTrachNhiem, ft.ftnds_soNguoi, ft.ftnds_tongChiPhi, \n"
-                    + "u.user_iden, u.user_phoneNum, u.user_fullname, u.user_dob, u.user_mail, u.user_address, ft.user_id, ft.ip_id, ft.ftnds_status\n"
-                    + "from [Contract] c \n"
-                    + "	left outer join Form_TNDS ft on c.ftnds_id = ft.ftnds_id\n"
-                    + "	left outer join Users u on c.user_id = u.user_id\n"
-                    + "where c.contract_id = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, contract_id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                String loaiXe = rs.getString(1);
-                String soMay = rs.getString(2);
-                String bienXe = rs.getString(3);
-                String soKhung = rs.getString(4);
-                Date startDate = rs.getDate(5);
-                Date endDate = rs.getDate(6);
-                String mucTrachNhiem = rs.getString(7);
-                String soNguoi = rs.getString(8);
-                String tongChiPhi = rs.getString(9);
-                String userIden = rs.getString(10);
-                String userPhoneNum = rs.getString(11);
-                String userFullname = rs.getString(12);
-                Date userDob = rs.getDate(13);
-                String userMail = rs.getString(14);
-                String userAddress = rs.getString(15);
-                int userId = rs.getInt(16);
-                String ipId = rs.getString(17);
-                String status = rs.getString(18);
-
-                NewFt contractFNDS = new NewFt(userIden, userPhoneNum, userFullname, userDob, userMail, userAddress, loaiXe, soMay, bienXe, soKhung, startDate, endDate, mucTrachNhiem, soNguoi, tongChiPhi, userId, ipId, status);
-                return contractFNDS;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);

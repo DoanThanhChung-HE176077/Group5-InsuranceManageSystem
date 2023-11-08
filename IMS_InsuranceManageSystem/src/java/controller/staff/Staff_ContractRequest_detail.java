@@ -12,8 +12,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.ContractTNDS;
+import model.ContractVatchat;
 import model.NewC;
-import model.NewFt;
+
 
 /**
  *
@@ -60,9 +62,11 @@ public class Staff_ContractRequest_detail extends HttpServlet {
         int contract_id = Integer.parseInt(request.getParameter("contract_id"));
         ContractDAO cd = new ContractDAO();
         NewC contract = cd.getContractById(contract_id);
-        NewFt contractTNDS = cd.getDetailedContractById(contract_id);
+        ContractTNDS contractTNDS = cd.getTNDSbyId(contract_id);
+        ContractVatchat contractVatchat = cd.getVatchatbyId(contract_id);
         request.setAttribute("contract", contract);
         request.setAttribute("contractTNDS", contractTNDS);
+        request.setAttribute("contractVatchat", contractVatchat);
         request.getRequestDispatcher("Staff_ContractRequest_detail.jsp").forward(request, response);
     } 
 
