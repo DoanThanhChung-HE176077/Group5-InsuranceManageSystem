@@ -155,8 +155,16 @@
                     <c:if test="${sessionScope.user.getUser_role().equals('Nhân viên')}">
                         <li class="list-group-item my-btn1">
                             <a href="contract_request_list" class="my-sidebar-item">
-                                <i class="fas fa-users"></i> 
+                                <i class="fa-solid fa-file"></i>
                                 <span style="margin-left: -4px">Quản lý Hợp Đồng</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:if test="${sessionScope.user.getUser_role().equals('Nhân viên')}">
+                        <li class="list-group-item my-btn1">
+                            <a href="StaffClaimListShow" class="my-sidebar-item">
+                                <i class="fa-brands fa-dochub"></i> 
+                                <span style="margin-left: -4px">Quản Lý Bồi Thường</span>
                             </a>
                         </li>
                     </c:if>
@@ -185,11 +193,11 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
     <script>
-    $(document).on('click', function (e) {
-        if ($(e.target).closest(".offcanvas").length === 0) {
-            $("#offcanvas").offcanvas('hide');
-        }
-    });
-</script>
+        $(document).on('click', function (e) {
+            if ($(e.target).closest(".offcanvas").length === 0) {
+                $("#offcanvas").offcanvas('hide');
+            }
+        });
+    </script>
 
 </html>
