@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import model.Claims;
 import model.Contract;
 import model.User;
 
@@ -63,8 +64,10 @@ public class UserClaimListShow extends HttpServlet {
         User user1 = (User) session.getAttribute("user");
 
         ContractDAO dao = new ContractDAO();
+        ArrayList<Claims> cl = dao.getAllClaimByUserId(user1.getUser_id());
         ArrayList<Contract> ct = dao.getAllContractOfUserThatActive(user1.getUser_id());
-        request.setAttribute("list1", ct);
+        request.setAttribute("ct", ct);
+        request.setAttribute("cl", cl);
         request.getRequestDispatcher("User_claim_list.jsp").forward(request, response);
     } 
 

@@ -146,6 +146,10 @@ public class UserVerify extends HttpServlet {
                 System.out.println("-------Check saving to db -------");
                 if (dao.verifyUserRequest(imageFileName, cccd, user_id)) {
                     System.out.println("Saving file to db : DONE.");
+                    //update sesssion
+                    User u =(User) session.getAttribute("user");
+                    u.setUser_iden_img(imageFileName);
+                    session.setAttribute("user", u);
                 } else {
                     System.err.println("Saving file to db : FAILSE.");
                 }
@@ -182,6 +186,10 @@ public class UserVerify extends HttpServlet {
                 System.out.println("-------Check saving to db -------");
                 if (dao.verifyUserRequest(imageFileName, cccd, user_id)) {
                     System.out.println("Saving file to db : DONE.");
+                    //update sesssion
+                    User u = (User) session.getAttribute("user");
+                    u.setUser_iden_img(imageFileName);
+                    session.setAttribute("user", u);
                 } else {
                     System.err.println("Saving file to db : FAILSE.");
                 }
@@ -193,7 +201,7 @@ public class UserVerify extends HttpServlet {
             }
         }
 
-        response.sendRedirect("UserProfile.jsp");
+        response.sendRedirect("/IMS_InsuranceManageSystem/");
 
         
     }

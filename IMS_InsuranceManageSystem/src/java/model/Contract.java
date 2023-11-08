@@ -143,6 +143,8 @@ public class Contract {
         return "Contract{" + "contract_id=" + contract_id + ", user_id=" + user_id + ", contract_startDate=" + contract_startDate + ", contract_endDate=" + contract_endDate + ", ip_id=" + ip_id + ", fvc_id=" + fvc_id + ", ftnds_id=" + ftnds_id + ", total_price=" + total_price + ", contract_status=" + contract_status + '}';
     }
 
+
+
    
     
 }

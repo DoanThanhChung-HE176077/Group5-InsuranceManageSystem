@@ -44,8 +44,9 @@
                                 <!-- Image thumbnail -->
                                 <!--tk xac nhan-->
                             <c:if test="${sessionScope.user.getUser_iden_img() == null}">
+                                
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
-                                    <img id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" hidden>
+                                    <img alt="" id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" hidden>
                                 </div>
                                 <!-- Modal -->
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -64,8 +65,9 @@
                                     </div>
                                 </div>
                             </c:if>
-                                
+
                             <c:if test="${sessionScope.user.getUser_iden_img() != null}">
+                                
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
                                     <img id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" >
                                 </div>
@@ -299,7 +301,6 @@
                         let regex = /^[a-zA-Z0-9.-_]+@gmail\.com$/;
                         return regex.test(email);
                     }
-                    
                     
 
                 </script>

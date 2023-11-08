@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Claims;
 import model.Contract;
 import model.ContractTNDS;
 import model.ContractVatchat;
@@ -61,6 +62,31 @@ public class ContractDAO extends DBContext {
             String sql = "select * from Contract where user_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                list.add(new Contract(contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    //all contract of chung
+    public ArrayList<Contract> getAllContractChung() {
+        try {
+            ArrayList<Contract> list = new ArrayList<>();
+            String sql = "select * from Contract";
+            PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int contract_id = rs.getInt(1);
@@ -369,10 +395,141 @@ public class ContractDAO extends DBContext {
         }
         return false;
     }
+    
+    //get all claim
+    public ArrayList<Claims> getAllClaim() {
+        try {
+            ArrayList<Claims> list = new ArrayList<>();
+            String sql = "select * from Claims";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                int claim_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                int contract_id = rs.getInt(3);
+                String creationDate = rs.getString(4);
+                String claim_description = rs.getString(5);
+                String claim_img_des = rs.getString(6);
+                String claim_file_des = rs.getString(7);
+                String claim_bank = rs.getString(8);
+                String claim_bank_number = rs.getString(9);
+                //Pending + Accept + Reject
+                String claim_status = rs.getString(10);
+                
+                list.add(new Claims(claim_id, user_id, contract_id, creationDate, claim_description, claim_img_des, claim_file_des, claim_bank, claim_bank_number, claim_status));
+
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
+    //get claim by claim id
+    public Claims getClaimById( int claim_idIn) {
+        try {
+            String sql = "select * from Claims where claim_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, claim_idIn);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                int claim_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                int contract_id = rs.getInt(3);
+                String creationDate = rs.getString(4);
+                String claim_description = rs.getString(5);
+                String claim_img_des = rs.getString(6);
+                String claim_file_des = rs.getString(7);
+                String claim_bank = rs.getString(8);
+                String claim_bank_number = rs.getString(9);
+                //Pending + Accept + Reject
+                String claim_status = rs.getString(10);
+                Claims cl = new Claims(claim_id, user_id, contract_id, creationDate, claim_description, claim_img_des, claim_file_des, claim_bank, claim_bank_number, claim_status);
+                return cl;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    //get 1 claim by user id
+        public Claims getClaimByUserId( int user_idIn) {
+        try {
+            String sql = "select * from Claims where claim_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, user_idIn);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                int claim_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                int contract_id = rs.getInt(3);
+                String creationDate = rs.getString(4);
+                String claim_description = rs.getString(5);
+                String claim_img_des = rs.getString(6);
+                String claim_file_des = rs.getString(7);
+                String claim_bank = rs.getString(8);
+                String claim_bank_number = rs.getString(9);
+                //Pending + Accept + Reject
+                String claim_status = rs.getString(10);
+                Claims cl = new Claims(claim_id, user_id, contract_id, creationDate, claim_description, claim_img_des, claim_file_des, claim_bank, claim_bank_number, claim_status);
+                return cl;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+        //get list claim of 1 user id
+        public ArrayList<Claims> getAllClaimByUserId(int user_idIn) {
+        try {
+            ArrayList<Claims> list = new ArrayList<>();
+            String sql = "select * from Claims where user_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, user_idIn);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                int claim_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                int contract_id = rs.getInt(3);
+                String creationDate = rs.getString(4);
+                String claim_description = rs.getString(5);
+                String claim_img_des = rs.getString(6);
+                String claim_file_des = rs.getString(7);
+                String claim_bank = rs.getString(8);
+                String claim_bank_number = rs.getString(9);
+                //Pending + Accept + Reject
+                String claim_status = rs.getString(10);
+
+                list.add(new Claims(claim_id, user_id, contract_id, creationDate, claim_description, claim_img_des, claim_file_des, claim_bank, claim_bank_number, claim_status));
+
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         ContractDAO cd = new ContractDAO();
+//        ArrayList<Claims> cl = cd.getAllClaim();
+//        for (Claims claims : cl) {
+//            System.out.println(claims.toString());
+//        }
 
+
+        Claims cl = cd.getClaimById(1);
+        System.out.println(cl.toString());
+        
+//        ArrayList<Contract> ct = cd.getAllContractChung();
+//        for (Contract contract : ct) {
+//            System.out.println(contract.toString());
+//        }
 //        ContractTNDS b = cd.getTNDSbyId(1);
 //        System.out.println(b.toString());
         
@@ -381,7 +538,7 @@ public class ContractDAO extends DBContext {
 //            System.out.println(newC.toString());
 //        }
 
-cd.createClaim(1, 1, "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06");
+//cd.createClaim(1, 1, "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06", "2023-06-06");
         
         
 
