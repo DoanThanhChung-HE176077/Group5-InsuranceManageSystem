@@ -6,6 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Danh sách hợp đồng</title>
 
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -64,11 +65,11 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
+                                                
                                                 <th>Khách hàng</th>
                                                 <th>Tên sản phẩm</th>
                                                 <th>Ngày bắt đầu</th>
-                                                <th>Ngày kết thúc</th>
-                                                <th>Thanh toán</th>
+                                                <th>Ngày kết thúc</th>                       
                                                 <th>Trạng thái</th>
                                             </tr>
                                         </thead>
@@ -76,17 +77,19 @@
                                             <!-- Example row, you can use a loop to generate rows dynamically -->
                                         <c:forEach items="${listC}" var="o">
                                             <tr>
-
+                                                
                                                 <td>${o.getUser_fullname()}</td>
                                                 <td>${o.getIp_name()}</td>
-                                                <td>${o.getContract_startDate()}</td>
-                                                <td>${o.getContract_endDate()}</td>
-                                                <td>${o.getTotal_price()}d</td>
+                                                <td class="date-column">${o.getContract_startDate()}</td>
+                                                <td class="date-column">${o.getContract_endDate()}</td>
+                                                
                                                 <td>${o.getContract_status()}</td>
                                                 <td>
                                                     <!-- Edit Button -->
-                                                    <a href="admin_Contract_detail?contract_id=${o.getContract_id()} " class="my-btn btn btn-primary">Chi tiết</a>
-                                                </td>
+                                                    
+                                                    <a href="Admin_Contract_detail?contract_id=${o.getContract_id()}&ip_name=${o.getIp_name()}" class="my-btn btn btn-primary">Chi tiết</a>
+                                                    
+                                                    </td>
                                             </tr>
                                         </c:forEach>    
                                         <!-- Repeat rows for each blog post -->
@@ -116,8 +119,8 @@
                                             <tr>
                                                 <td>${o.getUser_fullname()}</td>
                                                 <td>${o.getIp_name()}</td>
-                                                <td>${o.getContract_startDate()}</td>
-                                                <td>${o.getContract_endDate()}</td>
+                                                <td class="date-column">${o.getContract_startDate()}</td>
+                                                <td class="date-column">${o.getContract_endDate()}</td>
                                             </tr>
                                         </c:forEach>
 
@@ -140,5 +143,25 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+        <script>
+    // Chuyển đổi định dạng ngày trong tất cả các phần tử trong cột "date-column"
+    document.querySelectorAll('.date-column').forEach(function (element) {
+        var originalDate = element.textContent; // Lấy ngày ban đầu
+        var formattedDate = formatDate(originalDate); // Gọi hàm formatDate để chuyển đổi định dạng
+        element.textContent = formattedDate; // Hiển thị ngày đã được định dạng
+    });
+
+    // Hàm để chuyển đổi định dạng ngày (VD: từ "YYYY-MM-DD" thành "DD/MM/YYYY")
+    function formatDate(inputDate) {
+        var dateParts = inputDate.split('-');
+        if (dateParts.length === 3) {
+            var year = dateParts[0];
+            var month = dateParts[1];
+            var day = dateParts[2];
+            return day + '/' + month + '/' + year;
+        }
+        return inputDate; // Trả về nguyên dạng nếu không thể chuyển đổi
+    }
+</script>
     </body>
 </html>

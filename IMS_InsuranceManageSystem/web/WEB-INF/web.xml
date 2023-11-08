@@ -97,10 +97,6 @@
         <servlet-class>controller.formTNDS.SaveInfoVatChat</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Admin_Staff_uprole</servlet-name>
-        <servlet-class>controller.admin.Admin_Staff_uprole</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Admin_Users_verify</servlet-name>
         <servlet-class>controller.admin.Admin_Users_verify</servlet-class>
     </servlet>
@@ -111,6 +107,54 @@
     <servlet>
         <servlet-name>Admin_Contract_list</servlet-name>
         <servlet-class>controller.admin.Admin_Contract_list</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_Staff_load</servlet-name>
+        <servlet-class>controller.admin.Admin_Staff_load</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_Staff_update</servlet-name>
+        <servlet-class>controller.admin.Admin_Staff_update</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Staff_ContractRequest_list</servlet-name>
+        <servlet-class>controller.staff.Staff_ContractRequest_list</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Admin_Contract_detail</servlet-name>
+        <servlet-class>controller.admin.Admin_Contract_detail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserInsuranceList</servlet-name>
+        <servlet-class>controller.user.UserInsuranceList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserContractDetail</servlet-name>
+        <servlet-class>controller.user.UserContractDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserVerify</servlet-name>
+        <servlet-class>controller.user.UserVerify</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Staf_verifyUser</servlet-name>
+        <servlet-class>controller.staff.Staf_verifyUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Staff_verifyUser_done</servlet-name>
+        <servlet-class>controller.staff.Staff_verifyUser_done</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Staff_ContractRequest_detail</servlet-name>
+        <servlet-class>controller.staff.Staff_ContractRequest_detail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserClaimListSV</servlet-name>
+        <servlet-class>controller.user.UserClaimListSV</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserClaimListShow</servlet-name>
+        <servlet-class>controller.user.UserClaimListShow</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
@@ -201,10 +245,6 @@
         <url-pattern>/SaveInfoVatChat</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Admin_Staff_uprole</servlet-name>
-        <url-pattern>/Admin_Staff_uprole</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Admin_Users_verify</servlet-name>
         <url-pattern>/Admin_Users_verify</url-pattern>
     </servlet-mapping>
@@ -215,6 +255,54 @@
     <servlet-mapping>
         <servlet-name>Admin_Contract_list</servlet-name>
         <url-pattern>/Admin_Contract_list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Staff_load</servlet-name>
+        <url-pattern>/Admin_Staff_load</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Staff_update</servlet-name>
+        <url-pattern>/Admin_Staff_update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Staff_ContractRequest_list</servlet-name>
+        <url-pattern>/contract_request_list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Contract_detail</servlet-name>
+        <url-pattern>/Admin_Contract_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInsuranceList</servlet-name>
+        <url-pattern>/UserInsuranceList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserContractDetail</servlet-name>
+        <url-pattern>/UserContractDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserVerify</servlet-name>
+        <url-pattern>/UserVerify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Staf_verifyUser</servlet-name>
+        <url-pattern>/Staf_verifyUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Staff_verifyUser_done</servlet-name>
+        <url-pattern>/Staff_verifyUser_done</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Staff_ContractRequest_detail</servlet-name>
+        <url-pattern>/contract_request_detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserClaimListSV</servlet-name>
+        <url-pattern>/UserClaimListSV</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserClaimListShow</servlet-name>
+        <url-pattern>/UserClaimListShow</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -158,14 +158,12 @@ public class Reset_pass extends HttpServlet {
     
     
     public String generateVerifyCode() {
-    // Tạo mã xác minh ngẫu nhiên
-    int verifyCode = (int) (Math.random() * 999999 + 1);
-
-    // Đảm bảo rằng mã xác minh có 6 chữ số
-    String verifyCodeString = String.format("%06d", verifyCode);
-
-    return verifyCodeString;
-}
+        // Tạo mã xác minh ngẫu nhiên
+        int verifyCode = (int) (Math.random() * 999999 + 1);
+        // Đảm bảo rằng mã xác minh có 6 chữ số
+        String verifyCodeString = String.format("%06d", verifyCode);
+        return verifyCodeString;
+    }
 
 
 

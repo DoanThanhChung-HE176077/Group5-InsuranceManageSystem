@@ -10,32 +10,62 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Đăng kí nhân viên</title>
+        <link rel="stylesheet" href="CSS/auth.css">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 
-        <!-- bootstrap5 -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <!--        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous"></script>-->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-                integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-        <!-- font awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-
-              iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/Zpi
-              Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            .myimg {
+                margin-right: 10px;
+                max-width: 250px;
+                object-fit: cover;
+                object-position: center;
+                box-shadow: 0 0 10px #2c464f;
+            }
+            #main-container{
+                box-shadow: 0 33px 61px -29px rgb(0 0 0/80%);
+                object-fit: cover;
+                border-radius: 25px;
+            }
+            input:focus {
+                border-color: #000 !important;
+                transition: border-color 0.5s;
+            }
 
-        <!-- bootstrap5 5icon -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+            .flatpickr-months .flatpickr-month {
+                background-color: #fdd12d;
+            }
 
-        <link rel="stylesheet" href="CSS/admin_blog_dashboard.css"/>
+            .flatpickr-current-month .flatpickr-monthDropdown-months {
+                background-color: #fdd12d;
+            }
 
+            .flatpickr-weekdays {
+                background-color: #fdd12d !important;
+            }
+
+            .flatpickr-weekday {
+                background-color: #fdd12d !important;
+                color: #fff !important;
+            }
+
+            .flatpickr-calendar.arrowTop:after {
+                border-bottom-color: #fdd12d;
+            }
+
+            .flatpickr-calendar.arrowBottom:after {
+                border-top-color: #fdd12d;
+            }
+        </style>
     </head>
-    <body>
+    <body style="background-color: hsl(47,98%,58%);">
 
         <!--header-->
         <jsp:include page="Part/header.jsp"></jsp:include>
@@ -48,102 +78,136 @@
 
 
 
-            <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
+
+        <jsp:include page="Part/header.jsp"></jsp:include>
 
 
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col min-vh-100 p-4">
-                        <div class="container mt-5">
-
-                            <div class="my-row row">
-
-                                <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-8">
-                                    <h2 style="display: inline-block;">Thêm nhân viên</h2>
-                                    <!--                                    go to blog page-->
-                                    <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Quay lại</a>
-                                    </button>
-                                    
-                                <!-- Blog Post Table -->
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Họ Tên</th>
-                                            <th>Ngày sinh</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Số điện thoại</th>
-                                            <th>Ảnh</th>
-                                            <th>Trạng thái</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Example row, you can use a loop to generate rows dynamically -->
-                                        <c:forEach items="${listU}" var="o">
-                                            <tr>
-                                                <td>${o.getUser_fullName()}</td>
-                                                <td>${o.getUser_dob()}</td>
-                                                <td>${o.getUser_address()}</td>
-                                                <td>${o.getUser_phoneNum()}</td>
-                                                <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
-                                                <td>${o.getStatus()}</td>
-                                                
-                                                <td>
-                                                    <a href="Admin_Staff_uprole?id=${o.getUser_id()} " class="my-btn btn btn-primary">Thêm</a>
-
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                        <!-- Repeat rows for each blog post -->
-                                    </tbody>
-                                </table>
-
+            <div class="form-info" style="margin-top: 150px">
+                <div class="container  bg-white mt-5 mb-5" id="main-container">
+                    <div class="row">
+                        <div class="col-md-3 ">
+                            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                <img id="profileImage" class="rounded-circle mt-5 myimg" width="150px" src="">
                             </div>
+                            <!-- Image thumbnail -->
+                            <!--tk xac nhan-->
 
-                            <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-4">
-                                <h2 style="display: inline-block;">Người dùng mới</h2>
-                                <!-- togler -->
+                        </div>
+                        <div class="col-md-6 " >
+                            <div class="p-3 py-5">
+                                <div class="login-default" style="align-items: center;">
+                                    <form action="admin_Staff_add" method="post">
+                                        <div class="title" style="text-align: center; font-size: 27px; line-height: 38px; margin-bottom: 30px; margin-top: 10px;">
+                                            Đăng kí nhân viên
+                                        </div>
 
-                                <!-- Edit History Table -->
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Họ Tên</th>
-                                            <th>Ngày sinh</th>
-                                            <th>Ảnh</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
-                                        <c:forEach items="${listNU}" var="o">
-                                            <tr>
-                                                <td>${o.getUser_fullName()}</td>
-                                                <td>${o.getUser_dob()}</td>
-                                                <td> <img src="${o.getUser_image()}" width="60px" height="60px"> </td>
-                                            </tr>
-                                        </c:forEach>
 
-                                        <!-- Repeat rows for each edit history entry -->
-                                    </tbody>
-                                </table>
+
+                                        <span class="input_label">Số điện thoại</span>
+                                        <div  class="input-group" style="margin-right: 10px;">
+                                            <input name="input-phoneNum" type="text" id="" class="form-control" placeholder="Nhập số điện thoại" required invalid-message="Vui lòng nhập">
+
+                                        </div>
+                                        <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0">
+                                        ${errorMessages["input-phoneNum"]}
+                                    </p>
+
+                                    <span class="input_label">Email</span>
+                                    <div class="input-group" >
+                                        <input name="input-mail" type="text" id="" class="form-control" placeholder="Nhập Mail" required>
+
+                                    </div>
+                                    <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0">
+                                        ${errorMessages["input-mail"]}
+                                    </p>
+
+
+
+
+
+                                    <span class="input_label">Họ Tên</span>
+                                    <div class="input-group">
+                                        <input name="input-fullname" type="text" id="" class="form-control" placeholder="Nhập tên, độ dài 2-64 chữ cái" required>
+                                    </div>
+
+                                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                                        ${errorMessages["input-fullname"]}
+                                    </p>
+
+                                    <span class="input_label">Ngày Sinh</span>
+                                    <div class="input-group">
+                                        <input name="input-dob" type="text" id="datepicker" class="form-control" placeholder="Nhập ngày sinh" style="background-color: #fff !important;" required>
+                                    </div>
+
+
+
+                                    <span class="input_label">Địa chỉ</span>
+                                    <div class="input-group">
+                                        <input name="input-address" type="text" id="" class="form-control" placeholder="Nhập địa chỉ" required>
+                                    </div>
+
+
+
+                                    <span class="input_label">CMT/CCCD</span>
+                                    <div class="input-group">
+                                        <input name="input-iden" type="text" id="" class="form-control" placeholder="Nhập CMT/CCCD" required>
+                                    </div>
+                                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                                        ${errorMessages["input-iden"]}
+                                    </p>
+
+
+
+                                    <span class="input_label">Mật khẩu</span>
+                                    <div class="input-group">
+                                        <input name="input-password" type="password" id="" class="form-control" placeholder="Nhập mật khẩu" required>
+                                    </div>
+
+
+                                    <span class="input_label">Nhập lại</span>
+                                    <div class="input-group">
+                                        <input name="input-repassword" type="password" id="" class="form-control" placeholder="Nhập lại mật khẩu" required>
+                                    </div>
+                                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                                        ${errorMessages["input-password"]}
+                                    </p>
+
+                                    <div class="form-group" style="display: flex;">
+                                        <button style="background-color: #076233; color: #fff;width: 50%;margin-right: 10px" >
+                                            <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Quay lại</a>
+
+                                        </button>
+                                        <button style="background-color: #24262b; color: #fff;width: 50%" type="submit" >Đăng ký</button>
+                                    </div>
+
+                                </form>
+
+
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
+
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const today = new Date();
+                const maxDate = new Date();
+                maxDate.setFullYear(today.getFullYear() - 18);
 
+                flatpickr("#datepicker", {
+                    dateFormat: "d/m/Y",
+                    maxDate: maxDate
+                });
+            });
+        </script>
 
-
-
-        <!-- quan trong cua dropdowntable -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
     </body>
 </html>

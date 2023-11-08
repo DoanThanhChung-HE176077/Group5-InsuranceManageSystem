@@ -43,6 +43,7 @@ public class Admin_Users_detail extends HttpServlet {
         ArrayList<NewC> list1 = c.getAllContractOfUser(id);
         request.setAttribute("listC", list1);
         request.getRequestDispatcher("Admin_Users_detail.jsp").forward(request, response);
+    
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

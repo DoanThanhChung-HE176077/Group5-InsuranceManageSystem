@@ -3,10 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.admin;
+package controller.staff;
 
-import dao.BlogDAO;
-import dao.UserDAO;
+import dao.ContractDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,14 +13,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.NewBl;
-import model.User;
+import model.NewC;
 
 /**
  *
- * @author ADMIN
+ * @author pc minh
  */
-public class Admin_Staff_uprole extends HttpServlet {
+public class Staff_ContractRequest_list extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,10 +31,18 @@ public class Admin_Staff_uprole extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id");
-        UserDAO  u = new UserDAO();
-        u.addStaff(id);
-        request.getRequestDispatcher("admin_Staff_list").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Staff_ContractRequest_list</title>");  
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Staff_ContractRequest_list at " + request.getContextPath () + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,7 +56,13 @@ public class Admin_Staff_uprole extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        ContractDAO cd = new ContractDAO();
+        ArrayList<NewC> pendingList = cd.getPendingContracts();
+        request.setAttribute("pendingList", pendingList);
+        ArrayList<NewC> activeList = cd.getActiveContracts();
+        request.setAttribute("activeList", activeList);
+        request.getRequestDispatcher("Staff_ContractRequest_list.jsp").forward(request, response);
     } 
 
     /** 

@@ -71,7 +71,6 @@
                                                 <input type="file" class="form-control" id="file" name="file" accept="image/*" onchange="loadFile(event)" required>
                                             </div>
                                             <img id="output" src="" alt="Image Preview" class="img-thumbnail mt-3">
-
                                         </div>
                                     </div>
                                 </div>

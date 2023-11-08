@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Tìm kiếm khách hàng</title>
 
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -80,7 +81,7 @@
             <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
 
 
-
+            
             <div class="container-fluid">
                 <div class="row">
                     <div class="col min-vh-100 p-4">

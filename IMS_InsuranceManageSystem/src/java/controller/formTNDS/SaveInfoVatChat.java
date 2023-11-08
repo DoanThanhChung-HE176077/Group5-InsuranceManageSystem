@@ -88,7 +88,7 @@ public class SaveInfoVatChat extends HttpServlet {
         
         String amountsString = fvc_totalPrice;
         int amount = removeDotsFromNumber(amountsString);
-//======== Check receive data ==============
+        //======== Check receive data ==============
         System.out.println("======== Check vatchat receive data ==============");
         System.out.println("brand_id: " + brand_id);
         System.out.println("model_id: " + model_id);

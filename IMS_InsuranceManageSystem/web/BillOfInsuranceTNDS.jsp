@@ -111,6 +111,7 @@
       <script>
            function goToHome() {
         // Chuyển hướng về trang Home
+//        window.location.aler = 'thanh toan thanh cong'
         window.location.href = '/IMS_InsuranceManageSystem'; // Thay đổi '/path/to/home' bằng đường dẫn thực tế của trang Home
     }
     </script>

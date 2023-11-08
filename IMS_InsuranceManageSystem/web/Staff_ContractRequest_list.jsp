@@ -1,12 +1,16 @@
-
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- 
+    Document   : Staff_ContractRequest_list
+    Created on : Nov 1, 2023, 9:35:23 PM
+    Author     : pc minh
+--%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <title>Contract Request List</title>
+        
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -29,10 +33,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
         <link rel="stylesheet" href="CSS/admin_blog_dashboard.css"/>
-
     </head>
     <body>
-
         <!--header-->
         <jsp:include page="Part/header.jsp"></jsp:include>
 
@@ -55,33 +57,38 @@
 
                             <div class="my-row row">
 
-                                <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-7">
-                                    <h2 style="display: inline-block;">Chi tiết sản phẩm bảo hiểm</h2>
-                                    <!--                                    go to blog page-->
-                                    <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="admin_IP_list" style="text-decoration: none; color: #fff;">Quay lại</a>
-                                    </button>
-                                    <!-- Blog Post Table -->
+                                <!-- Column 1: Contract Request Table -->
+                                <div class="my-column1 col-md-8">
+                                    <h2 style="display: inline-block;">Danh sách hợp đồng chưa được duyệt</h2>
+                                    <!-- Contract Request Table -->
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Phân loại</th>
+                                                <th>Khách hàng</th>
                                                 <th>Tên sản phẩm</th>
-                                                <th>Ảnh</th>
+                                                <th>Ngày bắt đầu</th>
+                                                <th>Ngày kết thúc</th>
+                                                <th>Thanh toán</th>
+                                                <th>Trạng thái</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <!-- Example row, you can use a loop to generate rows dynamically -->
-
+                                        <c:forEach items="${requestScope.pendingList}" var="pList">
                                             <tr>
-                                                <td>${detail.ip_id}</td>
-                                                <td>${detail.ip_type}</td>
-                                                <td>${detail.ip_name}</td>
-                                                <td><img src="${detail.ip_img}" width="60px" height="60px" ></td>
-                                        </tr>
 
+                                                <td>${pList.getUser_fullname()}</td>
+                                                <td>${pList.getIp_name()}</td>
+                                                <td>${pList.getContract_startDate()}</td>
+                                                <td>${pList.getContract_endDate()}</td>
+                                                <td>${pList.getTotal_price()}d</td>
+                                                <td>${pList.getContract_status()}</td>
+                                                <td>
+                                                    <!-- Detail Button -->
+                                                    <a href="contract_request_detail?contract_id=${pList.getContract_id()} " class="my-btn btn btn-primary">Chi tiết</a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>    
                                         <!-- Repeat rows for each blog post -->
                                     </tbody>
                                 </table>
@@ -89,31 +96,29 @@
                             </div>
 
                             <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-5">
-                                <h2 style="display: inline-block;">Doanh Thu</h2>
+                            <div class="my-column1 col-md-4">
+                                <h2 style="display: inline-block;">Hợp đồng đã duyệt</h2><!--
                                 <!-- togler -->
 
-                                <!-- Edit History Table -->
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>Khách hàng</th>
                                             <th>Tên sản phẩm</th>
-                                            <th>Doanh thu</th>
+                                            <th>Ngày bắt đầu</th>
+                                            <th>Ngày kết thúc</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
-                                        <tr>
-                                            <td>1</td>
-                                            <td>TNDS</td>
-                                            <td>1000000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Vatchat</td>
-                                            <td>500000</td>
-                                        </tr>
+                                        <c:forEach items="${activeList}" var="aList">
+                                            <tr>
+                                                <td>${aList.getUser_fullname()}</td>
+                                                <td>${aList.getIp_name()}</td>
+                                                <td>${aList.getContract_startDate()}</td>
+                                                <td>${aList.getContract_endDate()}</td>
+                                            </tr>
+                                        </c:forEach>
 
                                         <!-- Repeat rows for each edit history entry -->
                                     </tbody>

@@ -87,21 +87,27 @@
                                     <div class="col-md-6">
                                         <!--------------------- Hãng xe --------------------->
                                         <div>
-                                            <label>Hãng xe<span class="errmsg"> *</span></label><br />
+
+                                            <label>Hãng xe<span class="errmsg" style="color: red;"> *</span></label><br />
+
                                             <select class="general-dr abc" id="motorBrands" name="send-brand_id"
                                                     onchange="updateCarModels()">
                                                 <option id="mySelect" value="" disabled selected>Lựa chọn hãng xe
                                                     của bạn</option>
                                                 <c:forEach items="${listBrands}" var="brand">
                                                 <option value="${brand.getBrand_id()}">${brand.getBrand_name()}
-                                                    have id: ${brand.getBrand_id()}</option>
-                                                </c:forEach>
+
+                                                </option>
+                                            </c:forEach>
+
                                         </select>
                                     </div>
                                     <!--------------------- Hieu xe --------------------->
                                     <div>
                                         <br>
-                                        <label>Hiệu xe <span class="errmsg"> *</span></label>
+
+                                        <label>Hiệu xe <span class="errmsg" style="color: red;"> *</span></label>
+
                                         <select class="general-dr abc" id="motorBrandModel" name="model_id">
                                         </select>
                                         <input type="hidden" name="send-model_id" value="" />
@@ -109,7 +115,9 @@
                                     <!---------------------So may------------------------>
                                     <br>
                                     <div>
-                                        <label>Số máy<span class="errmsg"> *</span></label>
+
+                                        <label>Số máy<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" type="text" name="soMay">
                                     </div>
                                     <p style="color: red; font-style: italic; font-weight: bold ">Người mua bảo
@@ -121,13 +129,17 @@
                                 <!--------------------- BKS --------------------->
                                 <div class="col-md-6">
                                     <div>
-                                        <label>Biển kiểm soát<span class="errmsg"> *</span></label>
+
+                                        <label>Biển kiểm soát<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" type="text" name="bienXe" required="">
                                     </div>
                                     <br>
                                     <!--------------------- so khung --------------------->
                                     <div>
-                                        <label>Số khung<span class="errmsg"> *</span></label>
+
+                                        <label>Số khung<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" type="text" name="soKhung">
                                     </div>
                                 </div>
@@ -140,7 +152,9 @@
                                 <!--------------------------------------------->
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Từ ngày<span class="errmsg"> *</span></label>
+
+                                        <label>Từ ngày<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" required type="date"
                                                placeholder="Default input" name="startDate" id="fromDate"
                                                onchange="updateToDate()">
@@ -148,7 +162,9 @@
                                             vui lòng nhập ngày bắt đầu hợp đồng lớn hơn ngày hiện tại</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Đến ngày<span class="errmsg"> *</span></label>
+
+                                        <label>Đến ngày<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" type="date" placeholder="Default input"
                                                name="endDate" id="toDate" readonly>
                                     </div>
@@ -158,7 +174,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div>
-                                                <label>Gói bảo hiểm cơ bản<span class="errmsg"> *</span></label>
+
+                                                <label>
+                                                    Gói bảo hiểm cơ bản<span class="errmsg" style="color: red;"> *</span>
+                                                </label>
+                                                <div style="float: right" tabindex="0" class="" data-toggle="tooltip" data-placement="top" title="Đây là tooltip cho gói bảo hiểm cơ bản :">
+                                                    <i class="fas fa-question-circle" style="pointer-events: none;"></i> 
+                                                </div>
+
                                                 <select class="general-dr abc" id="pack_percent"
                                                         name="send-pt_id">
                                                     <option id="mySelect" disabled selected>Lựa chọn gói
@@ -192,7 +215,12 @@
                                         <!--------------------Muc khau tru------------------------->
                                         <div class="col-md-6">
                                             <div>
-                                                <label>Mức khấu trừ<span class="errmsg"> *</span></label>
+
+                                                <label>Mức khấu trừ<span class="errmsg" style="color: red;"> *</span></label>
+                                                <div style="float: right" tabindex="0" class="" data-toggle="tooltip" data-placement="top" title="Đaya là tooltip cho mức khấu trừ:">
+                                                    <i class="fas fa-question-circle" style="pointer-events: none;"></i> 
+                                                </div>
+
                                                 <select class="general-dr abc" id="deduc_percent"
                                                         name="deduc_percent">
                                                     <option id="mySelect" disabled selected>Lựa chọn mức khấu
@@ -278,24 +306,49 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <c:if test="${sessionScope.user.user_role.equals('Khách hàng') }">
-                                <button type="submit" class="btn ">Thanh toán</button>
-                                <div>
-                                    <%-- Hiển thị thông báo lỗi --%>
-                                    <% String msg = (String)request.getAttribute("msg"); %>
-                                    <% if (msg != null && !msg.isEmpty()) { %>
-                                    <p id="errorMessage" style="color: red;"><%= msg %></p>
-                                    <% } %>
+
+
+                            <c:if test = "${sessionScope.user.getUser_role().equals('Khách hàng')}">
+                                <c:if test = "${sessionScope.user.getStatus().equals('Đã xác minh')}">
+                                    <button type="submit" class="btn ">Thanh toán</button>
+                                </c:if>
+                            </c:if>
+
+                                    
+                            <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Chưa xác minh')}">
+                                <c:if test="${sessionScope.user.getUser_iden_img() == null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
+                                    <div class="d-flex justify-content-center" style="margin-top: 0px">
+                                        <div class="d-flex justify-content-center" style="color: red; font-style: italic; font-weight: bold">
+                                            Bạn cần xác minh tài khoản để thực hiện thao tác này.
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="d-flex justify-content-center">
+                                        <a type="button" href="User_verify.jsp" class="btn btn-danger">Xác minh tài khoản</a>
+                                    </div>
+                                </c:if>
+                                <c:if test="${sessionScope.user.getUser_iden_img() != null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
+                                    <br>
+                                    <span style="color: red;font-style: italic;font-weight: bold;font-size: 12px;margin-left: 13px;margin-top: 10px;">Yêu cầu xác minh tài khoản đang chờ phê duyệt.</span>
+                                </c:if>
+                            </c:if>
+
+
+                            <c:if test="${sessionScope.user.user_role.equals('Admin') }">
+                                <div class="d-flex justify-content-center" style="color: red; font-style: italic; font-weight: bold">
+                                    Tài khoản của bạn không thuộc phạm vi thao tác chức năng này!.
                                 </div>
                             </c:if>
-                            <c:if test="${sessionScope.user.user_role.equals('Admin') }">
 
-                            </c:if>
                             <c:if test="${sessionScope.user.user_role.equals('Nhân viên') }">
-
+                                <div class="d-flex justify-content-center" style="color: red; font-style: italic; font-weight: bold">
+                                    Tài khoản của bạn không thuộc phạm vi thao tác chức năng này!
+                                </div>
                             </c:if>
-                            <input type="text" value="vatchat" name="check" hidden />
+
                         </div>
+                        <input type="hidden" value="vatchat" name="check"  >
+
                     </div>
                 </div>
             </div>
@@ -318,202 +371,204 @@
                     var option = document.createElement("option");
                     option.value = "${model.getModel_price()}";
                     option.id = "${model.getModel_id()}";
-                    option.innerText = "${model.getModel_name()} thuoc: ${model.getBrand_id()}";
-                                carModelsDropdown.appendChild(option);
-                            }
+
+                    option.innerText = "${model.getModel_name()} ";
+                    carModelsDropdown.appendChild(option);
+                }
             </c:forEach>
-                            document.getElementById("motorBrandModel-price").value = "";
-                        }
-                        //=====================update id send-model_id follow by model.getModel_id()
-                        var motorBrandModelDropdown = document.getElementById("motorBrandModel");
-                        var sendModelIdInput = document.querySelector("input[name='send-model_id']");
+                document.getElementById("motorBrandModel-price").value = "";
+            }
+            //=====================update id send-model_id follow by model.getModel_id()
+            var motorBrandModelDropdown = document.getElementById("motorBrandModel");
+            var sendModelIdInput = document.querySelector("input[name='send-model_id']");
 
-                        // Add an event listener to the dropdown
-                        motorBrandModelDropdown.addEventListener("change", function () {
-                            // Get the selected option
-                            var selectedOption = motorBrandModelDropdown.options[motorBrandModelDropdown.selectedIndex];
+            // Add an event listener to the dropdown
+            motorBrandModelDropdown.addEventListener("change", function () {
+                // Get the selected option
+                var selectedOption = motorBrandModelDropdown.options[motorBrandModelDropdown.selectedIndex];
 
-                            // Update the value of the hidden input with the selected option's value (ID)
-                            //co the loi ra id cua 1 tag = cach .id
-                            sendModelIdInput.value = selectedOption.id;
-                        });
+                // Update the value of the hidden input with the selected option's value (ID)
+                //co the loi ra id cua 1 tag = cach .id
+                sendModelIdInput.value = selectedOption.id;
+            });
 
-                        //============================== Update cho deduct
-                        var deducDropdown = document.getElementById("deduc_percent");
-                        var sendDeducInput = document.querySelector(".send-deduc_id");
-                        // Add an event listener to the dropdown
-                        deducDropdown.addEventListener("change", function () {
-                            // Get the selected option
-                            var selectedOption = deducDropdown.options[deducDropdown.selectedIndex];
+            //============================== Update cho deduct
+            var deducDropdown = document.getElementById("deduc_percent");
+            var sendDeducInput = document.querySelector(".send-deduc_id");
+            // Add an event listener to the dropdown
+            deducDropdown.addEventListener("change", function () {
+                // Get the selected option
+                var selectedOption = deducDropdown.options[deducDropdown.selectedIndex];
 
-                            // Update the value of the hidden input with the selected option's ID
-                            sendDeducInput.value = selectedOption.id;
-                        });
+                // Update the value of the hidden input with the selected option's ID
+                sendDeducInput.value = selectedOption.id;
+            });
 
-                        //============================ update pt
-                        var packDropdown = document.getElementById("pack_percent");
-                        var sendPtIdInput = document.querySelector(".send-pt_id");
-                        // Add an event listener to the dropdown
-                        packDropdown.addEventListener("change", function () {
-                            // Get the selected option
-                            var selectedOption = packDropdown.options[packDropdown.selectedIndex];
+            //============================ update pt
+            var packDropdown = document.getElementById("pack_percent");
+            var sendPtIdInput = document.querySelector(".send-pt_id");
+            // Add an event listener to the dropdown
+            packDropdown.addEventListener("change", function () {
+                // Get the selected option
+                var selectedOption = packDropdown.options[packDropdown.selectedIndex];
 
-                            // Update the value of the hidden input with the selected option's ID
-                            sendPtIdInput.value = selectedOption.id;
-                        });
+                // Update the value of the hidden input with the selected option's ID
+                sendPtIdInput.value = selectedOption.id;
+            });
 
 
 
-                        // ==================Event cap nhat gia xe vao Gia tri xe
-                        document.getElementById("motorBrandModel").addEventListener("change", function () {
-                            var selectedModelPrice = this.value;
-                            var selectedModelPriceString = String(selectedModelPrice);
-                            var formattedPrice = formatValue(selectedModelPriceString);
-                            document.getElementById("motorBrandModel-price").value = formattedPrice;
-                            document.getElementById("motorBrandModel-price").setAttribute("value", formattedPrice);
-                            document.getElementById("send_motorBrandModel-price").innerHTML = `${formattedPrice} ₫`;
-                        });
-                        //====================bien int thanh string  xx.xxx.xxx vnd
-                        function formatValue(value) {
-                            const groups = value.match(/(\d{1,3})(?=(\d{3})*(?!\d))/g);
-                            return groups.join('.');
-                        }
+            // ==================Event cap nhat gia xe vao Gia tri xe
+            document.getElementById("motorBrandModel").addEventListener("change", function () {
+                var selectedModelPrice = this.value;
+                var selectedModelPriceString = String(selectedModelPrice);
+                var formattedPrice = formatValue(selectedModelPriceString);
+                document.getElementById("motorBrandModel-price").value = formattedPrice;
+                document.getElementById("motorBrandModel-price").setAttribute("value", formattedPrice);
+                document.getElementById("send_motorBrandModel-price").innerHTML = `${formattedPrice} ₫`;
+            });
+            //====================bien int thanh string  xx.xxx.xxx vnd
+            function formatValue(value) {
+                const groups = value.match(/(\d{1,3})(?=(\d{3})*(?!\d))/g);
+                return groups.join('.');
+            }
 
-                        //=====================number to vietnam so
-                        function numberToVietnameseWords(number) {
-                            const units = ["", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
-                            const groups = ["", "nghìn", "triệu", "tỷ"];
-                            function groupToVietnamese(group) {
-                                const hundred = Math.floor(group / 100);
-                                const ten = Math.floor((group % 100) / 10);
-                                const one = group % 10;
-                                let result = '';
-                                if (hundred > 0) {
-                                    result += units[hundred] + " trăm ";
-                                }
-                                if (ten > 1) {
-                                    result += units[ten] + " mươi ";
-                                } else if (ten === 1) {
-                                    result += "mười ";
-                                } else if (ten === 0 && one > 0) {
-                                    result += "lẻ ";
-                                }
-                                if (one > 0) {
-                                    result += units[one] + " ";
-                                }
-                                return result;
-                            }
-                            const numStr = number.toString();
-                            const numGroups = [];
-                            for (let i = numStr.length; i > 0; i -= 3) {
-                                const group = parseInt(numStr.slice(Math.max(i - 3, 0), i), 10);
-                                numGroups.push(group);
-                            }
-                            let result = '';
-                            for (let i = numGroups.length - 1; i >= 0; i--) {
-                                const group = numGroups[i];
-                                if (group > 0) {
-                                    result += groupToVietnamese(group) + groups[i] + ' ';
-                                }
-                            }
-                            return result.trim();
-                        }
+            //=====================number to vietnam so
+            function numberToVietnameseWords(number) {
+                const units = ["", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín"];
+                const groups = ["", "nghìn", "triệu", "tỷ"];
+                function groupToVietnamese(group) {
+                    const hundred = Math.floor(group / 100);
+                    const ten = Math.floor((group % 100) / 10);
+                    const one = group % 10;
+                    let result = '';
+                    if (hundred > 0) {
+                        result += units[hundred] + " trăm ";
+                    }
+                    if (ten > 1) {
+                        result += units[ten] + " mươi ";
+                    } else if (ten === 1) {
+                        result += "mười ";
+                    } else if (ten === 0 && one > 0) {
+                        result += "lẻ ";
+                    }
+                    if (one > 0) {
+                        result += units[one] + " ";
+                    }
+                    return result;
+                }
+                const numStr = number.toString();
+                const numGroups = [];
+                for (let i = numStr.length; i > 0; i -= 3) {
+                    const group = parseInt(numStr.slice(Math.max(i - 3, 0), i), 10);
+                    numGroups.push(group);
+                }
+                let result = '';
+                for (let i = numGroups.length - 1; i >= 0; i--) {
+                    const group = numGroups[i];
+                    if (group > 0) {
+                        result += groupToVietnamese(group) + groups[i] + ' ';
+                    }
+                }
+                return result.trim();
+            }
 
-                        // ===========================Function to calculate the total price o day
-                        function calculateTotal() {
-                            var packPercent = parseFloat(document.getElementById("pack_percent").value);
-                            var deducPercent = parseFloat(document.getElementById("deduc_percent").value);
-                            var motoPrice = parseFloat(document.getElementById("motorBrandModel-price").value);
-                            console.log("packPercent: " + packPercent);
-                            console.log("deducPercent: " + deducPercent);
-                            console.log("motoPrice: " + motoPrice);
-                            if (!isNaN(packPercent) && !isNaN(deducPercent) && !isNaN(motoPrice)) {
-                                var total = (motoPrice * 1000000 * (packPercent / 100) * (1 - (deducPercent / 100)));
-                                var totalFormat = formatValue(String(total));
-                                var totalInVNWord = numberToVietnameseWords(parseInt(total));
-                                document.getElementById("inWord").value = totalInVNWord;
-                                document.getElementById("inWord").setAttribute("value", totalInVNWord);
-                                document.getElementById("total-fee").value = totalFormat;
-                                document.getElementById("total-fee").setAttribute("value", totalFormat);
-                                //thông tin bao hiem:
-                                document.getElementById("submitFrom_bangso").innerHTML = totalFormat + " ₫";
-                                document.getElementById("submitFrom_bangchu").innerHTML = totalInVNWord + " đồng.";
+            // ===========================Function to calculate the total price o day
+            function calculateTotal() {
+                var packPercent = parseFloat(document.getElementById("pack_percent").value);
+                var deducPercent = parseFloat(document.getElementById("deduc_percent").value);
+                var motoPrice = parseFloat(document.getElementById("motorBrandModel-price").value);
+                console.log("packPercent: " + packPercent);
+                console.log("deducPercent: " + deducPercent);
+                console.log("motoPrice: " + motoPrice);
+                if (!isNaN(packPercent) && !isNaN(deducPercent) && !isNaN(motoPrice)) {
+                    var total = (motoPrice * 1000000 * (packPercent / 100) * (1 - (deducPercent / 100)));
+                    var totalFormat = formatValue(String(total));
+                    var totalInVNWord = numberToVietnameseWords(parseInt(total));
+                    document.getElementById("inWord").value = totalInVNWord;
+                    document.getElementById("inWord").setAttribute("value", totalInVNWord);
+                    document.getElementById("total-fee").value = totalFormat;
+                    document.getElementById("total-fee").setAttribute("value", totalFormat);
+                    //thông tin bao hiem:
+                    document.getElementById("submitFrom_bangso").innerHTML = totalFormat + " ₫";
+                    document.getElementById("submitFrom_bangchu").innerHTML = totalInVNWord + " đồng.";
 
+                } else {
+                    document.getElementById("tax-fee").value = "";
+                    document.getElementById("total-fee").value = "";
+                }
+            }
+
+            // ===============Event listeners to trigger the calculation when the user selects options
+            document.getElementById("pack_percent").addEventListener("change", calculateTotal);
+            document.getElementById("deduc_percent").addEventListener("change", calculateTotal);
+            document.getElementById("motorBrandModel-price").addEventListener("change", calculateTotal);
+
+            // Initial calculation on page load
+            calculateTotal();
+
+
+            function updateToDate() {
+                // Get references to the "Start Date" and "End Date" input fields
+                var fromDateInput = document.getElementById("fromDate");
+                var toDateInput = document.getElementById("toDate");
+
+                // Get the current date
+                var currentDate = new Date();
+
+                // Parse the value of the "Start Date" input as a Date object
+                var fromDate = new Date(fromDateInput.value);
+
+                // Check if the "Start Date" is valid and not earlier than the current date
+                if (!isNaN(fromDate) && fromDate >= currentDate) {
+                    // Calculate the "End Date" as one year from the "Start Date"
+                    var endDate = new Date(fromDate);
+                    endDate.setFullYear(endDate.getFullYear() + 1);
+
+                    // Format the "End Date" as YYYY-MM-DD
+                    var endDateFormatted = endDate.toISOString().split('T')[0];
+
+                    // Set the value of the "End Date" input
+                    toDateInput.value = endDateFormatted;
+                } else {
+                    // Clear the "End Date" input
+                    toDateInput.value = "";
+
+                    // Show an alert notification
+                    alert("Ngày bắt đầu hơn ngày hôm nay");
+                }
+            }
+
+
+
+            $("#frmCreateOrder").submit(function () {
+                var postData = $("#frmCreateOrder").serialize();
+                var submitUrl = $("#frmCreateOrder").attr("action");
+                console.log(postData);
+                $.ajax({
+                    type: "GET",
+                    url: submitUrl,
+                    data: postData,
+                    dataType: 'JSON',
+                    success: function (x) {
+                        if (x.code === '00') {
+                            if (window.vnpay) {
+                                vnpay.open({width: 768, height: 600, url: x.data});
                             } else {
-                                document.getElementById("tax-fee").value = "";
-                                document.getElementById("total-fee").value = "";
+                                location.href = x.data;
                             }
+                            return false;
+                        } else {
+                            alert(x.Message);
                         }
-
-                        // ===============Event listeners to trigger the calculation when the user selects options
-                        document.getElementById("pack_percent").addEventListener("change", calculateTotal);
-                        document.getElementById("deduc_percent").addEventListener("change", calculateTotal);
-                        document.getElementById("motorBrandModel-price").addEventListener("change", calculateTotal);
-
-                        // Initial calculation on page load
-                        calculateTotal();
+                    }
+                });
+                return false;
+            });
 
 
-                        function updateToDate() {
-                            // Get references to the "Start Date" and "End Date" input fields
-                            var fromDateInput = document.getElementById("fromDate");
-                            var toDateInput = document.getElementById("toDate");
-
-                            // Get the current date
-                            var currentDate = new Date();
-
-                            // Parse the value of the "Start Date" input as a Date object
-                            var fromDate = new Date(fromDateInput.value);
-
-                            // Check if the "Start Date" is valid and not earlier than the current date
-                            if (!isNaN(fromDate) && fromDate >= currentDate) {
-                                // Calculate the "End Date" as one year from the "Start Date"
-                                var endDate = new Date(fromDate);
-                                endDate.setFullYear(endDate.getFullYear() + 1);
-
-                                // Format the "End Date" as YYYY-MM-DD
-                                var endDateFormatted = endDate.toISOString().split('T')[0];
-
-                                // Set the value of the "End Date" input
-                                toDateInput.value = endDateFormatted;
-                            } else {
-                                // Clear the "End Date" input
-                                toDateInput.value = "";
-
-                                // Show an alert notification
-                                alert("Ngày bắt đầu hơn ngày hôm nay");
-                            }
-                        }
 
 
-//
-                                $("#frmCreateOrder").submit(function () {
-                                    var postData = $("#frmCreateOrder").serialize();
-                                    var submitUrl = $("#frmCreateOrder").attr("action");
-                                    console.log(postData);
-                                    $.ajax({
-                                        type: "GET",
-                                        url: submitUrl,
-                                        data: postData,
-                                        dataType: 'JSON',
-                                        success: function (x) {
-                                            if (x.code === '00') {
-                                                if (window.vnpay) {
-                                                    vnpay.open({width: 768, height: 600, url: x.data});
-                                                } else {
-                                                    window.location.href = x.data; 
-                                                }
-                                                return false;
-                                            } else {
-//                                                alert(x.Message);
-                                            }
-                                        }
-                                    });
-                                    return false;
-                                });
-
-
-                       
 
 
 
@@ -523,12 +578,15 @@
 
 
 
-   
+
+
+    </script>
 
 
 
 
 
 </body>
+
 
 </html>

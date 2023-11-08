@@ -77,7 +77,6 @@
                                                 <input type="file" class="form-control" id="file" name="file" accept="image/*" onchange="loadFile(event)" hidden="">
                                             </div>
                                             <img id="output" src="${blog.getBl_img()}" alt="" class="img-thumbnail mt-3" >
-
                                         </div>
                                     </div>
                                 </div>

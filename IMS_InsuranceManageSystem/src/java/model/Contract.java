@@ -17,19 +17,19 @@ public class Contract {
    private int contract_id;
    private int user_id;
    private Date contract_startDate;
-  private  Date contract_endDate;
-  private  int ip_id;
-  private  int fvc_id;
-  private  int ftnds_id;
-  private  int total_price;
-  private  String contract_status;
+    private  Date contract_endDate;
+    private  int ip_id;
+    private  int fvc_id;
+    private  int ftnds_id;
+    private  int total_price;
+    private  String contract_status;
 
     public Contract() {
     }
 
 
 
-//   SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
     public Contract(int contract_id, int user_id, Date contract_startDate, Date contract_endDate, int ip_id, int fvc_id, int ftnds_id, int total_price, String contract_status) {
         this.contract_id = contract_id;
         this.user_id = user_id;
@@ -62,11 +62,6 @@ public class Contract {
         this.total_price = total_price;
     }
 
-
-
-   
-    
-
     public int getContract_id() {
         return contract_id;
     }
@@ -84,18 +79,23 @@ public class Contract {
     }
 
     public Date getContract_startDate() {
-//        return dateFormat.format(contract_startDate);
+
         return contract_startDate;
     }
+
+
 
     public void setContract_startDate(Date contract_startDate) {
         this.contract_startDate = contract_startDate;
     }
 
     public Date getContract_endDate() {
-//        return dateFormat.format(contract_endDate);
-          return contract_endDate;
+
+        return contract_endDate;
+
     }
+
+
 
     public void setContract_endDate(Date contract_endDate) {
         this.contract_endDate = contract_endDate;
@@ -139,6 +139,11 @@ public class Contract {
 
     public void setContract_status(String contract_status) {
         this.contract_status = contract_status;
+    }
+
+    @Override
+    public String toString() {
+        return "Contract{" + "contract_id=" + contract_id + ", user_id=" + user_id + ", contract_startDate=" + contract_startDate + ", contract_endDate=" + contract_endDate + ", ip_id=" + ip_id + ", fvc_id=" + fvc_id + ", ftnds_id=" + ftnds_id + ", total_price=" + total_price + ", contract_status=" + contract_status + '}';
     }
 
    

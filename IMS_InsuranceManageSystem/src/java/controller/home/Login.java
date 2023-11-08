@@ -85,10 +85,8 @@ public class Login extends HttpServlet {
         request.setAttribute("msg", msg);
         
         HttpSession session = request.getSession();
-//        u = uD.getUsers(userlogin, password);
-            u = uD.getUsers1(userlogin, password);
+        u = uD.getUsers1(userlogin, password);
         session.setAttribute("user", u);
-        
         
         //sua ntn de co the show dc slick slider
         if(msg.isEmpty() || msg.equals("Login successful!")){

@@ -37,6 +37,29 @@ public class Form_Vatchat {
     public Form_Vatchat() {
     }
 
+    public Form_Vatchat(int id, int fvc_id, int brand_id, int model_id, int pt_id, int deduc_id, String startDate, String endDate, int totalPrice, int user_id, String fvc_deviceNum, String fvc_deviceChassisNum, String fvc_licensePlates, String ip_id, String fvc_status) {
+        this.id = id;
+        this.fvc_id = fvc_id;
+        this.brand_id = brand_id;
+        this.model_id = model_id;
+        this.pt_id = pt_id;
+        this.deduc_id = deduc_id;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.totalPrice = totalPrice;
+        this.user_id = user_id;
+        this.fvc_deviceNum = fvc_deviceNum;
+        this.fvc_deviceChassisNum = fvc_deviceChassisNum;
+        this.fvc_licensePlates = fvc_licensePlates;
+        this.ip_id = ip_id;
+        this.fvc_status = fvc_status;
+    }
+    
+    
+    
+    
+    
+    
     public Form_Vatchat(int fvc_id, int brand_id, int model_id, int pt_id, int deduc_id, String startDate, String endDate, int totalPrice, int user_id, String fvc_deviceNum, String fvc_deviceChassisNum, String fvc_licensePlates, String ip_id, String fvc_status) {
         this.fvc_id = fvc_id;
         this.brand_id = brand_id;
@@ -165,5 +188,11 @@ public class Form_Vatchat {
     public void setFvc_status(String fvc_status) {
         this.fvc_status = fvc_status;
     }
+
+    @Override
+    public String toString() {
+        return "Form_Vatchat{" + "fvc_id=" + fvc_id + ", brand_id=" + brand_id + ", model_id=" + model_id + ", pt_id=" + pt_id + ", deduc_id=" + deduc_id + ", startDate=" + startDate + ", endDate=" + endDate + ", totalPrice=" + totalPrice + ", user_id=" + user_id + ", fvc_deviceNum=" + fvc_deviceNum + ", fvc_deviceChassisNum=" + fvc_deviceChassisNum + ", fvc_licensePlates=" + fvc_licensePlates + ", ip_id=" + ip_id + ", fvc_status=" + fvc_status + '}';
+    }
+
 
 }

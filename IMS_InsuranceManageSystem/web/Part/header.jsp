@@ -68,7 +68,6 @@
                             <a class="dropdown-item" href="#">Thông tin bảo hiểm</a>
                             <a class="dropdown-item" href="#">Tra cứu bảo hiểm</a>
                             <a class="dropdown-item" href="blog_home_show">Tin tức bảo hiểm</a>
-
                         </div>
                     </li>
                     <li class="dropdown">
@@ -92,7 +91,17 @@
                                 style="background-color: #fdd12d;">
                                 <!-- Dropdown menu items -->
                                 <a class="dropdown-item" href="UserProfile.jsp">Profile</a>
-
+                                
+                                
+                                <!--phân quyền customer-->
+                                <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
+                                    <a class="dropdown-item" href="UserInsuranceList">Hợp đồng của tôi</a>
+                                </c:if>
+                                
+                                    <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
+                                        <a class="dropdown-item" href="UserClaimListShow">Tạo yêu cầu bồi thường</a>
+                                    </c:if>
+                                        
                                 <!--phân quyền staff-->
                                 <c:if test="${sessionScope.user.user_role.equals('Nhân viên')}">
                                     <a class="dropdown-item" href="admin_dashboard">Bảng điều khiển</a>

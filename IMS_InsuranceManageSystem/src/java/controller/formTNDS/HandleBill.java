@@ -111,12 +111,16 @@ public class HandleBill extends HttpServlet {
         String bill_code = ""; //#L22AA9QB
         String bill_total = "";
         String bill_ip_id = request.getParameter("ip_id");
+        System.out.println("===================| cehck bill_ip_id | ===================");
+        System.out.println("bill_ip_id: "+ bill_ip_id);
         String bill_user = getUser.getUser_fullName();
         String bill_content = "Thanh toán thành công.";
         String bill_creationDate = request.getParameter("bill_creationDate");
         //hh:mm:ss dd-mm-yyyy
 
-        if (bill_ip_id.equals("2")) {
+        if (bill_ip_id.equals("2")) 
+        {
+            System.out.println("=============================| GO TO CONTRACT TO SAVE VATCHAT =====|");
             //go to vat chat
             bill_code = request.getParameter("vnp_OrderInfo");
             bill_total = remove2LastZeros(request.getParameter("vnp_Amount"));//loai bo 2 so 0 cuoi cung trc khi gan cho amount 
@@ -137,9 +141,16 @@ public class HandleBill extends HttpServlet {
                 
                 java.sql.Date a = java.sql.Date.valueOf(start);
                 java.sql.Date b = java.sql.Date.valueOf(end);
-                System.out.println(a);
-                dao.insertContractVatChat(new Contract(getUser.getUser_id(), a, b,Integer.parseInt(obj.getIp_id()), 
-                        obj.getFvc_id(), 0, obj.getTotalPrice()));
+//                System.out.println(a);
+                if(dao.insertContractVatChat(new Contract(getUser.getUser_id(), a, b, Integer.parseInt(obj.getIp_id()),
+                        obj.getFvc_id(), 0, obj.getTotalPrice()))){
+                    System.out.println("==========================| SAVE VAT  CHAT TO CONTRACT |===============");
+                    System.out.println("SAVE DONE !");
+                }else {
+                    System.out.println("==========================| SAVE VAT  CHAT TO CONTRACT |===============");
+                    System.out.println("SAVE VAT CHAT TO CONTRACT FAILSE !");
+                }
+
                 // Format đối tượng Date thành chuỗi mới
                 String startFormattedDate = outputDateFormat.format(startDate);
                 String endFormattedDate = outputDateFormat.format(endDate);

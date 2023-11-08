@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Chi tiết nhân viên</title>
 
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -33,7 +34,24 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
         <link rel="stylesheet" href="CSS/admin_blog_dashboard.css"/>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+                    .myimg {
+                        margin-right: 10px;
+                        max-width: 250px;
+                        object-fit: cover;
+                        object-position: center;
+                        box-shadow: 0 0 10px #2c464f;
+                    }
+                    #main-container{
+                        box-shadow: 0 33px 61px -29px rgb(0 0 0/80%);
+                        object-fit: cover;
+                        border-radius: 25px;
+                    }
+                    
+                </style>
     </head>
     <body>
 
@@ -54,42 +72,63 @@
                             <div class="my-row row">
 
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-8">
-                                    <h2 style="display: inline-block;">Chi tiết thông tin nhân viên</h2>
+                                <div class="my-column1 col-md-3" style="margin-top: 100px">
+                                
+                                            <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
+                                                <img src="${detail.user_iden_img}" id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" >
+                                </div>
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">Full Image</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="${detail.user_iden_img}" class="img-fluid " >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                    
+                            </div>
+                                <div class="my-column1 col-md-5">
+                                    <h2 style="display: inline-block;">Chi tiết nhân viên</h2>
                                     <!--                                    go to blog page-->
-                                    <button class="btn btn-success mb-3 " style="margin-left: 200px" >
+                                    <button class="btn btn-success mb-3 " style="margin-left: 100px" >
                                         <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Quay lại</a>
                                     </button>
 
                                     <!-- Blog Post Table -->
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Họ Tên</th>
-                                                <th>Email</th>
-                                                <th>Ngày sinh</th>
-                                                <th>Địa chỉ</th>
-                                                <th>Số điện thoại</th>
-                                                <th>CCCD</th>
-                                                <th>Ảnh CCCD</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Example row, you can use a loop to generate rows dynamically -->
-
-                                            <tr>
-                                                <td>${detail.user_fullName}</td>
-                                                <td>${detail.user_email}</td>
-                                                <td>${detail.user_dob}</td>
-                                                <td>${detail.user_address}</td>
-                                                <td>${detail.user_phoneNum}</td>
-                                                <td>${detail.user_iden}</td>
-                                                <td> <img src="${detail.user_image}" width="60px" height="60px"> </td>
-                                        </tr>
-
-                                        <!-- Repeat rows for each blog post -->
-                                    </tbody>
-                                </table>
+                                    <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="detail-label">Họ Tên:</span>
+                                <span>${detail.user_fullName}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Email:</span>
+                                <span>${detail.user_email}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Ngày sinh:</span>
+                                <span class="date-column">${detail.user_dob}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Địa chỉ:</span>
+                                <span>${detail.user_address}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Số điện thoại:</span>
+                                <span>${detail.user_phoneNum}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">CCCD:</span>
+                                <span>${detail.user_iden}</span>
+                            </li>
+                            
+                            
+                        </ul>
 
                             </div>
 
@@ -112,7 +151,7 @@
                                         <c:forEach items="${listNB}" var="o">
                                             <tr>
                                                 <td>${o.getUsernameString()}</td>
-                                                <td>${o.getBl_creationdate()}</td>
+                                                <td class="date-column">${o.getBl_creationdate()}</td>
                                                 <td>${o.getBl_title()}</td>
                                             </tr>
                                         </c:forEach>
@@ -136,5 +175,25 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+        <script>
+    // Chuyển đổi định dạng ngày trong tất cả các phần tử trong cột "date-column"
+    document.querySelectorAll('.date-column').forEach(function (element) {
+        var originalDate = element.textContent; // Lấy ngày ban đầu
+        var formattedDate = formatDate(originalDate); // Gọi hàm formatDate để chuyển đổi định dạng
+        element.textContent = formattedDate; // Hiển thị ngày đã được định dạng
+    });
+
+    // Hàm để chuyển đổi định dạng ngày (VD: từ "YYYY-MM-DD" thành "DD/MM/YYYY")
+    function formatDate(inputDate) {
+        var dateParts = inputDate.split('-');
+        if (dateParts.length === 3) {
+            var year = dateParts[0];
+            var month = dateParts[1];
+            var day = dateParts[2];
+            return day + '/' + month + '/' + year;
+        }
+        return inputDate; // Trả về nguyên dạng nếu không thể chuyển đổi
+    }
+</script>
     </body>
 </html>
