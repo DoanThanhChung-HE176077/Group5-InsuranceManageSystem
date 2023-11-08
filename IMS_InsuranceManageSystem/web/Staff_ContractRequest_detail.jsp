@@ -61,9 +61,7 @@
                                     <h6 style="font-weight: bold">Ngày tạo hợp đồng:&nbsp;<span style="font-weight: normal">${contract.getContract_startDate()}</span></h6>
                                     <h6 style="font-weight: bold">Ngày hết hạn hợp đồng:&nbsp;<span style="font-weight: normal">${contract.getContract_endDate()}</span></h6>
                                     <h6 style="font-weight: bold">Tổng tiền thanh toán:&nbsp;<span style="font-weight: normal">${contract.getTotal_price()}</span></h6>
-                                    <c:if test="${sessionScope.user.getUser_role().equals('Admin')}">
-                                    <h6 style="font-weight: bold">Tình trạng hợp đồng:&nbsp;<span style="font-weight: normal">${contract.getContract_status()}</span></h6>
-                                    </c:if>
+                                    
                                     <c:if test="${sessionScope.user.getUser_role().equals('Nhân viên')}">
                                     <form action="contract_request_detail?contract_id=${contract.getContract_id()}" method="post">
                                         <div class="mb-3">
@@ -96,95 +94,136 @@
                             <div class="my-column1 col-md-8">
                                 <h2 style="display: inline-block;">Thông tin chi tiết của hợp đồng</h2><!--
                                 <!-- togler -->
-<form  action="contract_request_detail" method="" id="frmCreateOrder">
+                                
+<form  action="contract_request_detail" method="post" id="">
                  
                  
             <div class="container form_TNDS">
                 <div class="row">
                     <div class="info_motobike">
                         <div id="form_TNDS">
-
-                            <h5><i class="fa-solid fa-motorcycle"></i> Thông tin về xe</h5>
-                            <div class="row">
+                            
+                            <c:if test="${contract.getIp_name().equals('Bảo hiểm TNDS')}">
+                                <h5><i class="fa-solid fa-motorcycle"></i> Thông tin về xe</h5>
+                                <div class="row">
                                 <div class="col-md-6">
                                     <div>
                                         <span> Loại xe</span><br/>
-                                        <input class="form-control" type="text" value="${contractTNDS.getLoaiXe()}" readonly="">
+                                        <input class="form-control" type="text" value="${contractTNDS.getLoaixe()}" readonly="">
                                         
                                     </div>
                                     <div>
                                         <span>Số máy</span>
-                                        <input class="form-control" type="text" value="${contractTNDS.getSoMay()}" readonly="">
+                                        <input class="form-control" type="text" value="${contractTNDS.getSomay()}" readonly="">
                                     </div>                        
                                 </div>
                                 <div class="col-md-6">
                                     <div>
                                         <span>Biển xe</span>
-                                        <input class="form-control" type="text" value="${contractTNDS.getBienXe()}" readonly="">
+                                        <input class="form-control" type="text" value="${contractTNDS.getBienxe()}" readonly="">
                                     </div>                            
                                     <div>
                                         <span>Số khung</span>
-                                        <input class="form-control" type="text" value="${contractTNDS.getSoKhung()}" readonly="">
+                                        <input class="form-control" type="text" value="${contractTNDS.getSokhung()}" readonly="">
                                     </div>
                                 </div>
                             </div>
                             <div id="scope insurance">
                                 <h5><i class="fas fa-plus-square"></i> Phạm vi bảo hiểm</h5>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <span>Từ ngày</span>
-                                        <input class="form-control" type="text" value="${contractTNDS.getStartDate()}" readonly="">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span>Đến ngày</span>
-                                        <input class="form-control" type="text" value="${contractTNDS.getEndDate()}" readonly="">
-
-                                    </div>
-                                </div>
                                 <div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div>
                                                 <span> Mức trách nhiệm</span>
-                                                <input class="form-control" type="text" value="${contractTNDS.getMucTrachNhiem()}" readonly="">
+                                                <input class="form-control" type="text" value="${contractTNDS.getMuctrachnhiem()}" readonly="">
                                             </div>
                                             
                                         </div>
                                         <div class="col-md-6">
                                             <div>
                                                 <span>Số người</span>
-                                                <input class="form-control" type="text" value="${contractTNDS.getSoNguoi()}" readonly="">                                            </div>                            
-                                            
-                                        </div>
-                                        <div>
-                                            <span>Tổng phí</span>
-                                            <input class="form-control" type="text" value="${contractTNDS.getTongChiPhi()}" readonly="">
+                                                <input class="form-control" type="text" value="${contractTNDS.getSonguoi()}" readonly="">
+                                            </div>                            
                                         </div>
                                     </div>
                                 </div>
-
-
+                            </div>
+                            </c:if>
+                            
+                                <c:if test="${contract.getIp_name().equals('Bảo hiểm vật chất')}">
+                                    <h5><i class="fa-solid fa-motorcycle"></i> Thông tin về xe</h5>
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <div>
+                                        <span> Hãng xe</span><br/>
+                                        <input class="form-control" type="text" value="${contractVatchat.getHangxe()}" readonly="">
+                                        
+                                    </div>
+                                        
+                                    <div>
+                                        <span> Hiệu xe</span><br/>
+                                        <input class="form-control" type="text" value="${contractVatchat.getHieuxe()}" readonly="">
+                                        
+                                    </div>
+                                    <div>
+                                        <span>Số máy</span>
+                                        <input class="form-control" type="text" value="${contractVatchat.getSomay()}" readonly="">
+                                    </div>                        
+                                </div>
+                                <div class="col-md-6">
+                                    <div>
+                                        <span>Biển kiểm soát</span>
+                                        <input class="form-control" type="text" value="${contractVatchat.getBienkiemsoat()}" readonly="">
+                                    </div>                            
+                                    <div>
+                                        <span>Số khung</span>
+                                        <input class="form-control" type="text" value="${contractVatchat.getSokhung()}" readonly="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="scope insurance">
+                                <h5><i class="fas fa-plus-square"></i> Phạm vi bảo hiểm</h5>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <span> Gói bảo hiểm cơ bản</span>
+                                                <input class="form-control" type="text" value="${contractVatchat.getGoibhcb()}%" readonly="">
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div>
+                                                <span>Mức khấu trừ</span>
+                                                <input class="form-control" type="text" value="${contractVatchat.getMuckhautru()}%" readonly="">                                            
+                                            </div>                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                </c:if>
                                 <div id="vehicle_owner_information">
                                     <h5 style="margin-top: 10px;"> <i class="fas fa-address-card"></i>Thông tin chủ xe (<span>Theo đăng kí xe</span>)</h5>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <span>Số CCCD/CMT/Hộ chiếu</span>
-                                            <input class="form-control" type="text" value="${contractTNDS.getUser_iden()}" readonly="">
+                                            <input class="form-control" type="text" value="${contract.getUser_iden()}" readonly="">
                                             <span>Tên</span>
-                                            <input class="form-control" type="text" value="${contractTNDS.getUser_fullname()}" readonly="">
+                                            <input class="form-control" type="text" value="${contract.getUser_fullname()}" readonly="">
                                             <span>Email</span>
-                                            <input class="form-control" type="text" value="${contractTNDS.getUser_mail()}" readonly="">                                        </div>
+                                            <input class="form-control" type="text" value="${contract.getUser_mail()}" readonly="">                                        </div>
                                         <div class="col-md-6">
                                             <span>Số điện thoại</span>
-                                            <input class="form-control" type="text" value="${contractTNDS.getUser_phoneNum()}" readonly="">
+                                            <input class="form-control" type="text" value="${contract.getUser_phoneNum()}" readonly="">
                                             <span>Ngày sinh</span>
-                                            <input class="form-control" type="text" value="${contractTNDS.getUser_dob()}" readonly="">
+                                            <input class="form-control" type="text" value="${contract.getUser_dob()}" readonly="">
                                             <span>Địa chỉ</span>
-                                            <input class="form-control" type="text" value="${contractTNDS.getUser_address()}" readonly="">
+                                            <input class="form-control" type="text" value="${contract.getUser_address()}" readonly="">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
