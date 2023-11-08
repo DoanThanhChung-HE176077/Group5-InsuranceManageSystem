@@ -3,7 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Github%20Local%20Store/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/DBContext.java</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/HandleBillFormTNDS.java</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/SaveInfoVatChat.java</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/HandleFormVatChat.java</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/DBContext.java</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/FormDAO.java</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/HandleBill.java</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/FormVatChat.jsp</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/SaveInfoTNDS.java</file>
         </group>
     </open-files>
 </project-private>

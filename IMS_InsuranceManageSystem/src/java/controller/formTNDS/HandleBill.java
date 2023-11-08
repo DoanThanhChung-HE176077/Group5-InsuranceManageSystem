@@ -124,7 +124,7 @@ public class HandleBill extends HttpServlet {
             FormDAO dao = new FormDAO();
             Form_Vatchat obj = dao.getForm_VatChat();
             request.setAttribute("obj", obj);
-            try {
+           try {
                 String start = obj.getStartDate();
                 String end = obj.getEndDate();
                 // Định dạng của chuỗi ngày đầu vào

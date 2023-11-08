@@ -34,7 +34,7 @@ import org.json.simple.parser.JSONParser;
  */
 @WebServlet(name="HandleFormTNDS", urlPatterns={"/HandleFormTNDS"})
 public class HandleFormTNDS extends HttpServlet {
-   
+    private String x= "";
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -67,7 +67,9 @@ public class HandleFormTNDS extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     @Override
+  
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         FormDAO dao = new FormDAO();
@@ -78,8 +80,13 @@ public class HandleFormTNDS extends HttpServlet {
         request.setAttribute("listType", listType);
         request.setAttribute("listLevel", listLevel);
         request.setAttribute("listNum", listNum);
-      
-        // Forward the request to the JSP page
+        String  msg = (String) request.getAttribute("msg");
+        x = msg;
+        System.out.println("1 " + x);
+       
+          request.setAttribute("msg", msg);
+
+//         Forward the request to the JSP page
         request.getRequestDispatcher("FormTNDS.jsp").forward(request, response);
     } 
 
@@ -119,7 +126,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
             TNDS_Type type_object = dao.getType(type);
             int lnPrice = ln.getLn_price();
             System.out.println(lnPrice);
-           
+             String msg = (String) request.getAttribute("msg");
+    
             HttpSession session = request.getSession();
             User user1 = (User) session.getAttribute("user");
             
@@ -127,6 +135,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+       
         System.out.println("{\"levelFee\": \"" + lnPrice + "\", \"taxFee\": \"" + 1 + "\"}");
 //        out.println("{\"levelFee\": \"" + lnPrice + "\", \"taxFee\": \"" + type_object.getType_tax_price() + "\"}");
          out.println("{\"levelFee\": \"" + lnPrice + "\", " +
@@ -136,6 +145,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
             "\"user_fullName\": \"" + user1.getUser_fullName() + "\", " +
             "\"user_dob\": \"" + user1.getUser_dob() + "\", " +
             "\"user_email\": \"" + user1.getUser_email() + "\", " +
+            "\"msg\": \"" +x + "\", " +
             "\"user_address\": \"" + user1.getUser_address() + "\"}");
 
 

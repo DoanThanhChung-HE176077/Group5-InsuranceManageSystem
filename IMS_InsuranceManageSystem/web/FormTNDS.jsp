@@ -50,6 +50,7 @@
                                     </div>
                                     <div>
                                         <span>Số máy</span>
+                                        <h1>${msg}</h1>
                                         <input required="" class="form-control" type="text" name="soMay" >
                                     </div>
                                     <span style="color: hsl(29, 57%, 54%);">Bắt buộc cần nhập số biển kiểm soát</span>                        
@@ -99,10 +100,10 @@
                                                 <span>Phí</span>
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <input name="lv-fee"  class="form-control" type="text" id="lv-fee" placeholder="" readonly>
+                                                        <input name="lv-fee"  class="form-control" type="number" id="lv-fee" placeholder="" readonly>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <input name="tax-fee" class="form-control" type="text" id="tax-fee" placeholder="" readonly>
+                                                        <input name="tax-fee" class="form-control" type="number" id="tax-fee" placeholder="" readonly>
                                                     </div>
                                                 </div>                                   
                                             </div>
@@ -118,8 +119,8 @@
                                             </div>                            
                                             <div>
                                                 <span>Tổng phí</span>
-<!--                                                <input class="form-control" id="total-fee" type="text" readonly placeholder="" name="total" >-->
-                                                <input class="form-control" readonly data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount"  name="amount" type="number" value="" />
+                                                <input class="form-control" id="total-fee" type="number" readonly placeholder="" name="total" >
+<input hidden class="form-control" readonly data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount"  name="amount" type="number" value="" />
                                             </div>
                                         </div>
                                     </div>
@@ -154,6 +155,10 @@
                         <div class="payment">
                             <h6>Thông tin phí bảo hiểm</h6>
                             <hr>
+                            <div class="fax">
+                                <span>Thuế</span>
+                                <span id="c" style="float: right;"></span>
+                            </div>
                             <div class="fee">
                                 <span>Phí</span>
                                 <span id="a" style="float: right;"></span>
@@ -162,8 +167,9 @@
                                 <span>Tổng phí</span>
                                 <h6 id="b" style="float: right;"></h6>
                             </div>
+                            <p id="msg">${msg}</p>
                             <c:if test="${sessionScope.user.user_role.equals('Khách hàng') }">
-                                <button type="submit" class="btn ">Thanh toán</button>
+                                <button  type="submit" class="btn abc ">Thanh toán</button>
                             </c:if>
                             <c:if test="${sessionScope.user.user_role.equals('Admin') }">
                                 
@@ -255,16 +261,35 @@
                         console.log(jsonData);
 
                         // Cập nhật giá trị trong các thẻ HTML
-                        $("#lv-fee").val(jsonData.levelFee);
-                        $("#tax-fee").val(jsonData.taxFee);
-                        $("#amount").val(parseInt(jsonData.levelFee) + parseInt(jsonData.taxFee));
-                        document.getElementById("a").innerHTML= jsonData.levelFee;
-                        document.getElementById("b").innerHTML= parseInt(jsonData.levelFee) + parseInt(jsonData.taxFee);
+                        var levelFee = parseInt(jsonData.levelFee);
+                        var taxFee = parseInt(jsonData.taxFee);
+                        var amount = parseInt(jsonData.levelFee)+parseInt(jsonData.taxFee);
+                        var formattedLevelFee = parseFloat(levelFee).toLocaleString();
+                        var formattedTaxFee = parseFloat(taxFee).toLocaleString();
+                         var formattedAmount = parseFloat(amount).toLocaleString();
+                        $("#lv-fee").val(formattedLevelFee);
+                        $("#tax-fee").val(formattedTaxFee);
+                        $("#total-fee").val(formattedAmount);
+                        
+                        $("#amount").val(amount);
+                        document.getElementById("a").innerHTML= formattedLevelFee;
+                        document.getElementById("b").innerHTML= formattedAmount;
+                         document.getElementById("c").innerHTML= formattedTaxFee;
+                         
+                         if(jsonData.msg !== "null"){
+                             document.getElementById("msg").innerHTML= jsonData.msg;
+                             alert(jsonData.msg);
+                            window.location.href = "HandleFormTNDS";
+                         }
                          $("#user_iden2").val(jsonData.user_iden);
                           $("#user_fullName").val(jsonData.user_fullName);
                            $("#user_email2").val(jsonData.user_email);
                             $("#user_phoneNum2").val(jsonData.user_phoneNum);
-                             $("#user_dob2").val(jsonData.user_dob);
+                             
+                              var dobParts = jsonData.user_dob.split('/');
+                                var formattedDob = dobParts[2] + '-' + dobParts[0] + '-' + dobParts[1];
+                               
+                              $("#user_dob2").val(formattedDob);
                               $("#user_address2").val(jsonData.user_address);
                     }
                 };
@@ -277,22 +302,53 @@
             });
         });
         //Chuyển đổi Date tự động sang 1 năm
-        function updateToDate() {
-            // Lấy giá trị từ trường fromDate
-            var fromDate = document.getElementById("fromDate").value;
+//        function updateToDate() {
+//            // Lấy giá trị từ trường fromDate
+//            var fromDate = document.getElementById("fromDate").value;
+//
+//            // Chuyển đổi giá trị fromDate thành đối tượng Date
+//            var fromDateObj = new Date(fromDate);
+//
+//            // Cộng thêm 1 năm
+//            fromDateObj.setFullYear(fromDateObj.getFullYear() + 1);
+//
+//            // Format lại ngày tháng để có thể đặt giá trị vào trường toDate
+//            var toDate = fromDateObj.toISOString().split('T')[0];
+//
+//            // Đặt giá trị vào trường toDate
+//            document.getElementById("toDate").value = toDate;
+//        }
+        
+          function updateToDate() {
+                        // Get references to the "Start Date" and "End Date" input fields
+                        var fromDateInput = document.getElementById("fromDate");
+                        var toDateInput = document.getElementById("toDate");
 
-            // Chuyển đổi giá trị fromDate thành đối tượng Date
-            var fromDateObj = new Date(fromDate);
+                        // Get the current date
+                        var currentDate = new Date();
 
-            // Cộng thêm 1 năm
-            fromDateObj.setFullYear(fromDateObj.getFullYear() + 1);
+                        // Parse the value of the "Start Date" input as a Date object
+                        var fromDate = new Date(fromDateInput.value);
 
-            // Format lại ngày tháng để có thể đặt giá trị vào trường toDate
-            var toDate = fromDateObj.toISOString().split('T')[0];
+                        // Check if the "Start Date" is valid and not earlier than the current date
+                        if (!isNaN(fromDate) && fromDate >= currentDate) {
+                            // Calculate the "End Date" as one year from the "Start Date"
+                            var endDate = new Date(fromDate);
+                            endDate.setFullYear(endDate.getFullYear() + 1);
 
-            // Đặt giá trị vào trường toDate
-            document.getElementById("toDate").value = toDate;
-        }
+                            // Format the "End Date" as YYYY-MM-DD
+                            var endDateFormatted = endDate.toISOString().split('T')[0];
+
+                            // Set the value of the "End Date" input
+                            toDateInput.value = endDateFormatted;
+                        } else {
+                            // Clear the "End Date" input
+                            toDateInput.value = "";
+
+                            // Show an alert notification
+                            alert("Ngày bắt đầu hơn ngày hôm nay");
+                        }
+                    }
         
 
 
