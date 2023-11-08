@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Admin_blog_dashboard
-    Created on : Oct 2, 2023, 7:46:10 PM
-    Author     : chun
---%>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <title>Chi tiết hợp đồng</title>
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -60,14 +56,16 @@
                 <div class="my-row row">
 
                     <!-- Column 1: Chi tiết người dùng -->
-                    
-                        <h2 style="display: inline-block;">Chi tiết hợp đồng</h2>
+                    <div class="my-column1 col-md-12">
+                        <h2 style="display: inline-block;margin-left: 15% ">Chi tiết hợp đồng</h2>
                         <button class="btn btn-success mb-3" style="margin-left: 200px;">
                             <a href="Admin_Contract_list" style="text-decoration: none; color: #fff;">Quay lại</a>
                         </button>
-                        <div class="my-column1 col-md-6">
+                    </div>
+                        
                         <!-- Danh sách chi tiết người dùng -->
                     <c:if test="${contract.nameip eq 'Bảo hiểm TNDS'}" >
+                        <div class="my-column1 col-md-6">
     <div class="column" style="flex: 1; padding: 10px;">
         <li class="list-group-item">
             <span class="detail-label">Khách hàng:</span>
@@ -93,31 +91,32 @@
             <span class="detail-label">Biển xe:</span>
             <span>${contract.bienxe}</span>
         </li>
-                        
-    </div>
-                    </div>
-        <div class="my-column1 col-md-6">
-    <div class="column" style="flex: 1; padding: 10px;">
         <li class="list-group-item">
             <span class="detail-label">Số khung:</span>
             <span>${contract.sokhung}</span>
         </li>
-        <li class="list-group-item">
-            <span class="detail-label">Ngày bắt đầu:</span>
-            <span>${contract.ngaybd}</span>
-        </li>
-        <li class="list-group-item">
-            <span class="detail-label">Ngày kết thúc:</span>
-            <span>${contract.ngaykt}</span>
-        </li>
-        <li class="list-group-item">
+         <li class="list-group-item">
             <span class="detail-label">Mức trách nhiệm:</span>
             <span>${contract.muctrachnhiem}</span>
         </li>
         <li class="list-group-item">
             <span class="detail-label">Số người:</span>
             <span>${contract.songuoi}</span>
+        </li>           
+    </div>
+                    </div>
+        <div class="my-column1 col-md-6">
+    <div class="column" style="flex: 1; padding: 10px;">
+        
+        <li class="list-group-item">
+            <span class="detail-label">Ngày bắt đầu:</span>
+            <span class="date-column">${contract.ngaybd}</span>
         </li>
+        <li class="list-group-item">
+            <span class="detail-label">Ngày kết thúc:</span>
+            <span class="date-column">${contract.ngaykt}</span>
+        </li>
+        
         <li class="list-group-item">
             <span class="detail-label">Tổng chi phí:</span>
             <span>${contract.tongchiphi}</span>
@@ -133,7 +132,8 @@
                             </c:if>
                             
                           <c:if test="${contract.nameip eq 'Bảo hiểm vật chất'}" >
-                        <ul class="list-group">
+                        <div class="my-column1 col-md-6">
+                              <ul class="list-group">
                             <li class="list-group-item">
                                 <span class="detail-label">Khách hàng:</span>
                                 <span>${contract.fullname}</span>
@@ -167,14 +167,6 @@
                                 <span>${contract.sokhung}</span>
                             </li>
                             <li class="list-group-item">
-                                <span class="detail-label">Ngày bắt đầu:</span>
-                                <span>${contract.ngaybd}</span>
-                            </li>
-                            <li class="list-group-item">
-                                <span class="detail-label">Ngày kết thúc:</span>
-                                <span>${contract.ngaykt}</span>
-                            </li>
-                            <li class="list-group-item">
                                 <span class="detail-label">Gói bảo hiểm cơ bản:</span>
                                 <span>${contract.goibhcb}</span>
                             </li>
@@ -182,6 +174,17 @@
                                 <span class="detail-label">Mức khấu trừ:</span>
                                 <span>${contract.muckhautru}</span>
                             </li>
+                        </div>
+                            <div class="my-column1 col-md-6">
+                            <li class="list-group-item">
+                                <span class="detail-label">Ngày bắt đầu:</span>
+                                <span class="date-column">${contract.ngaybd}</span>
+                            </li>
+                            <li class="list-group-item">
+                                <span class="detail-label">Ngày kết thúc:</span>
+                                <span class="date-column">${contract.ngaykt}</span>
+                            </li>
+                            
                             <li class="list-group-item">
                                 <span class="detail-label">Tổng chi phí:</span>
                                 <span>${contract.tongchiphi}</span>
@@ -190,7 +193,9 @@
                                 <span class="detail-label">Trạng thái:</span>
                                 <span>${contract.trangthai}</span>
                             </li>
-                        </ul>
+                            </div>
+                            
+                       
                             </c:if>  
                             
                             
@@ -233,6 +238,22 @@
         }
         return inputDate; // Trả về nguyên dạng nếu không thể chuyển đổi
     }
+</script>
+<script>
+    // Lấy tất cả các phần tử <span> chứa trạng thái từ các phần tử có class "detail-label"
+var trangThaiSpans = document.querySelectorAll('.detail-label + span');
+
+// Duyệt qua từng phần tử và kiểm tra trạng thái
+for (var i = 0; i < trangThaiSpans.length; i++) {
+    if (trangThaiSpans[i].textContent === 'paid') {
+        // Nếu trạng thái là "paid", thay đổi nội dung thành "đã thanh toán"
+        trangThaiSpans[i].textContent = 'Đã thanh toán';
+    }
+    else if (trangThaiSpans[i].textContent === 'unpaid'){
+        trangThaiSpans[i].textContent = 'Chưa thanh toán';
+    }
+}
+
 </script>
     </body>
 </html>

@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Chi tiết khách hàng</title>
 
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -33,7 +34,25 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
         <link rel="stylesheet" href="CSS/admin_blog_dashboard.css"/>
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+                    .myimg {
+                        margin-right: 10px;
+                        max-width: 250px;
+                        object-fit: cover;
+                        object-position: center;
+                        box-shadow: 0 0 10px #2c464f;
+                    }
+                    #main-container{
+                        box-shadow: 0 33px 61px -29px rgb(0 0 0/80%);
+                        object-fit: cover;
+                        border-radius: 25px;
+                    }
+                    
+                </style>
     </head>
     <body>
 
@@ -60,9 +79,30 @@
                 <div class="my-row row">
 
                     <!-- Column 1: Chi tiết người dùng -->
-                    <div class="my-column1 col-md-8">
+                     <div class="my-column1 col-md-3" style="margin-top: 100px">
+                                
+                                            <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
+                                                <img src="${detail.user_iden_img}" id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" >
+                                </div>
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">Full Image</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="${detail.user_iden_img}" class="img-fluid " >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>                    
+                            </div>
+                    <div class="my-column1 col-md-5">
                         <h2 style="display: inline-block;">Chi tiết người dùng</h2>
-                        <button class="btn btn-success mb-3" style="margin-left: 200px;">
+                        <button class="btn btn-success mb-3" style="margin-left: 100px;">
                             <a href="admin_Users_list" style="text-decoration: none; color: #fff;">Quay lại</a>
                         </button>
                         <!-- Danh sách chi tiết người dùng -->
@@ -91,22 +131,37 @@
                                 <span class="detail-label">CCCD:</span>
                                 <span>${detail.user_iden}</span>
                             </li>
-                            <li class="list-group-item">
+<!--                            <li class="list-group-item">
                                 <span class="detail-label">Ảnh CCCD:</span>
                                 <img src="${detail.user_iden_img}" width="60px" height="60px">
-                            </li>
+                            </li>-->
+                            
                             <li class="list-group-item">
                                 <span class="detail-label">Trạng thái:</span>
                                 <span>${detail.status}</span>
                             </li>
+                            
                         </ul>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                         <c:if test="${detail.status eq 'Chưa xác minh'}">
                             <div style="text-align: center;">
                                 <a href="Admin_Users_verify?id=${detail.getUser_id()}" class="my-btn btn btn-primary">Xác minh người dùng</a>
                             </div>
                         </c:if>
+                            
+                                            
                     </div>
                             
+                           
                     <!-- Column 2: Hợp đồng người dùng -->
                     <div class="my-column1 col-md-4">
                         <h2 style="display: inline-block;">Hợp đồng người dùng</h2>

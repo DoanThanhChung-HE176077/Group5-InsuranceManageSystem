@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Danh sách nhân viên</title>
 
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -99,11 +100,7 @@
 
                                     <form action="Admin_Staff_search" method="post" class="form-inline my-2 my-lg-0">
 
-                                        <a href="admin_Users_list" class="my-btn btn btn-primary" style="margin-left: 200px ; background: #367f59">Quay lại</a>
-                                        <a href="admin_Users_list" class="my-btn btn btn-primary" style="background: #2f2929">Thêm nhân viên</a>
-
-                                        <form action="admin_Users_search" method="post" class="form-inline my-2 my-lg-0">
-
+                                       
                                             <div class="input-group input-group-sm">
                                                 <input value ="${txtname}" name="txtname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                                             <div class="input-group-append">
@@ -142,7 +139,6 @@
 
                                                         <a href="Admin_Staff_load?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: #B78181">Chỉnh sửa</a>
 
-                                                        <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: #DE8484">Chỉnh sửa</a>
 
                                                     </td>
                                                     <td>

@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Profile</title>
+        <title>Đăng kí nhân viên</title>
         <link rel="stylesheet" href="CSS/auth.css">
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
@@ -80,21 +80,20 @@
 
 
         <jsp:include page="Part/header.jsp"></jsp:include>
+
+
             <div class="form-info" style="margin-top: 150px">
                 <div class="container  bg-white mt-5 mb-5" id="main-container">
                     <div class="row">
-                        <div class="col-md-3 border-right">
+                        <div class="col-md-3 ">
                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                                 <img id="profileImage" class="rounded-circle mt-5 myimg" width="150px" src="">
                             </div>
                             <!-- Image thumbnail -->
                             <!--tk xac nhan-->
 
-
-
-
                         </div>
-                        <div class="col-md-6 border-right" >
+                        <div class="col-md-6 " >
                             <div class="p-3 py-5">
                                 <div class="login-default" style="align-items: center;">
                                     <form action="admin_Staff_add" method="post">
@@ -109,15 +108,18 @@
                                             <input name="input-phoneNum" type="text" id="" class="form-control" placeholder="Nhập số điện thoại" required invalid-message="Vui lòng nhập">
 
                                         </div>
+                                        <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0">
+                                        ${errorMessages["input-phoneNum"]}
+                                    </p>
 
-                                        <span class="input_label">Email</span>
-                                        <div class="input-group" >
-                                            <input name="input-mail" type="text" id="" class="form-control" placeholder="Nhập Mail" required>
-                                            <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 25px; margin-top: -20px;">
-                                            ${errorMessages["input-phoneNum"]} &nbsp&nbsp&nbsp ${errorMessages["input-mail"]}
-                                        </p>
+                                    <span class="input_label">Email</span>
+                                    <div class="input-group" >
+                                        <input name="input-mail" type="text" id="" class="form-control" placeholder="Nhập Mail" required>
+
                                     </div>
-
+                                    <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0">
+                                        ${errorMessages["input-mail"]}
+                                    </p>
 
 
 
@@ -170,9 +172,13 @@
                                         ${errorMessages["input-password"]}
                                     </p>
 
+                                    <div class="form-group" style="display: flex;">
+                                        <button style="background-color: #076233; color: #fff;width: 50%;margin-right: 10px" >
+                                            <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Quay lại</a>
 
-                                    <button style="background-color: #076233; color: #fff;" type="submit">Đăng ký</button>
-
+                                        </button>
+                                        <button style="background-color: #24262b; color: #fff;width: 50%" type="submit" >Đăng ký</button>
+                                    </div>
 
                                 </form>
 

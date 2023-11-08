@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Profile</title>
+        <title>Cập nhật nhân viên</title>
         <link rel="stylesheet" href="CSS/auth.css">
         <!-- bootstrap -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
@@ -83,7 +83,7 @@
             <div class="form-info" style="margin-top: 150px">
                 <div class="container  bg-white mt-5 mb-5" id="main-container">
                     <div class="row">
-                        <div class="col-md-3 border-right">
+                        <div class="col-md-3 ">
                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                                 <img id="profileImage" class="rounded-circle mt-5 myimg" width="150px" src="">
                             </div>
@@ -94,7 +94,7 @@
 
 
                         </div>
-                        <div class="col-md-6 border-right" >
+                        <div class="col-md-6 " >
                             <div class="p-3 py-5">
                                 <div class="login-default" style="align-items: center;">
                                     <form action="Admin_Staff_update" method="post">
@@ -161,12 +161,13 @@
                                     </p>
 
 
+                                    <div class="form-group" style="display: flex;">
+                                        <button style="background-color: #076233; color: #fff;width: 50%;margin-right: 10px" >
+                                            <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Quay lại</a>
 
-
-
-
-                                    <button style="background-color: #076233; color: #fff;" type="submit">Cập nhật</button>
-
+                                        </button>
+                                        <button style="background-color: #24262b; color: #fff;width: 50%" type="submit" >Cập nhật</button>
+                                    </div>
 
                                 </form>
 
