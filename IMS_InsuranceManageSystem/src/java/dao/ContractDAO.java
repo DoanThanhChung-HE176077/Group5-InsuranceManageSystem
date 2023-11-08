@@ -18,6 +18,7 @@ import model.ContractVatchat;
 import model.Form_Vatchat;
 import model.NewBl;
 import model.NewC;
+import model.NewFt;
 import model.User;
 
 /**
@@ -255,8 +256,101 @@ public class ContractDAO extends DBContext {
         Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
     }
     return null;
+    
+    
 }
+    public NewC getContractById(int contract_id) {
+        try {
+            String sql = "select u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],\n"
+                    + "	[total_price],[contract_status],user_fullname,ip_name \n"
+                    + "from [Contract] c \n"
+                    + "	join Users u on c.user_id = u.user_id \n"
+                    + "	join Insurance_Products ip on c.ip_id=ip.ip_id \n"
+                    + "where c.contract_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, contract_id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int user_id = rs.getInt(1);
+                Date contract_startDate = rs.getDate(2);
+                Date contract_endDate = rs.getDate(3);
+                int ip_id = rs.getInt(4);
+                int fvc_id = rs.getInt(5);
+                int ftnds_id = rs.getInt(6);
+                int total_price = rs.getInt(7);
+                String contract_status = rs.getString(8);
+                String user_fullname = rs.getString(9);
+                String ip_name = rs.getString(10);
 
+                NewC newC = new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status);
+                return newC;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public NewFt getDetailedContractById(int contract_id) {
+        try {
+            String sql = "select ft.ftnds_loaiXe, ft.ftnds_soMay, ft.ftnds_bienXe, ft.ftnds_soKhung, ft.ftnds_startDate, ft.ftnds_endDate, \n"
+                    + "ft.ftnds_mucTrachNhiem, ft.ftnds_soNguoi, ft.ftnds_tongChiPhi, \n"
+                    + "u.user_iden, u.user_phoneNum, u.user_fullname, u.user_dob, u.user_mail, u.user_address, ft.user_id, ft.ip_id, ft.ftnds_status\n"
+                    + "from [Contract] c \n"
+                    + "	left outer join Form_TNDS ft on c.ftnds_id = ft.ftnds_id\n"
+                    + "	left outer join Users u on c.user_id = u.user_id\n"
+                    + "where c.contract_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, contract_id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String loaiXe = rs.getString(1);
+                String soMay = rs.getString(2);
+                String bienXe = rs.getString(3);
+                String soKhung = rs.getString(4);
+                Date startDate = rs.getDate(5);
+                Date endDate = rs.getDate(6);
+                String mucTrachNhiem = rs.getString(7);
+                String soNguoi = rs.getString(8);
+                String tongChiPhi = rs.getString(9);
+                String userIden = rs.getString(10);
+                String userPhoneNum = rs.getString(11);
+                String userFullname = rs.getString(12);
+                Date userDob = rs.getDate(13);
+                String userMail = rs.getString(14);
+                String userAddress = rs.getString(15);
+                int userId = rs.getInt(16);
+                String ipId = rs.getString(17);
+                String status = rs.getString(18);
+
+                NewFt contractFNDS = new NewFt(userIden, userPhoneNum, userFullname, userDob, userMail, userAddress, loaiXe, soMay, bienXe, soKhung, startDate, endDate, mucTrachNhiem, soNguoi, tongChiPhi, userId, ipId, status);
+                return contractFNDS;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+
+    }
+
+    public boolean updateContractStatus(int contractID, String contractStatus) {
+        try {
+            String sql = "UPDATE [dbo].[Contract]\n"
+                    + "   SET [contract_status] = ?\n"
+                    + " WHERE contract_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, contractStatus);
+            ps.setInt(2, contractID);
+            
+            ps.executeUpdate();
+            return true;
+        }
+        catch(SQLException e){
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, e.getMessage());
+        }
+        return false;
+    }
 
      public static void main(String[] args) {
         ContractDAO cd = new ContractDAO();

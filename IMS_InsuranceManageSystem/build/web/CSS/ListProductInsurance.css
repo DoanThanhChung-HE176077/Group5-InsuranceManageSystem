@@ -1,0 +1,73 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Oct 4, 2023, 10:13:11 AM
+    Author     : Dell
+*/
+.product{
+    padding: 0 !important;
+}
+.banner img{
+    margin-top: 50px;
+    width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của phần tử chứa */
+    height: 400px; 
+   
+}
+.breadcrumb-list{
+    margin-left: 10%;
+}
+.breadcrumb{
+    background-color: white !important;
+    font-size: 15px;
+}
+.breadcrumb a{
+    color: #367f59;
+   
+}
+.sp1{
+  float: right !important;
+}
+.card-body img{
+    border: 1px rgb(201, 200, 200) solid;
+    border-radius: 0;
+}
+.card-body h5{
+    font-size: 17px;
+    color: #076233;
+    font-weight: 650;
+    padding-top: 20px;
+}
+.card-body p{
+    text-align: justify;
+    color:#817e7e;
+    margin-bottom: 0 !important;
+   
+}
+.see-detail{
+    color: #1c6f44;
+}
+.btn-buy{
+  background-color: hsl(47,98%,58%) !important;
+  font-weight: bold !important;
+  border-radius: 0 !important;
+  border: none !important;
+  width: 100%;
+  margin-top: 10px;
+}
+.footer{
+    width: 100%;
+    padding: 8px 0;
+    padding-left: 10%;
+    background-color: #696969;
+    color: white;
+    position: fixed;
+    bottom: 0;
+}
+.footer p{
+    margin: 0;
+}
+
+
+
