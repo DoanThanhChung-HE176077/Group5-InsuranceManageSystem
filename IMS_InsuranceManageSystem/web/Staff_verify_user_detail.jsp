@@ -64,7 +64,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">ID</th>
-                                                        <td>${detail.getUser_id()}</td>
+                                                        <td >${detail.getUser_id()}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Họ và tên</th>
@@ -120,6 +120,7 @@
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
+                                                            <input type="hidden" value="${detail.getUser_id()}" name="user_id_change">
                                                         </button>
                                                     </div>
                                                     <div class="modal-body d-flex justify-content-center">
@@ -176,7 +177,7 @@
                                 value: "catch"
                             }
                         }
-                        iconColor:red;
+                        
                     }).then((value) => {
                         switch (value) {
                         case "catch":

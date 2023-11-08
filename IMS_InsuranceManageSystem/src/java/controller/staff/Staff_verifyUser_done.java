@@ -87,8 +87,13 @@ public class Staff_verifyUser_done extends HttpServlet {
     throws ServletException, IOException {
         
         //update trw thái tài khoản từ id bên duyệt
+        int user_id = Integer.parseInt(request.getParameter("user_id_change"));
+        System.out.println(user_id);
         
-        System.out.println("hihi");
+        UserDAO dao = new UserDAO();
+        dao.updateUserStatusByStaff(user_id);
+        response.sendRedirect("/IMS_InsuranceManageSystem/Staf_verifyUser");
+        
     }
 
     /** 

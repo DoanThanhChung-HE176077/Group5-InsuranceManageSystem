@@ -92,7 +92,6 @@
                         <div class="p-3 py-5">
                             <div class="d-flex justify-content-center">
                                 <h3 style="margin-top: 10px;">Tài khoản đã xác minh</h3>
-
                             </div>
                             <table class="table">
                                 <thead>

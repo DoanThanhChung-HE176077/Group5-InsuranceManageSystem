@@ -95,7 +95,7 @@
                                 
                                 <!--phân quyền customer-->
                                 <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
-                                    <a class="dropdown-item" href="UserInsuranceList">Trang chủ của tôi</a>
+                                    <a class="dropdown-item" href="UserInsuranceList">Hợp đồng của tôi</a>
                                 </c:if>
                                     
                                 <!--phân quyền staff-->
