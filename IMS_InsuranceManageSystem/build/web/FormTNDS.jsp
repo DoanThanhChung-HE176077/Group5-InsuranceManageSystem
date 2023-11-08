@@ -168,7 +168,7 @@
                                 </div>
                                 <br>
                                 <div class="d-flex justify-content-center">
-                                    <a type="button" href="#" class="btn btn-danger">Xác minh tài khoản</a>
+                                    <a type="button" href="User_verify.jsp" class="btn btn-danger">Xác minh tài khoản</a>
                                 </div>
                             </c:if>
                             <c:if test="${sessionScope.user.user_role.equals('Admin') }">
