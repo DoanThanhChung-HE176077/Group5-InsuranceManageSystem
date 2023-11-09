@@ -571,6 +571,18 @@ public class FormDAO extends DBContext {
         }
     }
     
+     public void checkExpiredContractVatChat() {
+        String sql = "  UPDATE [Form_Vatchat]\n"
+                + "SET ftnds_status = 'expired'\n"
+                + "WHERE endDate < GETDATE();";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.executeUpdate();
+        } catch (Exception E) {
+            System.out.println(E);
+        }
+    }
+    
       public void deleteUnpaidVatChat() {
         String sql = " delete from Form_Vatchat where fvc_status = 'unpaid'";
         try {

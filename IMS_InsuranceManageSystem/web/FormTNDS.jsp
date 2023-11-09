@@ -18,25 +18,25 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+
     </head>
     <body>
-             <jsp:include page="Part/header.jsp"></jsp:include>
-             <form  action="saveInfoTNDS" method="get" id="frmCreateOrder" style="margin-top: 100px ; background-color: #fdcf2b ; padding: 20px 0" >
-                 <input type="hidden" Checked="True" id="bankCode" name="bankCode" value="" >
-                 <input type="text"  name="check" value="tnds" hidden >
-                 
-            <div class="container form_TNDS">
-                <div class="row">
-                    <div class="col-md-8 info_motobike">
-                        <div id="form_TNDS">
+        <jsp:include page="Part/header.jsp"></jsp:include>
+            <form  action="saveInfoTNDS" method="get" id="frmCreateOrder" style="margin-top: 100px ; background-color: #fdcf2b ; padding: 20px 0" >
+                <input type="hidden" Checked="True" id="bankCode" name="bankCode" value="" >
+                <input type="text"  name="check" value="tnds" hidden >
 
-                            <h5><i class="fa-solid fa-motorcycle"></i> Thông tin về xe</h5>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div>
-                                        <span> Loại xe</span><br/>
-                                        <select class="general-dr abc" id="type" name="type">
+                <div class="container form_TNDS">
+                    <div class="row">
+                        <div class="col-md-8 info_motobike">
+                            <div id="form_TNDS">
+
+                                <h5><i class="fa-solid fa-motorcycle"></i> Thông tin về xe</h5>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div>
+                                            <span> Loại xe</span><br/>
+                                            <select class="general-dr abc" id="type" name="type">
                                             <c:forEach items="${listType}" var="c">
                                                 <option value="${c.getId()}">${c.getType_name()}</option>
                                             </c:forEach>
@@ -115,7 +115,7 @@
                                             <div>
                                                 <span>Tổng phí</span>
                                                 <input class="form-control" id="total-fee" type="number" readonly placeholder="" name="total" >
-<input hidden class="form-control" readonly data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount"  name="amount" type="number" value="" />
+                                                <input hidden class="form-control" readonly data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount"  name="amount" type="number" value="" />
                                             </div>
                                         </div>
                                     </div>
@@ -137,8 +137,7 @@
                                             <span>Số điện thoại</span>
                                             <input id="user_phoneNum2" class="form-control" type="number" readonly >
                                             <span>Ngày sinh</span>
-                                            <input id="user_dob2" class="form-control" type="date" readonly>
-                                            <span>Địa chỉ</span>
+                                            <input id="user_dob2" class="form-control"  type="date"   readonly>                                            <span>Địa chỉ</span>
                                             <input id="user_address2" class="form-control" type="text" readonly >
                                         </div>
                                     </div>
@@ -164,13 +163,13 @@
                             </div>
 
                             <p id="msg">${msg}</p>
-                           
+
                             <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Đã xác minh')}">
                                 <button type="submit" class="btn abc">Thanh toán</button>
 
                             </c:if>
 
-                                
+
                             <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Chưa xác minh')}">
                                 <c:if test="${sessionScope.user.getUser_iden_img() == null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
                                     <div class="d-flex justify-content-center" style="margin-top: 0px">
@@ -188,14 +187,14 @@
                                     <span style="color: red;font-style: italic;font-weight: bold;font-size: 12px;margin-left: 13px;margin-top: 10px;">Yêu cầu xác minh tài khoản đang chờ phê duyệt.</span>
                                 </c:if>
                             </c:if>    
-                                
-                                
-                                
+
+
+
                             <c:if test="${sessionScope.user.user_role.equals('Admin') }">
-                                
+
                             </c:if>
                             <c:if test="${sessionScope.user.user_role.equals('Nhân viên') }">
-                                
+
                             </c:if>
                         </div>
                     </div>
@@ -240,32 +239,32 @@
         </script>-->
 
     <script>
-          $("#frmCreateOrder").submit(function () {
-                var postData = $("#frmCreateOrder").serialize();
-                var submitUrl = $("#frmCreateOrder").attr("action");
-                console.log(postData);
-                $.ajax({
-                    type: "GET",
-                    url: submitUrl,
-                    data: postData,
-                    dataType: 'JSON',
-                    success: function (x) {
-                        console.log(x);
-                        if (x.code === '00') {
-                            if (window.vnpay) {
-                                vnpay.open({width: 768, height: 600, url: x.data});
-                            } else {
-                                location.href = x.data;
-                            }
-                            return false;
+        $("#frmCreateOrder").submit(function () {
+            var postData = $("#frmCreateOrder").serialize();
+            var submitUrl = $("#frmCreateOrder").attr("action");
+            console.log(postData);
+            $.ajax({
+                type: "GET",
+                url: submitUrl,
+                data: postData,
+                dataType: 'JSON',
+                success: function (x) {
+                    console.log(x);
+                    if (x.code === '00') {
+                        if (window.vnpay) {
+                            vnpay.open({width: 768, height: 600, url: x.data});
                         } else {
-                            alert(x.Message);
-                            console.log(x);
+                            location.href = x.data;
                         }
+                        return false;
+                    } else {
+                        alert(x.Message);
+                        console.log(x);
                     }
-                });
-                return false;
+                }
             });
+            return false;
+        });
         document.querySelectorAll(".abc").forEach(function (element) {
             element.addEventListener("click", function () {
                 var xhr = new XMLHttpRequest();
@@ -283,34 +282,34 @@
                         // Cập nhật giá trị trong các thẻ HTML
                         var levelFee = parseInt(jsonData.levelFee);
                         var taxFee = parseInt(jsonData.taxFee);
-                        var amount = parseInt(jsonData.levelFee)+parseInt(jsonData.taxFee);
+                        var amount = parseInt(jsonData.levelFee) + parseInt(jsonData.taxFee);
                         var formattedLevelFee = parseFloat(levelFee).toLocaleString();
                         var formattedTaxFee = parseFloat(taxFee).toLocaleString();
-                         var formattedAmount = parseFloat(amount).toLocaleString();
+                        var formattedAmount = parseFloat(amount).toLocaleString();
                         $("#lv-fee").val(formattedLevelFee);
                         $("#tax-fee").val(formattedTaxFee);
                         $("#total-fee").val(formattedAmount);
-                        
+
                         $("#amount").val(amount);
-                        document.getElementById("a").innerHTML= formattedLevelFee;
-                        document.getElementById("b").innerHTML= formattedAmount;
-                         document.getElementById("c").innerHTML= formattedTaxFee;
-                         
-                         if(jsonData.msg !== "null"){
-                             document.getElementById("msg").innerHTML= jsonData.msg;
-                             alert(jsonData.msg);
+                        document.getElementById("a").innerHTML = formattedLevelFee;
+                        document.getElementById("b").innerHTML = formattedAmount;
+                        document.getElementById("c").innerHTML = formattedTaxFee;
+
+                        if (jsonData.msg !== "null") {
+                            document.getElementById("msg").innerHTML = jsonData.msg;
+                            alert(jsonData.msg);
                             window.location.href = "HandleFormTNDS";
-                         }
-                         $("#user_iden2").val(jsonData.user_iden);
-                          $("#user_fullName").val(jsonData.user_fullName);
-                           $("#user_email2").val(jsonData.user_email);
-                            $("#user_phoneNum2").val(jsonData.user_phoneNum);
-                             
-                              var dobParts = jsonData.user_dob.split('/');
-                                var formattedDob = dobParts[2] + '-' + dobParts[0] + '-' + dobParts[1];
-                               
-                              $("#user_dob2").val(formattedDob);
-                              $("#user_address2").val(jsonData.user_address);
+                        }
+                        $("#user_iden2").val(jsonData.user_iden);
+                        $("#user_fullName").val(jsonData.user_fullName);
+                        $("#user_email2").val(jsonData.user_email);
+                        $("#user_phoneNum2").val(jsonData.user_phoneNum);
+
+                        var dobParts = jsonData.user_dob.split('/');
+                        var formattedDob = dobParts[2] + '-' + dobParts[0] + '-' + dobParts[1];
+
+                        $("#user_dob2").val(jsonData.user_dob);
+                        $("#user_address2").val(jsonData.user_address);
                     }
                 };
 
@@ -338,42 +337,60 @@
 //            // Đặt giá trị vào trường toDate
 //            document.getElementById("toDate").value = toDate;
 //        }
+
+//          function updateToDate() {
+//                        // Get references to the "Start Date" and "End Date" input fields
+//                        var fromDateInput = document.getElementById("fromDate");
+//                        var toDateInput = document.getElementById("toDate");
+//
+//                        // Get the current date
+//                        var currentDate = new Date();
+//
+//                        // Parse the value of the "Start Date" input as a Date object
+//                        var fromDate = new Date(fromDateInput.value);
+//
+//                        // Check if the "Start Date" is valid and not earlier than the current date
+//                        if (!isNaN(fromDate) && fromDate >= currentDate) {
+//                            // Calculate the "End Date" as one year from the "Start Date"
+//                            var endDate = new Date(fromDate);
+//                            endDate.setFullYear(endDate.getFullYear() + 1);
+//
+//                            // Format the "End Date" as YYYY-MM-DD
+//                            var endDateFormatted = endDate.toISOString().split('T')[0];
+//
+//                            // Set the value of the "End Date" input
+//                            toDateInput.value = endDateFormatted;
+//                        } else {
+//                            // Clear the "End Date" input
+//                            toDateInput.value = "";
+//
+//                            // Show an alert notification
+//                            alert("Ngày bắt đầu hơn ngày hôm nay");
+//                        }
+//                    }
+
+
+        function updateToDate() {
+            // Lấy giá trị từ trường fromDate
+            var fromDate = document.getElementById("fromDate").value;
+
+            // Chuyển đổi giá trị fromDate thành đối tượng Date
+            var fromDateObj = new Date(fromDate);
+
+            // Cộng thêm 1 năm
+            fromDateObj.setFullYear(fromDateObj.getFullYear() + 1);
+
+            // Format lại ngày tháng để có thể đặt giá trị vào trường toDate
+            var toDate = fromDateObj.toISOString().split('T')[0];
+
+            // Đặt giá trị vào trường toDate
+            document.getElementById("toDate").value = toDate;
+        }
+        //đinh dạng ngày sinh
+         var inputDate = document.getElementById('user_dob2');
+
+        // Định dạng ngày tháng năm theo dd/mm/yyyy
         
-          function updateToDate() {
-                        // Get references to the "Start Date" and "End Date" input fields
-                        var fromDateInput = document.getElementById("fromDate");
-                        var toDateInput = document.getElementById("toDate");
-
-                        // Get the current date
-                        var currentDate = new Date();
-
-                        // Parse the value of the "Start Date" input as a Date object
-                        var fromDate = new Date(fromDateInput.value);
-
-                        // Check if the "Start Date" is valid and not earlier than the current date
-                        if (!isNaN(fromDate) && fromDate >= currentDate) {
-                            // Calculate the "End Date" as one year from the "Start Date"
-                            var endDate = new Date(fromDate);
-                            endDate.setFullYear(endDate.getFullYear() + 1);
-
-                            // Format the "End Date" as YYYY-MM-DD
-                            var endDateFormatted = endDate.toISOString().split('T')[0];
-
-                            // Set the value of the "End Date" input
-                            toDateInput.value = endDateFormatted;
-                        } else {
-                            // Clear the "End Date" input
-                            toDateInput.value = "";
-
-                            // Show an alert notification
-                            alert("Ngày bắt đầu hơn ngày hôm nay");
-                        }
-                    }
-        
-
-
-
-
     </script>
 
 

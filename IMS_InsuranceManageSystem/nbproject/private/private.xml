@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/User_claim_list.jsp</file>
-            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/Claims.java</file>
-            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/User.java</file>
-            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/ContractDAO.java</file>
-            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/user/UserClaimListSV.java</file>
-            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Part/header.jsp</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/FormTNDS.jsp</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/User.java</file>
+            <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/FormVatChat.jsp</file>
         </group>
     </open-files>
 </project-private>
