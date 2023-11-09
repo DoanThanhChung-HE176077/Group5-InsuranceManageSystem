@@ -514,7 +514,38 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
-        
+        //contract co active
+        public ArrayList<Contract> getContractOptionActive(int id) {
+        try {
+            ArrayList<Contract> list = new ArrayList<>();
+            String sql = "SELECT *\n"
+                    + "FROM Contract\n"
+                    + "WHERE NOT EXISTS (\n"
+                    + "    SELECT 1\n"
+                    + "    FROM Claims\n"
+                    + "    WHERE  Contract.contract_id = Claims.contract_id\n"
+                    + ") AND Contract.contract_status = 'Active' AND Contract.user_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                list.add(new Contract(contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
         //laasy contrac ma chua yeu cau claim
         public ArrayList<Contract> getContractOption(int id) {
         try {
@@ -567,7 +598,7 @@ public class ContractDAO extends DBContext {
 //        ContractTNDS b = cd.getTNDSbyId(1);
 //        System.out.println(b.toString());
         
-        ArrayList<Contract> ct = cd.getContractOption(18);
+        ArrayList<Contract> ct = cd.getContractOptionActive(18);
         for (Contract newC : ct) {
             System.out.println(newC.toString());
         }

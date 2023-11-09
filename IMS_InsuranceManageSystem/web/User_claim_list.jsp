@@ -27,6 +27,9 @@
         <!--sweet alert-->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+
+
         <style>
             .myimg {
                 margin-right: 10px;
@@ -44,6 +47,22 @@
                 font-size: 15px !important;
             }
 
+            .mybtn {
+
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) ;
+                border-radius: 5px ;
+                border: none ;
+                cursor: pointer ;
+                transition: box-shadow 0.3s ease ;
+
+            }
+
+            .mybtn:hover {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            }
+            .atag1{
+
+            }
         </style>
     </head>
     <body style="background-color: hsl(47,98%,58%);">
@@ -93,9 +112,99 @@
                                         <c:forEach items="${cl}" var="o">
                                             <c:if test="${o.claim_status.equals('pending')}">
                                                 <tr>
-                                                    <td>Yêu cầu số ${o.claim_id}</td>
-                                                    <td id="creationDate1">${o.creationDate}</td>
+                                                    <td >Yêu cầu số 
+                                                        <span class="claim_id">${o.claim_id}</span></td>
+                                                    <td class="creationDateHere" id="creationDate1">${o.creationDate}</td>
                                                     <td>Chưa duyệt</td>
+                                                    <td>
+                                                        <div class="atag1" data-toggle="modal" data-target="#staticBackdrop">
+                                                            <i class="fa-solid fa-eye" data-toggle="modal" data-target="#staticBackdrop"></i>
+                                                        </div>
+                                                        <div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <div class="d-flex justify-content-between align-items-center">
+                                                                            <h5 class="modal-title" id="staticBackdropLabel">Chi tiết yêu cầu số</h5>
+                                                                        </div>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div >
+                                                                            <table class="table-striped">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            #
+                                                                                        </th>
+                                                                                        <th>
+                                                                                            Thông tin
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            Hợp đồng
+                                                                                        </th>
+                                                                                        <td id="contractid-info">
+                                                                                            
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            Người tạo
+                                                                                        </th>
+                                                                                        <td id="creator-info">
+
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            Ngày tạo
+                                                                                        </th>
+                                                                                        <td id="creation-date">
+
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            Trạng thái
+                                                                                        </th>
+                                                                                        <td id="status-info">
+
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            Tệp đính kèm
+                                                                                        </th>
+                                                                                        <td id="filedoc-info">
+
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            Thông tin mô tả
+                                                                                        </th>
+                                                                                        <td id="des-info">
+
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                                        <button type="button" class="btn btn-danger">Xóa yêu cầu</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>    
+                                                    </td>
                                                 </tr>
                                             </c:if>
                                         </c:forEach>
@@ -121,22 +230,57 @@
                                 </div>
                                 <div class="col-md-6" style="margin-top:15px">
                                     <label class="labels">Lựa chọn hợp đồng<span class="errmsg" style="color: red;"> *</span></label>
-                                    <select class="custom-select" name="contract_id"> 
-                                        <option selected>Lựa chọn</option>
-                                        <c:forEach items="${ct2}" var="contract1">
-                                            <option value="">
-                                                
-                                            </option>
-                                        </c:forEach>
-                                    </select>
-  
+                                    <c:if test ="${ct2.size() > 0}">
+                                        <select class="custom-select" name="contract_id"> 
+                                            <option selected>Lựa chọn</option>
+                                            <c:forEach items="${ct2}" var="contract1">
+                                                <c:if test="${contract1.getContract_status() == 'Active'}">
+                                                    <option value="${contract1.getContract_id()}">
+                                                        Hợp đồng
+                                                        <c:if test="${contract1.getIp_id() == 1}">
+                                                            TNDS
+                                                        </c:if>
+                                                        <c:if test="${contract1.getIp_id() == 2}">
+                                                            vật chất
+                                                        </c:if>
+                                                        số ${contract1.getContract_id()}
+                                                    </option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                    </c:if>
+                                    <c:if test ="${ct2.size() == 0 }">
+                                        <div>
+                                            <span style="color: red;font-style: italic;font-weight: bold;font-size: 18px;">
+                                                Các hợp đồng của bạn đã được yêu cầu.
+                                            </span>
+                                        </div>
+                                    </c:if>
                                 </div>
                                 <div class="col-md-6" style="margin-top:15px">
                                     <label class="labels">Thông tin ngân hàng<span class="errmsg" style="color: red;"> *</span></label>
                                     <select class="custom-select" name="claim_bank"> 
                                         <option selected>Ngân hàng</option>
-                                        <option>hd1</option>
-                                        <option>hd2</option>
+                                        <option value="vietcombank">Ngân hàng Ngoại Thương Việt Nam (Vietcombank)</option>
+                                        <option value="bidv">Ngân hàng Đầu tư và Phát triển Việt Nam (BIDV)</option>
+                                        <option value="vietinbank">Ngân hàng Công Thương Việt Nam (VietinBank)</option>
+                                        <option value="acb">Ngân hàng Á Châu (ACB)</option>
+                                        <option value="sacombank">Ngân hàng TMCP Sài Gòn Thương Tín (Sacombank)</option>
+                                        <option value="techcombank">Ngân hàng Thương mại Cổ phần Kỹ thương Việt Nam (Techcombank)</option>
+                                        <option value="mb">Ngân hàng Quân Đội (MB)</option>
+                                        <option value="hdbank">Ngân hàng Phát triển TP.Hồ Chí Minh (HDBank)</option>
+                                        <option value="dongabank">Ngân hàng Đông Á (DongA Bank)</option>
+                                        <option value="pvcombank">Ngân hàng TMCP Đại Chúng Việt Nam (PVcomBank)</option>
+                                        <option value="tpbank">Ngân hàng Tiên Phong (TPBank)</option>
+                                        <option value="maritimebank">Ngân hàng TMCP Hàng Hải Việt Nam (Maritime Bank)</option>
+                                        <option value="shb">Ngân hàng TMCP Sài Gòn - Hà Nội (SHB)</option>
+                                        <option value="agribank">Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam (Agribank)</option>
+                                        <option value="pgbank">Ngân hàng TMCP Xăng dầu Petrolimex (PG Bank)</option>
+                                        <option value="seabank">Ngân hàng TMCP Đông Nam Á (SeABank)</option>
+                                        <option value="scb">Ngân hàng TMCP Sài Gòn (SCB)</option>
+                                        <option value="ocb">Ngân hàng TMCP Phương Đông (OCB)</option>
+                                        <option value="ncb">Ngân hàng TMCP Quốc Dân (NCB)</option>
+                                        <!-- Các ngân hàng khác -->
                                     </select>
                                 </div>
                                 <div class="col-md-12" style="margin-top:15px">
@@ -162,8 +306,10 @@
                             <br>
                             <div class="modal-footer">
                                 <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
-                                    <c:if test="${sessionScope.user.getStatus().equals('Đã xác minh')}">
-                                        <button id="btn-edit1" type="submit" class="btn btn-primary">Gửi yêu cầu</button>
+                                    <c:if test ="${ct2.size() > 0 }">
+                                        <c:if test="${sessionScope.user.getStatus().equals('Đã xác minh')}">
+                                            <button id="btn-edit1" type="submit" class="btn mybtn btn-primary">Gửi yêu cầu</button>
+                                        </c:if>
                                     </c:if>
                                     <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Chưa xác minh')}">
                                         <c:if test="${sessionScope.user.getUser_iden_img() == null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
@@ -174,7 +320,7 @@
                                             </div>
                                             <br>
                                             <div class="d-flex justify-content-center">
-                                                <a type="button" href="User_verify.jsp" class="btn btn-danger">Xác minh tài khoản</a>
+                                                <a type="button" href="User_verify.jsp" class="btn mybtn btn-danger">Xác minh tài khoản</a>
                                             </div>
                                         </c:if>
                                         <c:if test="${sessionScope.user.getUser_iden_img() != null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
@@ -183,6 +329,27 @@
                                         </c:if>
                                     </c:if>   
                                 </c:if>
+                                <!--/modal huong dan-->  
+                                <a type="button" class="btn mybtn btn-success" data-toggle="modal" data-target="#exampleModal2" >Hướng dẫn  yêu cầu bồi thường</a>
+                                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -222,20 +389,61 @@
                 }
             });
         </script>
+
         <script>
             function setCurrentDate() {
-                // Get the current date
                 var currentDate = new Date();
-
-                // Format the date as "YYYY-MM-DD"
                 var formattedDate = currentDate.toISOString().split('T')[0];
-
-                // Set the formatted date as the value of the input field
                 document.getElementById("creationDate").value = formattedDate;
             }
-
-            // Call the function to set the current date when the page loads
             setCurrentDate();
+
+            function changeDateFormat() {
+                var dateElements = document.getElementsByClassName("creationDateHere");
+
+                for (var i = 0; i < dateElements.length; i++) {
+                    var oldDateText = dateElements[i].textContent;
+                    var dateParts = oldDateText.split('-');
+                    var day = dateParts[0];
+                    var month = dateParts[1];
+                    var year = dateParts[2];
+                    var newDateFormat = year + '-' + month + '-' + day;
+                    dateElements[i].textContent = newDateFormat;
+                }
+            }
+            changeDateFormat();
+
+            $(document).ready(function () {
+                $('.fa-eye').on('click', function () {
+                    var claimId = $(this).closest('tr').find('.claim_id').text();
+                    $.ajax({
+                        type: 'GET',
+                        url: 'UserClaimListSV',
+                        data: { claim_id: claimId },
+                        success: function (data) {
+                            //                              response in network f12
+                            $('#contractid-info').text(data.contract_id);
+                            $('#creator-info').text(data.user_id);
+                            $('#creation-date').text(data.creationDate);
+                            if (data.claim_status === 'pending') {
+                                $('#status-info').text('Đang chờ duyệt');
+                            } else if (data.claim_status === 'Active') {
+                                $('#status-info').text('Đã duyệt');
+                            } else {
+                                $('#status-info').text(data.claim_status);
+                            }
+                            $('#filedoc-info').text(data.claim_file_des);
+                            $('#des-info').text(data.claim_description);
+
+                        },
+                        error: function () {
+                            console.log('Error fetching data');
+                        }
+                    });
+                });
+            });
+
+
         </script>
 
     </body>

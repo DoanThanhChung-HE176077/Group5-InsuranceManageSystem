@@ -66,7 +66,7 @@ public class UserClaimListShow extends HttpServlet {
         ContractDAO dao = new ContractDAO();
         ArrayList<Claims> cl = dao.getAllClaimByUserId(user1.getUser_id());
         ArrayList<Contract> ct = dao.getAllContractOfUserThatActive(user1.getUser_id());
-        ArrayList<Contract> ct2 = dao.getContractOption(user1.getUser_id());
+        ArrayList<Contract> ct2 = dao.getContractOptionActive(user1.getUser_id());
         request.setAttribute("ct", ct);
         request.setAttribute("cl", cl);
         request.setAttribute("ct2", ct2);
