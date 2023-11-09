@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import model.Claims;
 import model.Contract;
@@ -62,12 +63,16 @@ public class StaffClaimListShow extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         
+        HttpSession session = request.getSession();
+        User user1 = (User) session.getAttribute("user");
+        int user_id = user1.getUser_id();
+        
         ContractDAO dao = new ContractDAO();
         ArrayList<Claims> cl = dao.getAllClaim();
         ArrayList<Contract> ct = dao.getAllContractChung();
         UserDAO udao = new UserDAO();
         ArrayList<User> u = udao.getListUserFull();
-        
+        ArrayList<Contract> ct2 = dao.getContractOption(user_id);
         request.setAttribute("contract", ct);
         request.setAttribute("user", u);
         request.setAttribute("claim", cl);

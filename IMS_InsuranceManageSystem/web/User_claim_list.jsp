@@ -123,31 +123,13 @@
                                     <label class="labels">Lựa chọn hợp đồng<span class="errmsg" style="color: red;"> *</span></label>
                                     <select class="custom-select" name="contract_id"> 
                                         <option selected>Lựa chọn</option>
-
-                                        <c:forEach items="${ct}" var="o1">
-                                            <c:forEach items="${cl}" var="ocl">
-                                                <c:if test="${ocl.getContract_id() == o1.getContract_id() }">
-
-                                                </c:if>
-                                                <c:if test="${ocl.getContract_id() != o1.getContract_id() }">
-                                                    <c:if test = "${o1.getUser_id() == sessionScope.user.getUser_id()} && ${ol.getStatus().equals('Active')}">
-                                                        <option value="${o1.getContract_id()}">
-                                                            Hợp đồng
-                                                            <c:if test="${o1.getIp_id() == 1}">
-                                                                TNDS
-                                                            </c:if>
-                                                            <c:if test="${o1.getIp_id() == 2}">
-                                                                vật chất
-                                                            </c:if>
-                                                            số ${o1.getContract_id()}
-                                                        </option>
-                                                    </c:if>
-                                                </c:if>
-
-                                            </c:forEach>
-
-                                        </c:forEach>                
+                                        <c:forEach items="${ct2}" var="contract1">
+                                            <option value="">
+                                                
+                                            </option>
+                                        </c:forEach>
                                     </select>
+  
                                 </div>
                                 <div class="col-md-6" style="margin-top:15px">
                                     <label class="labels">Thông tin ngân hàng<span class="errmsg" style="color: red;"> *</span></label>
