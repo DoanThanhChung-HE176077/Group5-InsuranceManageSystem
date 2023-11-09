@@ -60,6 +60,11 @@
             .right-info {
                 font-weight: bold;
             }
+            
+
+            .card-footer a:hover {
+                text-shadow: 0px 0px 1px #2c464f;
+            }
         </style>
 
 </head>
@@ -134,10 +139,10 @@
                                                             <span>Bảo hiểm vật chất</span>
                                                         </c:if>
                                                         
-                                                        <a href="#" style="text-decoration: none !important; color: blue; margin-left: 150px; margin-right: 20px;">
+                                                        <a href="#" style="text-decoration: none !important; color: #2c464f; margin-left: 150px; margin-right: 15px; transition: 0.3s;">
                                                             Gia hạn
                                                         </a>
-                                                        <a href="UserContractDetail?cid=${cL.contract_id}&ip_id=${cL.ip_id}" style="text-decoration: none !important; color: blue;">
+                                                            <a href="UserContractDetail?cid=${cL.contract_id}&ip_id=${cL.ip_id}" style="text-decoration: none !important; color: #2c464f; transition: 0.3s;">
                                                             Xem bản mềm
                                                         </a>
                                                     </div> 

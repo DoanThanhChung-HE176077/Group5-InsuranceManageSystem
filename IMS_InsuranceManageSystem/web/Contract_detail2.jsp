@@ -52,6 +52,10 @@
                 background-color: #f5df51;
             }
             
+            .super-fade-yellow {
+                background-color: #fcfceb;
+            }
+            
             .fade-red-text{
                 color: #f53b3b !important;
             }
@@ -96,7 +100,7 @@
 
                                         
                                         <div class="col-md-6 mb-3" style="height: 300px; width: 600px;">
-                                            <div class="card text-dark h-100 fade-yellow">
+                                            <div class="card text-dark h-100 super-fade-yellow">
                                                 <h4 class="fade-red-text" style="text-align: center; margin-top: 10px; font-weight: bold;">LƯU Ý ĐỐI VỚI CHỦ XE, LÁI XE</h4>
                                                  
                                                 <p style="margin-left: 10px; margin-right: 10px; font-size: 16px; text-align: justify;">
@@ -118,21 +122,21 @@
                                         </div>
                                         
                                         <div class="col-md-6 mb-3" style="height: 300px; width: 600px;">
-                                            <div class="card text-dark h-100 fade-yellow">
+                                            <div class="card text-dark h-100 super-fade-yellow">
                                                  <h3 style="color: black !important; text-align: center; margin-top: 10px; font-weight: bold;">CÔNG TY CỔ PHẦN BẢO HIỂM G5</h3>
                                                  <p style="text-align: center">xxxxxxxxxxxxxxx</p>
 
                                                  
                                                  <h2 style="text-align: center; font-weight: bold; color: black !important;">
                                                      GIẤY CHỨNG NHẬN <br>
-                                                     BẢO HIỂM BẮT BUỘC TNDS<br>
+                                                     BẢO HIỂM THIỆT HẠI VẬT CHẤT<br>
                                                      CỦA CHỦ XE MÔ TÔ - XE MÁY
                                                  </h2>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6 mb-3" style="height: 300px; width: 600px;">
-                                            <div class="card text-dark h-100 fade-yellow" style="font-size: 16px; line-height: 5px;">
+                                            <div class="card text-dark h-100 super-fade-yellow" style="font-size: 16px; line-height: 5px;">
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px; margin-top: 10px;">
                                                     CHỦ XE: ${contract.fullname}
@@ -147,7 +151,7 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    SỐ BIỂN KIỂM SOÁT: ${contract.bienxe}
+                                                    SỐ BIỂN KIỂM SOÁT: ${contract.bienkiemsoat}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
@@ -159,25 +163,39 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    LOẠI XE:  ${contract.loaixe}
+                                                    HÃNG XE:  ${contract.hangxe}
 <!--                                                    Trên 50cc<input type="checkbox">  
                                                     50cc trở xuống<input type="checkbox">-->
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    XE MÔ TÔ 3 BÁNH TƯƠNG TỰ <input type="checkbox"> 
+                                                    HIỆU XE: ${contract.hieuxe}
                                                 </p>
                                                 
                                                 <p class="fade-red-text" style="margin-left: 10px; margin-right: 10px;">
-                                                    1. MỨC TNDS ĐỐI VỚI NGƯỜI THỨ BA
+                                                    1. PHẠM VI BẢO HIỂM
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    - Về người: ${contract.muctrachnhiem}
-<!--                                                    - Về tài sản:-->
+                                                    - Gói bảo hiểm cơ bản: ${contract.goibhcb}
+                                                </p>
+                                                
+                                                <p style="margin-left: 10px; margin-right: 10px;">
+                                                    - Mức khấu trừ: ${contract.muckhautru}
+                                                </p>
+                                                
+                                                <p style="margin-left: 10px; margin-right: 10px;">
+                                                    - Giá trị xe: 
                                                 </p>
                                                  
-                                                <p class="fade-red-text" style="margin-left: 10px; margin-right: 10px;">
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6 mb-3" style="height: 300px; width: 600px;">
+                                            <div class="card text-dark h-100 super-fade-yellow" style="font-size: 16px; line-height: 5px;">
+                                                
+                                                <p class="fade-red-text" style="margin-left: 10px; margin-right: 10px; margin-top: 10px;">
                                                     2. THỜI HẠN BẢO HIỂM
                                                 </p>
                                                 
@@ -188,27 +206,10 @@
                                                     Đến ngày...tháng....năm 20..-->
                                                 </p>
                                                 
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-md-6 mb-3" style="height: 300px; width: 600px;">
-                                            <div class="card text-dark h-100 fade-yellow" style="font-size: 16px; line-height: 5px;">
-                                                
-                                                <p class="fade-red-text" style="margin-left: 10px; margin-right: 10px; margin-top: 10px;">
+                                                <p class="fade-red-text" style="margin-left: 10px; margin-right: 10px;">
                                                     3. PHÍ BẢO HIỂM
                                                 </p>
                                                 
-                                                <p style="margin-left: 10px; margin-right: 10px;">
-                                                    - Xe 50 cc trở xuống: 55.000 đồng
-                                                </p>
-                                                
-                                                <p style="margin-left: 10px; margin-right: 10px;">
-                                                    - Xe trên 50cc: 60.000 đồng
-                                                </p>
-                                                
-                                                <p style="margin-left: 10px; margin-right: 10px;">
-                                                    - Xe mô tô 3 bánh và tương tự: 290.000 đồng
-                                                </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
                                                     Phí bảo hiểm phải nộp (có VAT): ${contract.tongchiphi} đồng
