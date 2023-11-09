@@ -207,6 +207,8 @@ public class UserDAO extends DBContext {
             }
         } catch (Exception e) {
             System.out.println("checkLogin: " + e.getMessage());
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, e);
+
         }
         return null;
     }
@@ -803,11 +805,13 @@ public class UserDAO extends DBContext {
 //    ====================================================|TEST |========================================
     public static void main(String[] args) {
         UserDAO ud = new UserDAO();
-//        ud.verifyUserRequest("000000000011", "Image/cccd/341950810_226418940067777_3382559294940831201_n.png", 16);
-        ArrayList<User> u = ud.getListUserDangChoXacMinh();
-        for (User user : u) {
-            System.out.println(u.toString());
-        }
+////        ud.verifyUserRequest("000000000011", "Image/cccd/341950810_226418940067777_3382559294940831201_n.png", 16);
+//        ArrayList<User> u = ud.getListUserDangChoXacMinh();
+//        for (User user : u) {
+//            System.out.println(u.toString());
+//        }
+        User u = ud.getUsers1("user3@gmai.com", "123");
+        System.out.println(u.toString());
     }
 
 }

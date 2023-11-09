@@ -302,6 +302,7 @@ public class UserClaimListSV extends HttpServlet {
         }
         
         
+        response.sendRedirect("/IMS_InsuranceManageSystem/");
     }
     
 

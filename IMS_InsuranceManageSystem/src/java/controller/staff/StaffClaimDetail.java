@@ -3,26 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.user;
+package controller.staff;
 
 import dao.ContractDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
 import model.Claims;
-import model.Contract;
-import model.User;
 
 /**
  *
  * @author chun
  */
-public class UserClaimListShow extends HttpServlet {
+@WebServlet(name="StaffClaimDetail", urlPatterns={"/StaffClaimDetail"})
+public class StaffClaimDetail extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,10 +37,10 @@ public class UserClaimListShow extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserClaimListShow</title>");  
+            out.println("<title>Servlet StaffClaimDetail</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserClaimListShow at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet StaffClaimDetail at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,18 +57,14 @@ public class UserClaimListShow extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        //laays ra danh all hop dong da duoc duyet
-        HttpSession session = request.getSession();
-        User user1 = (User) session.getAttribute("user");
-
-        ContractDAO dao = new ContractDAO();
-        ArrayList<Claims> cl = dao.getAllClaimByUserId(user1.getUser_id());
-        ArrayList<Contract> ct = dao.getAllContractOfUserThatActive(user1.getUser_id());
-        ArrayList<Contract> ct2 = dao.getContractOption(user1.getUser_id());
-        request.setAttribute("ct", ct);
-        request.setAttribute("cl", cl);
-        request.setAttribute("ct2", ct2);
-        request.getRequestDispatcher("User_claim_list.jsp").forward(request, response);
+        int claim_id = Integer.parseInt(request.getParameter("claim_id"));
+        
+        // get calim by claim id
+        ContractDAO ct = new  ContractDAO();
+        Claims cl = ct.getClaimById(claim_id);
+        
+        request.setAttribute("claim", cl);
+        request.getRequestDispatcher("Staff_claim_detail.jsp").forward(request, response);
     } 
 
     /** 
@@ -83,7 +77,7 @@ public class UserClaimListShow extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /** 

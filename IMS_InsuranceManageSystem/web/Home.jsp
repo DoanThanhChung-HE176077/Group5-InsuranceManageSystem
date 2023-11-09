@@ -75,11 +75,11 @@
                 <h3 class="text-center">Nhóm sản phẩm</h3>
                 <div class="row">
                     
-                    <a href="#" class="col-lg-6 col-sm-6 text-center" style="text-decoration: none; text-shadow: 0px 0px 1px #2c464f; color: #2c464f;">
+                    <a href="HandleFormTNDS" class="col-lg-6 col-sm-6 text-center" style="text-decoration: none; text-shadow: 0px 0px 1px #2c464f; color: #2c464f;">
                         <img src="Image/accident.png" alt="">
                         <span class="d-block mt-3">Bảo Hiểm TNDS</span>
                     </a>
-                    <a href="#" class="col-lg-6 col-sm-6 text-center" style="text-decoration: none; text-shadow: 0px 0px 1px #2c464f; color: #2c464f;">
+                    <a href="HandleFormVatChat" class="col-lg-6 col-sm-6 text-center" style="text-decoration: none; text-shadow: 0px 0px 1px #2c464f; color: #2c464f;">
                         <img src="Image/motorcycle2.png" alt="">
                         <span class="d-block mt-3">Bảo Hiểm Vật Chất</span>
                     </a>

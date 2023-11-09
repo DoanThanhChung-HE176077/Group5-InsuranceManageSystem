@@ -48,33 +48,59 @@
     </head>
     <body style="background-color: hsl(47,98%,58%);">
         <jsp:include page="Part/header.jsp"></jsp:include>
-        <form class="form-info" id="turung" style="margin-top: 150px" method="POST" action="UserClaimListSV" enctype="multipart/form-data">
-            <div class="container  bg-white mt-5 mb-5" id="main-container">
-                <div class="row">
-                    <div class="col-md-5 border-right">
-                        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                            <div style="float: right" tabindex="0" class="" data-toggle="tooltip" data-placement="top" title="">
-                                <span style="color: red; font-style: italic; font-weight: bold;font-size: 12px ">Tip: Hãy click vào ảnh</span>
-                            </div>
-                            <img id="output" src="" alt="Image Preview" class="img-thumbnail mt-3" data-toggle="modal" data-target="#exampleModal">
-                            <!-- The modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-xl">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Display the image in the modal -->
-                                            <img id="modalImage" src="" alt="Image Preview" class="img-fluid">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            <form class="form-info" id="turung" style="margin-top: 150px" method="POST" action="UserClaimListSV" enctype="multipart/form-data">
+                <div class="container  bg-white mt-5 mb-5" id="main-container">
+                    <div class="row">
+                        <div class="col-md-5 border-right">
+                            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                <div style="float: right" tabindex="0" class="" data-toggle="tooltip" data-placement="top" title="">
+                                    <span style="color: red; font-style: italic; font-weight: bold;font-size: 12px ">Tip: Hãy click vào ảnh</span>
+                                </div>
+                                <img id="output" src="" alt="Image Preview" class="img-thumbnail mt-3" data-toggle="modal" data-target="#exampleModal">
+                                <!-- The modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <!-- Display the image in the modal -->
+                                                <img id="modalImage" src="" alt="Image Preview" class="img-fluid">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="container" style="margin-top:20px">
+                                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                                        <h4>Yêu cầu đã gửi</h4>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Ngày tạo</th>
+                                                <th>Trạng thái</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach items="${cl}" var="o">
+                                            <c:if test="${o.claim_status.equals('pending')}">
+                                                <tr>
+                                                    <td>Yêu cầu số ${o.claim_id}</td>
+                                                    <td id="creationDate1">${o.creationDate}</td>
+                                                    <td>Chưa duyệt</td>
+                                                </tr>
+                                            </c:if>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -97,27 +123,18 @@
                                     <label class="labels">Lựa chọn hợp đồng<span class="errmsg" style="color: red;"> *</span></label>
                                     <select class="custom-select" name="contract_id"> 
                                         <option selected>Lựa chọn</option>
-                                        <c:forEach items="${list1}" var="o1">
-                                            <c:if test = "${o1.getUser_id() == sessionScope.user.getUser_id()}">
-                                                <option value="${o1.getContract_id()}">
-                                                    Hợp đồng
-                                                    <c:if test="${o1.getIp_id() == 1}">
-                                                        TNDS
-                                                    </c:if>
-                                                    <c:if test="${o1.getIp_id() == 2}">
-                                                        vật chất
-                                                    </c:if>
-                                                    số ${o1.getContract_id()}
-                                                </option>
-                                            </c:if>
+                                        <c:forEach items="${ct2}" var="contract1">
+                                            <option value="">
+                                                
+                                            </option>
                                         </c:forEach>
                                     </select>
+  
                                 </div>
                                 <div class="col-md-6" style="margin-top:15px">
                                     <label class="labels">Thông tin ngân hàng<span class="errmsg" style="color: red;"> *</span></label>
                                     <select class="custom-select" name="claim_bank"> 
                                         <option selected>Ngân hàng</option>
-        
                                         <option>hd1</option>
                                         <option>hd2</option>
                                     </select>
@@ -148,8 +165,6 @@
                                     <c:if test="${sessionScope.user.getStatus().equals('Đã xác minh')}">
                                         <button id="btn-edit1" type="submit" class="btn btn-primary">Gửi yêu cầu</button>
                                     </c:if>
-
-
                                     <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Chưa xác minh')}">
                                         <c:if test="${sessionScope.user.getUser_iden_img() == null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
                                             <div class="d-flex justify-content-center" style="margin-top: 0px">
