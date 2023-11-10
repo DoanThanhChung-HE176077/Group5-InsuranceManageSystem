@@ -74,8 +74,8 @@
 
                                                 <td>${pList.getUser_fullname()}</td>
                                                 <td>${pList.getIp_name()}</td>
-                                                <td>${pList.getContract_startDate()}</td>
-                                                <td>${pList.getContract_endDate()}</td>
+                                                <td class="creationDateHere" id="creationDate">${pList.getContract_startDate()}</td>
+                                                <td class="creationDateHere" id="creationDate">${pList.getContract_endDate()}</td>
                                                 <td>${pList.getTotal_price()}d</td>
                                                 <td>${pList.getContract_status()}</td>
                                                 <td>
@@ -110,8 +110,8 @@
                                             <tr>
                                                 <td>${aList.getUser_fullname()}</td>
                                                 <td>${aList.getIp_name()}</td>
-                                                <td>${aList.getContract_startDate()}</td>
-                                                <td>${aList.getContract_endDate()}</td>
+                                                <td class="creationDateHere" id="creationDate">${aList.getContract_startDate()}</td>
+                                                <td class="creationDateHere" id="creationDate">${aList.getContract_endDate()}</td>
                                             </tr>
                                         </c:forEach>
 
@@ -132,6 +132,30 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+        
+        <script>
+            function setCurrentDate() {
+                var currentDate = new Date();
+                var formattedDate = currentDate.toISOString().split('T')[0];
+                document.getElementById("creationDate").value = formattedDate;
+            }
+            setCurrentDate();
+
+            function changeDateFormat() {
+                var dateElements = document.getElementsByClassName("creationDateHere");
+
+                for (var i = 0; i < dateElements.length; i++) {
+                    var oldDateText = dateElements[i].textContent;
+                    var dateParts = oldDateText.split('-');
+                    var day = dateParts[0];
+                    var month = dateParts[1];
+                    var year = dateParts[2];
+                    var newDateFormat = year + '-' + month + '-' + day;
+                    dateElements[i].textContent = newDateFormat;
+                }
+            }
+            changeDateFormat();
+        </script>
         
     </body>
 </html>
