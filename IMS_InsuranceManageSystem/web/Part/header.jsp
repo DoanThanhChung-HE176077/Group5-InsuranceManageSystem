@@ -91,7 +91,7 @@
                                 
                                 <!--phân quyền customer-->
                                 <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
-                                    <a class="dropdown-item" href="UserInsuranceList">Hợp đồng của tôi</a>
+                                    <a class="dropdown-item" href="UserInsuranceList?status=active">Hợp đồng của tôi</a>
                                 </c:if>
                                 
                                     <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
@@ -100,12 +100,12 @@
                                         
                                 <!--phân quyền staff-->
                                 <c:if test="${sessionScope.user.user_role.equals('Nhân viên')}">
-                                    <a class="dropdown-item" href="admin_dashboard">Bảng điều khiển</a>
+                                    <a class="dropdown-item" href="admin_dashboard">Trang quản lý</a>
                                 </c:if>
 
                                 <!--phân quyền admin-->
                                 <c:if test="${sessionScope.user.user_role.equals('Admin')}">
-                                    <a class="dropdown-item" href="admin_dashboard">Bảng điều khiển</a>
+                                    <a class="dropdown-item" href="admin_dashboard">Trang quản lý</a>
                                 </c:if>
 
 
