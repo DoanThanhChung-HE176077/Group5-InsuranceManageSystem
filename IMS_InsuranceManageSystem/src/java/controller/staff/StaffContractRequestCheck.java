@@ -12,16 +12,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.ContractTNDS;
-import model.ContractVatchat;
-import model.NewC;
-
 
 /**
  *
- * @author pc minh
+ * @author thant
  */
-public class Staff_ContractRequest_detail extends HttpServlet {
+public class StaffContractRequestCheck extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +34,10 @@ public class Staff_ContractRequest_detail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Staff_ContractRequest_detail</title>");  
+            out.println("<title>Servlet StaffContractRequestCheck</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Staff_ContractRequest_detail at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet StaffContractRequestCheck at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,18 +54,17 @@ public class Staff_ContractRequest_detail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        //processRequest(request, response);
-        int contract_id = Integer.parseInt(request.getParameter("contract_id"));
-        System.out.println(contract_id);
-        ContractDAO cd = new ContractDAO();
-        NewC contract = cd.getContractById(contract_id);
-        ContractTNDS contractTNDS = cd.getTNDSbyId(contract_id);
-        ContractVatchat contractVatchat = cd.getVatchatbyId(contract_id);
+        int contractID = Integer.parseInt(request.getParameter("contract_id"));
+        String contractStatus = request.getParameter("status");
         
-        request.setAttribute("contract", contract);
-        request.setAttribute("contractTNDS", contractTNDS);
-        request.setAttribute("contractVatchat", contractVatchat);
-        request.getRequestDispatcher("Staff_ContractRequest_detail.jsp").forward(request, response);
+        ContractDAO cd = new ContractDAO();
+        if(cd.updateContractStatus(contractID, contractStatus)){
+            System.out.println("Update to db successful!");
+        }
+        else{
+            System.out.println("Update to db failed!");
+        }
+        response.sendRedirect("contract_request_list");
     } 
 
     /** 
@@ -82,21 +77,7 @@ public class Staff_ContractRequest_detail extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        //processRequest(request, response);
-        
-//        ĐÃ CHUYỂN QUA DOGET CỦA StaffContractRequestCheck.java
-
-//        int contractID = Integer.parseInt(request.getParameter("contract_id"));
-//        String contractStatus = request.getParameter("status");
-//        
-//        ContractDAO cd = new ContractDAO();
-//        if(cd.updateContractStatus(contractID, contractStatus)){
-//            System.out.println("Update to db successful!");
-//        }
-//        else{
-//            System.out.println("Update to db failed!");
-//        }
-//        response.sendRedirect("contract_request_list");
+        processRequest(request, response);
     }
 
     /** 
