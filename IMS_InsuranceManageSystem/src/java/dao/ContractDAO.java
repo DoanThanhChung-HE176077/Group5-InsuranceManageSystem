@@ -51,10 +51,69 @@ public class ContractDAO extends DBContext {
             }
             return list;
         } catch (SQLException ex) {
-            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("getAllContractOfUser:" + ex.getMessage());
         }
         return null;
     }
+    
+    public ArrayList<NewC> getActiveContractOfUser(int id) {
+        try {
+            ArrayList<NewC> list = new ArrayList<>();
+            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where u.user_id =? and (contract_status='Active')";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                String user_fullname = rs.getString(10);
+                String ip_name = rs.getString(11);
+
+                list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+            }
+            return list;
+        } catch (SQLException ex) {
+            System.out.println("getActiveContractOfUser:" + ex.getMessage());
+        }
+        return null;
+    }
+    
+    public ArrayList<NewC> getExpiredContractOfUser(int id) {
+        try {
+            ArrayList<NewC> list = new ArrayList<>();
+            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where u.user_id =? and (contract_status='Expired')";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                String user_fullname = rs.getString(10);
+                String ip_name = rs.getString(11);
+
+                list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+            }
+            return list;
+        } catch (SQLException ex) {
+            System.out.println("getExpiredContractOfUser:" + ex.getMessage());
+        }
+        return null;
+    }
+    
 
     //for calim = dat trang thai la Active
     public ArrayList<Contract> getAllContractOfUserThatActive(int id) {
