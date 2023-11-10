@@ -60,6 +60,11 @@
             .right-info {
                 font-weight: bold;
             }
+            
+
+            .card-footer a:hover {
+                text-shadow: 0px 0px 1px #2c464f;
+            }
         </style>
 
 </head>
@@ -94,7 +99,7 @@
 
                                         <div class="col-md-6 mb-3">
                                             <div class="card text-dark h-100">
-                                                <a href="UserContractDetail?cid=${cL.contract_id}&ip_id=${cL.ip_id}" style="text-decoration: none !important; color: black;">
+                                                
                                                     <div class="card-body py-5 d-flex">
                                                         <div class="col-sm-6">
                                                             <span class="left-info">Người được bảo hiểm:</span>
@@ -107,6 +112,7 @@
                                                             <br>
                                                             <br>
                                                             <span class="left-info">Trạng thái:</span>
+                                                            
                                                         </div>
                                                         <div class="col-sm-6 " style="text-align: right">
                                                             <span class="right-info">${cL.user_fullname}</span>
@@ -121,15 +127,26 @@
                                                             <span class="right-info">${cL.contract_status}</span>
                                                         </div>
                                                         
+                                                        
                                                     </div>
                                                     <div class="card-footer d-flex">
                                                         <i class="fa-solid fa-user-shield fa-xl card-i"></i>
-                                                        <span>Bảo hiểm TNDS</span>
-                                                        <span class="ms-auto">
-                                                            <i class="bi bi-chevron-right"></i>
-                                                        </span>
+                                                        <c:if test="${cL.ip_id == 1}">
+                                                            <span>Bảo hiểm TNDS</span>
+                                                        </c:if>
+                                                        
+                                                        <c:if test="${cL.ip_id == 2}">
+                                                            <span>Bảo hiểm vật chất</span>
+                                                        </c:if>
+                                                        
+                                                        <a href="#" style="text-decoration: none !important; color: #2c464f; margin-left: 150px; margin-right: 15px; transition: 0.3s;">
+                                                            Gia hạn
+                                                        </a>
+                                                            <a href="UserContractDetail?cid=${cL.contract_id}&ip_id=${cL.ip_id}" style="text-decoration: none !important; color: #2c464f; transition: 0.3s;">
+                                                            Xem bản mềm
+                                                        </a>
                                                     </div> 
-                                                </a>
+                                               
 
                                             </div>
                                         </div>
