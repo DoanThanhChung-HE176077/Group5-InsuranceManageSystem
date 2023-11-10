@@ -118,10 +118,10 @@
                                                             <span class="right-info">${cL.user_fullname}</span>
                                                             <br>
                                                             <br>
-                                                            <span class="right-info">${cL.contract_startDate}</span>
+                                                            <span class="right-info creationDateHere" id="creationDate">${cL.contract_startDate}</span>
                                                             <br>
                                                             <br>
-                                                            <span class="right-info">${cL.contract_endDate}</span>
+                                                            <span class="right-info creationDateHere" id="creationDate">${cL.contract_endDate}</span>
                                                             <br>
                                                             <br>
                                                             <span class="right-info">${cL.contract_status}</span>
@@ -176,7 +176,29 @@
     <!--<script src="JS/script.js"></script>-->
     
     
- 
+        <script>
+            function setCurrentDate() {
+                var currentDate = new Date();
+                var formattedDate = currentDate.toISOString().split('T')[0];
+                document.getElementById("creationDate").value = formattedDate;
+            }
+            setCurrentDate();
+
+            function changeDateFormat() {
+                var dateElements = document.getElementsByClassName("creationDateHere");
+
+                for (var i = 0; i < dateElements.length; i++) {
+                    var oldDateText = dateElements[i].textContent;
+                    var dateParts = oldDateText.split('-');
+                    var day = dateParts[0];
+                    var month = dateParts[1];
+                    var year = dateParts[2];
+                    var newDateFormat = year + '-' + month + '-' + day;
+                    dateElements[i].textContent = newDateFormat;
+                }
+            }
+            changeDateFormat();
+        </script>
     
 </body>
 
