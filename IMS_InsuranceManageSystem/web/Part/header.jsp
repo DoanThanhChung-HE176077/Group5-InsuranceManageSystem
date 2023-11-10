@@ -58,7 +58,7 @@
                         <a class="dropdown-toggle" data-bs-toggle="dropdown">Giới thiệu</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <!-- Dropdown menu items -->
-                            <a class="dropdown-item" href="#">Giới thiệu</a>
+                            <a class="dropdown-item" href="Introduce.jsp">Giới thiệu</a>
                         </div>
                     </li>
                     <li class="dropdown">

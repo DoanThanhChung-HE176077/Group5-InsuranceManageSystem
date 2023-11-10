@@ -1,0 +1,87 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 10, 2023, 11:48:06 PM
+    Author     : Dell
+*/
+
+body{
+    height: 100%;
+    background-color: #f8f8f8 !important ;
+}
+.header-main{
+     
+    margin-top: 7%;
+}
+.row {
+    display: flex;
+}
+
+.col-md-4 {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.col-md-4:hover {
+   
+    color: #fff;
+}
+.title{
+    display: block;
+    width: 368px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+   
+   
+}
+.header{
+    padding: 0 !important;
+    margin: 0 !important;
+    border: hsl(0,0%,91%) solid 1px;
+    cursor: pointer;
+    transition: text-decoration 0.3s;
+}
+
+.title:hover{
+    font-weight: bold;
+    color: orange;
+}
+.header-item{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.header-item span{
+    font-size: 30px;
+    font-weight: bold;
+    color: orange;
+}
+.mic-banner-container .gt-tab #tile-1 .tab-pane {
+    padding: 0 15px 15px;
+}
+
+.info{
+    margin-top: 10px;
+}
+.info h2{
+    color: orange;
+    font-size: 29px;
+}
+.title-content{
+    color: orange;
+}
+.footer{
+    width: 100%;
+    margin-top: 20px;
+    position: fixed ;
+    bottom: 0;
+    padding: 7px !important;
+    padding-left: 200px !important;
+    background-color: orange;
+    color: white;
+}
