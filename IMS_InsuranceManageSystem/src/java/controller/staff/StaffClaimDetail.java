@@ -13,7 +13,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import model.Claims;
+import model.ContractTNDS;
+import model.ContractVatchat;
+import model.NewC;
 
 /**
  *
@@ -58,12 +62,23 @@ public class StaffClaimDetail extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         int claim_id = Integer.parseInt(request.getParameter("claim_id"));
-        
+        System.out.println("claim_id cua Staff claim list show:" + claim_id);
         // get calim by claim id
         ContractDAO ct = new  ContractDAO();
         Claims cl = ct.getClaimById(claim_id);
+        int contract_id = cl.getContract_id();
+        System.out.println(contract_id);
         
+        
+        NewC contract = ct.getContractById(contract_id);
+        ContractTNDS contractTNDS = ct.getTNDSbyId(contract_id);
+        ContractVatchat contractVatchat = ct.getVatchatbyId(contract_id);
+
+        request.setAttribute("contract", contract);
+        request.setAttribute("contractTNDS", contractTNDS);
+        request.setAttribute("contractVatchat", contractVatchat);
         request.setAttribute("claim", cl);
+        
         request.getRequestDispatcher("Staff_claim_detail.jsp").forward(request, response);
     } 
 

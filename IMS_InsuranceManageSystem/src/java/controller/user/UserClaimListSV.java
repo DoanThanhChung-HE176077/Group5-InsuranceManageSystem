@@ -5,6 +5,7 @@
 
 package controller.user;
 
+import com.google.gson.Gson;
 import dao.ContractDAO;
 import dao.UserDAO;
 import jakarta.servlet.ServletContext;
@@ -21,6 +22,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import model.Claims;
+import model.Contract;
 import model.User;
 
 /**
@@ -65,7 +68,24 @@ public class UserClaimListSV extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        int claim_id = Integer.parseInt(request.getParameter("claim_id"));
+        if (request.getParameter("claim_id") == null) {
+            System.out.println("Claim_id null");
+        } else {
+            System.out.println("Claim_id:" + claim_id);
+        }
+        ContractDAO dao = new ContractDAO();
+        
+        Claims claim = dao.getClaimById(claim_id);
+        
+        String jsonClaim = new Gson().toJson(claim);
+        
+        // Set response content type to JSON
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        // Write JSON data to the response
+        response.getWriter().write(jsonClaim);
     } 
 
     /** 
@@ -302,7 +322,7 @@ public class UserClaimListSV extends HttpServlet {
         }
         
         
-        response.sendRedirect("/IMS_InsuranceManageSystem/");
+        response.sendRedirect("/IMS_InsuranceManageSystem/UserClaimListShow");
     }
     
 

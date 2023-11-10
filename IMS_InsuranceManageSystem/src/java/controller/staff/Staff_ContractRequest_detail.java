@@ -60,10 +60,12 @@ public class Staff_ContractRequest_detail extends HttpServlet {
     throws ServletException, IOException {
         //processRequest(request, response);
         int contract_id = Integer.parseInt(request.getParameter("contract_id"));
+        System.out.println(contract_id);
         ContractDAO cd = new ContractDAO();
         NewC contract = cd.getContractById(contract_id);
         ContractTNDS contractTNDS = cd.getTNDSbyId(contract_id);
         ContractVatchat contractVatchat = cd.getVatchatbyId(contract_id);
+        
         request.setAttribute("contract", contract);
         request.setAttribute("contractTNDS", contractTNDS);
         request.setAttribute("contractVatchat", contractVatchat);

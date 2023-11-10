@@ -27,9 +27,7 @@
         crossorigin="anonymous"></script>
 
         <!-- font awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-
-              iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/Zpi
-              Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- font ăesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -177,11 +175,11 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    - Gói bảo hiểm cơ bản: ${contract.goibhcb}
+                                                    - Gói bảo hiểm cơ bản: ${contract.goibhcb} %
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    - Mức khấu trừ: ${contract.muckhautru}
+                                                    - Mức khấu trừ: ${contract.muckhautru} %
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
@@ -200,8 +198,8 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    Từ ${contract.ngaybd}
-                                                    Đến ${contract.ngaykt}
+                                                    Từ <span class="creationDateHere" id="creationDate">${contract.ngaybd}</span>
+                                                    Đến <span class="creationDateHere" id="creationDate">${contract.ngaykt}</span>
 <!--                                                    Từ ngày...tháng....năm 20..
                                                     Đến ngày...tháng....năm 20..-->
                                                 </p>
@@ -228,12 +226,12 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    - Hình thức khác <i class="fa-sharp fa-solid fa-check" style="color: #000000;"></i>
+                                                    - Hình thức khác <i class="fa-solid fa-check" style="color: #000000;"></i>
                                                 </p>
                                                 
                                                 <div style="margin-left: 100px; margin-right: 10px; text-align: center;">
                                                     <p>
-                                                        Cấp ngày ${contract.ngaybd}
+                                                        Cấp ngày <span class="creationDateHere" id="creationDate">${contract.ngaybd}</span>
 <!--                                                        Cấp ngày... tháng... năm 20..-->
                                                     </p>
 
@@ -260,9 +258,11 @@
             </div>
         </div>
 
+        
+        <!--font awesome-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!--Jquery-->
-    
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- quan trong cua dropdowntable -->
@@ -271,7 +271,29 @@
     crossorigin="anonymous"></script>
     <!--<script src="JS/script.js"></script>-->
     
-    
+        <script>
+            function setCurrentDate() {
+                var currentDate = new Date();
+                var formattedDate = currentDate.toISOString().split('T')[0];
+                document.getElementById("creationDate").value = formattedDate;
+            }
+            setCurrentDate();
+
+            function changeDateFormat() {
+                var dateElements = document.getElementsByClassName("creationDateHere");
+
+                for (var i = 0; i < dateElements.length; i++) {
+                    var oldDateText = dateElements[i].textContent;
+                    var dateParts = oldDateText.split('-');
+                    var day = dateParts[0];
+                    var month = dateParts[1];
+                    var year = dateParts[2];
+                    var newDateFormat = year + '-' + month + '-' + day;
+                    dateElements[i].textContent = newDateFormat;
+                }
+            }
+            changeDateFormat();
+        </script>
  
     
 </body>

@@ -86,7 +86,7 @@ public class Login extends HttpServlet {
         
         HttpSession session = request.getSession();
         u = uD.getUsers1(userlogin, password);
-        System.out.println("|||||||||||||||||||||||||||||||| :" + u.getUser_iden_img());
+
         session.setAttribute("user", u);
         
         //sua ntn de co the show dc slick slider
