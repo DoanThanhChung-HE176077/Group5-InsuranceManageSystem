@@ -338,54 +338,39 @@
 //            document.getElementById("toDate").value = toDate;
 //        }
 
-//          function updateToDate() {
-//                        // Get references to the "Start Date" and "End Date" input fields
-//                        var fromDateInput = document.getElementById("fromDate");
-//                        var toDateInput = document.getElementById("toDate");
-//
-//                        // Get the current date
-//                        var currentDate = new Date();
-//
-//                        // Parse the value of the "Start Date" input as a Date object
-//                        var fromDate = new Date(fromDateInput.value);
-//
-//                        // Check if the "Start Date" is valid and not earlier than the current date
-//                        if (!isNaN(fromDate) && fromDate >= currentDate) {
-//                            // Calculate the "End Date" as one year from the "Start Date"
-//                            var endDate = new Date(fromDate);
-//                            endDate.setFullYear(endDate.getFullYear() + 1);
-//
-//                            // Format the "End Date" as YYYY-MM-DD
-//                            var endDateFormatted = endDate.toISOString().split('T')[0];
-//
-//                            // Set the value of the "End Date" input
-//                            toDateInput.value = endDateFormatted;
-//                        } else {
-//                            // Clear the "End Date" input
-//                            toDateInput.value = "";
-//
-//                            // Show an alert notification
-//                            alert("Ngày bắt đầu hơn ngày hôm nay");
-//                        }
-//                    }
+          function updateToDate() {
+                        // Get references to the "Start Date" and "End Date" input fields
+                        var fromDateInput = document.getElementById("fromDate");
+                        var toDateInput = document.getElementById("toDate");
+
+                        // Get the current date
+                        var currentDate = new Date();
+
+                        // Parse the value of the "Start Date" input as a Date object
+                        var fromDate = new Date(fromDateInput.value);
+
+                        // Check if the "Start Date" is valid and not earlier than the current date
+                        if (!isNaN(fromDate) && fromDate >= currentDate) {
+                            // Calculate the "End Date" as one year from the "Start Date"
+                            var endDate = new Date(fromDate);
+                            endDate.setFullYear(endDate.getFullYear() + 1);
+
+                            // Format the "End Date" as YYYY-MM-DD
+                            var endDateFormatted = endDate.toISOString().split('T')[0];
+
+                            // Set the value of the "End Date" input
+                            toDateInput.value = endDateFormatted;
+                        } else {
+                            // Clear the "End Date" input
+                            toDateInput.value = "";
+
+                            // Show an alert notification
+                            alert("Ngày bắt đầu hơn ngày hôm nay");
+                        }
+                    }
 
 
-        function updateToDate() {
-            // Lấy giá trị từ trường fromDate
-            var fromDate = document.getElementById("fromDate").value;
-
-            // Chuyển đổi giá trị fromDate thành đối tượng Date
-            var fromDateObj = new Date(fromDate);
-
-            // Cộng thêm 1 năm
-            fromDateObj.setFullYear(fromDateObj.getFullYear() + 1);
-
-            // Format lại ngày tháng để có thể đặt giá trị vào trường toDate
-            var toDate = fromDateObj.toISOString().split('T')[0];
-
-            // Đặt giá trị vào trường toDate
-            document.getElementById("toDate").value = toDate;
-        }
+     
         //đinh dạng ngày sinh
          var inputDate = document.getElementById('user_dob2');
 
