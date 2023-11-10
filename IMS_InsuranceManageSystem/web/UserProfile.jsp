@@ -46,7 +46,9 @@
                             <c:if test="${sessionScope.user.getUser_iden_img() == null}">
                                 
                                 <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
+
                                     <img alt="" id="idenImage" class="img-thumbnail myimg" width="350px" src="" data-toggle="modal" data-target="#myModal" hidden>
+
                                 </div>
                                 <!-- Modal -->
                                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -59,7 +61,9 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+
                                                 <img id="idenImageModal" class="img-fluid " >
+
                                             </div>
                                         </div>
                                     </div>
@@ -122,6 +126,7 @@
                                         <div class="col-md-12"><label class="labels">Trạng thái tài khoản</label>
                                             <input type="text" class="form-control" id="user_status" value="" readonly>
                                         </div>
+
                                         
                                     <c:if test="${sessionScope.user.getUser_iden_img() != null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
                                         <br>
@@ -147,6 +152,7 @@
                                     <c:if test="${sessionScope.user.getUser_role().equals('Khách hàng') == true }">
                                         <button id="btn-edit1" type="button" onclick="editInfo()" class="btn btn-primary">Chỉnh sửa thông tin</button>
                                     </c:if>
+
                                         <div id="btn-Save"></div>
                                         <div id="btn-back"></div>
                                     </div>
@@ -154,7 +160,9 @@
                             </div>
                             <div class="col-md-2 border-right">
 
+
                             </div>
+
                         </div>
                     </div>
                 </form>
@@ -166,6 +174,7 @@
                         event.preventDefault(); // Ngăn chặn sự kiện mặc định của form
                         // Thêm code xử lý submit ở đây nếu cần
                     });
+
 
                     function fetchData() {
                         var xhr = new XMLHttpRequest();
@@ -188,7 +197,7 @@
                                     console.log("Invalid date format: " + data1.user_dob);
                                 }
 
-                                
+                          
                                 document.getElementById("user_address2").value = data1.user_address;
                                 document.getElementById("user_phoneNum2").value = data1.user_phoneNum;
                                 document.getElementById("user_iden2").value = data1.user_iden;
@@ -210,6 +219,7 @@
                     function editInfo() {
                         var inputs = document.querySelectorAll('.form-info input');
                         for (var i = 0; i < inputs.length; i++) {
+
                             if (inputs[i].id !== 'user_status' && inputs[i].id !== 'user_email2' && inputs[i].id !== 'user_iden2') {
                                 inputs[i].removeAttribute('readonly'); // Xóa thuộc tính readOnly
                                 
@@ -244,6 +254,7 @@
 //                        window.location.href = 'ChangePassword.jsp';
 //                        // Ngăn chặn sự kiện mặc định của nút hoặc form
 //                    }
+
 
 
 

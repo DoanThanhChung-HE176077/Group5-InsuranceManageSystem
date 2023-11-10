@@ -87,21 +87,27 @@
                                     <div class="col-md-6">
                                         <!--------------------- Hãng xe --------------------->
                                         <div>
+
                                             <label>Hãng xe<span class="errmsg" style="color: red;"> *</span></label><br />
+
                                             <select class="general-dr abc" id="motorBrands" name="send-brand_id"
                                                     onchange="updateCarModels()">
                                                 <option id="mySelect" value="" disabled selected>Lựa chọn hãng xe
                                                     của bạn</option>
                                                 <c:forEach items="${listBrands}" var="brand">
                                                 <option value="${brand.getBrand_id()}">${brand.getBrand_name()}
+
                                                 </option>
                                             </c:forEach>
+
                                         </select>
                                     </div>
                                     <!--------------------- Hieu xe --------------------->
                                     <div>
                                         <br>
+
                                         <label>Hiệu xe <span class="errmsg" style="color: red;"> *</span></label>
+
                                         <select class="general-dr abc" id="motorBrandModel" name="model_id">
                                         </select>
                                         <input type="hidden" name="send-model_id" value="" />
@@ -109,7 +115,9 @@
                                     <!---------------------So may------------------------>
                                     <br>
                                     <div>
+
                                         <label>Số máy<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" type="text" name="soMay">
                                     </div>
                                     <p style="color: red; font-style: italic; font-weight: bold ">Người mua bảo
@@ -121,13 +129,17 @@
                                 <!--------------------- BKS --------------------->
                                 <div class="col-md-6">
                                     <div>
+
                                         <label>Biển kiểm soát<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" type="text" name="bienXe" required="">
                                     </div>
                                     <br>
                                     <!--------------------- so khung --------------------->
                                     <div>
+
                                         <label>Số khung<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" type="text" name="soKhung">
                                     </div>
                                 </div>
@@ -140,7 +152,9 @@
                                 <!--------------------------------------------->
                                 <div class="row">
                                     <div class="col-md-6">
+
                                         <label>Từ ngày<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" required type="date"
                                                placeholder="Default input" name="startDate" id="fromDate"
                                                onchange="updateToDate()">
@@ -148,7 +162,9 @@
                                             vui lòng nhập ngày bắt đầu hợp đồng lớn hơn ngày hiện tại</p>
                                     </div>
                                     <div class="col-md-6">
+
                                         <label>Đến ngày<span class="errmsg" style="color: red;"> *</span></label>
+
                                         <input class="form-control" type="date" placeholder="Default input"
                                                name="endDate" id="toDate" readonly>
                                     </div>
@@ -158,12 +174,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div>
+
                                                 <label>
                                                     Gói bảo hiểm cơ bản<span class="errmsg" style="color: red;"> *</span>
                                                 </label>
                                                 <div style="float: right" tabindex="0" class="" data-toggle="tooltip" data-placement="top" title="Đây là tooltip cho gói bảo hiểm cơ bản :">
                                                     <i class="fas fa-question-circle" style="pointer-events: none;"></i> 
                                                 </div>
+
                                                 <select class="general-dr abc" id="pack_percent"
                                                         name="send-pt_id">
                                                     <option id="mySelect" disabled selected>Lựa chọn gói
@@ -197,10 +215,12 @@
                                         <!--------------------Muc khau tru------------------------->
                                         <div class="col-md-6">
                                             <div>
+
                                                 <label>Mức khấu trừ<span class="errmsg" style="color: red;"> *</span></label>
                                                 <div style="float: right" tabindex="0" class="" data-toggle="tooltip" data-placement="top" title="Đaya là tooltip cho mức khấu trừ:">
                                                     <i class="fas fa-question-circle" style="pointer-events: none;"></i> 
                                                 </div>
+
                                                 <select class="general-dr abc" id="deduc_percent"
                                                         name="deduc_percent">
                                                     <option id="mySelect" disabled selected>Lựa chọn mức khấu
@@ -287,6 +307,7 @@
                                 </tbody>
                             </table>
 
+
                             <c:if test = "${sessionScope.user.getUser_role().equals('Khách hàng')}">
                                 <c:if test = "${sessionScope.user.getStatus().equals('Đã xác minh')}">
                                     <button type="submit" class="btn ">Thanh toán</button>
@@ -327,6 +348,7 @@
 
                         </div>
                         <input type="hidden" value="vatchat" name="check"  >
+
                     </div>
                 </div>
             </div>
@@ -349,6 +371,7 @@
                     var option = document.createElement("option");
                     option.value = "${model.getModel_price()}";
                     option.id = "${model.getModel_id()}";
+
                     option.innerText = "${model.getModel_name()} ";
                     carModelsDropdown.appendChild(option);
                 }
@@ -547,7 +570,11 @@
 
 
 
+
+
         </script>
+
+
 
 
 
@@ -560,5 +587,6 @@
 
 
 </body>
+
 
 </html>

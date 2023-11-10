@@ -73,7 +73,7 @@
                   <fmt:formatNumber value="${requestScope.obj.tongChiPhi}" pattern="#,##0" var="formattedTongChiPhi" />
                   <div style ="border: none; border-radius: 5px; margin-left: 30%;" class="i_col w_50">
                     <p style="font-size: 15px;"><span>Tổng phí: </span>
-                      <span>${formattedTongChiPhi}</span>
+                      <span>${formattedTongChiPhi}VND</span>
                     </p>
                   </div>
                   

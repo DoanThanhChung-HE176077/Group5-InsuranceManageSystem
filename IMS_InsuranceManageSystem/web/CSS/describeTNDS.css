@@ -1,0 +1,114 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Nov 10, 2023, 4:42:03 PM
+    Author     : Dell
+*/
+
+body{
+    height: 100%;
+    background-color: rgb(248,248,248);
+   
+}
+.content{
+    background-color: white;
+}
+.header-main{
+     
+    margin-top: 7%;
+}
+.row {
+    display: flex;
+}
+
+.col-md-4 {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.col-md-4:hover {
+   
+    color: #fff;
+}
+.title{
+    display: block;
+    width: 368px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+   
+   
+}
+.header{
+    padding: 0 !important;
+    margin: 0 !important;
+    border: hsl(0,0%,91%) solid 1px;
+    cursor: pointer;
+    transition: text-decoration 0.3s;
+}
+
+.title:hover{
+    font-weight: bold;
+    color: orange;
+}
+.header-item{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.header-item span{
+    font-size: 30px;
+    font-weight: bold;
+    color: orange;
+}
+
+.header-item button{
+    width: 100px;
+    height: 38px;
+    background-color: orange;
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 0 5px;
+}
+.product-describe p{
+    font-style: italic;
+    font-weight: bold;
+    color: hsl(218,11%,30%);
+    font-size: 15px;
+    margin: 15px 0;
+}
+.content-item{
+    font-size: 18px;
+    font-weight: bold;
+    color: orange;
+    border-bottom: 3spx solid orange;
+}
+.footer{
+    width: 100%;
+    margin-top: 20px;
+    position: fixed ;
+    bottom: 0;
+    padding: 7px !important;
+    padding-left: 200px !important;
+    background-color: orange;
+    color: white;
+}
+.block-post h3{
+    font-size: 20px;
+    color: orange;
+    font-weight: bold;
+    display: block;
+    border-bottom: 3px solid orange;
+    width: 280px;
+}
+
+
+
+
+
+

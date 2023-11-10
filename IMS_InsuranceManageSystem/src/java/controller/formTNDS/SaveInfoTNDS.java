@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller.formTNDS;
 
 import com.google.gson.Gson;
@@ -33,73 +32,134 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import model.Form_Vatchat;
 
 //import model.Package_Type;
 //import java.time.LocalDateTime;
 //import java.time.format.DateTimeFormatter;
-
-
 /**
  *
  * @author Dell
  */
-@WebServlet(name="SaveInfoTNDS", urlPatterns={"/saveInfoTNDS"})
+@WebServlet(name = "SaveInfoTNDS", urlPatterns = {"/saveInfoTNDS"})
 public class SaveInfoTNDS extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SaveInfoTNDS</title>");  
+            out.println("<title>Servlet SaveInfoTNDS</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SaveInfoTNDS at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet SaveInfoTNDS at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
-    } 
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+     public   String msg="";
     @Override
+   
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        long amount= 0;
+            throws ServletException, IOException {
+        long amount = 0;
         //cap nhat gia tri cho ip_id = 1(tnds) hoac 2(vatchat) de sau khi thanh toán xong còn bi?t dang 
         //mua bán vs hop dong oai nao`
         String ip_id = "";
 //        String creationBillDate = getCurrentDateTime();
-        
-        String check =request.getParameter("check");
-        if(check.equals("tnds")){
-            FormDAO dao = new FormDAO();
 
+        String check = request.getParameter("check");
+        if (check.equals("tnds")) {
+            FormDAO dao = new FormDAO();
+            dao.deleteUnpaidTnds();
+            dao.checkExpiredContract();
             String type = request.getParameter("type");
-            
+
             TNDS_Type type2 = dao.getType(Integer.parseInt(type));
             String soMay = request.getParameter("soMay");
             String bienXe = request.getParameter("bienXe");
             String soKhung = request.getParameter("soKhung");
-            Date fromDate = Date.valueOf(request.getParameter("fromDate")) ;
-            Date toDate = Date.valueOf(request.getParameter("toDate")) ;
+            Date fromDate = Date.valueOf(request.getParameter("fromDate"));
+            Date toDate = Date.valueOf(request.getParameter("toDate"));
             String lv_fee = request.getParameter("level");
+           
+            ArrayList<Form_TNDS> list = dao.getAllTnds();
+            for (int i = 0; i < list.size(); i++) {
+               if(soMay.equalsIgnoreCase(list.get(i).getSoMay())
+                        && bienXe.equalsIgnoreCase(list.get(i).getBienXe())
+                        &&  soKhung.equalsIgnoreCase(list.get(i).getSoKhung())){
+                    //Hợp đồng hết hạn
+                    if(list.get(i).getStatus().equals("expired")){
+                         System.out.println("b");
+                        break;
+                    }
+                    //Hợp đồng chưa hết hạn
+                    else {
+                        msg= "Thời gian hợp đồng của xe vẫn còn";
+                         System.out.println("c");
+                        request.setAttribute("msg", msg);
+                        request.getRequestDispatcher("HandleFormTNDS").forward(request, response);
+                        
+                        
+                    }
+                }
+                //Khách hàng nhập sai
+                if(
+                        (soMay.equalsIgnoreCase(list.get(i).getSoMay())
+                        && !bienXe.equalsIgnoreCase(list.get(i).getBienXe())
+                        &&  !soKhung.equalsIgnoreCase(list.get(i).getSoKhung()))||
+                        
+                        (!soMay.equalsIgnoreCase(list.get(i).getSoMay())
+                        && bienXe.equalsIgnoreCase(list.get(i).getBienXe())
+                        &&  !soKhung.equalsIgnoreCase(list.get(i).getSoKhung()))||
+                        
+                        (!soMay.equalsIgnoreCase(list.get(i).getSoMay())
+                        && !bienXe.equalsIgnoreCase(list.get(i).getBienXe())
+                        &&  soKhung.equalsIgnoreCase(list.get(i).getSoKhung()))||
+                        
+                         (soMay.equalsIgnoreCase(list.get(i).getSoMay())
+                        && bienXe.equalsIgnoreCase(list.get(i).getBienXe())
+                        &&  !soKhung.equalsIgnoreCase(list.get(i).getSoKhung()))||
+                        
+                        (soMay.equalsIgnoreCase(list.get(i).getSoMay())
+                        && !bienXe.equalsIgnoreCase(list.get(i).getBienXe())
+                        &&  soKhung.equalsIgnoreCase(list.get(i).getSoKhung()))||
+                        
+                        (!soMay.equalsIgnoreCase(list.get(i).getSoMay())
+                        && bienXe.equalsIgnoreCase(list.get(i).getBienXe())
+                        &&  soKhung.equalsIgnoreCase(list.get(i).getSoKhung()))
+                       
+                        
+                        
+                    ){
+                    msg = "Khách hàng vui lòng kiểm tra kĩ lại thông tin của xe khi đăng kí";
+                     System.out.println("d");
+                      request.setAttribute("msg", msg);
+                      request.getRequestDispatcher("HandleFormTNDS").forward(request, response);
+                }
+            }
             String tax_fee = request.getParameter("tax-fee");
             String num = request.getParameter("num");
             String total = request.getParameter("amount");
@@ -107,16 +167,14 @@ public class SaveInfoTNDS extends HttpServlet {
             User user1 = (User) session.getAttribute("user");
             ip_id = "1";
             String lv_fee_value = dao.getTNDS_LevelbyId(Integer.parseInt(lv_fee)).getLv_value();
-            Form_TNDS obj = new Form_TNDS(type2.getType_name(),soMay,bienXe,soKhung, fromDate,toDate,lv_fee_value, num, total, user1.getUser_id(), "1", "unpaid");
+            Form_TNDS obj = new Form_TNDS(type2.getType_name(), soMay, bienXe, soKhung, fromDate, toDate, lv_fee_value, num, total, user1.getUser_id(), "1", "unpaid");
             dao.insertBill(obj);
-            amount = Integer.parseInt(request.getParameter("amount"))*100;
-            
-            
-            
-        }
-        else if(check.equals("vatchat")){
+            amount = Integer.parseInt(request.getParameter("amount")) * 100;
+
+        } else if (check.equals("vatchat")) {
             //lay thong tin tu form => save cac id vao db tam unpaid + update ip_id = 2 + lay ra cac deduc_name, pt_name
             //de mang cho vao bangr bill, chu o bill ko de hien id dc 
+
                System.out.println("===================================== |Check save to contract vat chat ========================|");
                System.out.println("check: " + check);
               String fvc_brand_id = request.getParameter("send-brand_id");
@@ -146,6 +204,7 @@ public class SaveInfoTNDS extends HttpServlet {
              //update ip_id
             ip_id = "2";
             
+
             //parse id from string to int to save to db
             int parsedBrandId = Integer.parseInt(fvc_brand_id);
             int parsedModelId = Integer.parseInt(fvc_model_id);
@@ -158,7 +217,68 @@ public class SaveInfoTNDS extends HttpServlet {
             int user_id = user1.getUser_id(); // user_id
 
             FormDAO dao = new FormDAO();
+            dao.checkExpiredContractVatChat();
+            dao.deleteUnpaidVatChat();
+//            //Check
+             ArrayList<Form_Vatchat> list = dao.getAllVatChat();
+            for (int i = 0; i < list.size(); i++) {
+               if(fvc_soMay.equalsIgnoreCase(list.get(i).getFvc_deviceNum())
+                        && fvc_bienXe.equalsIgnoreCase(list.get(i).getFvc_licensePlates())
+                        &&  fvc_soKhung.equalsIgnoreCase(list.get(i).getFvc_deviceChassisNum())){
+                    //Hợp đồng hết hạn
+                    if(list.get(i).getFvc_status().equals("expired")){
+                         System.out.println("b");
+                        break;
+                    }
+                    //Hợp đồng chưa hết hạn
+                    else {
+                        msg= "Thời gian hợp đồng của xe vẫn còn";
+                         System.out.println("c");
+                        request.setAttribute("msg", msg);
+                        request.getRequestDispatcher("HandleFormVatChat").forward(request, response);
+                        
+                        
+                    }
+                }
+                //Khách hàng nhập sai
+                if(
+                        (fvc_soMay.equalsIgnoreCase(list.get(i).getFvc_deviceNum())
+                        && !fvc_bienXe.equalsIgnoreCase(list.get(i).getFvc_licensePlates())
+                        &&  !fvc_soKhung.equalsIgnoreCase(list.get(i).getFvc_deviceChassisNum()))||
+                        
+                        (!fvc_soMay.equalsIgnoreCase(list.get(i).getFvc_deviceNum())
+                        && fvc_bienXe.equalsIgnoreCase(list.get(i).getFvc_licensePlates())
+                        &&  !fvc_soKhung.equalsIgnoreCase(list.get(i).getFvc_deviceChassisNum()))||
+                        
+                        (!fvc_soMay.equalsIgnoreCase(list.get(i).getFvc_deviceNum())
+                        && !fvc_bienXe.equalsIgnoreCase(list.get(i).getFvc_licensePlates())
+                        &&  fvc_soKhung.equalsIgnoreCase(list.get(i).getFvc_deviceChassisNum()))||
+                        
+                         (fvc_soMay.equalsIgnoreCase(list.get(i).getFvc_deviceNum())
+                        && fvc_bienXe.equalsIgnoreCase(list.get(i).getFvc_licensePlates())
+                        &&  !fvc_soKhung.equalsIgnoreCase(list.get(i).getFvc_deviceChassisNum()))||
+                        
+                        (fvc_soMay.equalsIgnoreCase(list.get(i).getFvc_deviceNum())
+                        && !fvc_bienXe.equalsIgnoreCase(list.get(i).getFvc_licensePlates())
+                        &&  fvc_soKhung.equalsIgnoreCase(list.get(i).getFvc_deviceChassisNum()))||
+                        
+                        (!fvc_soMay.equalsIgnoreCase(list.get(i).getFvc_deviceNum())
+                        && fvc_bienXe.equalsIgnoreCase(list.get(i).getFvc_licensePlates())
+                        &&  fvc_soKhung.equalsIgnoreCase(list.get(i).getFvc_deviceChassisNum()))
+                       
+                        
+                        
+                    ){
+                    msg = "Khach hang vui long kiem tra thong tin";
+                     System.out.println("d");
+                      request.setAttribute("msg", msg);
+                      request.getRequestDispatcher("HandleFormVatChat").forward(request, response);
+                     return;
+                }
+            }
+            System.out.println("e");
             //add vào db
+
             if(dao.insertVatChatToFormVatChat(parsedBrandId, parsedModelId, parsedPtId, parsedDeducId, fvc_startDate, fvc_endDate, parseTotal, user_id, fvc_soMay, fvc_soKhung, fvc_bienXe, ip_id, "unpaid")){
                 System.out.println("===============| SAVE TO VATCHAT: |=============");
                 System.out.println("Save: DONE");
@@ -167,31 +287,34 @@ public class SaveInfoTNDS extends HttpServlet {
                 System.out.println("===============| SAVE TO VATCHAT: |=============");
                 System.out.println("Save: FALSE -> VATCHAT O ADD DC VAO CONTRACT!!!!!!!!");
             }
+
             // update amount to send to vnpay
             amount = (removeDotsFromNumber(amountsString)) * 100;
 
         }
 
+
         System.out.println("======================| IP_ID | ===============");
         System.out.println("ip_id: "+ ip_id);
        
+
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String orderType = "other";
         String bankCode = request.getParameter("bankCode");
         // code cua bill
         String vnp_TxnRef = "";
-        if( ip_id.equals("2")){
-            vnp_TxnRef =Config.generateRandomStringVatChat();
+        if (ip_id.equals("2")) {
+            vnp_TxnRef = Config.generateRandomStringVatChat();
             //#L2+.....
-        }else if ( ip_id.equals("1") ){
+        } else if (ip_id.equals("1")) {
             vnp_TxnRef = Config.generateRandomStringTNDS();
             //#L1+.....
         }
-        
+
         String vnp_IpAddr = Config.getIpAddress(request);
         String vnp_TmnCode = Config.vnp_TmnCode;
-        
+
         //=================transfer data from this svl to bill  =============
         Map<String, String> vnp_Params = new HashMap<>();
         //=========map data of vat chat ======================
@@ -216,18 +339,18 @@ public class SaveInfoTNDS extends HttpServlet {
         }
         //vnp_Params.put("vnp_ReturnUrl", Config.vnp_ReturnUrl);
         vnp_Params.put("vnp_ReturnUrl", "http://localhost:9999/IMS_InsuranceManageSystem/HandleBill?ip_id=" + ip_id);
-        
+
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         String vnp_CreateDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_CreateDate", vnp_CreateDate);
-        
+
         cld.add(Calendar.MINUTE, 15);
         String vnp_ExpireDate = formatter.format(cld.getTime());
         vnp_Params.put("vnp_ExpireDate", vnp_ExpireDate);
-        
+
         List fieldNames = new ArrayList(vnp_Params.keySet());
         Collections.sort(fieldNames);
         StringBuilder hashData = new StringBuilder();
@@ -259,14 +382,15 @@ public class SaveInfoTNDS extends HttpServlet {
         job.addProperty("code", "00");
         job.addProperty("message", "success");
         job.addProperty("data", paymentUrl);
-       System.out.println(vnp_TxnRef);
+        System.out.println(vnp_TxnRef);
         Gson gson = new Gson();
         response.getWriter().write(gson.toJson(job));
-        
-    } 
 
-    /** 
+    }
+
+    /**
      * Handles the HTTP <code>POST</code> method.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -274,12 +398,15 @@ public class SaveInfoTNDS extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException {
+//        request.setAttribute("msg", msg);
+//        System.out.println(msg);
+//                        request.getRequestDispatcher("HandleFormTNDS").forward(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
+     *
      * @return a String containing servlet description
      */
     @Override

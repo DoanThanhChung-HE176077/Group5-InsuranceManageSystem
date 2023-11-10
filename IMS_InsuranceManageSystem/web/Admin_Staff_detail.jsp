@@ -104,27 +104,27 @@
                                     <ul class="list-group">
                             <li class="list-group-item">
                                 <span class="detail-label">Họ Tên:</span>
-                                <span>${detail.user_fullName}</span>
+                                <span style="float: right">${detail.user_fullName}</span>
                             </li>
                             <li class="list-group-item">
                                 <span class="detail-label">Email:</span>
-                                <span>${detail.user_email}</span>
+                                <span  style="float: right">${detail.user_email}</span>
                             </li>
                             <li class="list-group-item">
                                 <span class="detail-label">Ngày sinh:</span>
-                                <span class="date-column">${detail.user_dob}</span>
+                                <span class="date-column"  style="float: right">${detail.user_dob}</span>
                             </li>
                             <li class="list-group-item">
                                 <span class="detail-label">Địa chỉ:</span>
-                                <span>${detail.user_address}</span>
+                                <span  style="float: right">${detail.user_address}</span>
                             </li>
                             <li class="list-group-item">
                                 <span class="detail-label">Số điện thoại:</span>
-                                <span>${detail.user_phoneNum}</span>
+                                <span style="float: right">${detail.user_phoneNum}</span>
                             </li>
                             <li class="list-group-item">
                                 <span class="detail-label">CCCD:</span>
-                                <span>${detail.user_iden}</span>
+                                <span style="float: right">${detail.user_iden}</span>
                             </li>
                             
                             

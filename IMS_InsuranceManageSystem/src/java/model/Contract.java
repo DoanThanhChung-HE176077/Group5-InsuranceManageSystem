@@ -76,6 +76,7 @@ public class Contract {
     }
 
     public Date getContract_startDate() {
+
         return contract_startDate;
     }
 
@@ -86,7 +87,9 @@ public class Contract {
     }
 
     public Date getContract_endDate() {
+
         return contract_endDate;
+
     }
 
 
