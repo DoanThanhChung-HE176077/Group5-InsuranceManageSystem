@@ -55,11 +55,7 @@
                     </div>-->
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-bs-toggle="dropdown">Giới thiệu</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <!-- Dropdown menu items -->
-                            <a class="dropdown-item" href="#">Giới thiệu</a>
-                        </div>
+                        <a >Giới thiệu</a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-bs-toggle="dropdown">Thông tin</a>

@@ -6,7 +6,6 @@
 package controller.staff;
 
 import dao.ContractDAO;
-import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,18 +13,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import model.Claims;
 import model.Contract;
-import model.User;
 
 /**
  *
  * @author chun
  */
-@WebServlet(name="StaffClaimListShow", urlPatterns={"/StaffClaimListShow"})
-public class StaffClaimListShow extends HttpServlet {
+@WebServlet(name="StaffClaimCheck", urlPatterns={"/StaffClaimCheck"})
+public class StaffClaimCheck extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -42,10 +37,10 @@ public class StaffClaimListShow extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet StaffClaimListShow</title>");  
+            out.println("<title>Servlet StaffClaimCheck</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet StaffClaimListShow at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet StaffClaimCheck at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,22 +57,34 @@ public class StaffClaimListShow extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String claim_id = request.getParameter("claim_id");
+        String check = request.getParameter("check");
+        ContractDAO ctdao = new ContractDAO();
+        Contract ct = new Contract();
         
-        HttpSession session = request.getSession();
-        User user1 = (User) session.getAttribute("user");
-        int user_id = user1.getUser_id();
         
-        ContractDAO dao = new ContractDAO();
-        ArrayList<Claims> cl = dao.getAllClaim();
-        ArrayList<Contract> ct = dao.getAllContractChung();
-        UserDAO udao = new UserDAO();
-        ArrayList<User> u = udao.getListUserFull();
-        ArrayList<Contract> ct2 = dao.getContractOption(user_id);
-        request.setAttribute("contract", ct);
-        request.setAttribute("user", u);
-        request.setAttribute("claim", cl);
-        request.getRequestDispatcher("Staff_claim_list.jsp").forward(request, response);
         
+        if(!check.equals("")){
+            System.out.println("check :" + check);
+        }else {
+            System.out.println("check null");
+        }
+        //update claim status + send mail cho user by user_id + update endDate contract_endDate + set contract_status = Exprised
+        if(check.equals("reject")){
+            ctdao.updateCliamNO( claim_id);
+            //get 1 contract by claim id
+            ct = ctdao.getOneContractThatMatchClaim(Integer.parseInt(claim_id));
+            int contrac_id2 = ct.getContract_id();
+            ctdao.updateCliamNO(claim_id);
+            response.sendRedirect("/IMS_InsuranceManageSystem/StaffClaimListShow");
+        }else if(check.equals("accept")){
+            ctdao.updateCliamYES( claim_id);
+            ct = ctdao.getOneContractThatMatchClaim(Integer.parseInt(claim_id));
+            int contrac_id2 = ct.getContract_id();
+            ctdao.updateCliamYES(claim_id);
+            ctdao.updateEndDateAndContractStatus("Exprise",contrac_id2);
+            response.sendRedirect("/IMS_InsuranceManageSystem/StaffClaimListShow");
+        }
     } 
 
     /** 
@@ -90,8 +97,7 @@ public class StaffClaimListShow extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-
-
+        processRequest(request, response);
     }
 
     /** 

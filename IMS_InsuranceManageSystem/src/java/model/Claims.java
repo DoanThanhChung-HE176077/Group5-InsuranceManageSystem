@@ -18,7 +18,7 @@ public class Claims {
     String claim_file_des;
     String claim_bank;
     String claim_bank_number;
-    //Pending + Accept + Reject
+    //pending + Accept + Reject
     String claim_status;
 
     public Claims() {

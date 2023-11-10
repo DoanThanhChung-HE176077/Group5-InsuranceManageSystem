@@ -27,9 +27,6 @@ public class Contract {
     public Contract() {
     }
 
-
-
-
     public Contract(int contract_id, int user_id, Date contract_startDate, Date contract_endDate, int ip_id, int fvc_id, int ftnds_id, int total_price, String contract_status) {
         this.contract_id = contract_id;
         this.user_id = user_id;

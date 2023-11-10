@@ -23,6 +23,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import model.Claims;
+import model.Contract;
 import model.User;
 
 /**
@@ -74,13 +75,11 @@ public class UserClaimListSV extends HttpServlet {
             System.out.println("Claim_id:" + claim_id);
         }
         ContractDAO dao = new ContractDAO();
+        
         Claims claim = dao.getClaimById(claim_id);
         
-//        request.setAttribute("claim", claim);
-//        request.getRequestDispatcher("User_claim_list.jsp").forward(request, response);
-        // Convert Claims object to JSON
         String jsonClaim = new Gson().toJson(claim);
-
+        
         // Set response content type to JSON
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

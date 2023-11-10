@@ -48,15 +48,12 @@
             }
 
             .mybtn {
-
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) ;
                 border-radius: 5px ;
                 border: none ;
                 cursor: pointer ;
                 transition: box-shadow 0.3s ease ;
-
             }
-
             .mybtn:hover {
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             }
@@ -125,7 +122,7 @@
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <div class="d-flex justify-content-between align-items-center">
-                                                                            <h5 class="modal-title" id="staticBackdropLabel">Chi tiết yêu cầu số</h5>
+                                                                            <h5 class="modal-title" id="staticBackdropLabel">Chi tiết yêu cầu</h5>
                                                                         </div>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
@@ -150,7 +147,7 @@
                                                                                             Hợp đồng
                                                                                         </th>
                                                                                         <td id="contractid-info">
-                                                                                            
+
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
@@ -419,7 +416,7 @@
                     $.ajax({
                         type: 'GET',
                         url: 'UserClaimListSV',
-                        data: { claim_id: claimId },
+                        data: {claim_id: claimId},
                         success: function (data) {
                             //                              response in network f12
                             $('#contractid-info').text(data.contract_id);
