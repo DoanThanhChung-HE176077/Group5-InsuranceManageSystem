@@ -199,6 +199,11 @@
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
                                                     Từ <span class="creationDateHere" id="creationDate">${contract.ngaybd}</span>
+<!--                                                    Từ ngày...tháng....năm 20..
+                                                    Đến ngày...tháng....năm 20..-->
+                                                </p>
+                                                
+                                                <p style="margin-left: 10px; margin-right: 10px;">
                                                     Đến <span class="creationDateHere" id="creationDate">${contract.ngaykt}</span>
 <!--                                                    Từ ngày...tháng....năm 20..
                                                     Đến ngày...tháng....năm 20..-->
@@ -231,7 +236,7 @@
                                                 
                                                 <div style="margin-left: 100px; margin-right: 10px; text-align: center;">
                                                     <p>
-                                                        Cấp ngày <span class="creationDateHere" id="creationDate">${contract.ngaybd}</span>
+                                                        Cấp <span class="creationDateHere" id="creationDate">${contract.ngaybd}</span>
 <!--                                                        Cấp ngày... tháng... năm 20..-->
                                                     </p>
 
@@ -288,7 +293,7 @@
                     var day = dateParts[0];
                     var month = dateParts[1];
                     var year = dateParts[2];
-                    var newDateFormat = year + '-' + month + '-' + day;
+                    var newDateFormat = ' ngày ' + year  + ' tháng ' + month + ' năm ' + day;
                     dateElements[i].textContent = newDateFormat;
                 }
             }
