@@ -87,7 +87,7 @@
                                                         ${blogs.getBl_title()}
                                                     </p></td>
                                                 <td>${blogs.usernameString}</td>
-                                                <td>${blogs.getBl_creationdate()}</td>
+                                                <td class="creationDateHere" id="creationDate">${blogs.getBl_creationdate()}</td>
                                                 <td>${blogs.getBl_status()}</td>
                                                 <td>
                                                     <!-- Edit Button -->
@@ -126,7 +126,7 @@
                                             <td>Sample Blog Post 1</td>
                                             <td>John Doe</td>
                                             <td>Updated title and added new content.</td>
-                                            <td>2023-10-01</td>
+                                            <td class="creationDateHere" id="creationDate">2023-10-01</td>
                                         </tr>
 
                                         <!-- Repeat rows for each edit history entry -->
@@ -140,13 +140,34 @@
         </div>
             
 
-
-
-
-
         <!-- quan trong cua dropdowntable -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+        
+        <script>
+            function setCurrentDate() {
+                var currentDate = new Date();
+                var formattedDate = currentDate.toISOString().split('T')[0];
+                document.getElementById("creationDate").value = formattedDate;
+            }
+            setCurrentDate();
+
+            function changeDateFormat() {
+                var dateElements = document.getElementsByClassName("creationDateHere");
+
+                for (var i = 0; i < dateElements.length; i++) {
+                    var oldDateText = dateElements[i].textContent;
+                    var dateParts = oldDateText.split('-');
+                    var day = dateParts[0];
+                    var month = dateParts[1];
+                    var year = dateParts[2];
+                    var newDateFormat = year + '-' + month + '-' + day;
+                    dateElements[i].textContent = newDateFormat;
+                }
+            }
+            changeDateFormat();
+        </script>
+        
     </body>
 </html>
