@@ -117,8 +117,9 @@ public class HandleBill extends HttpServlet {
         String bill_content = "Thanh toán thành công.";
         String bill_creationDate = request.getParameter("bill_creationDate");
         //hh:mm:ss dd-mm-yyyy
-
-        if (bill_ip_id.equals("2")) 
+        String vnp_ResponseCode = request.getParameter("vnp_ResponseCode");
+        if(vnp_ResponseCode.equals("00")){
+            if (bill_ip_id.equals("2")) 
         {
             System.out.println("=============================| GO TO CONTRACT TO SAVE VATCHAT =====|");
             //go to vat chat
@@ -185,6 +186,10 @@ public class HandleBill extends HttpServlet {
                     Integer.parseInt(obj.getTongChiPhi())));
             request.getRequestDispatcher("BillOfInsuranceTNDS.jsp").forward(request, response);
         }
+        }else{
+            request.getRequestDispatcher("listInsuranceProduct").forward(request, response);
+        }
+        
 
     }
 

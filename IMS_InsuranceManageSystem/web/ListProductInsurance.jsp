@@ -72,7 +72,12 @@
                             <img src="Image/bao-hiem-xe-may-web.jpg" class="card-img-top" alt="...">
                             <h5 class="card-title">${o.getIp_name()}</h5>
                             <p class="card-text">${o.getIp_description()}</p>
-                            <a class="see-detail"  href="#">Xem chi tiết</a><br/>
+                            <c:if test="${o.getIp_id() == 1}">
+                               <a class="see-detail"  href="Describe_TNDS.jsp">Xem chi tiết</a><br/>
+                            </c:if>
+                            <c:if test="${o.getIp_id() == 2 }">
+                               <a class="see-detail"  href="Describe_VatChat.jsp">Xem chi tiết</a><br/>
+                            </c:if>
                             <!--tnds-->
                             <c:if test="${o.getIp_id() == 1}">
                                 <button onclick="window.location.href='HandleFormTNDS'" class="btn btn-primary btn-buy">Mua ngay</button>
