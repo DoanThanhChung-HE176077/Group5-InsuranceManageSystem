@@ -187,7 +187,7 @@
         // Retrieve data
         
         var chartData = ${ChartDAO.getContractsByMonth()};
-        var chartData2 = ${ChartDAO.getContractsByMonth()};
+        var chartData2 = ${ChartDAO.getClaimsByMonth()};
         
         const barCharts = document.querySelectorAll(".bar-chart1");
         const barCharts2 = document.querySelectorAll(".bar-chart2");
