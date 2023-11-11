@@ -22,7 +22,7 @@ public class Contract {
     private  int fvc_id;
     private  int ftnds_id;
     private  int total_price;
-    private  String contract_status;
+    private  String contract_status;// Active,Reject,Expired,Pending
 
     public Contract() {
     }

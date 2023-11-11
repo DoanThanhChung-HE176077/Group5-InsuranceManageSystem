@@ -56,7 +56,7 @@
                     <div class="input-group">
                         <input name="input-password" type="password" id="" class="form-control" placeholder="Nhập mật khẩu">
                     </div>
-                    <a href="ResetPass.jsp" style="font-size: 12px;">Quên mật khẩu</a>
+                    <a href="reset_pass" style="font-size: 12px;">Quên mật khẩu</a>
                 </div>
                 
                 <p style="text-align:center;color:red; font-size: 14px; margin-bottom: 10px;">

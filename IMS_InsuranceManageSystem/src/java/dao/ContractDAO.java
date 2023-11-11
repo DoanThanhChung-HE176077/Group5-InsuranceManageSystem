@@ -819,6 +819,7 @@ public class ContractDAO extends DBContext {
 
     public static void main(String[] args) {
         ContractDAO cd = new ContractDAO();
+        System.out.println(cd.getVatchatbyId(5));
 //        ArrayList<Claims> cl = cd.getAllClaim();
 //        for (Claims claims : cl) {
 //            System.out.println(claims.toString());
@@ -846,11 +847,7 @@ public class ContractDAO extends DBContext {
 //        System.out.println(vc.toString());
 //        cd.updateCliamNO("1");
 //        cd.updateCliamYES("1");
-        cd.updateEndDateAndContractStatus("Reject", 1);
-             ArrayList<Claims> ct = cd.getListCalimKhacPending();
-             for (Claims claims : ct) {
-                 System.out.println(claims.toString());
-        }
+       
 
     }
 

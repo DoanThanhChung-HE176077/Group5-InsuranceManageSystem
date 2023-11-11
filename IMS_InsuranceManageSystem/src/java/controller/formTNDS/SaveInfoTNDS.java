@@ -105,7 +105,8 @@ public class SaveInfoTNDS extends HttpServlet {
             Date toDate = Date.valueOf(request.getParameter("toDate"));
             String lv_fee = request.getParameter("level");
            
-            ArrayList<Form_TNDS> list = dao.getAllTnds();
+           ArrayList<Form_TNDS> list = dao.getAllTnds();
+               
             for (int i = 0; i < list.size(); i++) {
                if(soMay.equalsIgnoreCase(list.get(i).getSoMay())
                         && bienXe.equalsIgnoreCase(list.get(i).getBienXe())
