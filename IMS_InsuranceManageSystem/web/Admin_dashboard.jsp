@@ -24,9 +24,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
                 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
+        
 
         <!-- font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-
@@ -70,7 +68,7 @@
                                     <div class="row">
                                     <div class="col-md-3 mb-3">
                                       <div class="card bg-primary text-white h-100">
-                                          <div class="card-body py-5"><span class="stats">36</span></div>
+                                          <div class="card-body py-5"><span class="stats">${ChartDAO.getUsersNumber()}</span></div>
                                         <div class="card-footer d-flex">
                                           Số người dùng
                                           <span class="ms-auto">
@@ -82,7 +80,7 @@
                                         
                                     <div class="col-md-3 mb-3">
                                 <div class="card bg-warning text-dark h-100">
-                                  <div class="card-body py-5"><span class="stats">36</span></div>
+                                  <div class="card-body py-5"><span class="stats">${ChartDAO.getPendingContracts()}</span></div>
                                   <div class="card-footer d-flex">
                                     Yêu cầu hợp đồng
                                     <span class="ms-auto">
@@ -95,7 +93,7 @@
                               <div class="col-md-3 mb-3">
                                   
                                 <div class="card bg-success text-white h-100">
-                                  <div class="card-body py-5"><span class="stats">36</span></div>
+                                  <div class="card-body py-5"><span class="stats">${ChartDAO.getPendingClaims()}</span></div>
                                   <div class="card-footer d-flex">
                                     Yêu cầu bồi thường
                                     <span class="ms-auto">
@@ -107,7 +105,7 @@
                                         
                               <div class="col-md-3 mb-3">
                                 <div class="card bg-danger text-white h-100">
-                                  <div class="card-body py-5"><span class="stats">36</span></div>
+                                  <div class="card-body py-5"><span class="stats">${ChartDAO.getPendingBlogs()}</span></div>
                                   <div class="card-footer d-flex">
                                     Bài viết
                                     <span class="ms-auto">
@@ -188,7 +186,8 @@
     $(document).ready(function () {
         // Retrieve data
         
-        var chartData = ${ChartDAO.getChartData2()};
+        var chartData = ${ChartDAO.getContractsByMonth()};
+        var chartData2 = ${ChartDAO.getClaimsByMonth()};
         
         const barCharts = document.querySelectorAll(".bar-chart1");
         const barCharts2 = document.querySelectorAll(".bar-chart2");
@@ -203,7 +202,9 @@
                     datasets: [
                         {
                             label: "Số bảo hiểm đăng kí mới",
-                            data: [chartData, 19, 3, 5, 2, 3,  12, 19, 3, 5, 2, 3],
+                            data: [chartData[0], chartData[1], chartData[2], chartData[3], chartData[4],
+                                chartData[5], chartData[6], chartData[7], chartData[8], chartData[9],
+                                chartData[10], chartData[11] ],
                             backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
                                 "rgba(54, 162, 235, 0.2)",
@@ -260,7 +261,9 @@
                     datasets: [
                         {
                             label: "Số yêu cầu bồi thường",
-                            data: [1, 2, 3, 4, 5, 6,  7, 8, 10, 12, 14, 16],
+                            data: [chartData2[0], chartData2[1], chartData2[2], chartData2[3], chartData2[4],
+                                chartData2[5], chartData2[6], chartData2[7], chartData2[8], chartData2[9],
+                                chartData2[10], chartData2[11]],
                             backgroundColor: [
                                 "rgba(255, 99, 132, 0.2)",
                                 "rgba(54, 162, 235, 0.2)",
@@ -311,18 +314,18 @@
         var myPieChart = new Chart(canvas, {
             type: "pie",
             data: {
-                labels: ["Red", "Green", "Blue"],
+                labels: ["Bảo hiểm TNDS", "Bảo hiểm Vật Chất"],
                 datasets: [{
                     label: "My Dataset",
-                    data: [20, 30, 50],
+                    data: [60, 40],
                     backgroundColor: [
                         "rgba(255, 99, 132, 0.2)",
-                        "rgba(75, 192, 192, 0.2)",
+//                        "rgba(75, 192, 192, 0.2)",
                         "rgba(54, 162, 235, 0.2)",
                     ],
                     borderColor: [
                         "rgba(255, 99, 132, 1)",
-                        "rgba(75, 192, 192, 1)",
+//                        "rgba(75, 192, 192, 1)",
                         "rgba(54, 162, 235, 1)",
                     ],
                     borderWidth: 1
@@ -341,7 +344,6 @@
     });
 </script>
     
- 
     
 </body>
 

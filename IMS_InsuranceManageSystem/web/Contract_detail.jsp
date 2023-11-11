@@ -137,11 +137,11 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    ĐỊA CHỈ: 
+                                                    ĐỊA CHỈ: ${userContract.user_address}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    ĐIỆN THOẠI:
+                                                    ĐIỆN THOẠI: ${userContract.user_phoneNum}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
@@ -181,11 +181,13 @@
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
                                                     Từ <span class="creationDateHere" id="creationDate">${contract.ngaybd}</span>
-                                                    Đến <span class="creationDateHere" id="creationDate">${contract.ngaykt}</span>
 <!--                                                    Từ ngày...tháng....năm 20..
                                                     Đến ngày...tháng....năm 20..-->
                                                 </p>
                                                 
+                                                <p style="margin-left: 10px; margin-right: 10px;">
+                                                    Đến <span class="creationDateHere" id="creationDate">${contract.ngaykt}</span>
+                                                </p>
                                             </div>
                                         </div>
                                         
@@ -230,7 +232,7 @@
                                                 
                                                 <div style="margin-left: 100px; margin-right: 10px; text-align: center;">
                                                     <p>
-                                                        Cấp ngày <span class="creationDateHere" id="creationDate">${contract.ngaybd}</span>
+                                                        Cấp <span class="creationDateHere" id="creationDate">${contract.ngaybd}</span>
 <!--                                                        Cấp ngày... tháng... năm 20..-->
                                                     </p>
 
@@ -287,7 +289,7 @@
                     var day = dateParts[0];
                     var month = dateParts[1];
                     var year = dateParts[2];
-                    var newDateFormat = year + '-' + month + '-' + day;
+                    var newDateFormat = ' ngày ' + year  + ' tháng ' + month + ' năm ' + day;
                     dateElements[i].textContent = newDateFormat;
                 }
             }

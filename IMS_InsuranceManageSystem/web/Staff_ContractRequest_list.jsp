@@ -14,14 +14,9 @@
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <!--        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous"></script>-->
+        
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
                 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
 
         <!-- font awesome -->
@@ -79,8 +74,8 @@
 
                                                 <td>${pList.getUser_fullname()}</td>
                                                 <td>${pList.getIp_name()}</td>
-                                                <td>${pList.getContract_startDate()}</td>
-                                                <td>${pList.getContract_endDate()}</td>
+                                                <td class="creationDateHere" id="creationDate">${pList.getContract_startDate()}</td>
+                                                <td class="creationDateHere" id="creationDate">${pList.getContract_endDate()}</td>
                                                 <td>${pList.getTotal_price()}d</td>
                                                 <td>${pList.getContract_status()}</td>
                                                 <td>
@@ -115,8 +110,8 @@
                                             <tr>
                                                 <td>${aList.getUser_fullname()}</td>
                                                 <td>${aList.getIp_name()}</td>
-                                                <td>${aList.getContract_startDate()}</td>
-                                                <td>${aList.getContract_endDate()}</td>
+                                                <td class="creationDateHere" id="creationDate">${aList.getContract_startDate()}</td>
+                                                <td class="creationDateHere" id="creationDate">${aList.getContract_endDate()}</td>
                                             </tr>
                                         </c:forEach>
 
@@ -133,11 +128,34 @@
 
 
 
-
-
-        <!-- quan trong cua dropdowntable -->
+<!-- quan trong cua dropdowntable -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+        
+        <script>
+            function setCurrentDate() {
+                var currentDate = new Date();
+                var formattedDate = currentDate.toISOString().split('T')[0];
+                document.getElementById("creationDate").value = formattedDate;
+            }
+            setCurrentDate();
+
+            function changeDateFormat() {
+                var dateElements = document.getElementsByClassName("creationDateHere");
+
+                for (var i = 0; i < dateElements.length; i++) {
+                    var oldDateText = dateElements[i].textContent;
+                    var dateParts = oldDateText.split('-');
+                    var day = dateParts[0];
+                    var month = dateParts[1];
+                    var year = dateParts[2];
+                    var newDateFormat = year + '-' + month + '-' + day;
+                    dateElements[i].textContent = newDateFormat;
+                }
+            }
+            changeDateFormat();
+        </script>
+        
     </body>
 </html>

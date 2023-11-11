@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.user;
+package controller.staff;
 
 import dao.ContractDAO;
 import java.io.IOException;
@@ -12,15 +12,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.ContractTNDS;
-import model.ContractVatchat;
-import model.User;
 
 /**
  *
  * @author thant
  */
-public class UserContractDetail extends HttpServlet {
+public class StaffContractRequestCheck extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -37,10 +34,10 @@ public class UserContractDetail extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserContractDetail</title>");  
+            out.println("<title>Servlet StaffContractRequestCheck</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserContractDetail at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet StaffContractRequestCheck at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,33 +54,17 @@ public class UserContractDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        int cid = Integer.parseInt(request.getParameter("cid"));
-        int ip_id = Integer.parseInt(request.getParameter("ip_id"));
+        int contractID = Integer.parseInt(request.getParameter("contract_id"));
+        String contractStatus = request.getParameter("status");
         
-        if (ip_id == 1) {
-            ContractDAO  c = new ContractDAO();
-            ContractTNDS contract = c.getTNDSbyId(cid);
-            
-            User userContract = c.getUserInfoByName(contract.getFullname());
-            
-            request.setAttribute("contract", contract);
-            request.setAttribute("userContract", userContract);
-            request.getRequestDispatcher("Contract_detail.jsp").forward(request, response);
-        } else if(ip_id == 2) {
-            ContractDAO  c = new ContractDAO();
-            ContractVatchat contract = c.getVatchatbyId(cid);
-            //user info
-            User userContract = c.getUserInfoByName(contract.getFullname());
-            request.setAttribute("contract", contract);
-            request.setAttribute("userContract", userContract);
-            
-            //model price info
-            int modelPrice = c.getModelPrice(contract.getHieuxe(), contract.getHangxe());
-            request.setAttribute("modelPrice", modelPrice);
-            
-            request.getRequestDispatcher("Contract_detail2.jsp").forward(request, response);
+        ContractDAO cd = new ContractDAO();
+        if(cd.updateContractStatus(contractID, contractStatus)){
+            System.out.println("Update to db successful!");
         }
-        
+        else{
+            System.out.println("Update to db failed!");
+        }
+        response.sendRedirect("contract_request_list");
     } 
 
     /** 

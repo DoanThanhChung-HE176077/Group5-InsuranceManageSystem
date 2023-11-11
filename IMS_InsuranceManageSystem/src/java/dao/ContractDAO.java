@@ -51,10 +51,69 @@ public class ContractDAO extends DBContext {
             }
             return list;
         } catch (SQLException ex) {
-            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("getAllContractOfUser:" + ex.getMessage());
         }
         return null;
     }
+    
+    public ArrayList<NewC> getActiveContractOfUser(int id) {
+        try {
+            ArrayList<NewC> list = new ArrayList<>();
+            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where u.user_id =? and (contract_status='Active')";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                String user_fullname = rs.getString(10);
+                String ip_name = rs.getString(11);
+
+                list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+            }
+            return list;
+        } catch (SQLException ex) {
+            System.out.println("getActiveContractOfUser:" + ex.getMessage());
+        }
+        return null;
+    }
+    
+    public ArrayList<NewC> getExpiredContractOfUser(int id) {
+        try {
+            ArrayList<NewC> list = new ArrayList<>();
+            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where u.user_id =? and (contract_status='Expired')";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                String user_fullname = rs.getString(10);
+                String ip_name = rs.getString(11);
+
+                list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+            }
+            return list;
+        } catch (SQLException ex) {
+            System.out.println("getExpiredContractOfUser:" + ex.getMessage());
+        }
+        return null;
+    }
+    
 
     //for calim = dat trang thai la Active
     public ArrayList<Contract> getAllContractOfUserThatActive(int id) {
@@ -273,6 +332,87 @@ public class ContractDAO extends DBContext {
 
         }
         return null;
+    }
+    
+    public User getUserInfoByName (String fullname) {
+        try {
+            String sql = "SELECT * FROM Users WHERE user_fullname=?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, fullname);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = new User();
+                u.setUser_id(rs.getInt(1));
+                u.setUser_fullName(rs.getString(2));
+                u.setUser_email(rs.getString(3));
+                u.setUser_password(rs.getString(4));
+                u.setUser_dob(rs.getDate(5));
+                u.setUser_address(rs.getString(6));
+                u.setUser_phoneNum(rs.getString(7));
+                u.setUser_iden(rs.getString(8));
+                u.setUser_image(rs.getString(9));
+                u.setUser_role(rs.getString(10));
+                return u;
+            }
+            
+        }catch (Exception ex) {
+            System.out.println("getUserInfoByName:" + ex.getMessage());
+
+        }
+        return null;
+    }
+    
+//    Hàm chữa cháy vì contractVatChat thiếu giá xe
+    public int getBrandIDByName (String brandName) {
+        try {
+            String sql = "SELECT brand_id FROM Brands WHERE brand_name=?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, brandName);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        }catch (Exception ex) {
+            System.out.println("getBrandIDByName:" + ex.getMessage());
+        }
+        return 0;
+    }
+    
+    //    Hàm chữa cháy vì contractVatChat thiếu giá xe
+    public int getModelIDByName (String modelName) {
+        try {
+            String sql = "SELECT model_id FROM Models WHERE model_name=?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, modelName);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        }catch (Exception ex) {
+            System.out.println("getModelidByName:" + ex.getMessage());
+        }
+        return 0;
+    }
+    
+    //    Hàm chữa cháy vì contractVatChat thiếu giá xe
+    public int getModelPrice (String modelName, String brandName) {
+        int model_id = getModelIDByName(modelName);
+        int brand_id = getBrandIDByName(brandName);
+        
+        try {
+            String sql = "SELECT model_price FROM Models WHERE model_id=? AND brand_id=?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, model_id);
+            st.setInt(2, brand_id);
+            ResultSet rs = st.executeQuery();
+            
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        }catch (Exception ex) {
+            System.out.println("getModelPrice:" + ex.getMessage());
+        }
+        return 0;
     }
 
     public ContractVatchat getVatchatbyId(int id) {
