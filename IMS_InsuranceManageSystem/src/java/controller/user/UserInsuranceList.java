@@ -60,20 +60,29 @@ public class UserInsuranceList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
+        String status = request.getParameter("status");
+        
         User u = new User();
         
         HttpSession session = request.getSession();
         u = (User) session.getAttribute("user");
-        System.out.println("user insurance list check userID: "+ u.getUser_id());
+        System.out.println("UserInsuranceList.java check userID: "+ u.getUser_id());
         
         ContractDAO cd = new ContractDAO();
         
         NewC nC = new NewC();
         
-        ArrayList<NewC> cL = cd.getAllContractOfUser(u.getUser_id());
-        
-        request.setAttribute("contractList", cL);
-        
+        if (status.equals("active")) {
+            ArrayList<NewC> cL = cd.getActiveContractOfUser(u.getUser_id());
+            request.setAttribute("contractList", cL);
+        } else if (status.equals("expired")) {
+            ArrayList<NewC> cL = cd.getExpiredContractOfUser(u.getUser_id());
+            request.setAttribute("contractList", cL);
+        } else if (status.equals("all")) {
+            ArrayList<NewC> cL = cd.getAllContractOfUser(u.getUser_id());
+            request.setAttribute("contractList", cL);
+        }
         request.getRequestDispatcher("User_inslist.jsp").forward(request, response);
     } 
 

@@ -83,17 +83,20 @@ public class Staff_ContractRequest_detail extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         //processRequest(request, response);
-        int contractID = Integer.parseInt(request.getParameter("contract_id"));
-        String contractStatus = request.getParameter("status");
         
-        ContractDAO cd = new ContractDAO();
-        if(cd.updateContractStatus(contractID, contractStatus)){
-            System.out.println("Update to db successful!");
-        }
-        else{
-            System.out.println("Update to db failed!");
-        }
-        response.sendRedirect("contract_request_list");
+//        ĐÃ CHUYỂN QUA DOGET CỦA StaffContractRequestCheck.java
+
+//        int contractID = Integer.parseInt(request.getParameter("contract_id"));
+//        String contractStatus = request.getParameter("status");
+//        
+//        ContractDAO cd = new ContractDAO();
+//        if(cd.updateContractStatus(contractID, contractStatus)){
+//            System.out.println("Update to db successful!");
+//        }
+//        else{
+//            System.out.println("Update to db failed!");
+//        }
+//        response.sendRedirect("contract_request_list");
     }
 
     /** 

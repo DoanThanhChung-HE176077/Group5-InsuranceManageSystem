@@ -7,6 +7,9 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>JSP Page</title>
             <link rel="stylesheet" href="CSS/header.css" />
+            
+            
+            
             <!-- box incon -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -17,9 +20,6 @@
               iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/Zpi
               Bw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-            <!-- bootstrap -->
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 
 
         </head>
@@ -55,9 +55,7 @@
                     </div>-->
                     </li>
                     <li class="dropdown">
-
-                        <a  href="Introduce.jsp" >Giới thiệu</a>
-
+                        <a >Giới thiệu</a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-bs-toggle="dropdown">Thông tin</a>
@@ -93,7 +91,7 @@
                                 
                                 <!--phân quyền customer-->
                                 <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
-                                    <a class="dropdown-item" href="UserInsuranceList">Hợp đồng của tôi</a>
+                                    <a class="dropdown-item" href="UserInsuranceList?status=active">Hợp đồng của tôi</a>
                                 </c:if>
                                 
                                     <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
@@ -102,12 +100,12 @@
                                         
                                 <!--phân quyền staff-->
                                 <c:if test="${sessionScope.user.user_role.equals('Nhân viên')}">
-                                    <a class="dropdown-item" href="admin_dashboard">Bảng điều khiển</a>
+                                    <a class="dropdown-item" href="admin_dashboard">Trang quản lý</a>
                                 </c:if>
 
                                 <!--phân quyền admin-->
                                 <c:if test="${sessionScope.user.user_role.equals('Admin')}">
-                                    <a class="dropdown-item" href="admin_dashboard">Bảng điều khiển</a>
+                                    <a class="dropdown-item" href="admin_dashboard">Trang quản lý</a>
                                 </c:if>
 
 
@@ -149,7 +147,7 @@
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
                 crossorigin="anonymous"></script>
 
-
+                
 
         </body>
 

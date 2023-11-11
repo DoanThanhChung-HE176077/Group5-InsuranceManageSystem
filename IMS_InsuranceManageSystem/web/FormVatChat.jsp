@@ -10,9 +10,8 @@
         <title>Form Vat Chat</title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+        
+        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
               integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
               crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -69,6 +68,35 @@
                 color: grey;
                 /* Màu chữ mờ */
             }
+
+            .tooltip-container {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                .tooltip-content {
+                    position: absolute;
+                    background-color: #fdd12d;
+                    color: black;
+                    border: 1px solid #2c464f;
+                    border-radius: 4px;
+                    padding: 10px;
+                    z-index: 1;
+                    width: 200px;
+                    /*top: -30px; */
+                    left: 50%;
+                    transform: translateX(-50%);
+                    transition: opacity 0.1s ease-in-out, visibility 0.1s ease-in-out;
+                    opacity: 0;
+                    visibility: hidden;
+                }
+
+                .tooltip-container:hover .tooltip-content {
+                    opacity: 1;
+                    visibility: visible;
+                    transition-delay: 0.1s;
+                }
+
         </style>
 
     </head>
@@ -178,14 +206,18 @@
                                                 <label>
                                                     Gói bảo hiểm cơ bản<span class="errmsg" style="color: red;"> *</span>
                                                 </label>
-                                                <div style="float: right" tabindex="0" class="" data-toggle="tooltip" data-placement="top" title="Đây là tooltip cho gói bảo hiểm cơ bản :">
+                                                <div style="float: right" tabindex="0" class="tooltip-container" data-toggle="tooltip" data-placement="top">
                                                     <i class="fas fa-question-circle" style="pointer-events: none;"></i> 
+                                                    <div class="tooltip-content">
+                                                        Số tiền <b>tối đa</b> mà bảo hiểm sẽ bồi thường cho bạn theo tỉ lệ, không vượt quá <br>
+                                                        <b>100 triệu đồng</b> của gói bảo hiểm cơ bản
+                                                    </div>
                                                 </div>
 
                                                 <select class="general-dr abc" id="pack_percent"
                                                         name="send-pt_id">
                                                     <option id="mySelect" disabled selected>Lựa chọn gói
-                                                    </option>
+                                                    </option>to
                                                     <c:forEach items="${listPackT}" var="pt">
                                                         <option value="${pt.getPt_percent()}"
                                                                 id="${pt.getPt_id()}">${pt.getPt_percent()}%
@@ -215,10 +247,13 @@
                                         <!--------------------Muc khau tru------------------------->
                                         <div class="col-md-6">
                                             <div>
-
+                                                    
                                                 <label>Mức khấu trừ<span class="errmsg" style="color: red;"> *</span></label>
-                                                <div style="float: right" tabindex="0" class="" data-toggle="tooltip" data-placement="top" title="Đaya là tooltip cho mức khấu trừ:">
+                                                <div style="float: right" tabindex="0" class="tooltip-container" data-toggle="tooltip" data-placement="top">
                                                     <i class="fas fa-question-circle" style="pointer-events: none;"></i> 
+                                                    <div class="tooltip-content">
+                                                        Số tiền bạn sẽ <b>phải gánh chịu</b> khi xe máy bị thiệt hại, theo tỉ lệ
+                                                    </div>
                                                 </div>
 
                                                 <select class="general-dr abc" id="deduc_percent"
@@ -355,10 +390,18 @@
         </form>
 
         <!-- JavaScript code using jQuery for the dependent dropdown -->
-        <!--        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+                <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
-
+        <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+        
+        
         <script>
             updateCarModels();
             function updateCarModels() {

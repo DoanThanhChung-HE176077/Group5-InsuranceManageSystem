@@ -58,7 +58,7 @@
             }
             
             .right-info {
-                font-weight: bold;
+                text-shadow: 0px 0px 1px black;
             }
             
 
@@ -86,9 +86,9 @@
                                     <h4 style="text-align: center; font-weight: bold;">Chứng nhận bảo hiểm</h4>
                                     <br>
                                     <div style="text-align: center;">
-                                        <a href="" class="btn btn-warning">Đang hiệu lực</a>
-                                        <a href="" class="btn btn-warning">Hết hiệu lực</a>
-                                        <a href="" class="btn btn-warning">Tất cả</a>
+                                        <a href="UserInsuranceList?status=active" class="btn btn-warning">Đang hiệu lực</a>
+                                        <a href="UserInsuranceList?status=expired" class="btn btn-warning">Hết hiệu lực</a>
+                                        <a href="UserInsuranceList?status=all" class="btn btn-warning">Tất cả</a>
                                     </div>
                                     
                                     
@@ -124,18 +124,24 @@
                                                             <span class="right-info creationDateHere" id="creationDate">${cL.contract_endDate}</span>
                                                             <br>
                                                             <br>
-                                                            <span class="right-info">${cL.contract_status}</span>
+                                                            <c:if test="${cL.contract_status.equals('Active')}">
+                                                                <span class="right-info" style="">Còn hiệu lực</span>
+                                                            </c:if>
+                                                            <c:if test="${cL.contract_status.equals('Expired')}">
+                                                                <span class="right-info">Hết hạn</span>
+                                                            </c:if>
                                                         </div>
                                                         
                                                         
                                                     </div>
                                                     <div class="card-footer d-flex">
-                                                        <i class="fa-solid fa-user-shield fa-xl card-i"></i>
                                                         <c:if test="${cL.ip_id == 1}">
+                                                            <i class="fa-solid fa-user-shield fa-xl card-i"></i>
                                                             <span>Bảo hiểm TNDS</span>
                                                         </c:if>
                                                         
                                                         <c:if test="${cL.ip_id == 2}">
+                                                            <i class="fa-solid fa-motorcycle fa-xl card-i"></i>
                                                             <span>Bảo hiểm vật chất</span>
                                                         </c:if>
                                                         
@@ -193,7 +199,7 @@
                     var day = dateParts[0];
                     var month = dateParts[1];
                     var year = dateParts[2];
-                    var newDateFormat = year + '-' + month + '-' + day;
+                    var newDateFormat = year + '/' + month + '/' + day;
                     dateElements[i].textContent = newDateFormat;
                 }
             }
