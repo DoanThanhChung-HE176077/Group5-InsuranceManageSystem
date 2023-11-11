@@ -79,6 +79,7 @@ public class HandleRenew extends HttpServlet {
               dao.fixContract(cid,startDate,endDate);
                 dao.fixVatChat(f_id,startDate,endDate);
           }
+          request.getRequestDispatcher("UserInsuranceList?status=pending").forward(request, response);
     } else{
             request.getRequestDispatcher("listInsuranceProduct").forward(request, response);
         }

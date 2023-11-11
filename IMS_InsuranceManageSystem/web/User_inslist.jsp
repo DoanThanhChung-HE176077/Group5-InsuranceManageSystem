@@ -88,7 +88,7 @@
                                     <div style="text-align: center;">
                                         <a href="UserInsuranceList?status=active" class="btn btn-warning">Đang hiệu lực</a>
                                         <a href="UserInsuranceList?status=expired" class="btn btn-warning">Hết hiệu lực</a>
-                                        <a href="UserInsuranceList?status=all" class="btn btn-warning">Tất cả</a>
+                                        <a href="UserInsuranceList?status=pending" class="btn btn-warning">Đang chờ phê duyệt</a>
                                     </div>
                                     
                                     
@@ -130,6 +130,9 @@
                                                             <c:if test="${cL.contract_status.equals('Expired')}">
                                                                 <span class="right-info">Hết hạn</span>
                                                             </c:if>
+                                                                <c:if test="${cL.contract_status.equals('pending')}">
+                                                                <span class="right-info">Đang chờ phê duyệt</span>
+                                                            </c:if>
                                                         </div>
                                                         
                                                         
@@ -144,11 +147,13 @@
                                                             <i class="fa-solid fa-motorcycle fa-xl card-i"></i>
                                                             <span>Bảo hiểm vật chất</span>
                                                         </c:if>
-                                                        
-                                                        <a href="renewContract?cid=${cL.contract_id}&ip_id=${cL.ip_id}" style="text-decoration: none !important; color: #2c464f; margin-left: 150px; margin-right: 15px; transition: 0.3s;">
+                                                        <c:if test="${cL.contract_status.equals('Expired')}">
+                                                               <a href="renewContract?cid=${cL.contract_id}&ip_id=${cL.ip_id}" style="text-decoration: none !important; color: #2c464f; margin-left: 150px; margin-right: 15px; transition: 0.3s;">
                                                             Gia hạn
                                                         </a>
-                                                            <a href="UserContractDetail?cid=${cL.contract_id}&ip_id=${cL.ip_id}" style="text-decoration: none !important; color: #2c464f; transition: 0.3s;">
+                                                            </c:if>
+                                                        
+                                                            <a href="UserContractDetail?cid=${cL.contract_id}&ip_id=${cL.ip_id}" style="text-decoration: none !important; color: #2c464f; transition: 0.3s; margin-left: 10px">
                                                             Xem bản mềm
                                                         </a>
                                                     </div> 

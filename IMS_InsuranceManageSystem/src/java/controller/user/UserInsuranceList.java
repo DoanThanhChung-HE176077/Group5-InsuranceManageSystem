@@ -79,8 +79,8 @@ public class UserInsuranceList extends HttpServlet {
         } else if (status.equals("expired")) {
             ArrayList<NewC> cL = cd.getExpiredContractOfUser(u.getUser_id());
             request.setAttribute("contractList", cL);
-        } else if (status.equals("all")) {
-            ArrayList<NewC> cL = cd.getAllContractOfUser(u.getUser_id());
+        } else if (status.equals("pending")) {
+            ArrayList<NewC> cL = cd.getPendingContractOfUser(u.getUser_id());
             request.setAttribute("contractList", cL);
         }
         request.getRequestDispatcher("User_inslist.jsp").forward(request, response);
