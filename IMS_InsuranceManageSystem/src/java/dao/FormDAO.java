@@ -261,6 +261,68 @@ public class FormDAO extends DBContext {
         return null;
     }
 
+    public Form_TNDS getForm_TNDSById(int id) {
+        String sql = "SELECT TOP (1000) [ftnds_id]\n"
+                + "      ,[ftnds_loaiXe]\n"
+                + "      ,[ftnds_soMay]\n"
+                + "      ,[ftnds_bienXe]\n"
+                + "      ,[ftnds_soKhung]\n"
+                + "      ,[ftnds_startDate]\n"
+                + "      ,[ftnds_endDate]\n"
+                + "      ,[ftnds_mucTrachNhiem]\n"
+                + "      ,[ftnds_soNguoi]\n"
+                + "      ,[ftnds_tongChiPhi]\n"
+                + "      ,[user_id]\n"
+                + "      ,[ip_id]\n"
+                + "      ,[ftnds_status]\n"
+                + "  FROM [Form_TNDS] where ftnds_id = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next()) {
+                return (new Form_TNDS(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getDate(6), rs.getDate(7), rs.getString(8), rs.getString(9), rs.getString(10),
+                        rs.getInt(11), rs.getString(12), rs.getString(13)));
+            };
+
+        } catch (Exception E) {
+            System.out.println(E);
+        }
+        return null;
+    }
+    public Form_Vatchat getForm_VatChatById(int id) {
+        String sql = "SELECT *\n"
+                + "FROM [dbo].[Form_Vatchat]\n"
+                + "WHERE fvc_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(id, 1);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return (new Form_Vatchat(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getInt(8),
+                        rs.getInt(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13),
+                        rs.getString(14)
+                ));
+            };
+
+        } catch (Exception E) {
+
+        }
+        return null;
+    }
+
     public Form_Vatchat getForm_VatChat() {
         String sql = "SELECT *\n"
                 + "FROM [dbo].[Form_Vatchat]\n"
@@ -270,17 +332,17 @@ public class FormDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return (new Form_Vatchat(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                         rs.getInt(4),
-                         rs.getInt(5),
-                         rs.getString(6),
-                         rs.getString(7),
-                         rs.getInt(8),
-                         rs.getInt(9),
-                         rs.getString(10),
-                         rs.getString(11),
-                         rs.getString(12),
-                         rs.getString(13),
-                         rs.getString(14)
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getInt(8),
+                        rs.getInt(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13),
+                        rs.getString(14)
                 ));
             };
 
@@ -328,7 +390,7 @@ public class FormDAO extends DBContext {
         } catch (SQLException ex) {
             Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return  false;
+        return false;
     }
 
     //update fvc status after pay bill => paid
@@ -376,13 +438,12 @@ public class FormDAO extends DBContext {
         }
     }
 
-
-        public void insertContractTnds(Contract c) {
-        String sql = " INSERT INTO [Contract] \n" +
-"                ([contract_id],[user_id], [contract_startDate], [contract_endDate], [ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status])\n" +
-"                 VALUES \n" +
-"                   (((SELECT COALESCE(MAX(contract_id), 0) AS max_contract_id\n" +
-"                FROM[Contract])+1),?, ?, ?, ?, null,?, ?, 'Pending')";
+    public void insertContractTnds(Contract c) {
+        String sql = " INSERT INTO [Contract] \n"
+                + "                ([contract_id],[user_id], [contract_startDate], [contract_endDate], [ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status])\n"
+                + "                 VALUES \n"
+                + "                   (((SELECT COALESCE(MAX(contract_id), 0) AS max_contract_id\n"
+                + "                FROM[Contract])+1),?, ?, ?, ?, null,?, ?, 'Pending')";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -402,8 +463,8 @@ public class FormDAO extends DBContext {
 
     }
 
-        //insert to contract vatchat 
-     public boolean insertContractVatChat(Contract c) {
+    //insert to contract vatchat 
+    public boolean insertContractVatChat(Contract c) {
         String sql = " INSERT INTO [Contract] \n"
                 + "([contract_id],[user_id], [contract_startDate], [contract_endDate], [ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status])\n"
                 + "                 VALUES \n"
@@ -422,7 +483,7 @@ public class FormDAO extends DBContext {
             st.setInt(6, c.getTotal_price());
             st.executeUpdate();
 
-        return true;
+            return true;
         } catch (Exception e) {
             System.out.println("Errol insertContractVatChat:" + e);
             Logger.getLogger(FormDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -430,12 +491,6 @@ public class FormDAO extends DBContext {
         }
         return false;
     }
-
-
-     
-     
-     
-     
 
     //get branch by id
     public Brands getBranchById(int id) {
@@ -520,32 +575,58 @@ public class FormDAO extends DBContext {
         }
         return list;
     }
-     public  ArrayList< Form_Vatchat> getAllVatChat() {
+
+    public ArrayList< Form_Vatchat> getAllVatChat() {
         String sql = " select * from  Form_Vatchat";
         ArrayList<Form_Vatchat> list = new ArrayList<>();
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                list.add (new Form_Vatchat(rs.getInt(1), rs.getInt(2), rs.getInt(3),
-                         rs.getInt(4),
-                         rs.getInt(5),
-                         rs.getString(6),
-                         rs.getString(7),
-                         rs.getInt(8),
-                         rs.getInt(9),
-                         rs.getString(10),
-                         rs.getString(11),
-                         rs.getString(12),
-                         rs.getString(13),
-                         rs.getString(14)
+                list.add(new Form_Vatchat(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4),
+                        rs.getInt(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getInt(8),
+                        rs.getInt(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13),
+                        rs.getString(14)
                 ));
             };
 
         } catch (Exception E) {
             System.out.println("");
         }
-       return list;
+        return list;
+    }
+      public ArrayList<Contract> getAllContract() {
+        try {
+            ArrayList<Contract> list = new ArrayList<>();
+            String sql = "select * from Contract";
+            PreparedStatement ps = connection.prepareStatement(sql);
+           
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                list.add(new Contract(contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     // Xóa tất cả những thằng unpaid
 
@@ -561,29 +642,39 @@ public class FormDAO extends DBContext {
 
     public void checkExpiredContract() {
         String sql = "  UPDATE Form_TNDS\n"
-                + "SET ftnds_status = 'expired'\n"
+                + "SET ftnds_status = 'Expired'\n"
                 + "WHERE ftnds_endDate < GETDATE();";
+         String sql2 = "  UPDATE Contract\n"
+                + "SET contract_status = 'Expired'\n"
+                + "WHERE contract_endDate < GETDATE();";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+             PreparedStatement st2 = connection.prepareStatement(sql2);
+             st2.executeUpdate();
             st.executeUpdate();
         } catch (Exception E) {
             System.out.println(E);
         }
     }
-    
-     public void checkExpiredContractVatChat() {
+
+    public void checkExpiredContractVatChat() {
         String sql = "  UPDATE [Form_Vatchat]\n"
                 + "SET ftnds_status = 'expired'\n"
                 + "WHERE endDate < GETDATE();";
+         String sql2 = "  UPDATE Contract\n"
+                + "SET contract_status = 'Expired'\n"
+                + "WHERE contract_endDate < GETDATE();";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+             PreparedStatement st2 = connection.prepareStatement(sql2);
             st.executeUpdate();
+            st2.executeUpdate();
         } catch (Exception E) {
             System.out.println(E);
         }
     }
-    
-      public void deleteUnpaidVatChat() {
+
+    public void deleteUnpaidVatChat() {
         String sql = " delete from Form_Vatchat where fvc_status = 'unpaid'";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -592,28 +683,57 @@ public class FormDAO extends DBContext {
             System.out.println(E);
         }
     }
-      
-      
-      //get 1 form vc by fvc_id
-      public Form_Vatchat get1VatChat(int fvc_id) {
-          String sql = " select * from Form_Vatchat where fvc_id = ?";
-          try {
-              PreparedStatement st = connection.prepareStatement(sql);
-              st.setInt(1, fvc_id);
-              ResultSet rs = st.executeQuery();
-              if (rs.next()) {
-                  return new Form_Vatchat(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getInt(9), rs.getString(10), rs.getString(11), 
-                          rs.getString(12), rs.getString(13), rs.getString(14));
-              }
 
-          } catch (Exception E) {
+    public void fixContract(int cid, Date start, Date end) {
+        String sql = " UPDATE [Contract]\n"
+                + "SET contract_status = 'pending', contract_startDate = ?,contract_endDate = ?\n"
+                + "WHERE contract_id= ?;";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(3, cid);
+            st.setDate(1, start);
+            st.setDate(2, end);
+            st.executeUpdate();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public void fixTnds(int cid, Date start, Date end) {
+        String sql = " UPDATE [Form_TNDS]\n"
+                + "SET ftnds_status = 'paid', ftnds_startDate = ?,ftnds_endDate = ?\n"
+                    + "WHERE ftnds_id= ?;";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(3, cid);
+            st.setDate(1, start);
+            st.setDate(2, end);
+            st.executeUpdate();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
-          }
-          return null;
-          
-      }
-      
-      //get nhiều form vc có cùng 1 fvc_id
+    //get 1 form vc by fvc_id
+    public Form_Vatchat get1VatChat(int fvc_id) {
+        String sql = " select * from Form_Vatchat where fvc_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, fvc_id);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return new Form_Vatchat(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getInt(9), rs.getString(10), rs.getString(11),
+                        rs.getString(12), rs.getString(13), rs.getString(14));
+            }
+
+        } catch (Exception E) {
+
+        }
+        return null;
+
+    }
+
+    //get nhiều form vc có cùng 1 fvc_id
 //          public ArrayList<Form_Vatchat> getVatChatByVCId( int fvc_id) {
 //        try {
 //            ArrayList<Package_Type> getAllVcID = new ArrayList<>();
@@ -631,17 +751,13 @@ public class FormDAO extends DBContext {
 //        }
 //        return null;
 //    }
-
-
     public static void main(String[] args) {
-        
+
 //         dao.insertContractVatChat(new Contract(1, Date.valueOf("2004-04-04"),Date.valueOf("2005-05-05") , 1, 1, 1, 1));
         FormDAO dao = new FormDAO();
+          dao.getForm_VatChatById(1);
+          System.out.println(dao.getForm_VatChatById(1));
 
-
-
-        
-        
 //        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
 //        for (Deductible_Level deductible_Level : de) {
 //            System.out.println(de.toString());
@@ -655,6 +771,5 @@ public class FormDAO extends DBContext {
 //        String formattedDateTime = currentDateTime.format(formatter);
 //        // Print the current date and time
 //        System.out.println("Current Date and Time: " + formattedDateTime);
-
     }
 }
