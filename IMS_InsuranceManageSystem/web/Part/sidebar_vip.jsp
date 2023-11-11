@@ -12,12 +12,12 @@
         <title>side bar</title>
 <!--
          bootstrap5 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+-->        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
                 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>-->
+        crossorigin="anonymous"></script>
         
 
         <!-- font awesome -->
@@ -198,50 +198,6 @@
             }
         });
     </script>-->
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-    var myOffcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvas'));
 
-    myOffcanvas._element.addEventListener('show.bs.offcanvas', function (event) {
-        console.log('Offcanvas is being shown.');
-
-        // Ngăn chặn sự kiện lây lan
-        event.stopPropagation();
-
-        // Khi Offcanvas được mở, kiểm tra xem có bao nhiêu backdrop hiện tại
-        var backdropCount = document.getElementsByClassName('modal-backdrop').length;
-
-        // Nếu có nhiều hơn một backdrop, loại bỏ các backdrop không cần thiết
-        if (backdropCount > 1) {
-            var backdrops = document.querySelectorAll('.modal-backdrop:not(:last-of-type)');
-            backdrops.forEach(function (backdrop) {
-                backdrop.parentNode.removeChild(backdrop);
-            });
-        }
-    });
-
-    myOffcanvas._element.addEventListener('hidden.bs.offcanvas', function (event) {
-        console.log('Offcanvas is being hidden.');
-
-        // Ngăn chặn sự kiện lây lan
-        event.stopPropagation();
-
-        // Khi Offcanvas được đóng, kiểm tra xem còn bao nhiêu backdrop hiện tại
-        var backdropCount = document.getElementsByClassName('modal-backdrop').length;
-
-        // Nếu có nhiều hơn một backdrop, loại bỏ các backdrop không cần thiết
-        if (backdropCount > 1) {
-            var backdrops = document.querySelectorAll('.modal-backdrop:not(:last-of-type)');
-            backdrops.forEach(function (backdrop) {
-                backdrop.parentNode.removeChild(backdrop);
-            });
-        }
-    });
-});
-
-
-
-    </script>
 
 </html>
