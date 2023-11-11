@@ -137,11 +137,11 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    ĐỊA CHỈ: 
+                                                    ĐỊA CHỈ: ${userContract.user_address}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    ĐIỆN THOẠI:
+                                                    ĐIỆN THOẠI: ${userContract.user_phoneNum}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
