@@ -78,7 +78,7 @@ public class RenewContract extends HttpServlet {
     int ip_id;
     int f_id;
     long amount = 0;
-    int cid;
+    int cid ;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -101,16 +101,20 @@ public class RenewContract extends HttpServlet {
             request.getRequestDispatcher("RenewTNDS.jsp").forward(request, response);
         }
         if (ip_id == 2){
+            
+            System.out.println(cid);
             ContractDAO  c = new ContractDAO();
             FormDAO dao = new FormDAO();
             ContractVatchat contract = c.getVatchatbyId(cid);
             Form_Vatchat obj = dao.getForm_VatChatById(contract.getVatchat_id());
-            f_id= obj.getId();
+            System.out.println(obj);
+            f_id= obj.getFvc_id();
             request.setAttribute("obj", obj);
             request.setAttribute("hangXe", dao.getBranchById(obj.getBrand_id()).getBrand_name());
             request.setAttribute("hieuXe", dao.getModelById(obj.getModel_id()).getModel_name());
             request.setAttribute("pk", dao.getPakage_TypeById(obj.getPt_id()).getPt_percent());
             request.setAttribute("deduct", dao.getDeductible_LevelById(obj.getDeduc_id()).getDeduc_percent());
+            System.out.println(dao.getBranchById(obj.getBrand_id()).getBrand_name());
             request.getRequestDispatcher("RenewVatChat.jsp").forward(request, response);
         }
     } 
@@ -126,6 +130,7 @@ public class RenewContract extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         amount = Integer.parseInt(request.getParameter("amount")) * 100;
+        System.out.println(request.getParameter("fromDate"));
         Date fromDate = Date.valueOf(request.getParameter("fromDate"));
         Date toDate = Date.valueOf(request.getParameter("toDate"));
         System.out.println(fromDate+" "+ toDate);

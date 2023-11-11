@@ -295,11 +295,11 @@ public class FormDAO extends DBContext {
     }
     public Form_Vatchat getForm_VatChatById(int id) {
         String sql = "SELECT *\n"
-                + "FROM [dbo].[Form_Vatchat]\n"
+                + "FROM [Form_Vatchat]\n"
                 + "WHERE fvc_id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(id, 1);
+            st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return (new Form_Vatchat(rs.getInt(1), rs.getInt(2), rs.getInt(3),
@@ -713,6 +713,20 @@ public class FormDAO extends DBContext {
             System.out.println(e);
         }
     }
+    public void fixVatChat(int cid, Date start, Date end) {
+        String sql = " UPDATE [Form_VatChat]\n"
+                + "SET fvc_status = 'paid', startDate = ?, endDate = ?\n"
+                    + "WHERE fvc_id= ?;";
+        try{
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(3, cid);
+            st.setDate(1, start);
+            st.setDate(2, end);
+            st.executeUpdate();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
     //get 1 form vc by fvc_id
     public Form_Vatchat get1VatChat(int fvc_id) {
@@ -755,8 +769,8 @@ public class FormDAO extends DBContext {
 
 //         dao.insertContractVatChat(new Contract(1, Date.valueOf("2004-04-04"),Date.valueOf("2005-05-05") , 1, 1, 1, 1));
         FormDAO dao = new FormDAO();
-          dao.getForm_VatChatById(1);
-          System.out.println(dao.getForm_VatChatById(1));
+         
+          dao.fixVatChat(4,Date.valueOf("2025-05-05"),Date.valueOf("2026-05-05"));
 
 //        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
 //        for (Deductible_Level deductible_Level : de) {

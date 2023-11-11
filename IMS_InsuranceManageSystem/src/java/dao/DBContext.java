@@ -51,10 +51,10 @@ public class DBContext {
                                       >>>>>>>>>>>>>  NAM     <<<<<<<<<<<<
                                       >>>>>>>>>>>>>          <<<<<<<<<<<<
                                       ======= Edit SQL config here ========*/
-           
-           String user = "sa";
-           String pass = "123";
-           String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV5";
+//           
+//           String user = "sa";
+//           String pass = "123";
+//           String url = "jdbc:sqlserver://DESKTOP-GK6CSNF\\SQLEXPRESS:1433;databaseName=insurance-manage-systemV5";
 
 
 
@@ -64,9 +64,9 @@ public class DBContext {
                                       >>>>>>>>>>>>>          <<<<<<<<<<<<
                                       ======= Edit SQL config here ========*/
             
-//           String user = "sa";
-//            String pass = "123";
-//           String url = "jdbc:sqlserver://localhost:1433;databaseName=insurance-manage-systemV8";
+           String user = "sa";
+            String pass = "123";
+           String url = "jdbc:sqlserver://localhost:1433;databaseName=insurance-manage-systemV8";
 
 
 

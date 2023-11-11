@@ -76,7 +76,7 @@
     <body>
         <jsp:include page="Part/header.jsp"></jsp:include>
 
-            <form action="saveInfoTNDS" method="GET" style="margin-top: 100px ;" id="frmCreateOrder">
+            <form action="renewContract" method="GET" style="margin-top: 100px ;" id="frmCreateOrder">
                 <div class="container form_TNDS">
                     <div class="row">
                         <div class="col-md-8 info_motobike">
@@ -90,17 +90,10 @@
 
                                             <label>Hãng xe<span class="errmsg" style="color: red;"> *</span></label><br />
 
-                                            <select class="general-dr abc" id="motorBrands" name="send-brand_id"
-                                                    onchange="updateCarModels()">
-                                                <option id="mySelect" value="" disabled selected>Lựa chọn hãng xe
-                                                    của bạn</option>
-                                                <c:forEach items="${listBrands}" var="brand">
-                                                <option value="${brand.getBrand_id()}">${brand.getBrand_name()}
-
-                                                </option>
-                                            </c:forEach>
-
-                                        </select>
+                                            <input readonly="" value="${hangXe}" class="general-dr abc form-control" id="motorBrands" name="send-brand_id"/>
+                                                   
+                                                
+                                         
                                     </div>
                                     <!--------------------- Hieu xe --------------------->
                                     <div>
@@ -108,8 +101,8 @@
 
                                         <label>Hiệu xe <span class="errmsg" style="color: red;"> *</span></label>
 
-                                        <select class="general-dr abc" id="motorBrandModel" name="model_id">
-                                        </select>
+                                        <input readonly value="${hieuXe}" class="general-dr abc form-control" id="motorBrandModel" name="model_id"/>
+                                       
                                         <input type="hidden" name="send-model_id" value="" />
                                     </div>
                                     <!---------------------So may------------------------>
@@ -118,7 +111,7 @@
 
                                         <label>Số máy<span class="errmsg" style="color: red;"> *</span></label>
 
-                                        <input class="form-control" type="text" name="soMay">
+                                        <input readonly value="${obj.getFvc_deviceNum()}" class="form-control" type="text" name="soMay">
                                     </div>
                                     <p style="color: red; font-style: italic; font-weight: bold ">Người mua bảo
                                         hiểm cam kết cung cấp thông tin chính xác để đảm bảo quyền lợi bảo hiểm
@@ -132,7 +125,7 @@
 
                                         <label>Biển kiểm soát<span class="errmsg" style="color: red;"> *</span></label>
 
-                                        <input class="form-control" type="text" name="bienXe" required="">
+                                        <input readonly value="${obj.getFvc_deviceChassisNum()}" class="form-control" type="text" name="bienXe" required="">
                                     </div>
                                     <br>
                                     <!--------------------- so khung --------------------->
@@ -140,7 +133,7 @@
 
                                         <label>Số khung<span class="errmsg" style="color: red;"> *</span></label>
 
-                                        <input class="form-control" type="text" name="soKhung">
+                                        <input readonly  value="${obj.getFvc_licensePlates()}" class="form-control" type="text" name="soKhung"/>
                                     </div>
                                 </div>
                             </div>
@@ -155,18 +148,18 @@
 
                                         <label>Từ ngày<span class="errmsg" style="color: red;"> *</span></label>
 
-                                        <input class="form-control" required type="date"
-                                               placeholder="Default input" name="startDate" id="fromDate"
-                                               onchange="updateToDate()">
-                                        <p style="color: red; font-style: italic; font-weight: bold ">Người dùng
+                                        <input readonly value="${obj.getStartDate()}" class="form-control" required type="date"
+                                               placeholder="Default input" name="fromDate" id="fromDate"
+                                               >
+                                        <p  style="color: red; font-style: italic; font-weight: bold ">Người dùng
                                             vui lòng nhập ngày bắt đầu hợp đồng lớn hơn ngày hiện tại</p>
                                     </div>
                                     <div class="col-md-6">
 
                                         <label>Đến ngày<span class="errmsg" style="color: red;"> *</span></label>
 
-                                        <input class="form-control" type="date" placeholder="Default input"
-                                               name="endDate" id="toDate" readonly>
+                                        <input readonly value="${obj.getEndDate()}" class="form-control" type="date" placeholder="Default input"
+                                               name="toDate" id="toDate" readonly>
                                     </div>
                                 </div>
                                 <!--------------------Goi bao hiem co ban------------------------->
@@ -182,35 +175,13 @@
                                                     <i class="fas fa-question-circle" style="pointer-events: none;"></i> 
                                                 </div>
 
-                                                <select class="general-dr abc" id="pack_percent"
-                                                        name="send-pt_id">
-                                                    <option id="mySelect" disabled selected>Lựa chọn gói
-                                                    </option>
-                                                    <c:forEach items="${listPackT}" var="pt">
-                                                        <option value="${pt.getPt_percent()}"
-                                                                id="${pt.getPt_id()}">${pt.getPt_percent()}%
-                                                        </option>
-                                                    </c:forEach>
-                                                </select>
+                                                <input readonly value="${pk}%" class="general-dr abc form-control " id="pack_percent"/>
+                                                      
                                                 <input type="hidden" value="" class="send-pt_id"
                                                        name="send-pt_id1" />
                                             </div>
                                             <!--------------------Gia tri xe------------------------->
-                                            <div>
-                                                <br>
-                                                <label>Giá trị xe</label>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <input value="" name="motorBrandModel-price"
-                                                               class="form-control" type="text"
-                                                               id="motorBrandModel-price" readonly="readonly">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <input name="tax-fee" class="form-control" type="text"
-                                                               id="tax-fee" placeholder="" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           
                                         </div>
                                         <!--------------------Muc khau tru------------------------->
                                         <div class="col-md-6">
@@ -221,30 +192,16 @@
                                                     <i class="fas fa-question-circle" style="pointer-events: none;"></i> 
                                                 </div>
 
-                                                <select class="general-dr abc" id="deduc_percent"
-                                                        name="deduc_percent">
-                                                    <option id="mySelect" disabled selected>Lựa chọn mức khấu
-                                                        trừ</option>
-                                                        <c:forEach items="${listDeduc}" var="deduc">
-                                                        <option value="${deduc.getDeduc_percent()}"
-                                                                id="${deduc.getDeduc_id()}">
-                                                            ${deduc.getDeduc_percent()}%</option>
-                                                        </c:forEach>
-                                                </select>
+                                                <input readonly value="${deduct}%" class="general-dr abc form-control" id="deduc_percent"/>
+                                                       
                                                 <input type="hidden" value="" class="send-deduc_id"
                                                        name="send-deduc_id1" />
                                             </div>
-                                            <!------------------------Tong phi ------------------->
-                                            <div>
-                                                <br>
-                                                <label>Tổng phí</label>
-                                                <input class="form-control" id="total-fee" type="text" readonly
-                                                       placeholder="Tổng phí" name="send-fvc_totalPrice" value="">
-                                            </div>
+                                           
                                             <div>
                                                 <br>
                                                 <input class="form-control" id="inWord" type="text" readonly
-                                                       placeholder="Bằng chữ" value="">
+                                                       placeholder="" value="">
 
                                             </div>
                                         </div>
@@ -293,10 +250,11 @@
                                     <tr>
                                         <th>Tổng chi phí:</th>
                                         <td>
-                                            <p style="font-size: 20px;" type="text" id="submitFrom_bangso"
-                                               name="tong-chi-phi">
-
+                                            <p id="b"   style="font-size: 20px;" type="text"
+                                               name="tong-chi-phi">${obj.getTotalPrice()} VND
+                                                 
                                             </p>
+                                            <input  value="${obj.getTotalPrice()}" hidden class="form-control" readonly data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount"  name="amount" type="number" />
                                             <span
                                                 style=" float: left; font-style: italic; font-size: 10px;margin-top: -15px"
                                                 id="submitFrom_bangchu" name="bang-chu">
@@ -369,7 +327,7 @@
                 var submitUrl = $("#frmCreateOrder").attr("action");
                 console.log(postData);
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: submitUrl,
                     data: postData,
                     dataType: 'JSON',
@@ -388,7 +346,67 @@
                 });
                 return false;
             });
+            
+              //Đổi tiền sang số thập phân
+    function formatNumber(number) {
+    return number.toFixed(0).replace(/\d(?=(\d{3})+$)/g, '$&,');
+    }
+   
+    // Lấy phần tử input dựa trên id
+    
+     var b = document.getElementById("b");
+    // Format và gán lại giá trị của input
+   
+    b.innerHTML =  parseFloat(b.innerHTML).toLocaleString() ;
+    
+     var fromDateInput = document.getElementById('fromDate');
 
+    // Get the current value of fromDate
+    var fromDateValue = new Date(fromDateInput.value);
+
+    // Increase the year by 1
+    fromDateValue.setFullYear(fromDateValue.getFullYear() + 1);
+
+    // Format the new date to match the date input format
+    var fromValueRenew = fromDateValue.toISOString().split('T')[0];
+
+    // Set the new value to the toDate input element
+    document.getElementById('fromDate').value = fromValueRenew;
+//    -----------------------------------------------------
+     var toDateInput = document.getElementById('toDate');
+    // Get the current value of fromDate
+    var toDateValue = new Date(toDateInput.value);
+
+    // Increase the year by 1
+    toDateValue.setFullYear(fromDateValue.getFullYear() + 1);
+
+    // Format the new date to match the date input format
+    var toValueRenew = toDateValue.toISOString().split('T')[0];
+
+    // Set the new value to the toDate input element
+    document.getElementById('toDate').value = toValueRenew;
+    
+    function setCurrentDate() {
+                var currentDate = new Date();
+                var formattedDate = currentDate.toISOString().split('T')[0];
+                document.getElementById("creationDate").value = formattedDate;
+            }
+            setCurrentDate();
+
+            function changeDateFormat() {
+                var dateElements = document.getElementsByClassName("creationDateHere");
+
+                for (var i = 0; i < dateElements.length; i++) {
+                    var oldDateText = dateElements[i].textContent;
+                    var dateParts = oldDateText.split('-');
+                    var day = dateParts[0];
+                    var month = dateParts[1];
+                    var year = dateParts[2];
+                    var newDateFormat = year + '-' + month + '-' + day;
+                    dateElements[i].textContent = newDateFormat;
+                }
+            }
+            changeDateFormat();
 
 
 

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.formTNDS;
+package controller.user;
 
 import dao.FormDAO;
 import java.io.IOException;
@@ -64,15 +64,25 @@ public class HandleRenew extends HttpServlet {
           System.out.println(ip_id + " " +f_id);
           Date startDate = Date.valueOf(request.getParameter("fromDate"));
           Date endDate = Date.valueOf(request.getParameter("toDate"));
-          
+           String vnp_ResponseCode = request.getParameter("vnp_ResponseCode");
+        if(vnp_ResponseCode.equals("00")){
           if(ip_id == 1){
                  FormDAO dao = new FormDAO();
                  Form_TNDS obj = dao.getForm_TNDSById(f_id);
               dao.fixContract(cid,startDate,endDate);
                 dao.fixTnds(f_id,startDate,endDate);
           }
-    } 
-
+          if(ip_id == 2){
+              System.out.println(startDate+" "+ startDate);
+                 FormDAO dao = new FormDAO();
+                 Form_TNDS obj = dao.getForm_TNDSById(f_id);
+              dao.fixContract(cid,startDate,endDate);
+                dao.fixVatChat(f_id,startDate,endDate);
+          }
+    } else{
+            request.getRequestDispatcher("listInsuranceProduct").forward(request, response);
+        }
+}
     /** 
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request

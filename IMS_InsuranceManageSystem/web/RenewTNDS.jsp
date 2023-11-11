@@ -18,7 +18,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
         <jsp:include page="Part/header.jsp"></jsp:include>
@@ -37,7 +37,7 @@
                                     <div class="col-md-6">
                                         <div>
                                             <span> Loại xe</span><br/>
-                                            <input value="${obj.getLoaiXe()}" class="general-dr abc form-control" id="type" name="type">
+                                            <input readonly value="${obj.getLoaiXe()}" class="general-dr abc form-control" id="type" name="type">
                                             
 
                                        
@@ -45,18 +45,18 @@
                                     <div>
                                         <span>Số máy</span>
                                         <h1>${msg}</h1>
-                                        <input  value="${obj.getSoMay()}"  required="" class="form-control" type="text" name="soMay" >
+                                        <input  readonly value="${obj.getSoMay()}"  required="" class="form-control" type="text" name="soMay" >
                                     </div>
                                     <span style="color: hsl(29, 57%, 54%);">Bắt buộc cần nhập số biển kiểm soát</span>                        
                                 </div>
                                 <div class="col-md-6">
                                     <div>
                                         <span>Biển xe</span>
-                                        <input  value="${obj.getBienXe()}"  class="form-control" type="text" name="bienXe" required="" >
+                                        <input readonly  value="${obj.getBienXe()}"  class="form-control" type="text" name="bienXe" required="" >
                                     </div>                            
                                     <div>
                                         <span>Số khung</span>
-                                        <input value="${obj.getSoKhung()}" required="" class="form-control" type="text" name="soKhung">
+                                        <input readonly value="${obj.getSoKhung()}" required="" class="form-control" type="text" name="soKhung">
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <span>Từ ngày</span>
-                                        <input value="${obj.getStartDate()}"  class="form-control" required type="date" placeholder="Default input" name="fromDate" id="fromDate" onchange="updateToDate()" >
+                                        <input readonly value="${obj.getStartDate()}"  class="form-control" required type="date" placeholder="Default input" name="fromDate" id="fromDate" onchange="updateToDate()" >
                                     </div>
                                     <div class="col-md-6">
                                         <span>Đến ngày</span>
@@ -83,7 +83,7 @@
                                         <div class="col-md-6">
                                             <div>
                                                 <span> Mức trách nhiệm</span>
-                                                <input value="${obj.getMucTrachNhiem()}" class="general-dr abc form-control" id="level" name="level">
+                                                <input readonly="" value="${obj.getMucTrachNhiem()}" class="general-dr abc form-control" id="level" name="level">
                                                    
                                              
                                             </div>
@@ -102,14 +102,14 @@
                                         <div class="col-md-6">
                                             <div>
                                                 <span>Số người</span>
-                                                <input value="${obj.getSoNguoi()}" class="general-dr abc form-control" id="num" name="num">
+                                                <input readonly value="${obj.getSoNguoi()}" class="general-dr abc form-control" id="num" name="num">
                                                    
                                                 
                                             </div>                            
                                             <div>
                                                 <span>Tổng phí</span>
-                                                <input value="${obj.getTongChiPhi()}"  class="form-control" id="total-fee" type="number" readonly placeholder="" name="total" >
-                                                <input  value="${obj.getTongChiPhi()}" hidden class="form-control" readonly data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount"  name="amount" type="number" value="" />
+                                                <input readonly value="${obj.getTongChiPhi()}"  class="form-control" id="total-fee" type="number" readonly placeholder="" name="total" >
+                                                <input readonly  value="${obj.getTongChiPhi()}" hidden class="form-control" readonly data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount"  name="amount" type="number" value="" />
                                             </div>
                                         </div>
                                     </div>
@@ -208,6 +208,7 @@
                     console.log(x);
                     if (x.code === '00') {
                         if (window.vnpay) {
+                            
                             vnpay.open({width: 768, height: 600, url: x.data});
                         } else {
                             location.href = x.data;
