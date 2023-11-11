@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ContractTNDS;
 import model.ContractVatchat;
+import model.User;
 
 /**
  *
@@ -62,12 +63,24 @@ public class UserContractDetail extends HttpServlet {
         if (ip_id == 1) {
             ContractDAO  c = new ContractDAO();
             ContractTNDS contract = c.getTNDSbyId(cid);
+            
+            User userContract = c.getUserInfoByName(contract.getFullname());
+            
             request.setAttribute("contract", contract);
+            request.setAttribute("userContract", userContract);
             request.getRequestDispatcher("Contract_detail.jsp").forward(request, response);
         } else if(ip_id == 2) {
             ContractDAO  c = new ContractDAO();
             ContractVatchat contract = c.getVatchatbyId(cid);
+            //user info
+            User userContract = c.getUserInfoByName(contract.getFullname());
             request.setAttribute("contract", contract);
+            request.setAttribute("userContract", userContract);
+            
+            //model price info
+            int modelPrice = c.getModelPrice(contract.getHieuxe(), contract.getHangxe());
+            request.setAttribute("modelPrice", modelPrice);
+            
             request.getRequestDispatcher("Contract_detail2.jsp").forward(request, response);
         }
         
