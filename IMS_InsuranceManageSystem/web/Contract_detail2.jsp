@@ -141,11 +141,11 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    ĐỊA CHỈ: 
+                                                    ĐỊA CHỈ: ${userContract.user_address}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    ĐIỆN THOẠI:
+                                                    ĐIỆN THOẠI: ${userContract.user_phoneNum}
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
@@ -183,7 +183,7 @@
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    - Giá trị xe: 
+                                                    - Giá trị xe: <span class="totalPrice">${modelPrice}</span>
                                                 </p>
                                                  
                                                 
@@ -215,7 +215,7 @@
                                                 
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
-                                                    Phí bảo hiểm phải nộp (có VAT): ${contract.tongchiphi} đồng
+                                                    Phí bảo hiểm phải nộp (có VAT): <span class="totalPrice2">${contract.tongchiphi}</span>
                                                 </p>
                                                 
                                                 <p style="margin-left: 10px; margin-right: 10px;">
@@ -298,6 +298,22 @@
                 }
             }
             changeDateFormat();
+            
+            function updatePriceFormat() {
+                var tdElement = document.querySelector('.totalPrice');
+                var originalValue = tdElement.innerText;
+                var formattedValue = parseFloat(originalValue).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
+                tdElement.innerText = formattedValue;
+            }
+            updatePriceFormat();
+            
+            function updatePriceFormat2() {
+                var tdElement = document.querySelector('.totalPrice2');
+                var originalValue = tdElement.innerText;
+                var formattedValue = parseFloat(originalValue).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
+                tdElement.innerText = formattedValue;
+            }
+            updatePriceFormat2();
         </script>
  
     
