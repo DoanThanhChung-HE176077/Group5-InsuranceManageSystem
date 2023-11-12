@@ -55,20 +55,17 @@
                     </div>-->
                     </li>
                     <li class="dropdown">
-                        <a >Giới thiệu</a>
+                        <a href="Introduce.jsp" >Giới thiệu</a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-bs-toggle="dropdown">Thông tin</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <!-- Dropdown menu items -->
-                            <a class="dropdown-item" href="#">Thông tin bảo hiểm</a>
-                            <a class="dropdown-item" href="#">Tra cứu bảo hiểm</a>
+                           
                             <a class="dropdown-item" href="blog_home_show">Tin tức bảo hiểm</a>
                         </div>
                     </li>
-                    <li class="dropdown">
-                        <a class="" href="blog_home_show">Blog</a>
-                    </li>
+                    
                 </ul>
 
 

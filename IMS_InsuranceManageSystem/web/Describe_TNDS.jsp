@@ -206,13 +206,7 @@
     
            
         
-        <div class=" footer">
-
-           
-                <span>© Tổng Công ty Cổ phần Bảo hiểm Quân đội - MIC. Hotline: 1900 55 88 91</span>
-            
-           
-        </div>
+       
         </div>
     </body>
     
