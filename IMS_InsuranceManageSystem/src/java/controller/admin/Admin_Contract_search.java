@@ -3,25 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller.user;
+package controller.admin;
 
-import dao.FormDAO;
+import dao.ContractDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Date;
-import model.Form_TNDS;
+import java.util.ArrayList;
+import java.util.List;
+import model.NewC;
 
 /**
  *
- * @author Dell
+ * @author ADMIN
  */
-@WebServlet(name="HandleRenew", urlPatterns={"/HandleRenew"})
-public class HandleRenew extends HttpServlet {
+public class Admin_Contract_search extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -33,18 +32,30 @@ public class HandleRenew extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet HandleRenew</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet HandleRenew at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String txtname = request.getParameter("txtname");
+        ContractDAO cd = new ContractDAO();
+        ArrayList<NewC> list = cd.searchContract(txtname);
+        int page, numberpage=5;
+        int size = list.size();
+        int num = (size%5==0?(size/5):((size/5))+1);
+        String xpage = request.getParameter("page");
+        if (xpage == null){
+            page = 1;
+        }else{
+            page = Integer.parseInt(xpage);
         }
+        int start, end;
+        start = (page-1)*numberpage;
+        end = Math.min(page*numberpage,size);
+        List <NewC> listU= cd.getListbyPage(list, start, end);
+        request.setAttribute("listC", listU);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
+        request.setAttribute("txtname", txtname);
+        ArrayList<NewC> listNew = cd.getNewContract();
+        request.setAttribute("listNC", listNew);
+        request.getRequestDispatcher("Admin_Contract_search.jsp").forward(request, response);
+    
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,32 +69,9 @@ public class HandleRenew extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-          int ip_id = Integer.parseInt(request.getParameter("ip_id")) ;
-          int f_id =Integer.parseInt(request.getParameter("f_id"));
-          int cid = Integer.parseInt(request.getParameter("cid"));
-          System.out.println(ip_id + " " +f_id);
-          Date startDate = Date.valueOf(request.getParameter("fromDate"));
-          Date endDate = Date.valueOf(request.getParameter("toDate"));
-           String vnp_ResponseCode = request.getParameter("vnp_ResponseCode");
-        if(vnp_ResponseCode.equals("00")){
-          if(ip_id == 1){
-                 FormDAO dao = new FormDAO();
-                 Form_TNDS obj = dao.getForm_TNDSById(f_id);
-              dao.fixContract(cid,startDate,endDate);
-                dao.fixTnds(f_id,startDate,endDate);
-          }
-          if(ip_id == 2){
-              System.out.println(startDate+" "+ startDate);
-                 FormDAO dao = new FormDAO();
-                 Form_TNDS obj = dao.getForm_TNDSById(f_id);
-              dao.fixContract(cid,startDate,endDate);
-                dao.fixVatChat(f_id,startDate,endDate);
-          }
-          request.getRequestDispatcher("UserInsuranceList?status=pending").forward(request, response);
-    } else{
-            request.getRequestDispatcher("listInsuranceProduct").forward(request, response);
-        }
-}
+        processRequest(request, response);
+    } 
+
     /** 
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request

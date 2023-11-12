@@ -160,6 +160,10 @@
         <servlet-name>StaffContractRequestCheck</servlet-name>
         <servlet-class>controller.staff.StaffContractRequestCheck</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Admin_Contract_search</servlet-name>
+        <servlet-class>controller.admin.Admin_Contract_search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>blog_add</servlet-name>
         <url-pattern>/blog_add</url-pattern>
@@ -311,6 +315,10 @@
     <servlet-mapping>
         <servlet-name>StaffContractRequestCheck</servlet-name>
         <url-pattern>/StaffContractRequestCheck</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Admin_Contract_search</servlet-name>
+        <url-pattern>/Admin_Contract_search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

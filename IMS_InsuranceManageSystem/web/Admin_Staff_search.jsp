@@ -94,15 +94,11 @@
                                     <h2 style="display: inline-block;">Danh sách nhân viên</h2>
                                     <!--                                    go to blog page-->
 
-                                    <a href="admin_Users_list" class="my-btn btn btn-primary" style="margin-left: 200px;background-color: #076233">Quay lại</a>
+                                    <a href="admin_Staff_list" class="my-btn btn btn-primary" style="margin-left: 200px;background-color: #076233">Quay lại</a>
                                     <a href="admin_Staff_add" class="my-btn btn btn-primary" style="background-color: #24262b">Thêm nhân viên</a>
 
-                                    <form action="Admin_Staff_search" method="post" class="form-inline my-2 my-lg-0">
-
-                                        <a href="admin_Users_list" class="my-btn btn btn-primary" style="margin-left: 200px ; background: #367f59">Quay lại</a>
-                                        <a href="admin_Users_list" class="my-btn btn btn-primary" style="background: #2f2929">Thêm nhân viên</a>
-
-                                        <form action="admin_Users_search" method="post" class="form-inline my-2 my-lg-0">
+                                    
+                                        <form action="Admin_Staff_search" method="post" class="form-inline my-2 my-lg-0">
                                             <div class="input-group input-group-sm">
                                                 <input value ="${txtname}" name="txtname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                                             <div class="input-group-append">
@@ -140,7 +136,6 @@
                                                     <td>
                                                         <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: #B78181">Chỉnh sửa</a>
 
-                                                        <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: #DE8484">Chỉnh sửa</a>
                                                     </td>
                                                     <td>
                                                         <a href="Admin_Staff_delete?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: red">Xóa</a>
@@ -150,13 +145,14 @@
                                             <!-- Repeat rows for each blog post -->
                                         </tbody>
                                     </table>
-                                    <c:set var="page" value="${requestScope.page}"/>
-                                    <div class="pagination">
-                                        <c:forEach begin="${1}" end="${requestScope.num}" var="i">
-                                            <c:set var="currentPage" value="${i == page}"/>
-                                            <a href="admin_Staff_list?page=${i}" class="${currentPage ? 'current-page' : ''}">${i}</a>
-                                        </c:forEach>
-                                    </div>
+                                 <c:set var="txtname" value="${requestScope.txtname}"/>
+                                <c:set var="page" value="${requestScope.page}"/>
+<div class="pagination">
+    <c:forEach begin="${1}" end="${requestScope.num}" var="i">
+        <c:set var="currentPage" value="${i == page}"/>
+        <a href="Admin_Staff_search?page=${i}&txtname=${txtname}" class="${currentPage ? 'current-page' : ''}">${i}</a>
+    </c:forEach>
+</div>
                             </div>
 
                             <!-- Column 2: Edit History Table -->

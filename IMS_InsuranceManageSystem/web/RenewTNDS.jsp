@@ -65,7 +65,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <span>Từ ngày</span>
-                                        <input readonly value="${obj.getStartDate()}"  class="form-control" required type="date" placeholder="Default input" name="fromDate" id="fromDate" onchange="updateToDate()" >
+                                    <input readonly class="form-control" required type="date" placeholder="Default input" name="fromDate" id="fromDate" onchange="updateToDate()">
                                     </div>
                                     <div class="col-md-6">
                                         <span>Đến ngày</span>
@@ -222,26 +222,49 @@
             });
             return false;
         });
-         var fromDateInput = document.getElementById('fromDate');
+//        --------------------------------------------------
+//         
+    function updateToDate() {
+        // Get the 'fromDate' input element
+        var fromDateInput = document.getElementById('fromDate');
 
-    // Get the current value of fromDate
-    var fromDateValue = new Date(fromDateInput.value);
+        // Get the selected date from 'fromDate'
+        var selectedDate = fromDateInput.value;
 
-    // Increase the year by 1
-    fromDateValue.setFullYear(fromDateValue.getFullYear() + 1);
+        // Set the 'toDate' input field to the selected date
+        document.getElementById('toDate').value = selectedDate;
+    }
 
-    // Format the new date to match the date input format
-    var fromValueRenew = fromDateValue.toISOString().split('T')[0];
+    // Set the 'fromDate' input field to today's date
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    var yyyy = today.getFullYear();
 
-    // Set the new value to the toDate input element
-    document.getElementById('fromDate').value = fromValueRenew;
+    today = yyyy + '-' + mm + '-' + dd;
+    
+    document.getElementById('fromDate').value = today
+//        --------------------------------------------------
+//         var fromDateInput = document.getElementById('fromDate');
+//
+//    // Get the current value of fromDate
+//    var fromDateValue = new Date(fromDateInput.value);
+//
+//    // Increase the year by 1
+//    fromDateValue.setFullYear(fromDateValue.getFullYear() + 1);
+//
+//    // Format the new date to match the date input format
+//    var fromValueRenew = fromDateValue.toISOString().split('T')[0];
+//
+//    // Set the new value to the toDate input element
+//    document.getElementById('fromDate').value = fromValueRenew;
 //    -----------------------------------------------------
      var toDateInput = document.getElementById('toDate');
     // Get the current value of fromDate
-    var toDateValue = new Date(toDateInput.value);
+    var toDateValue = new Date();
 
     // Increase the year by 1
-    toDateValue.setFullYear(fromDateValue.getFullYear() + 1);
+    toDateValue.setFullYear(yyyy + 1);
 
     // Format the new date to match the date input format
     var toValueRenew = toDateValue.toISOString().split('T')[0];
@@ -281,7 +304,8 @@
     // Format và gán lại giá trị của input
     totalFeeInput.value = parseFloat(totalFeeInput.value).toLocaleString() ;
     b.innerHTML =  parseFloat(b.innerHTML).toLocaleString() ;
-
+    
+   
     
     </script>
 

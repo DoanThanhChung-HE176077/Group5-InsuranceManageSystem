@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 import model.InsuranceProduct;
 import model.NewC;
 
@@ -35,7 +36,22 @@ public class Admin_Contract_list extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         ContractDAO cd = new ContractDAO();
         ArrayList<NewC> list = cd.getAllContract();
-        request.setAttribute("listC", list);
+        int page, numberpage=5;
+        int size = list.size();
+        int num = (size%5==0?(size/5):((size/5))+1);
+        String xpage = request.getParameter("page");
+        if (xpage == null){
+            page = 1;
+        }else{
+            page = Integer.parseInt(xpage);
+        }
+        int start, end;
+        start = (page-1)*numberpage;
+        end = Math.min(page*numberpage,size);
+        List <NewC> listU= cd.getListbyPage(list, start, end);
+        request.setAttribute("listC", listU);
+        request.setAttribute("page", page);
+        request.setAttribute("num", num);
         ArrayList<NewC> listNew = cd.getNewContract();
         request.setAttribute("listNC", listNew);
         request.getRequestDispatcher("Admin_Contract_list.jsp").forward(request, response);
