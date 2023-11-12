@@ -36,31 +36,31 @@
         <link rel="stylesheet" href="CSS/admin_blog_dashboard.css"/>
         <style>
             .pagination {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
 
-.pagination a {
-    text-decoration: none;
-    padding: 5px 10px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    color: #333;
-}
+            .pagination a {
+                text-decoration: none;
+                padding: 5px 10px;
+                margin: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                color: #333;
+            }
 
-.current-page {
-    background-color: #333; /* Màu nền của trang hiện tại khi được chọn */
-    color: #fff; /* Màu chữ của trang hiện tại khi được chọn */
-    
-}
+            .current-page {
+                background-color: #333; /* Màu nền của trang hiện tại khi được chọn */
+                color: #fff !important; /* Màu chữ của trang hiện tại khi được chọn */
 
-.pagination a:hover {
-    background-color: #333;
-    color: #fff;
-}
+            }
+
+            .pagination a:hover {
+                background-color: #333;
+                color: #fff ;
+            }
 
 
         </style>
@@ -146,7 +146,7 @@
 <div class="pagination">
     <c:forEach begin="${1}" end="${requestScope.num}" var="i">
         <c:set var="currentPage" value="${i == page}"/>
-        <a href="admin_Users_search?page=${i}&txtname=${txtname}">${i}</a>
+        <a href="admin_Users_search?page=${i}&txtname=${txtname}" class="${currentPage ? 'current-page' : ''}"  >${i}</a>
     </c:forEach>
 </div>
 

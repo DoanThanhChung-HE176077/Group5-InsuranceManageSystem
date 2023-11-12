@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Claims;
@@ -226,7 +227,7 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
-
+    
     public ArrayList<NewC> getNewContract() {
         try {
             ArrayList<NewC> list = new ArrayList<>();
@@ -845,10 +846,39 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
+    public ArrayList<NewC> searchContract(String txtsearch) {
+        try {
+            ArrayList<NewC> list = new ArrayList<>();
+            String sql = "select [contract_id],u.[user_id],contract_startDate,contract_endDate,ip.[ip_id],[fvc_id],[ftnds_id],[total_price],[contract_status],user_fullname,ip_name from [Contract] c join Users u on c.user_id = u.user_id join Insurance_Products ip on c.ip_id=ip.ip_id where (contract_status='Active' or contract_status='Reject' or contract_status='Expired') and u.user_fullname like ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, "%" + txtsearch + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
 
+                int contract_id = rs.getInt(1);
+                int user_id = rs.getInt(2);
+                Date contract_startDate = rs.getDate(3);
+                Date contract_endDate = rs.getDate(4);
+                int ip_id = rs.getInt(5);
+                int fvc_id = rs.getInt(6);
+                int ftnds_id = rs.getInt(7);
+                int total_price = rs.getInt(8);
+                String contract_status = rs.getString(9);
+                String user_fullname = rs.getString(10);
+                String ip_name = rs.getString(11);
+
+                list.add(new NewC(user_fullname, ip_name, contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
+
+            }
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     public static void main(String[] args) {
         ContractDAO cd = new ContractDAO();
-        System.out.println(cd.getPendingContractOfUser(7));
+       
 //        ArrayList<Claims> cl = cd.getAllClaim();
 //        for (Claims claims : cl) {
 //            System.out.println(claims.toString());
@@ -876,8 +906,19 @@ public class ContractDAO extends DBContext {
 //        System.out.println(vc.toString());
 //        cd.updateCliamNO("1");
 //        cd.updateCliamYES("1");
+        ArrayList<NewC> list = cd.searchContract("Chung");
+        System.out.println(list);
        
 
+    }
+
+
+    public List<NewC> getListbyPage(List<NewC> list, int start, int end) {
+        ArrayList<NewC> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
     }
 
 }

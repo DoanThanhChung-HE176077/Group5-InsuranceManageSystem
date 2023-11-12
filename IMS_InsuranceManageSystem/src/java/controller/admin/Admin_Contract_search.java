@@ -6,7 +6,6 @@
 package controller.admin;
 
 import dao.ContractDAO;
-import dao.IPDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,14 +14,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
-import model.InsuranceProduct;
 import model.NewC;
 
 /**
  *
  * @author ADMIN
  */
-public class Admin_Contract_list extends HttpServlet {
+public class Admin_Contract_search extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,8 +32,9 @@ public class Admin_Contract_list extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String txtname = request.getParameter("txtname");
         ContractDAO cd = new ContractDAO();
-        ArrayList<NewC> list = cd.getAllContract();
+        ArrayList<NewC> list = cd.searchContract(txtname);
         int page, numberpage=5;
         int size = list.size();
         int num = (size%5==0?(size/5):((size/5))+1);
@@ -52,9 +51,11 @@ public class Admin_Contract_list extends HttpServlet {
         request.setAttribute("listC", listU);
         request.setAttribute("page", page);
         request.setAttribute("num", num);
+        request.setAttribute("txtname", txtname);
         ArrayList<NewC> listNew = cd.getNewContract();
         request.setAttribute("listNC", listNew);
-        request.getRequestDispatcher("Admin_Contract_list.jsp").forward(request, response);
+        request.getRequestDispatcher("Admin_Contract_search.jsp").forward(request, response);
+    
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

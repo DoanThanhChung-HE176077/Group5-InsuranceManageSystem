@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Danh sách hợp đồng</title>
+        <title>Tìm kiếm hợp đồng</title>
 
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -87,7 +87,7 @@
 
                                 <!-- Column 1: Blog Post Table -->
                                 <div class="my-column1 col-md-8">
-                                    <h2 style="display: inline-block;">Danh sách hợp đồng</h2>
+                                    <h2 style="display: inline-block;">Tìm kiếm hợp đồng</h2>
                                     <!--                                    go to blog page-->
                                     <form action="Admin_Contract_search" method="post" class="form-inline my-2 my-lg-0">
 
@@ -140,7 +140,7 @@
                                     <div class="pagination">
                                         <c:forEach begin="${1}" end="${requestScope.num}" var="i">
                                             <c:set var="currentPage" value="${i == page}"/>
-                                            <a href="Admin_Contract_list?page=${i}" class="${currentPage ? 'current-page' : ''}">${i}</a>
+                                            <a href="Admin_Contract_search?page=${i}&txtname=${txtname}" class="${currentPage ? 'current-page' : ''}">${i}</a>
                                         </c:forEach>
                                     </div>
                             </div>
