@@ -61,14 +61,14 @@
                         <a class="dropdown-toggle" data-bs-toggle="dropdown">Thông tin</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <!-- Dropdown menu items -->
-                            <a class="dropdown-item" href="#">Thông tin bảo hiểm</a>
-                            <a class="dropdown-item" href="#">Tra cứu bảo hiểm</a>
+<!--                            <a class="dropdown-item" href="#">Thông tin bảo hiểm</a>
+                            <a class="dropdown-item" href="#">Tra cứu bảo hiểm</a>-->
                             <a class="dropdown-item" href="blog_home_show">Tin tức bảo hiểm</a>
                         </div>
                     </li>
-                    <li class="dropdown">
+<!--                    <li class="dropdown">
                         <a class="" href="blog_home_show">Blog</a>
-                    </li>
+                    </li>-->
                 </ul>
 
 

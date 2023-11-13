@@ -18,33 +18,33 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
-         <jsp:include page="Part/header.jsp"></jsp:include>
-         <div class="content">
-       <div class="header-main container">
-            <div class="row">
-                <div class="col-md-4 header " id="sanpham">
+        <jsp:include page="Part/header.jsp"></jsp:include>
+        <div class="content">
+            <div class="header-main container">
+                <div class="row">
+                    <div class="col-md-4 header " id="sanpham">
 
-                    <span class="title">Mô tả sản phẩm</span>
+                        <span class="title">Mô tả sản phẩm</span>
 
+                    </div>
+
+                    <div class="col-md-4 header " id="quyenloi">
+                        <span class="title">Quyền lợi bảo hiểm</span>
+
+                    </div>
+
+                    <div class="col-md-4 header " id="phibaohiem">
+                        <span class="title">Phí bảo hiểm</span>
+
+                    </div>
                 </div>
 
-                <div class="col-md-4 header " id="quyenloi">
-                    <span class="title">Quyền lợi bảo hiểm</span>
-
-                </div>
-
-                <div class="col-md-4 header " id="phibaohiem">
-                    <span class="title">Phí bảo hiểm</span>
+                <div class="header-item">
+                    <span style="text-align: ce;">BẢO HIỂM TNDS XE MÁY</span> 
+                    <button onclick="window.location.href = 'HandleFormTNDS'"  >MUA NGAY</button>
 
                 </div>
             </div>
-
-            <div class="header-item">
-                <span style="text-align: ce;">BẢO HIỂM TNDS XE MÁY</span> 
-                <button onclick="window.location.href='HandleFormTNDS'"  >MUA NGAY</button>
-              
-            </div>
-        </div>
             <div  id="a" class=" container product-describe">
                 <p>
                     - Bảo hiểm trách nhiệm dân sự của chủ xe cơ giới đối với bên thứ ba là loại hình 
@@ -57,7 +57,7 @@
                 <span class="content-item">ĐỐI TƯỢNG ÁP DỤNG:</span><br/>
                 <ul style="padding-left: 17px; ">
                     <li>
-                        
+
                         - Chủ xe cơ giới tham gia giao thông trên lãnh thổ nước Cộng hòa xã hội chủ nghĩa Việt Nam.
                     </li>
                     <li>
@@ -115,125 +115,111 @@
                             - Thiệt hại đối với tài sản đặc biệt bao gồm: vàng, bạc, đá quý, các loại giấy tờ có giá trị như tiền, đồ cổ, tranh ảnh quý hiếm, thi hài, hài cốt.
                         </li>
                     </ul>
-                    
+
                 </div>
             </div>
-                    <div style="display: none;" id="c">
-                       
-                        <div data-id="XE2BL" class="container">
-                            <div class="block-post">
-                                <h3 class="under-title"><span>Phí bảo hiểm</span></h3>
-                                <p>
-                                    - Mức phí bảo hiểm theo quy định áp dụng cho 01 năm tại phụ lục số 01 ban hành kèm theo thông tư số 04/2021/TT-BTC có hiệu lực từ 01/3/2021 của Bộ Tài chính: Biểu phí BHBBTNDS
-                                </p>
-                                <p>
-                                    - Đối với các xe cơ giới được phép mua bảo hiểm có thời hạn dưới 01 năm (chi tiết các trường hợp được mua bảo hiểm dưới 01 năm theo thông tư số 22/2016/TT-BTC), cách tính cụ thể như sau:
-                                </p>
-                                <p class="tex-center">- Phí bảo hiểm năm theo loại xe cơ giới</p>
-                                <div class="text-center justify-content-center d-flex align-items-center">
-                                    <span style="margin: 0 5px;">Phí bảo hiểm phải nộp</span><span style="margin: 0 5px;">=</span>
-                                    <span style="margin: 0 5px;"><div style="border-bottom: 1px solid #000;">Phí bảo hiểm năm theo loại cơ giới</div><div>365(ngày)</div></span><span style="margin: 0 5px;">x</span>
-                                    <span style="margin: 0 5px;">Thời hạn được bảo hiểm (ngày)</span>
-                                </div>
-                                <br>
-                                <p>
-                                    - Trường hợp thời hạn được bảo hiểm từ 30 ngày trở xuống thì phí bảo hiểm phải nộp được tính bằng phí bảo hiểm năm theo loại xe cơ giới/(chia) cho 12 tháng.
-                                </p>
-                                <h3 class="under-title"><span>BIỂU PHÍ TRONG MỘT SỐ TRƯỜNG HỢP KHÁC</span></h3>
-                                <div class="ql_tieude">
-                                    <b style="color:orange; ">
-                                        1. Xe tập lái
-                                    </b>
-                                </div>
-                                <p>
-                                    - Tính bằng 120% của phí xe cùng chủng loại.
-                                </p>
-                                <div class="ql_tieude">
-                                    <b style="color:orange; ">
-                                        2. Xe Taxi
-                                    </b>
-                                </div>
-                                <p>
-                                    - Tính bằng 170% của phí xe kinh doanh cùng số chỗ ngồi.
-                                </p>
-                                <div class="ql_tieude">
-                                    <b style="color:orange; ">
-                                        3. Xe ô tô chuyên dùng
-                                    </b>
-                                </div>
-                                <ul style="padding-left: 17px; ">
-                                    <li>
-                                        - Phí bảo hiểm của xe cứu thương được tính bằng 120% phí bảo hiểm của xe pickup
-                                    </li>
-                                    <li>
-                                        - Phí bảo hiểm của xe chở tiền được tính bằng 120% phí bảo hiểm của xe dưới 6 chỗ ngồi.
-                                    </li>
-                                    <li>
-                                        - Phí bảo hiểm của các loại xe chuyên dùng khác được tính bằng 120% phí bảo hiểm của xe chở hàng cùng trọng tải.
-                                    </li>
-                                </ul>
-                                <div class="ql_tieude">
-                                    <b style="color:orange; ">
-                                        4. Đầu kéo rơ-moóc
-                                    </b>
-                                </div>
-                                <p>
-                                    - Tính bằng 150% của phí xe trọng tải trên 15 tấn. Phí bảo hiểm của xe đầu kéo rơ-moóc là phí của cả đầu kéo và rơ-moóc
-                                </p>
-                                <div class="ql_tieude">
-                                    <b style="color:orange; ">
-                                        5. Xe máy chuyên dùng
-                                    </b>
-                                </div>
-                                <p>
-                                    - Tính bằng 120% phí bảo hiểm của xe chở hàng dưới 3 tấn
-                                </p>
-                                <div class="ql_tieude">
-                                    <b style="color:orange; ">
-                                       
-                                    </b>
-                                </div>
-                                <p>
-                                    - Tính bằng phí bảo hiểm của xe không kinh doanh vận tải cùng số chỗ ngồi.
-                                </p>
-                            </div>
-                        </div>
-                        
-                       
-                        </div>
-         
-        
-    
-           
-        
-        <div class=" footer">
+            <div style="display: none;" id="c">
 
-           
-                <span>© Tổng Công ty Cổ phần Bảo hiểm Quân đội - MIC. Hotline: 1900 55 88 91</span>
-            
-           
-        </div>
+                <div data-id="XE2BL" class="container">
+                    <div class="block-post">
+                        <h3 class="under-title"><span>Phí bảo hiểm</span></h3>
+                        <p>
+                            - Mức phí bảo hiểm theo quy định áp dụng cho 01 năm tại phụ lục số 01 ban hành kèm theo thông tư số 04/2021/TT-BTC có hiệu lực từ 01/3/2021 của Bộ Tài chính: Biểu phí BHBBTNDS
+                        </p>
+                        <p>
+                            - Đối với các xe cơ giới được phép mua bảo hiểm có thời hạn dưới 01 năm (chi tiết các trường hợp được mua bảo hiểm dưới 01 năm theo thông tư số 22/2016/TT-BTC), cách tính cụ thể như sau:
+                        </p>
+                        <p class="tex-center">- Phí bảo hiểm năm theo loại xe cơ giới</p>
+                        <div class="text-center justify-content-center d-flex align-items-center">
+                            <span style="margin: 0 5px;">Phí bảo hiểm phải nộp</span><span style="margin: 0 5px;">=</span>
+                            <span style="margin: 0 5px;"><div style="border-bottom: 1px solid #000;">Phí bảo hiểm năm theo loại cơ giới</div><div>365(ngày)</div></span><span style="margin: 0 5px;">x</span>
+                            <span style="margin: 0 5px;">Thời hạn được bảo hiểm (ngày)</span>
+                        </div>
+                        <br>
+                        <p>
+                            - Trường hợp thời hạn được bảo hiểm từ 30 ngày trở xuống thì phí bảo hiểm phải nộp được tính bằng phí bảo hiểm năm theo loại xe cơ giới/(chia) cho 12 tháng.
+                        </p>
+                        <h3 class="under-title"><span>BIỂU PHÍ TRONG MỘT SỐ TRƯỜNG HỢP KHÁC</span></h3>
+                        <div class="ql_tieude">
+                            <b style="color:orange; ">
+                                1. Xe tập lái
+                            </b>
+                        </div>
+                        <p>
+                            - Tính bằng 120% của phí xe cùng chủng loại.
+                        </p>
+                        <div class="ql_tieude">
+                            <b style="color:orange; ">
+                                2. Xe Taxi
+                            </b>
+                        </div>
+                        <p>
+                            - Tính bằng 170% của phí xe kinh doanh cùng số chỗ ngồi.
+                        </p>
+                        <div class="ql_tieude">
+                            <b style="color:orange; ">
+                                3. Xe ô tô chuyên dùng
+                            </b>
+                        </div>
+                        <ul style="padding-left: 17px; ">
+                            <li>
+                                - Phí bảo hiểm của xe cứu thương được tính bằng 120% phí bảo hiểm của xe pickup
+                            </li>
+                            <li>
+                                - Phí bảo hiểm của xe chở tiền được tính bằng 120% phí bảo hiểm của xe dưới 6 chỗ ngồi.
+                            </li>
+                            <li>
+                                - Phí bảo hiểm của các loại xe chuyên dùng khác được tính bằng 120% phí bảo hiểm của xe chở hàng cùng trọng tải.
+                            </li>
+                        </ul>
+                        <div class="ql_tieude">
+                            <b style="color:orange; ">
+                                4. Đầu kéo rơ-moóc
+                            </b>
+                        </div>
+                        <p>
+                            - Tính bằng 150% của phí xe trọng tải trên 15 tấn. Phí bảo hiểm của xe đầu kéo rơ-moóc là phí của cả đầu kéo và rơ-moóc
+                        </p>
+                        <div class="ql_tieude">
+                            <b style="color:orange; ">
+                                5. Xe máy chuyên dùng
+                            </b>
+                        </div>
+                        <p>
+                            - Tính bằng 120% phí bảo hiểm của xe chở hàng dưới 3 tấn
+                        </p>
+                        <div class="ql_tieude">
+                            <b style="color:orange; ">
+
+                            </b>
+                        </div>
+                        <p>
+                            - Tính bằng phí bảo hiểm của xe không kinh doanh vận tải cùng số chỗ ngồi.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
-    
+
     <script>
-             document.getElementById('sanpham').addEventListener('click', function() {
+        document.getElementById('sanpham').addEventListener('click', function () {
             document.getElementById('a').style.display = 'block';
-            
+
             document.getElementById('b').style.display = 'none';
             document.getElementById('c').style.display = 'none';
         });
 
-        document.getElementById('quyenloi').addEventListener('click', function() {
+        document.getElementById('quyenloi').addEventListener('click', function () {
             document.getElementById('b').style.display = 'block';
             document.getElementById('a').style.display = 'none';
             document.getElementById('c').style.display = 'none';
         });
 
-        document.getElementById('phibaohiem').addEventListener('click', function() {
+        document.getElementById('phibaohiem').addEventListener('click', function () {
             document.getElementById('c').style.display = 'block';
             document.getElementById('a').style.display = 'none';
             document.getElementById('b').style.display = 'none';
         });
-        </script>
+    </script>
 </html>

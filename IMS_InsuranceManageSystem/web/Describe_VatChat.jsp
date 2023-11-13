@@ -218,12 +218,7 @@
 
         </div>
 
-        <div class=" footer" id="d">
 
-            <span>© Tổng Công ty Cổ phần Bảo hiểm  - IMS. Hotline: 1900
-                55 88 91</span>
-
-        </div>
         <script>
              document.getElementById('sanpham').addEventListener('click', function() {
             document.getElementById('a').style.display = 'block';
