@@ -51,8 +51,8 @@ public class Admin_IP_detail extends HttpServlet {
 //    
         int id = Integer.parseInt(request.getParameter("ip_id"));
         IPDAO  ip = new IPDAO();
-        int income1 = ip.getIncomebyID(1);
-        int income2 = ip.getIncomebyID(2);
+        int income1 = ip.getIncomeTNDS();
+        int income2 = ip.getIncomeVatchat();
         InsuranceProduct detail = ip.getIPbyID(id);
         request.setAttribute("detail", detail);
         request.setAttribute("income1", income1);

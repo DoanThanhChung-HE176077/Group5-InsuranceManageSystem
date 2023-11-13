@@ -15,6 +15,7 @@
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/ListProductInsurance.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/blog/Blog_edit.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_blog_dashboard.jsp</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/IPDAO.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Staff_add.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Users_list.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Staff_delete.java</file>
@@ -27,8 +28,10 @@
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Staff_load.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Part/header.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Blog_home.jsp</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Staff_list.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Staff_update.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/HandleFormVatChat.java</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Contract_search.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Contract_list.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Contract_detail.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Users_search.jsp</file>
@@ -37,6 +40,7 @@
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Staff_add.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/FormVatChat.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/Contract.java</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Staff_ContractRequest_detail.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/FormDAO.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Contract_list.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/ContractDAO.java</file>
@@ -60,6 +64,7 @@
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_IP_detail.java</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Home.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/NewBl.java</file>
+            <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Contract_search.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_Staff_list.jsp</file>
             <file>file:/D:/Ki5/SWP391/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/admin/Admin_Staff_update.java</file>
         </group>

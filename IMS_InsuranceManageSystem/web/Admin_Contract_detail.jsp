@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
         <link rel="stylesheet" href="CSS/admin_blog_dashboard.css"/>
-
+        
     </head>
     <body>
 
@@ -186,9 +186,9 @@
                             </li>
                             
                             <li class="list-group-item">
-                                <span class="detail-label">Tổng chi phí:</span>
+    <span class="detail-label">Tổng chi phí:</span>
                                 <span>${contract.tongchiphi}</span>
-                            </li>
+</li>
                             <li class="list-group-item">
                                 <span class="detail-label">Trạng thái:</span>
                                 <span>${contract.trangthai}</span>
@@ -255,5 +255,6 @@ for (var i = 0; i < trangThaiSpans.length; i++) {
 }
 
 </script>
+
     </body>
 </html>
