@@ -57,21 +57,21 @@
                         <div class="container mt-5">
                             <div class="my-row row">
                                 <!-- Column 1: Blog Post Table -->
-                                <div class="my-column1 col-md-6">
-                                    <h2 style="display: inline-block;">Blog Posts Manage</h2>
+                                <div class="my-column1 col-md-12">
+                                    <h2 style="display: inline-block;">Quản lý bài viết</h2>
 <!--                                    go to blog page-->
-                                    <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="blog_home_show" style="text-decoration: none; color: #fff;">Go to Blog</a>
+                                    <button class="btn btn-success mb-3 " style="margin-left: 800px" >
+                                        <a href="blog_home_show" style="text-decoration: none; color: #fff;">Đi đến trang bài viết</a>
                                     </button>
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Blog Title</th>
-                                                <th>Author</th>
-                                                <th>Date Created</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Tiêu đề</th>
+                                                <th>Tác giả</th>
+                                                <th>Ngày viết</th>
+                                                <th>Trạng thái</th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -100,39 +100,14 @@
                                 </table>
 
                                 <!-- Create Post Button -->
-                                <button class="btn btn-success mb-3" data-toggle="modal" data-target="#createModal">
-                                    <a href="blog_add" style="text-decoration: none; color: #fff;">Create Post</a>
-                                </button>
+                                <c:if test="${sessionScope.user.getUser_role().equals('Nhân viên')}">
+                                    <button class="btn btn-success mb-3" data-toggle="modal" data-target="#createModal">
+                                        <a href="blog_add" style="text-decoration: none; color: #fff;">Tạo bài viết</a>
+                                    </button>
+                                </c:if>
+                                
                             </div>
 
-                            <!-- Column 2: Edit History Table -->
-                            <div class="my-column1 col-md-6">
-                                <h2 style="display: inline-block;">Edit History</h2>
-                                <!-- togler -->
-
-                                <!-- Edit History Table -->
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Blog Title</th>
-                                            <th>Editor</th>
-                                            <th>Description</th>
-                                            <th>Edit Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Example edit history rows, you can use a loop to generate rows dynamically -->
-                                        <tr>
-                                            <td>Sample Blog Post 1</td>
-                                            <td>John Doe</td>
-                                            <td>Updated title and added new content.</td>
-                                            <td class="creationDateHere" id="creationDate">2023-10-01</td>
-                                        </tr>
-
-                                        <!-- Repeat rows for each edit history entry -->
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>

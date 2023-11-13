@@ -95,7 +95,7 @@
                                 </div>
                                 <!--blog tag-->
                                 <div class="mb-3">
-                                    <label for="tags" class="form-label">Choose Tag</label>
+                                    <label for="tags" class="form-label">Chọn Tag</label>
                                     <input type="text" class="form-control" id="tag" value="${blog.getBl_tag_tagname()}" disabled="">
                                     <select class="form-select" id="blogTag" name="blogTag" hidden="">
                                         <c:forEach items="${listTag}" var="tag">
@@ -126,19 +126,22 @@
                                     <div class="form-check" hidden="" id="blogStatus">
                                         <input class="form-check-input" type="radio" id="active" name="status" value="Active">
                                         <label class="form-check-label" for="active">
-                                            Active
+                                            Có hiệu lực
                                         </label>
                                     </div>
                                     <div class="form-check" hidden="" id="blogStatus1">
                                         <input class="form-check-input" type="radio" id="disable" name="status" value="Disable">
                                         <label class="form-check-label" for="disable">
-                                            Disable
+                                            Vô hiệu hóa
                                         </label>
                                     </div>
                                 </div>
                                 <!-- Submit Button -->
-                                <button class="btn btn-primary" type="button" id="editButton">Edit blog</button>
-                                <input class="btn btn-primary" onclick="createCourse()" type="submit" id="saveButton" value="Save" hidden>
+                                <button class="btn btn-primary" type="button" id="editButton">Sửa bài viết</button>
+                                <input class="btn btn-primary" onclick="createCourse()" type="submit" id="saveButton" value="Lưu" hidden>
+                                <a type="button" href="blog_list" class="btn btn-secondary mybtn">
+                                    Trở lại
+                                </a>
                             </form>
                             
                         </div>

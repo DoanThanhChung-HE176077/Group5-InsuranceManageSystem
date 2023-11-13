@@ -111,18 +111,21 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" id="active" name="status" value="Active" required>
                                         <label class="form-check-label" for="active">
-                                            Active
+                                            Có hiệu lực
                                         </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" id="disable" name="status" value="Disable" required>
                                         <label class="form-check-label" for="disable">
-                                            Disable
+                                            Vô hiệu hóa
                                         </label>
                                     </div>
                                 </div>
                                 <!-- Submit Button -->
-                                <input class="btn btn-primary" onclick="createCourse()" type="submit" id="submit"value="Create Blog" >
+                                <input class="btn btn-primary" onclick="createCourse()" type="submit" id="submit"value="Tạo bài viết" >
+                                <a type="button" href="blog_list" class="btn btn-secondary mybtn">
+                                    Trở lại
+                                </a>
                             </form>
                         </div>
                     </div>

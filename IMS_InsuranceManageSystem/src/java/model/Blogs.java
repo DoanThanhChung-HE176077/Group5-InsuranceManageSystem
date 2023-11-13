@@ -121,7 +121,11 @@ public class Blogs {
     }
 
     public String getBl_status() {
-        return bl_status;
+        if(bl_status.equals("Active")){
+            return "Có hiệu lực";
+        }else {
+            return "Vô hiệu hóa";
+        }
     }
 
     public void setBl_status(String bl_status) {

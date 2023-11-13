@@ -225,10 +225,9 @@
                                 <a type="submit" href="StaffContractRequestCheck?status=Reject" class="btn btn-danger mybtn" id="denyBtn">
                                     Từ chối
                                 </a>
-                                <a type="submit" href="StaffContractRequestCheck?status=Active" class="btn btn-success mybtn" id="approveBtn" style="margin-right: 153px">
+                                <a type="submit" href="StaffContractRequestCheck?status=Active" class="btn btn-success mybtn" id="approveBtn">
                                     Phê duyệt
                                 </a>
-                                <button type="button" class="btn btn-info mybtn " >Chi tiết khách hàng</button>
                             </div>
                         </div>
 

@@ -80,7 +80,7 @@
                                                  <fmt:formatNumber value="${pList.getTotal_price()}" pattern="#,##0" var="formattedTongChiPhi" />
                                                 <td>${formattedTongChiPhi}VND</td>
                                                 <td>
-                                                    <c:if test="${pList.getContract_status() eq 'pending'}">
+                                                    <c:if test="${pList.getContract_status() eq 'Pending'}">
                                                     Đang chờ duyệt
                                                     </c:if>
                                                 </td>
