@@ -72,7 +72,7 @@ public class HandleFormVatChat extends HttpServlet {
         request.setAttribute("listDeduc", listDeduc);
         request.setAttribute("listPackT", listPackT);
          request.setAttribute("msg", msg);
-         System.out.println("2"+msg);
+        
         request.getRequestDispatcher("FormVatChat.jsp").forward(request, response);
     } 
 

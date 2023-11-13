@@ -5,6 +5,7 @@
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -60,7 +61,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Khách hàng</th>
-                                                <th>Tên sản phẩm</th>
+                                                <th>Loại hợp đồng</th>
                                                 <th>Ngày bắt đầu</th>
                                                 <th>Ngày kết thúc</th>
                                                 <th>Thanh toán</th>
@@ -76,8 +77,13 @@
                                                 <td>${pList.getIp_name()}</td>
                                                 <td class="creationDateHere" id="creationDate">${pList.getContract_startDate()}</td>
                                                 <td class="creationDateHere" id="creationDate">${pList.getContract_endDate()}</td>
-                                                <td>${pList.getTotal_price()}d</td>
-                                                <td>${pList.getContract_status()}</td>
+                                                 <fmt:formatNumber value="${pList.getTotal_price()}" pattern="#,##0" var="formattedTongChiPhi" />
+                                                <td>${formattedTongChiPhi}VND</td>
+                                                <td>
+                                                    <c:if test="${pList.getContract_status() eq 'pending'}">
+                                                    Đang chờ duyệt
+                                                    </c:if>
+                                                </td>
                                                 <td>
                                                     <!-- Detail Button -->
                                                     <a href="contract_request_detail?contract_id=${pList.getContract_id()} " class="my-btn btn btn-primary">Chi tiết</a>
@@ -99,7 +105,7 @@
                                     <thead>
                                         <tr>
                                             <th>Khách hàng</th>
-                                            <th>Tên sản phẩm</th>
+                                            <th>Loại hợp đồng</th>
                                             <th>Ngày bắt đầu</th>
                                             <th>Ngày kết thúc</th>
                                         </tr>
