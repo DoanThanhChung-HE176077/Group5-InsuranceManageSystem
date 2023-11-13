@@ -117,12 +117,16 @@
 
                     <div class="offcanvas-body px-0">
                         <ul class="list-group">
-
-
                             <li class="list-group-item my-btn1">
                                 <a href="/IMS_InsuranceManageSystem/" class="my-sidebar-item">
                                     <i class="fas fa-home"></i>
                                     <span>Trang Chủ</span>
+                                </a>
+                            </li>
+                            <li class="list-group-item my-btn1">
+                                <a href="Admin_dashboard.jsp" class="my-sidebar-item">
+                                    <i class="fa-solid fa-gauge"></i>
+                                    <span style="margin-left: 3px;">Dashboard</span>
                                 </a>
                             </li>
                             <li class="list-group-item my-btn1">
