@@ -6,6 +6,7 @@
 package controller.home;
 
 import dao.UserDAO;
+import jakarta.mail.MessagingException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -13,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static model.SendVerifyCodeMail.sendMail;
 
 /**
  *
@@ -92,6 +95,11 @@ public class Register extends HttpServlet {
         String password = request.getParameter("input-password");
         String repassword = request.getParameter("input-repassword");
         
+        
+        HttpSession session=request.getSession();
+        
+//        String sysOtp = (String) session.getAttribute("sysOtp");
+        
         System.out.println(phoneNum);
         System.out.println(mail);
         System.out.println(dob);
@@ -117,24 +125,73 @@ public class Register extends HttpServlet {
         if (password == null ? repassword != null : !password.equals(repassword)) {
             errorMessages.put("input-password", (password == null || !password.equals(repassword)) ? "Nhập lại mật khẩu sai" : null);
         }
-//        if ("Số điện thoại không hợp lệ".equals(checkPhoneNumber(phoneNum))) {
-//            errorMessages.put("input-phoneNum", checkPhoneNumber(phoneNum));
-//        }
-//        if ("Email không hợp lệ".equals(checkEmail(mail))) {
-//            errorMessages.put("input-mail", checkEmail(mail));
-//        }
-//        if ("Số căn cước công dân không hợp lệ".equals(checkIdentityCardNumber(iden))) {
-//            errorMessages.put("input-iden", checkIdentityCardNumber(iden));
-//        }
-//        if (password == null ? repassword != null : !password.equals(repassword)) {
-//            errorMessages.put("input-password", (password == null || !password.equals(repassword)) ? "Nhập lại mật khẩu sai" : null);
-//
-//        }
+        
 
         if (!errorMessages.isEmpty()) {
             request.setAttribute("errorMessages", errorMessages);
             doGet(request, response);
-        } else {
+        } else if ((String) session.getAttribute("sysOtp") == null) {
+            
+            String otp = generateVerifyCode();
+
+            try {
+                //verify code
+//                sendMail(otp, "namchik03@gmail.com");
+                sendMail(otp, mail);
+            } catch (MessagingException ex) {
+                Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //set otp
+//            request.setAttribute("sysOtp", otp);
+        
+            session.setAttribute("sysOtp", otp);
+            
+            String sysOtp = (String) session.getAttribute("sysOtp");
+            System.out.println("sysOtp: " + sysOtp);
+            
+            //set input again
+            request.setAttribute("phoneNum", phoneNum);
+            request.setAttribute("mail", mail);
+            request.setAttribute("fullname", fullname);
+            request.setAttribute("dob", dob);
+            request.setAttribute("address", address);
+            request.setAttribute("iden", iden);
+            request.setAttribute("pass", password);
+            request.setAttribute("repass", repassword);
+            
+            request.setAttribute("otpStatus", "1");
+            
+            
+            doGet(request, response);
+            
+            
+        } else {  
+            
+            String inputOtp = request.getParameter("input-otp");
+            String sysOtp = (String) session.getAttribute("sysOtp");
+            
+            if (!inputOtp.equals(sysOtp) || inputOtp==null) {
+                errorMessages.put("input-otp", "Sai OTP");
+                System.out.println("loi regis otp: " + inputOtp);
+                request.setAttribute("errorMessages", errorMessages);
+
+                //set input again
+                request.setAttribute("phoneNum", phoneNum);
+                request.setAttribute("mail", mail);
+                request.setAttribute("fullname", fullname);
+                request.setAttribute("dob", dob);
+                request.setAttribute("address", address);
+                request.setAttribute("iden", iden);
+                request.setAttribute("pass", password);
+                request.setAttribute("repass", repassword);
+                
+                request.setAttribute("otpStatus", "1");
+
+                doGet(request, response);
+            }
+            
+            
             //input date
             SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd/MM/yyyy");
             
@@ -173,21 +230,15 @@ public class Register extends HttpServlet {
     }
     
     
-//    public static String checkFullname(String username) {
-//        // Kiểm tra độ dài của tên người dùng
-//        if (username.length() < 2 || username.length() > 64) {
-//            return "Nhập tên dài 2 - 64 ký tự";
-//        }
-//
-//        String regex = "^[a-zA-Z]+$";
-//        Pattern pattern = Pattern.compile(regex);
-//        Matcher matcher = pattern.matcher(username);
-//
-//        if (!matcher.matches())
-//            return "Tên sai định dạng";
-//
-//        return "";
-//    }
+    public String generateVerifyCode() {
+        // Tạo mã xác minh ngẫu nhiên
+        int verifyCode = (int) (Math.random() * 999999 + 1);
+
+        // Đảm bảo rằng mã xác minh có 6 chữ số
+        String verifyCodeString = String.format("%06d", verifyCode);
+
+        return verifyCodeString;
+    }
     
     public static String checkFullname(String username) {
         // Kiểm tra độ dài của tên người dùng

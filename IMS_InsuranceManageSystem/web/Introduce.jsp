@@ -20,7 +20,7 @@
     </head>
     <body>
          <jsp:include page="Part/header.jsp"></jsp:include>
-         <div class="container">
+         <div style="margin-top: 100px" class="container">
         <div class="row header-main">
                 <div class="col-md-6 header " id="introduce">
 
@@ -48,16 +48,16 @@
                             <li style="list-style: none">
                                 <div id="MainContent_DetailContent" class="c2 clearfix">
                                     <h2><span><strong>Giới thiệu kênh bảo hiểm trực tuyến</strong></span></h2>
-                                    <p><span>eMic.vn là trang web bán lẻ trực tuyến các sản phẩm bảo hiểm của Tổng công ty Cổ phần Bảo hiểm Quân đội (MIC), hướng tới các nhu cầu cá nhân, sẵn sàng phục vụ 24/7 để tiết kiệm thời gian, công sức cho Quý khách hàng eMic.vn kỳ vọng mang lại những lợi ích sau cho quý khách hàng:</span></p>
+                                    <p><span>IMS.vn là trang web bán lẻ trực tuyến các sản phẩm bảo hiểm của Tổng công ty Cổ phần Bảo hiểm (MIC), hướng tới các nhu cầu cá nhân, sẵn sàng phục vụ 24/7 để tiết kiệm thời gian, công sức cho Quý khách hàng IMS.vn kỳ vọng mang lại những lợi ích sau cho quý khách hàng:</span></p>
                                     <p class="title-content"><strong>1. Đơn giản và tiện lợi</strong></p>
-                                    <p><span>Với eMic.vn những khách hàng bận rộn sẽ không còn phải mất thời gian khi có nhu cầu mua bảo hiểm. Qúy khách có hợp đồng bảo hiểm ô tô đã hết hạn, hay quý khách chuẩn bị đi du lịch, đi công tác nước ngoài cần mua bảo hiểm du lịch. Chỉ với một vài thao tác đơn giản, từ giao diện tới danh mục sản phẩm, từ truy cập tới thanh toán. Mỗi khi bạn cần, eMic.vn đã sẵn sàng để giúp bạn dễ dàng có được sản phẩm bạn muốn.</span></p>
+                                    <p><span>Với IMS.vn những khách hàng bận rộn sẽ không còn phải mất thời gian khi có nhu cầu mua bảo hiểm. Qúy khách có hợp đồng bảo hiểm ô tô đã hết hạn, hay quý khách chuẩn bị đi du lịch, đi công tác nước ngoài cần mua bảo hiểm du lịch. Chỉ với một vài thao tác đơn giản, từ giao diện tới danh mục sản phẩm, từ truy cập tới thanh toán. Mỗi khi bạn cần, IMS.vn đã sẵn sàng để giúp bạn dễ dàng có được sản phẩm bạn muốn.</span></p>
                                     <p>
                                         <span  class="title-content"><strong>2. Tin cậy và an toàn</strong>&nbsp;</span><br>
-                                        <span>Với eMic.vn tính riêng tư và quyền tự do lựa chọn của quý khách được bảo đảm ở mức cao nhất. Quý khách chỉ đơn giản vào trang web, tìm hiểu các thông tin chung sản phẩm bảo hiểm, các điều khoản điều kiện, quyền lợi bảo hiểm, mức phí, cân nhắc và đặt mua với những quyền lợi cũng như mức phí phù hợp với mình.&nbsp;<strong class="title-content">Sản phẩm tin cậy và hiệu quả, thanh toán đơn giản và an toàn.</strong></span>
+                                        <span>Với IMS.vn tính riêng tư và quyền tự do lựa chọn của quý khách được bảo đảm ở mức cao nhất. Quý khách chỉ đơn giản vào trang web, tìm hiểu các thông tin chung sản phẩm bảo hiểm, các điều khoản điều kiện, quyền lợi bảo hiểm, mức phí, cân nhắc và đặt mua với những quyền lợi cũng như mức phí phù hợp với mình.&nbsp;<strong class="title-content">Sản phẩm tin cậy và hiệu quả, thanh toán đơn giản và an toàn.</strong></span>
                                     </p>
                                     <p>
                                         <span  class="title-content"><strong>3. Tiết kiệm chi phí</strong>&nbsp;</span><br>
-                                        <span>eMic.vn là kênh bán hàng trực tiếp từ Mic tới khách hàng. Do phương thức bán hàng trực tiếp nên kênh bán này bỏ qua tất cả các chi phí trung gian, từ đó tạo cho chúng tôi khả năng đưa ra mức phí cạnh tranh hơn so với các kênh bán hàng truyền thống khác, chúng tôi chuyển những lợi ích từ việc tiết kiệm được chi phí này đến cho quý khách hàng.</span>
+                                        <span>IMS.vn là kênh bán hàng trực tiếp từ IMS tới khách hàng. Do phương thức bán hàng trực tiếp nên kênh bán này bỏ qua tất cả các chi phí trung gian, từ đó tạo cho chúng tôi khả năng đưa ra mức phí cạnh tranh hơn so với các kênh bán hàng truyền thống khác, chúng tôi chuyển những lợi ích từ việc tiết kiệm được chi phí này đến cho quý khách hàng.</span>
                                     </p>
                                 </div>
                             </li>
@@ -75,15 +75,13 @@
                         <b class="title-content">Fax:</b> 024.6285 3366
                 <br>
                         <b class="title-content">Email:</b> info@mic.vn
-                <b class="title-content">Web:</b> www.emic.vn
+                <b class="title-content">Web:</b> www.IMS.vn
                     </p>
                 </div>
             </div>
     </div>
     
-    <div class=" footer">     
-        <span>© Tổng Công ty Cổ phần Bảo hiểm Quân đội - MIC. Hotline: 1900 55 88 91</span>
-    </div>
+   
     <script>
         document.getElementById('introduce').addEventListener('click', function() {
        document.getElementById('a').style.display = 'block';

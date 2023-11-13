@@ -46,10 +46,10 @@
                     QUÊN MẬT KHẨU
                 </div>
                 <div class="form-group" style="margin-bottom: 25px;">
-                    <span class="input_label">Nhập Email</span>
+                    <span class="input_label">Mã đăng nhập</span>
                     <div class="input-group">
                         <c:if test="${inputLogin == null}">
-                            <input name="input-login" type="text" id="" class="form-control" placeholder="Nhập Email đã đăng ký">
+                            <input name="input-login" type="text" id="" class="form-control" placeholder="Nhập số điện thoại/Email đang sử dụng">
                         </c:if>
                         
                         <c:if test="${inputLogin != null}">
@@ -60,12 +60,11 @@
                 </div>
                 <input type="text" name="otpSend-input" value="${otpSend}" hidden>
                 <input type="text" name="otpRiu" value="${otpRiu}" hidden>
-                
-                <c:if test="${sessionScope.otp != null}">
+                <c:if test="${otpSend != null}">
                     <div class="form-group" id="Upa_otp"> 
                         <span class="input_label">OTP</span>
                         <div class="input-group">
-                            <input name="input-password" type="password" class="form-control" placeholder="Nhập mã OTP">
+                            <input name="input-otp" type="text" id="" class="form-control" placeholder="Nhập mã OTP">
                         </div>
                     </div>
                 </c:if>

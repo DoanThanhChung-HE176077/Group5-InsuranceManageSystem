@@ -30,7 +30,7 @@
                     </div>
                     <div class="i_row">
                         <div class="i_number">
-                            <p class="p_title">CONTRACT NO:${requestScope.obj.id}</p>
+                            <p class="p_title">CONTRACT NO:${requestScope.obj.getFvc_id()}</p>
                         </div>
 
                     </div>

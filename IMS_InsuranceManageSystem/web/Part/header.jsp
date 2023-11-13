@@ -7,9 +7,9 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title>JSP Page</title>
             <link rel="stylesheet" href="CSS/header.css" />
-            
-            
-            
+
+
+
             <!-- box incon -->
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -55,20 +55,17 @@
                     </div>-->
                     </li>
                     <li class="dropdown">
-                        <a >Giới thiệu</a>
+                        <a href="Introduce.jsp">Giới thiệu</a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-bs-toggle="dropdown">Thông tin</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <!-- Dropdown menu items -->
-<!--                            <a class="dropdown-item" href="#">Thông tin bảo hiểm</a>
-                            <a class="dropdown-item" href="#">Tra cứu bảo hiểm</a>-->
+
+
                             <a class="dropdown-item" href="blog_home_show">Tin tức bảo hiểm</a>
                         </div>
                     </li>
-<!--                    <li class="dropdown">
-                        <a class="" href="blog_home_show">Blog</a>
-                    </li>-->
                 </ul>
 
 
@@ -87,17 +84,17 @@
                                 style="background-color: #fdd12d;">
                                 <!-- Dropdown menu items -->
                                 <a class="dropdown-item" href="UserProfile.jsp">Profile</a>
-                                
-                                
+
+
                                 <!--phân quyền customer-->
                                 <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
                                     <a class="dropdown-item" href="UserInsuranceList?status=active">Hợp đồng của tôi</a>
                                 </c:if>
-                                
-                                    <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
-                                        <a class="dropdown-item" href="UserClaimListShow">Tạo yêu cầu bồi thường</a>
-                                    </c:if>
-                                        
+
+                                <c:if test="${sessionScope.user.user_role.equals('Khách hàng')}">
+                                    <a class="dropdown-item" href="UserClaimListShow">Tạo yêu cầu bồi thường</a>
+                                </c:if>
+
                                 <!--phân quyền staff-->
                                 <c:if test="${sessionScope.user.user_role.equals('Nhân viên')}">
                                     <a class="dropdown-item" href="admin_dashboard">Trang quản lý</a>
@@ -125,7 +122,6 @@
                                     <i class="fa fa-user" style="color: #2c464f"></i>
                                     Đăng nhập
                                 </a>
-
                             </li>
                         </ul>
                         <ul class="navbar-nav menutrai">
@@ -138,17 +134,12 @@
                             </li>
                         </ul>
                     </c:if>
-
-
                 </div>
             </header>
-
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                crossorigin="anonymous"></script>
-
-                
-
+                crossorigin="anonymous">
+                </script>
         </body>
 
         </html>

@@ -443,7 +443,7 @@ public class FormDAO extends DBContext {
                 + "                ([contract_id],[user_id], [contract_startDate], [contract_endDate], [ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status])\n"
                 + "                 VALUES \n"
                 + "                   (((SELECT COALESCE(MAX(contract_id), 0) AS max_contract_id\n"
-                + "                FROM[Contract])+1),?, ?, ?, ?, null,?, ?, 'Pending')";
+                + "                FROM[Contract])+1),?, ?, ?, ?, null,?, ?, 'pending')";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -469,7 +469,7 @@ public class FormDAO extends DBContext {
                 + "([contract_id],[user_id], [contract_startDate], [contract_endDate], [ip_id], [fvc_id], [ftnds_id], [total_price], [contract_status])\n"
                 + "                 VALUES \n"
                 + "                   (((SELECT COALESCE(MAX(contract_id), 0) AS max_contract_id\n"
-                + "                FROM[Contract])+1),?, ?, ?, ?, ?,null, ?, 'Pending')";
+                + "                FROM[Contract])+1),?, ?, ?, ?, ?,null, ?, 'pending')";
 
         try {
             PreparedStatement st = connection.prepareStatement(sql);
