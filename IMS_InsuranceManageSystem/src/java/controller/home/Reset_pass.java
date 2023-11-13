@@ -15,9 +15,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -75,19 +72,15 @@ public class Reset_pass extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession sessionOTP = request.getSession();
-        sessionOTP.getAttribute("otp");
+        String otpSend = request.getParameter("otpSend-input");
+        String inputLogin = request.getParameter("input-login");
         
-        HttpSession sessionEmail = request.getSession();
-        String inputLogin = (String) sessionEmail.getAttribute("otp");
-//         request.getParameter("input-login");
-        
-        if (sessionOTP != null) {
-            String otpRiu = (String) sessionOTP.getAttribute("otp");
+        if (otpSend != "") {
+            String otpRiu = request.getParameter("otpRiu");
             
             
             request.setAttribute("otpSend", "1");
-            String inputOtp = request.getParameter("otpRiu");
+            String inputOtp = request.getParameter("input-otp");
             
             
             if (!inputOtp.equals(otpRiu)) {
@@ -105,49 +98,24 @@ public class Reset_pass extends HttpServlet {
             
             UserDAO uD = new UserDAO();
             if (!uD.checkLoginInfo(inputLogin)) {
-                request.setAttribute("msg", "Email đã đăng kí không đúng!");
+                request.setAttribute("msg", "Thông tin đăng nhập không đúng");
                 request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
             } else {
                 request.setAttribute("inputLogin", inputLogin);
-
-                // Tạo executor để quản lý luồng
-                ExecutorService executor = Executors.newFixedThreadPool(1);
-
-                // Bắt đầu luồng để gửi OTP
-                executor.submit(() -> {
-                    // Gửi OTP và thực hiện các bước cần thiết
-                    // ...
-
-                    // Ví dụ: Gửi mã OTP và lưu vào session
-                    String verifyCode = generateVerifyCode();
-                    
-                    try {
-                        //verify code
-                        sendMail(verifyCode, "namchik03@gmail.com");
-                    } catch (MessagingException ex) {
-                        Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
-                    HttpSession session = request.getSession();
-                    session.setAttribute("otp", verifyCode);
-                });
-                
-//                String verifyCode = generateVerifyCode();
-//                request.setAttribute("otpSend", "1");
-
+                String verifyCode = generateVerifyCode();
+                request.setAttribute("otpSend", "1");
                 request.setAttribute("msg", "OTP đã gửi");
 
-//                request.setAttribute("otpRiu", verifyCode);
+                request.setAttribute("otpRiu", verifyCode);
 
 
-//                try {
-//                    //verify code
-//                    sendMail(verifyCode);
-//                } catch (MessagingException ex) {
-//                    Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+                try {
+                    //verify code
+//                    sendMail(verifyCode, "namchik03@gmail.com");
+                    sendMail(verifyCode, inputLogin);
+                } catch (MessagingException ex) {
+                    Logger.getLogger(Reset_pass.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 request.getRequestDispatcher("ResetPass.jsp").forward(request, response);
             }
@@ -160,8 +128,10 @@ public class Reset_pass extends HttpServlet {
     public String generateVerifyCode() {
         // Tạo mã xác minh ngẫu nhiên
         int verifyCode = (int) (Math.random() * 999999 + 1);
+
         // Đảm bảo rằng mã xác minh có 6 chữ số
         String verifyCodeString = String.format("%06d", verifyCode);
+
         return verifyCodeString;
     }
 
