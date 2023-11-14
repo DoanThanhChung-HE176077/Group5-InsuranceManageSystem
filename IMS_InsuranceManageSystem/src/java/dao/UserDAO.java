@@ -417,7 +417,7 @@ public class UserDAO extends DBContext {
         ArrayList<User> list = new ArrayList<>();
 
         try {
-            String strSQL = "select * from Users where user_role='customer'  ORDER BY user_fullname ASC";
+            String strSQL = "  select * from Users where user_role='customer'  ORDER BY  user_status DESC,user_fullname ASC";
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
