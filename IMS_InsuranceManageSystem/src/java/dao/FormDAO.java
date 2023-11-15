@@ -558,11 +558,12 @@ public class FormDAO extends DBContext {
 
     }
 
-    public ArrayList<Form_TNDS> getAllTnds() {
+    public ArrayList<Form_TNDS> getAllTnds(int userId) {
         ArrayList<Form_TNDS> list = new ArrayList<>();
-        String sql = " select * from Form_TNDS";
+        String sql = " select * from Form_TNDS where user_id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, userId);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 list.add(new Form_TNDS(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
@@ -770,7 +771,7 @@ public class FormDAO extends DBContext {
 //         dao.insertContractVatChat(new Contract(1, Date.valueOf("2004-04-04"),Date.valueOf("2005-05-05") , 1, 1, 1, 1));
         FormDAO dao = new FormDAO();
          
-          dao.fixVatChat(4,Date.valueOf("2025-05-05"),Date.valueOf("2026-05-05"));
+        System.out.println(dao.getAllTnds(2));
 
 //        ArrayList<Deductible_Level> de = dao.getVatChatDeduc();
 //        for (Deductible_Level deductible_Level : de) {

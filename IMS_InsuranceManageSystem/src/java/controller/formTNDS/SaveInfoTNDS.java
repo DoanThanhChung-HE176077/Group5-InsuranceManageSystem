@@ -92,11 +92,13 @@ public class SaveInfoTNDS extends HttpServlet {
 
         String check = request.getParameter("check");
         if (check.equals("tnds")) {
+             HttpSession session = request.getSession();
+            User user1 = (User) session.getAttribute("user");
             FormDAO dao = new FormDAO();
             dao.deleteUnpaidTnds();
             dao.checkExpiredContract();
             String type = request.getParameter("type");
-
+            
             TNDS_Type type2 = dao.getType(Integer.parseInt(type));
             String soMay = request.getParameter("soMay");
             String bienXe = request.getParameter("bienXe");
@@ -105,8 +107,8 @@ public class SaveInfoTNDS extends HttpServlet {
             Date toDate = Date.valueOf(request.getParameter("toDate"));
             String lv_fee = request.getParameter("level");
            
-           ArrayList<Form_TNDS> list = dao.getAllTnds();
-               
+           ArrayList<Form_TNDS> list = dao.getAllTnds(user1.getUser_id());
+               System.out.println(list);
             for (int i = 0; i < list.size(); i++) {
                if(soMay.equalsIgnoreCase(list.get(i).getSoMay())
                         && bienXe.equalsIgnoreCase(list.get(i).getBienXe())
@@ -164,8 +166,7 @@ public class SaveInfoTNDS extends HttpServlet {
             String tax_fee = request.getParameter("tax-fee");
             String num = request.getParameter("num");
             String total = request.getParameter("amount");
-            HttpSession session = request.getSession();
-            User user1 = (User) session.getAttribute("user");
+           
             ip_id = "1";
             String lv_fee_value = dao.getTNDS_LevelbyId(Integer.parseInt(lv_fee)).getLv_value();
             Form_TNDS obj = new Form_TNDS(type2.getType_name(), soMay, bienXe, soKhung, fromDate, toDate, lv_fee_value, num, total, user1.getUser_id(), "1", "unpaid");
