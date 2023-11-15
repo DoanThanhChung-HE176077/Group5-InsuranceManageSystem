@@ -83,6 +83,9 @@
                                                     <c:if test="${pList.getContract_status() eq 'Pending'}">
                                                     Đang chờ duyệt
                                                     </c:if>
+                                                    <c:if test="${pList.getContract_status() eq 'pending'}">
+                                                        Đang chờ duyệt
+                                                    </c:if>
                                                 </td>
                                                 <td>
                                                     <!-- Detail Button -->

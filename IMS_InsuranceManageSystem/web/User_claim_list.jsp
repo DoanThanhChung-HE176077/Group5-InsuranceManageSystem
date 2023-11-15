@@ -25,7 +25,8 @@
               crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!--sweet alert-->
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!--        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
 
@@ -60,6 +61,10 @@
             .atag1{
 
             }
+
+            .swal2-cancel {
+                margin-right: 10px;
+            }
         </style>
     </head>
     <body style="background-color: hsl(47,98%,58%);">
@@ -67,7 +72,7 @@
             <form class="form-info" id="turung" style="margin-top: 150px" method="POST" action="UserClaimListSV" enctype="multipart/form-data">
                 <div class="container  bg-white mt-5 mb-5" id="main-container">
                     <div class="row">
-                        <div class="col-md-5 border-right">
+                        <div class="col-md-6 border-right">
                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                                 <div style="float: right" tabindex="0" class="" data-toggle="tooltip" data-placement="top" title="">
                                     <span style="color: red; font-style: italic; font-weight: bold;font-size: 12px ">Tip: Hãy click vào ảnh</span>
@@ -107,15 +112,34 @@
                                         </thead>
                                         <tbody>
                                         <c:forEach items="${cl}" var="o">
-                                            <c:if test="${o.claim_status.equals('pending')}">
+                                            <c:if test="${o.claim_status.equals('pending') || o.claim_status.equals('Accept') || o.claim_status.equals('Reject')}">
                                                 <tr>
                                                     <td >Yêu cầu số 
                                                         <span class="claim_id">${o.claim_id}</span></td>
                                                     <td class="creationDateHere" id="creationDate1">${o.creationDate}</td>
-                                                    <td>Chưa duyệt</td>
+                                                    <c:if test="${o.claim_status.equals('pending')}">
+                                                        <td>
+                                                            Đang chờ duyệt
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${o.claim_status.equals('Accept')}">
+                                                        <td>
+                                                            Đã duyệt
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${o.claim_status.equals('Reject')}">
+                                                        <td>
+                                                            Bị từ chối
+                                                        </td>
+                                                    </c:if>
+
                                                     <td>
-                                                        <div class="atag1" data-toggle="modal" data-target="#staticBackdrop">
+
+                                                        <div class="atag1" >
                                                             <i class="fa-solid fa-eye" data-toggle="modal" data-target="#staticBackdrop"></i>
+                                                            <c:if test="${o.claim_status.equals('pending')}">
+                                                                <i class="fa-solid fa-trash" onclick="confirmDelete(${o.claim_id})" style="margin-left: 10px"></i>
+                                                            </c:if>
                                                         </div>
                                                         <div class="modal fade " id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                             <div class="modal-dialog">
@@ -154,15 +178,15 @@
                                                                                         <th>
                                                                                             Người tạo
                                                                                         </th>
-                                                                                        <td id="creator-info">
-
+                                                                                        <td id="">
+                                                                                            ${username}
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th>
                                                                                             Ngày tạo
                                                                                         </th>
-                                                                                        <td id="creation-date">
+                                                                                        <td class="creationDateHere" id="creation-date">
 
                                                                                         </td>
                                                                                     </tr>
@@ -196,7 +220,7 @@
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                                                        <button type="button" class="btn btn-danger">Xóa yêu cầu</button>
+                                                                        <div class="addbutton"></div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -210,7 +234,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-5 border-right">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5 border-left">
                         <div class="p-3 py-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="text-right">Yêu cầu đền bù bảo hiểm</h4>
@@ -249,7 +274,7 @@
                                     <c:if test ="${ct2.size() == 0 }">
                                         <div>
                                             <span style="color: red;font-style: italic;font-weight: bold;font-size: 18px;">
-                                                Các hợp đồng của bạn đã được yêu cầu.
+                                                Các hợp đồng của bạn đã được yêu cầu hoặc bạn chưa có hợp đồng nào.
                                             </span>
                                         </div>
                                     </c:if>
@@ -350,9 +375,11 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </form>
+
         <script>
             var loadFile = function (event) {
                 var output = document.getElementById('output');
@@ -364,21 +391,20 @@
 
             document.querySelector('#turung').addEventListener('submit', function (e) {
                 e.preventDefault();
-
                 var soCCCD = document.getElementById('claim_des').value;
                 var fileInput = document.getElementById('file1');
-
+        
                 if (soCCCD.trim() !== '' && fileInput.files.length > 0) {
-                    swal({
+                    Swal.fire({
                         title: 'Thành công!',
                         text: 'Đã gửi yêu cầu thành công',
                         icon: 'success',
-                        button: "Đóng"
+                        confirmButtonText: "Đóng"
                     }).then(() => {
                         document.getElementById("turung").submit();
                     });
                 } else {
-                    swal({
+                    Swal.fire({
                         title: 'Thất bại!',
                         text: 'Vui lòng điền đầy đủ thông tin và tải ảnh đầy đủ!!',
                         icon: 'error'
@@ -420,12 +446,21 @@
                         success: function (data) {
                             //                              response in network f12
                             $('#contractid-info').text(data.contract_id);
-                            $('#creator-info').text(data.user_id);
-                            $('#creation-date').text(data.creationDate);
+//                            $('#creator-info').text(data.user_id);
+                            var creationDate = data.creationDate;
+                            var dateObject = new Date(creationDate);
+                            var day = dateObject.getDate();
+                            var month = dateObject.getMonth() + 1;
+                            var year = dateObject.getFullYear();
+                            var formattedDate = (day < 10 ? '0' : '') + day + '-' + (month < 10 ? '0' : '') + month + '-' + year;
+                            $('#creation-date').text(formattedDate);
+
                             if (data.claim_status === 'pending') {
                                 $('#status-info').text('Đang chờ duyệt');
-                            } else if (data.claim_status === 'Active') {
+                            } else if (data.claim_status === 'Accept') {
                                 $('#status-info').text('Đã duyệt');
+                            } else if (data.claim_status === 'Reject') {
+                                $('#status-info').text('Bị từ chối');
                             } else {
                                 $('#status-info').text(data.claim_status);
                             }
@@ -439,6 +474,96 @@
                     });
                 });
             });
+
+
+            function confirmDelete(claim_id) {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: "btn btn-success",
+                        cancelButton: "btn btn-danger"
+                    },
+                    buttonsStyling: false
+                });
+
+                swalWithBootstrapButtons.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel!",
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Thực hiện xóa với claim_id đã được truyền vào
+                        deleteClaim(claim_id);
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons.fire({
+                            title: "Cancelled",
+                            text: "Your imaginary file is safe :)",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+
+            function confirmDelete(claim_id) {
+                swalWithBootstrapButtons.fire({
+                    title: "Bạn có chắc chắn xóa yêu cầu?",
+                    text: "Bạn sẽ không thể khôi phục lại yêu cầu này!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Xác nhận",
+                    cancelButtonText: "Hủy",
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Thực hiện xóa với claim_id đã được truyền vào
+                        deleteClaim(claim_id);
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons.fire({
+                            title: "Hủy thành công",
+                            text: "Bạn đã hủy thao tác xóa!",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+
+            function deleteClaim(claim_id) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'UserClaimListShow',
+                    data: {claim_id: claim_id},
+                    success: function (data) {
+                        swalWithBootstrapButtons.fire({
+                            title: "Xóa thành công!",
+                            text: "Yêu cầu đền bù đã bị hủy.",
+                            icon: "success"
+                        }).then(() => {
+                            location.reload();
+                            console.log('meo'+ data );
+                        });                        
+                    },
+                    error: function () {
+                        swalWithBootstrapButtons.fire({
+                            title: "Error",
+                            text: "An error occurred while deleting the claim.",
+                            icon: "error"
+                        });
+                    }
+                });
+                
+            }
+
 
 
         </script>

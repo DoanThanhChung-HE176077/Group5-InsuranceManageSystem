@@ -720,36 +720,35 @@ public class ContractDAO extends DBContext {
     //laasy contrac ma chua yeu cau claim
 
     public ArrayList<Contract> getContractOption(int id) {
-        try {
-            ArrayList<Contract> list = new ArrayList<>();
-            String sql = "SELECT *\n"
-                    + "FROM Contract\n"
-                    + "WHERE NOT EXISTS (\n"
-                    + "    SELECT 1\n"
-                    + "    FROM Claims\n"
-                    + "    WHERE Contract.contract_id = Claims.contract_id\n"
-                    + ") AND Contract.user_id = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int contract_id = rs.getInt(1);
-                int user_id = rs.getInt(2);
-                Date contract_startDate = rs.getDate(3);
-                Date contract_endDate = rs.getDate(4);
-                int ip_id = rs.getInt(5);
-                int fvc_id = rs.getInt(6);
-                int ftnds_id = rs.getInt(7);
-                int total_price = rs.getInt(8);
-                String contract_status = rs.getString(9);
-                list.add(new Contract(contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
-            }
-            return list;
-        } catch (SQLException ex) {
-            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+    try {
+        ArrayList<Contract> list = new ArrayList<>();
+        String sql = "SELECT * " +
+                     "FROM Contract " +
+                     "WHERE (NOT EXISTS (SELECT 1 FROM Claims WHERE Contract.contract_id = Claims.contract_id) " +
+                     "      OR EXISTS (SELECT 1 FROM Claims WHERE Contract.contract_id = Claims.contract_id AND Claims.claim_status = 'Reject')) " +
+                     "      AND Contract.user_id = ?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int contract_id = rs.getInt(1);
+            int user_id = rs.getInt(2);
+            Date contract_startDate = rs.getDate(3);
+            Date contract_endDate = rs.getDate(4);
+            int ip_id = rs.getInt(5);
+            int fvc_id = rs.getInt(6);
+            int ftnds_id = rs.getInt(7);
+            int total_price = rs.getInt(8);
+            String contract_status = rs.getString(9);
+            list.add(new Contract(contract_id, user_id, contract_startDate, contract_endDate, ip_id, fvc_id, ftnds_id, total_price, contract_status));
         }
-        return null;
+        return list;
+    } catch (SQLException ex) {
+        Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
     }
+    return null;
+}
+
     //get 1 contract by claim id
 
     public Contract getOneContractThatMatchClaim(int claim_id) {
@@ -876,6 +875,30 @@ public class ContractDAO extends DBContext {
         }
         return null;
     }
+    
+    //cancel claim by claim id
+    public void deleteClaimByClaimID (int claim_id) {
+        try {
+            String sql = "delete from Claims where claim_id = ?";
+            PreparedStatement ps =connection.prepareStatement(sql);
+            ps.setInt(1, claim_id);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ContractDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+    
+    public List<NewC> getListbyPage(List<NewC> list, int start, int end) {
+        ArrayList<NewC> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
+    
+    
     public static void main(String[] args) {
         ContractDAO cd = new ContractDAO();
        
@@ -906,19 +929,15 @@ public class ContractDAO extends DBContext {
 //        System.out.println(vc.toString());
 //        cd.updateCliamNO("1");
 //        cd.updateCliamYES("1");
-        ArrayList<NewC> list = cd.searchContract("Chung");
-        System.out.println(list);
+//        ArrayList<Contract> list = cd.getContractOption(20);
+//        System.out.println(list);
+        
+        cd.deleteClaimByClaimID(5);
        
 
     }
 
 
-    public List<NewC> getListbyPage(List<NewC> list, int start, int end) {
-        ArrayList<NewC> arr = new ArrayList<>();
-        for (int i = start; i < end; i++) {
-            arr.add(list.get(i));
-        }
-        return arr;
-    }
+
 
 }

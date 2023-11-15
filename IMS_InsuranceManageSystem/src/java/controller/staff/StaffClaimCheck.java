@@ -82,7 +82,7 @@ public class StaffClaimCheck extends HttpServlet {
             ct = ctdao.getOneContractThatMatchClaim(Integer.parseInt(claim_id));
             int contrac_id2 = ct.getContract_id();
             ctdao.updateCliamYES(claim_id);
-            ctdao.updateEndDateAndContractStatus("Exprise",contrac_id2);
+            ctdao.updateEndDateAndContractStatus("Expired",contrac_id2);
             response.sendRedirect("/IMS_InsuranceManageSystem/StaffClaimListShow");
         }
     } 

@@ -6,6 +6,7 @@
 package controller.staff;
 
 import dao.ContractDAO;
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,6 +19,7 @@ import model.Claims;
 import model.ContractTNDS;
 import model.ContractVatchat;
 import model.NewC;
+import model.User;
 
 /**
  *
@@ -65,15 +67,16 @@ public class StaffClaimDetail extends HttpServlet {
         System.out.println("claim_id cua Staff claim list show:" + claim_id);
         // get calim by claim id
         ContractDAO ct = new  ContractDAO();
+        UserDAO ud = new UserDAO();
         Claims cl = ct.getClaimById(claim_id);
         int contract_id = cl.getContract_id();
         System.out.println(contract_id);
-        
+        ArrayList<User> myu  = ud.getListUserFull();
         
         NewC contract = ct.getContractById(contract_id);
         ContractTNDS contractTNDS = ct.getTNDSbyId(contract_id);
         ContractVatchat contractVatchat = ct.getVatchatbyId(contract_id);
-
+        request.setAttribute("user", myu);
         request.setAttribute("contract", contract);
         request.setAttribute("contractTNDS", contractTNDS);
         request.setAttribute("contractVatchat", contractVatchat);

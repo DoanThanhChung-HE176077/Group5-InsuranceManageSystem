@@ -102,6 +102,7 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <input name="lv-fee"  class="form-control" type="number" id="lv-fee" placeholder="" readonly>
+                                                        
                                                     </div>
                                                     <div class="col-md-6">
                                                         <input name="tax-fee" class="form-control" type="number" id="tax-fee" placeholder="" readonly>
@@ -167,15 +168,10 @@
                                 <span>Tổng phí</span>
                                 <h6 id="b" style="float: right;"></h6>
                             </div>
-
                             <p id="msg">${msg}</p>
-
                             <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Đã xác minh')}">
                                 <button type="submit" class="btn abc">Thanh toán</button>
-
                             </c:if>
-
-
                             <c:if test="${sessionScope.user.user_role.equals('Khách hàng') &&  sessionScope.user.getStatus().equals('Chưa xác minh')}">
                                 <c:if test="${sessionScope.user.getUser_iden_img() == null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
                                     <div class="d-flex justify-content-center" style="margin-top: 0px">
@@ -193,56 +189,17 @@
                                     <span style="color: red;font-style: italic;font-weight: bold;font-size: 12px;margin-left: 13px;margin-top: 10px;">Yêu cầu xác minh tài khoản đang chờ phê duyệt.</span>
                                 </c:if>
                             </c:if>    
-
-
-
                             <c:if test="${sessionScope.user.user_role.equals('Admin') }">
-
                             </c:if>
                             <c:if test="${sessionScope.user.user_role.equals('Nhân viên') }">
-
                             </c:if>
+                                    
                         </div>
                     </div>
                 </div>
             </div>
         </form>
     </body>
-
-
-    <!--       <script>
-            $(document).ready(function () {
-                $("#type, #level, #num").change(function () {
-                    var type = $("#type").val();
-                    var level = $("#level").val();
-                    var num = $("#num").val();
-
-                    // Kiểm tra giá trị null hoặc rỗng trước khi gửi AJAX request
-                    if (type != null && level != null && num != null &&
-                        type.trim() !== '' && level.trim() !== '' && num.trim() !== '') {
-                        $.ajax({
-                            url: "HandleFormTNDS",
-                            type: "POST",
-                            data: { type: type, level: level, num: num },
-                            success: function (data) {
-                                // Parse dữ liệu JSON nhận được
-                                  var jsonData = JSON.parse(data);
-                              alert('ok' + data)
-
-                                // Cập nhật giá trị trong các thẻ HTML
-                                $("#lv-fee").val(jsonData.lvFee);
-                                $("#tax-fee").val(jsonData.taxFee);
-                            },
-                            error: function (error) {
-                                console.log("Error: " + error);
-                            }
-                        });
-                    } else {
-                        console.log("Invalid input values");
-                    }
-                });
-            });
-        </script>-->
 
     <script>
         $("#frmCreateOrder").submit(function () {
@@ -289,17 +246,25 @@
                         var levelFee = parseInt(jsonData.levelFee);
                         var taxFee = parseInt(jsonData.taxFee);
                         var amount = parseInt(jsonData.levelFee) + parseInt(jsonData.taxFee);
+                        var formattedLevelFee2 = formatNumberWithDot(levelFee);
+                        var formattedTaxFee2 = formatNumberWithDot(taxFee);
+                        var formattedAmount2 = formatNumberWithDot(amount);
+                        
+                        
                         var formattedLevelFee = parseFloat(levelFee).toLocaleString();
                         var formattedTaxFee = parseFloat(taxFee).toLocaleString();
                         var formattedAmount = parseFloat(amount).toLocaleString();
                         $("#lv-fee").val(formattedLevelFee);
                         $("#tax-fee").val(formattedTaxFee);
                         $("#total-fee").val(formattedAmount);
-
                         $("#amount").val(amount);
-                        document.getElementById("a").innerHTML = formattedLevelFee;
-                        document.getElementById("b").innerHTML = formattedAmount;
-                        document.getElementById("c").innerHTML = formattedTaxFee;
+//                        $("#lv-fee").val(formattedLevelFee2);
+//                        $("#tax-fee").val(formattedTaxFee2);
+//                        $("#total-fee").val(formattedAmount2);
+//                        $("#amount").val(formattedAmount2);
+                        document.getElementById("a").innerHTML = formattedLevelFee2+' ₫';
+                        document.getElementById("b").innerHTML = formattedAmount2+' ₫';
+                        document.getElementById("c").innerHTML = formattedTaxFee2+' ₫';
 
                         if (jsonData.msg !== "null") {
                             document.getElementById("msg").innerHTML = jsonData.msg;
@@ -318,59 +283,35 @@
                         $("#user_address2").val(jsonData.user_address);
                     }
                 };
-
-                // Thiết lập tiêu đề yêu cầu
                 xhr.setRequestHeader("Content-Type", "application/json");
-
-                // Gửi dữ liệu với phương thức POST và định dạng là JSON
                 xhr.send(JSON.stringify({type: type, level: level, num: num}));
             });
         });
-        //Chuyển đổi Date tự động sang 1 năm
-//        function updateToDate() {
-//            // Lấy giá trị từ trường fromDate
-//            var fromDate = document.getElementById("fromDate").value;
-//
-//            // Chuyển đổi giá trị fromDate thành đối tượng Date
-//            var fromDateObj = new Date(fromDate);
-//
-//            // Cộng thêm 1 năm
-//            fromDateObj.setFullYear(fromDateObj.getFullYear() + 1);
-//
-//            // Format lại ngày tháng để có thể đặt giá trị vào trường toDate
-//            var toDate = fromDateObj.toISOString().split('T')[0];
-//
-//            // Đặt giá trị vào trường toDate
-//            document.getElementById("toDate").value = toDate;
-//        }
+        function formatNumberWithDot(number) {
+            var numberString = number.toString();
+            var decimalIndex = numberString.indexOf('.');
+            if (decimalIndex === -1) {
+                decimalIndex = numberString.length;
+            }
+            for (var i = decimalIndex - 3; i > 0; i -= 3) {
+                numberString = numberString.slice(0, i) + '.' + numberString.slice(i);
+            }
+            return numberString;
+        }
+
 
         function updateToDate() {
-            // Get references to the "Start Date" and "End Date" input fields
             var fromDateInput = document.getElementById("fromDate");
             var toDateInput = document.getElementById("toDate");
-
-            // Get the current date
             var currentDate = new Date();
-
-            // Parse the value of the "Start Date" input as a Date object
             var fromDate = new Date(fromDateInput.value);
-
-            // Check if the "Start Date" is valid and not earlier than the current date
             if (!isNaN(fromDate) && fromDate >= currentDate) {
-                // Calculate the "End Date" as one year from the "Start Date"
                 var endDate = new Date(fromDate);
                 endDate.setFullYear(endDate.getFullYear() + 1);
-
-                // Format the "End Date" as YYYY-MM-DD
                 var endDateFormatted = endDate.toISOString().split('T')[0];
-
-                // Set the value of the "End Date" input
                 toDateInput.value = endDateFormatted;
             } else {
-                // Clear the "End Date" input
                 toDateInput.value = "";
-
-                // Show an alert notification
                 alert("Ngày bắt đầu hơn ngày hôm nay");
             }
         }
@@ -379,8 +320,6 @@
 
         //đinh dạng ngày sinh
         var inputDate = document.getElementById('user_dob2');
-
-        // Định dạng ngày tháng năm theo dd/mm/yyyy
 
     </script>
 

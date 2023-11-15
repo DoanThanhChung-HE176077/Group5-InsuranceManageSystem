@@ -91,14 +91,13 @@
                                         <tr scope="row">
                                             <th>Hình ảnh đính kèm</th>
                                             <td>
-                                                <a  class="imgfile" download href="./${claim.getClaim_img_des()}">${claim.getClaim_img_des()}</a>
-
+                                                <a  download href="./${claim.getClaim_file_des()}" >${claim.getClaim_img_des()}</a>
                                             </td>
                                         </tr>
                                         <tr scope="row">
                                             <th>Tài liệu đính kèm</th>
                                             <td>
-                                                <a class="docfile" download href="./${claim.getClaim_file_des()}">${claim.getClaim_file_des()}</a>
+                                                <a  download href="./${claim.getClaim_img_des()}">${claim.getClaim_file_des()}</a>
                                             </td>
                                         </tr>
                                         <tr scope="row">

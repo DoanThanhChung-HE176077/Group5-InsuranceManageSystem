@@ -66,9 +66,11 @@ public class UserClaimListShow extends HttpServlet {
         ContractDAO dao = new ContractDAO();
         ArrayList<Claims> cl = dao.getAllClaimByUserId(user1.getUser_id());
         ArrayList<Contract> ct = dao.getAllContractOfUserThatActive(user1.getUser_id());
-        ArrayList<Contract> ct2 = dao.getContractOptionActive(user1.getUser_id());
+        ArrayList<Contract> ct2 = dao.getContractOption(user1.getUser_id());
         ArrayList<Claims> listclaim = dao.getListCalimKhacPending();
+        String name = user1.getUser_fullName();
         
+        request.setAttribute("username", name);
         request.setAttribute("listclaim", listclaim);
         request.setAttribute("ct", ct);
         request.setAttribute("cl", cl);
@@ -86,7 +88,12 @@ public class UserClaimListShow extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-
+        int claim_id = Integer.parseInt(request.getParameter("claim_id"));
+        System.out.println(claim_id);
+        
+        ContractDAO cdao = new ContractDAO();
+        cdao.deleteClaimByClaimID(claim_id);
+        response.sendRedirect("/IMS_InsuranceManageSystem/UserClaimListShow");
     }
 
     /** 
