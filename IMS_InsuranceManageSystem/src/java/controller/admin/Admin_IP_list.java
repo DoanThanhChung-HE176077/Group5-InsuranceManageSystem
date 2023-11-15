@@ -50,8 +50,8 @@ public class Admin_IP_list extends HttpServlet {
     throws ServletException, IOException {
         IPDAO ip = new IPDAO();
         ArrayList<InsuranceProduct> list = ip.getALLIP();
-        int income1 = ip.getIncomebyID(1);
-        int income2 = ip.getIncomebyID(2);
+        int income1 = ip.getIncomeTNDS();
+        int income2 = ip.getIncomeVatchat();
         request.setAttribute("listIP", list);
         request.setAttribute("income1", income1);
         request.setAttribute("income2", income2);

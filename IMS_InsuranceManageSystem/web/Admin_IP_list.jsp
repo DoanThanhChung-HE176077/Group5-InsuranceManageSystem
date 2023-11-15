@@ -107,12 +107,12 @@
                                         <tr>
                                             <td>1</td>
                                             <td>TNDS</td>
-                                            <td>${income1}</td>
+                                            <td>${income1} VND</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td>Vatchat</td>
-                                            <td>${income2}</td>
+                                            <td>${income2} VND</td>
                                         </tr>
 
                                         <!-- Repeat rows for each edit history entry -->

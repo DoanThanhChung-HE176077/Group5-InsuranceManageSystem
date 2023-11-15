@@ -152,11 +152,7 @@
                             
                             
                             
-                        <c:if test="${detail.status eq 'Chưa xác minh'}">
-                            <div style="text-align: center;">
-                                <a href="Admin_Users_verify?id=${detail.getUser_id()}" class="my-btn btn btn-primary">Xác minh người dùng</a>
-                            </div>
-                        </c:if>
+                        
                             
                                             
                     </div>

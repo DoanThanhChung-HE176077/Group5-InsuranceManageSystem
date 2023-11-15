@@ -104,8 +104,8 @@
 
 
                                         <span class="input_label">Số điện thoại</span>
-                                        <div  class="input-group" style="margin-right: 10px;">
-                                            <input name="input-phoneNum" type="text" id="" class="form-control" placeholder="Nhập số điện thoại" required invalid-message="Vui lòng nhập">
+                                        <div  class="input-group" >
+                                            <input name="input-phoneNum" type="text" id="" class="form-control" placeholder="Nhập số điện thoại" required>
 
                                         </div>
                                         <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0">
@@ -177,7 +177,7 @@
                                             <a href="admin_Staff_list" style="text-decoration: none; color: #fff;">Quay lại</a>
 
                                         </button>
-                                        <button style="background-color: #24262b; color: #fff;width: 50%" type="submit" >Đăng ký</button>
+                                        <button style="background-color: #24262b; color: #fff; width: 50%">Đăng ký</button>
                                     </div>
 
                                 </form>
@@ -208,6 +208,7 @@
                 });
             });
         </script>
+
 
     </body>
 </html>

@@ -64,8 +64,38 @@ public class IPDAO extends DBContext{
         }
         return null;
     }
-    public int getIncomebyID(int id) {
-    String strSQL = "SELECT SUM(total_price) AS total_income FROM Contract WHERE ip_id = ? AND (contract_status = 'active' OR contract_status = 'expired')";
+    public int getIncomeTNDS() {
+    String strSQL = " select sum(ftnds_tongChiPhi) as total_income from Form_TNDS ftnds join Contract c on c.ftnds_id= ftnds.ftnds_id where c.contract_status like 'Active' or c.contract_status like 'Expired'";
+    try {
+        PreparedStatement pstm = connection.prepareStatement(strSQL);
+        
+        ResultSet rs = pstm.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("total_income");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // In lỗi để xác định vấn đề
+    }
+    return 0; // Giá trị mặc định hoặc 0 nếu không tìm thấy dữ liệu.
+}
+       public int getIncomeVatchat() {
+    String strSQL = "  select sum(fvc_totalPrice) as total_income from Form_Vatchat fvc join Contract c on c.fvc_id= fvc.fvc_id where c.contract_status like 'Active' or c.contract_status like 'Expired'";
+    try {
+        PreparedStatement pstm = connection.prepareStatement(strSQL);
+        
+        ResultSet rs = pstm.executeQuery();
+
+        if (rs.next()) {
+            return rs.getInt("total_income");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // In lỗi để xác định vấn đề
+    }
+    return 0; // Giá trị mặc định hoặc 0 nếu không tìm thấy dữ liệu.
+}
+          public int getIncomeTNDS(int id) {
+    String strSQL = "  select sum(ftnds_tongChiPhi) from Form_TNDS ftnds join Contract c on c.ftnds_id= ftnds.ftnds_id where c.contract_status like 'Active' or c.contract_status like 'Expired'";
     try {
         PreparedStatement pstm = connection.prepareStatement(strSQL);
         pstm.setInt(1, id);
@@ -79,7 +109,6 @@ public class IPDAO extends DBContext{
     }
     return 0; // Giá trị mặc định hoặc 0 nếu không tìm thấy dữ liệu.
 }
-
     
     public static void main(String[] args) {
         IPDAO ip = new IPDAO();
