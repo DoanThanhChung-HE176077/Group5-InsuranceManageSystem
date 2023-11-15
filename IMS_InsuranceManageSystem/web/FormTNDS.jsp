@@ -3,6 +3,12 @@
     Created on : Oct 7, 2023, 3:57:27 PM
     Author     : x`
 --%>
+
+<%-- 
+    Document   : formTNDS
+    Created on : Oct 7, 2023, 3:57:27 PM
+    Author     : x`
+--%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -48,7 +54,7 @@
                                         <h1>${msg}</h1>
                                         <input required="" class="form-control" type="text" name="soMay" >
                                     </div>
-                                    <span style="color: hsl(29, 57%, 54%);">Bắt buộc cần nhập số biển kiểm soát</span>                        
+                                    <span style="color: hsl(29, 57%, 54%);">Bắt buộc cần nhập số biển kiểm soát</span>
                                 </div>
                                 <div class="col-md-6">
                                     <div>
@@ -338,44 +344,44 @@
 //            document.getElementById("toDate").value = toDate;
 //        }
 
-          function updateToDate() {
-                        // Get references to the "Start Date" and "End Date" input fields
-                        var fromDateInput = document.getElementById("fromDate");
-                        var toDateInput = document.getElementById("toDate");
+        function updateToDate() {
+            // Get references to the "Start Date" and "End Date" input fields
+            var fromDateInput = document.getElementById("fromDate");
+            var toDateInput = document.getElementById("toDate");
 
-                        // Get the current date
-                        var currentDate = new Date();
+            // Get the current date
+            var currentDate = new Date();
 
-                        // Parse the value of the "Start Date" input as a Date object
-                        var fromDate = new Date(fromDateInput.value);
+            // Parse the value of the "Start Date" input as a Date object
+            var fromDate = new Date(fromDateInput.value);
 
-                        // Check if the "Start Date" is valid and not earlier than the current date
-                        if (!isNaN(fromDate) && fromDate >= currentDate) {
-                            // Calculate the "End Date" as one year from the "Start Date"
-                            var endDate = new Date(fromDate);
-                            endDate.setFullYear(endDate.getFullYear() + 1);
+            // Check if the "Start Date" is valid and not earlier than the current date
+            if (!isNaN(fromDate) && fromDate >= currentDate) {
+                // Calculate the "End Date" as one year from the "Start Date"
+                var endDate = new Date(fromDate);
+                endDate.setFullYear(endDate.getFullYear() + 1);
 
-                            // Format the "End Date" as YYYY-MM-DD
-                            var endDateFormatted = endDate.toISOString().split('T')[0];
+                // Format the "End Date" as YYYY-MM-DD
+                var endDateFormatted = endDate.toISOString().split('T')[0];
 
-                            // Set the value of the "End Date" input
-                            toDateInput.value = endDateFormatted;
-                        } else {
-                            // Clear the "End Date" input
-                            toDateInput.value = "";
+                // Set the value of the "End Date" input
+                toDateInput.value = endDateFormatted;
+            } else {
+                // Clear the "End Date" input
+                toDateInput.value = "";
 
-                            // Show an alert notification
-                            alert("Ngày bắt đầu hơn ngày hôm nay");
-                        }
-                    }
+                // Show an alert notification
+                alert("Ngày bắt đầu hơn ngày hôm nay");
+            }
+        }
 
 
-     
+
         //đinh dạng ngày sinh
-         var inputDate = document.getElementById('user_dob2');
+        var inputDate = document.getElementById('user_dob2');
 
         // Định dạng ngày tháng năm theo dd/mm/yyyy
-        
+
     </script>
 
 

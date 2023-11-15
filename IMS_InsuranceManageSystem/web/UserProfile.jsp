@@ -149,8 +149,11 @@
                                                 <a class="dropdown-item" href="ChangePassword.jsp">Thay đổi Mật khẩu</a>
                                             </div>
                                         </div>
-                                    <c:if test="${sessionScope.user.getUser_role().equals('Khách hàng') == true }">
+                                    <c:if test="${sessionScope.user.getUser_role().equals('Khách hàng') == true && sessionScope.user.getStatus().equals('Chưa xác minh')}">
                                         <button id="btn-edit1" type="button" onclick="editInfo()" class="btn btn-primary">Chỉnh sửa thông tin</button>
+                                    </c:if>
+                                    <c:if test="${sessionScope.user.getUser_role().equals('Khách hàng') == true && sessionScope.user.getStatus().equals('Đã xác minh')}">
+                                        <button id="btn-edit1" type="button" onclick="editInfo2()" class="btn btn-primary">Chỉnh sửa thông tin</button>
                                     </c:if>
 
                                         <div id="btn-Save"></div>
@@ -221,6 +224,32 @@
                         for (var i = 0; i < inputs.length; i++) {
 
                             if (inputs[i].id !== 'user_status' && inputs[i].id !== 'user_email2' && inputs[i].id !== 'user_iden2') {
+                                inputs[i].removeAttribute('readonly'); // Xóa thuộc tính readOnly
+                                
+                            }
+                        }
+                        // Remove the 'hidden' attribute from the element with ID 'drop1'
+                        var drop1 = document.getElementById('drop1');
+                        if (drop1) {
+                          drop1.removeAttribute('hidden');
+                        }
+
+
+                        let btn_edit = document.getElementById('btn-edit1');
+                        btn_edit.style.display = 'none';
+                        let btn_Save = document.getElementById('btn-Save');
+                        let btn_sentRequest = document.getElementById('btn-sentRequest');
+                        let btn_Back = document.getElementById('btn-back');
+                        btn_Save.innerHTML = '<button type="submit" onclick="saveInfo()" class="btn btn-success">Lưu</button>';
+                        btn_Back.innerHTML = '<button onclick="goBackToUserProfile()" class="btn btn-secondary">Trở lại</button>';
+
+                    }
+                    
+                        function editInfo2() {
+                        var inputs = document.querySelectorAll('.form-info input');
+                        for (var i = 0; i < inputs.length; i++) {
+
+                            if (inputs[i].id !== 'user_status' && inputs[i].id !== 'user_email2' && inputs[i].id !== 'user_iden2' && inputs[i].id !== 'user_fullname2') {
                                 inputs[i].removeAttribute('readonly'); // Xóa thuộc tính readOnly
                                 
                             }
