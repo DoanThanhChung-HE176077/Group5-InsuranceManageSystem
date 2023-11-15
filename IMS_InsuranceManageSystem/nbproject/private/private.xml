@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/HandleBillFormTNDS.java</file>
             <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/Form_Vatchat.java</file>
             <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/BillOfVatChat.jsp</file>
@@ -12,6 +13,12 @@
             <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Staff_ContractRequest_list.jsp</file>
             <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/controller/formTNDS/HandleBill.java</file>
             <file>file:/D:/github/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/BillOfInsuranceTNDS.jsp</file>
+=======
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_IP_list.jsp</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/web/Admin_IP_detail.jsp</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/model/InsuranceProduct.java</file>
+            <file>file:/D:/Workspace/FPTU_doc/Ky5/SWP391/Manage/main%20ISM/Group5-InsuranceManageSystem/IMS_InsuranceManageSystem/src/java/dao/DBContext.java</file>
+>>>>>>> 1d18ae09cd16bb1b36f2f1b7c06c4d1054983ccb
         </group>
     </open-files>
 </project-private>

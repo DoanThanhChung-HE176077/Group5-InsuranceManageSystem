@@ -60,9 +60,7 @@
                                 <div class="my-column1 col-md-9">
                                     <h2 style="display: inline-block;">Chi tiết sản phẩm bảo hiểm</h2>
                                     <!--                                    go to blog page-->
-                                    <button class="btn btn-success mb-3 " style="margin-left: 200px" >
-                                        <a href="admin_IP_list" style="text-decoration: none; color: #fff;">Quay lại</a>
-                                    </button>
+
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
                                         <thead>
@@ -88,7 +86,11 @@
                                         <!-- Repeat rows for each blog post -->
                                     </tbody>
                                 </table>
-
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary mb-3 " style="margin-left: 200px" >
+                                        <a href="admin_IP_list" style="text-decoration: none; color: #fff;">Quay lại</a>
+                                    </button>
+                                </div>
                             </div>
 
                             <!-- Column 2: Edit History Table -->

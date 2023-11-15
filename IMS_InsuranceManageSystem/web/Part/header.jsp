@@ -75,8 +75,8 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-bs-toggle="dropdown" style="text-decoration: none;">
                                 <img src=" ${sessionScope.user.user_image}" alt="">
-                                <span id="my-username" style="color: black;">
-                                    ${sessionScope.user.user_fullName}
+                                <span id="my-username" style="color: black; ">
+                                    Xin chào <b>${sessionScope.user.user_fullName}</b> 
                                 </span>
                             </a>
 
