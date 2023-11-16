@@ -79,7 +79,7 @@ public class UserVerify extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         //socccd
-        String cccd = request.getParameter("soCCCD");
+        String cccd = (request.getParameter("soCCCD")).trim();
         System.out.println("========================= so CCCD ===============");
         System.out.println(cccd);
         //user_id 

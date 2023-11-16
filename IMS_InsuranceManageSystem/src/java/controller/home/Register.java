@@ -122,6 +122,9 @@ public class Register extends HttpServlet {
         if (!checkIdentityCardNumber(iden).isEmpty()) {
             errorMessages.put("input-iden", checkIdentityCardNumber(iden));
         }
+        if (!checkValidPassword(password).isEmpty()) {
+            errorMessages.put("input-password", checkValidPassword(password));
+        }
         if (password == null ? repassword != null : !password.equals(repassword)) {
             errorMessages.put("input-password", (password == null || !password.equals(repassword)) ? "Nhập lại mật khẩu sai" : null);
         }
@@ -264,6 +267,8 @@ public class Register extends HttpServlet {
         Matcher matcher = pattern.matcher(phoneNumber);
         if (matcher.matches()) {
             return "";
+        } else if (phoneNumber.contains(" ")) {
+            return "Số điện thoại không được chứa khoảng trắng.";
         } else {
             return "Số điện thoại không hợp lệ";
         }
@@ -280,6 +285,8 @@ public class Register extends HttpServlet {
             return "Email đã được đăng kí";
         } else if (matcher.matches()) {
             return "";
+        } else if (email.contains(" ")) {
+            return "Email không được chứa khoảng trắng.";
         } else {
             return "Email không hợp lệ";
         }
@@ -296,9 +303,39 @@ public class Register extends HttpServlet {
             return "Căn cước công dân đã được đăng kí";
         } else if (matcher.matches()) {
             return "";
-        } else {
+        } else if (iden.contains(" ")) {
+            return "Căn cước không được chứa khoảng trắng.";
+        }else {
             return "Căn cước công dân không hợp lệ";
         }
+    }
+    
+    public static String checkValidPassword(String password) {
+        // Kiểm tra độ dài của mật khẩu
+        if (password.length() < 8 || password.length() > 32) {
+            return "Mật khẩu phải có độ dài từ 8 đến 32 kí tự.";
+        }
+
+        // Kiểm tra xem mật khẩu có chứa khoảng trắng không
+        if (password.contains(" ")) {
+            return "Mật khẩu không được chứa khoảng trắng.";
+        }
+
+        // Kiểm tra xem mật khẩu có ít nhất một chữ cái viết hoa không
+        boolean containsUppercase = false;
+        for (char character : password.toCharArray()) {
+            if (Character.isUpperCase(character)) {
+                containsUppercase = true;
+                break;
+            }
+        }
+
+        if (!containsUppercase) {
+            return "Mật khẩu phải chứa ít nhất một chữ cái viết hoa.";
+        }
+
+        // Nếu mật khẩu thỏa mãn tất cả các điều kiện, trả về thông báo thành công
+        return "Mật khẩu hợp lệ.";
     }
 
     /** 
@@ -316,5 +353,7 @@ public class Register extends HttpServlet {
 //        String result = checkFullname(username);
 //        System.out.println(result);
 //    }
+
+    
 
 }

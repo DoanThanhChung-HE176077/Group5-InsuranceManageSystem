@@ -32,7 +32,7 @@ public class Admin_Contract_search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String txtname = request.getParameter("txtname");
+        String txtname = request.getParameter("txtname").trim();
         ContractDAO cd = new ContractDAO();
         ArrayList<NewC> list = cd.searchContract(txtname);
         int page, numberpage=5;

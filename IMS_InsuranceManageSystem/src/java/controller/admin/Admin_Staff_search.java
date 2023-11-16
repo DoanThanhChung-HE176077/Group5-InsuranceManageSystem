@@ -34,7 +34,7 @@ public class Admin_Staff_search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String txtname = request.getParameter("txtname");
+         String txtname = request.getParameter("txtname").trim();
         UserDAO ud = new UserDAO();
         BlogDAO bd = new BlogDAO();
         ArrayList<User> list = ud.searchStaffByName(txtname);

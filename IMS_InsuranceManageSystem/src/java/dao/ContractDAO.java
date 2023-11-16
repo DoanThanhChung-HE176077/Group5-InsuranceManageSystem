@@ -932,8 +932,13 @@ public class ContractDAO extends DBContext {
 //        ArrayList<Contract> list = cd.getContractOption(20);
 //        System.out.println(list);
         
-        cd.deleteClaimByClaimID(5);
-       
+//        cd.deleteClaimByClaimID(5);
+                     String fvc_bienXe = "25B2-12323"; //License plates
+             if(fvc_bienXe.matches("^[1-9][0-9][A-Za-z][1-9][-][0-9]*[1-9][0-9]*$")){
+                 System.out.println("ok");
+             }else {
+                 System.out.println("no");
+             }
 
     }
 

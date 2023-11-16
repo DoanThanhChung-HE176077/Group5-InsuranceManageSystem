@@ -103,7 +103,6 @@
 
     <body>
         <jsp:include page="Part/header.jsp"></jsp:include>
-
             <form action="saveInfoTNDS" method="GET" style="margin-top: 100px ;" id="frmCreateOrder">
                 <div class="container form_TNDS">
                     <div class="row">
@@ -115,27 +114,21 @@
                                     <div class="col-md-6">
                                         <!--------------------- Hãng xe --------------------->
                                         <div>
-
                                             <label>Hãng xe<span class="errmsg" style="color: red;"> *</span></label><br />
-
                                             <select class="general-dr abc" id="motorBrands" name="send-brand_id"
                                                     onchange="updateCarModels()">
                                                 <option id="mySelect" value="" disabled selected>Lựa chọn hãng xe
                                                     của bạn</option>
                                                 <c:forEach items="${listBrands}" var="brand">
                                                 <option value="${brand.getBrand_id()}">${brand.getBrand_name()}
-
                                                 </option>
                                             </c:forEach>
-
                                         </select>
                                     </div>
                                     <!--------------------- Hieu xe --------------------->
                                     <div>
                                         <br>
-
                                         <label>Hiệu xe <span class="errmsg" style="color: red;"> *</span></label>
-
                                         <select class="general-dr abc" id="motorBrandModel" name="model_id">
                                         </select>
                                         <input type="hidden" name="send-model_id" value="" />
@@ -143,23 +136,17 @@
                                     <!---------------------So may------------------------>
                                     <br>
                                     <div>
-
                                         <label>Số máy<span class="errmsg" style="color: red;"> *</span></label>
-
                                         <input class="form-control" type="text" name="soMay">
                                     </div>
                                     <p style="color: red; font-style: italic; font-weight: bold ">Người mua bảo
                                         hiểm cam kết cung cấp thông tin chính xác để đảm bảo quyền lợi bảo hiểm
                                     </p>
-
                                 </div>
-
                                 <!--------------------- BKS --------------------->
                                 <div class="col-md-6">
                                     <div>
-
                                         <label>Biển kiểm soát<span class="errmsg" style="color: red;"> *</span></label>
-
                                         <input class="form-control" type="text" name="bienXe" required="">
                                     </div>
                                     <br>

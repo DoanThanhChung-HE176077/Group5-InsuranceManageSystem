@@ -111,9 +111,9 @@
             <div class="row mb-4" style="margin-top: -80px">
                     <div class="col-md-6 offset-md-3">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm bài viết">
+<!--                            <input type="text" class="form-control" placeholder="Tìm kiếm bài viết">-->
                             <div class="input-group-append">
-                                <button class="btn btn-primary mybtn" type="button">Tìm kiếm</button>
+<!--                                <button class="btn btn-primary mybtn" type="button">Tìm kiếm</button>-->
                             </div>
                         </div>
                     </div>
@@ -248,7 +248,7 @@
                 </c:if>
 
                 <!-- Pagination -->
-                <div class="row">
+<!--                <div class="row">
                     <div class="col-md-12">
                         <nav aria-label="Page navigation">
                             <ul class="pagination justify-content-center">
@@ -258,7 +258,7 @@
                             </ul>
                         </nav>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
         

@@ -130,7 +130,7 @@
                                         <input name="input-fullname" type="text" id="" class="form-control" placeholder="Nhập tên, độ dài 2-64 chữ cái" required>
                                     </div>
 
-                                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                                    <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0;">
                                         ${errorMessages["input-fullname"]}
                                     </p>
 
@@ -152,7 +152,7 @@
                                     <div class="input-group">
                                         <input name="input-iden" type="text" id="" class="form-control" placeholder="Nhập CMT/CCCD" required>
                                     </div>
-                                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                                    <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0;">
                                         ${errorMessages["input-iden"]}
                                     </p>
 
@@ -168,7 +168,7 @@
                                     <div class="input-group">
                                         <input name="input-repassword" type="password" id="" class="form-control" placeholder="Nhập lại mật khẩu" required>
                                     </div>
-                                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                                    <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0;">
                                         ${errorMessages["input-password"]}
                                     </p>
 

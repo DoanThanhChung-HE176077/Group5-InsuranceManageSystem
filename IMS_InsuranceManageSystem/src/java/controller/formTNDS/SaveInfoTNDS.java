@@ -32,6 +32,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import model.Form_Vatchat;
 
 //import model.Package_Type;
@@ -179,7 +181,7 @@ public class SaveInfoTNDS extends HttpServlet {
 
                System.out.println("===================================== |Check save to contract vat chat ========================|");
                System.out.println("check: " + check);
-              String fvc_brand_id = request.getParameter("send-brand_id");
+             String fvc_brand_id = request.getParameter("send-brand_id");
              String fvc_model_id = request.getParameter("send-model_id");
              String fvc_pt_id = request.getParameter("send-pt_id1");
              String fvc_deduc_id = request.getParameter("send-deduc_id1");
@@ -190,7 +192,10 @@ public class SaveInfoTNDS extends HttpServlet {
              String fvc_soMay = request.getParameter("soMay"); //Device number
              String fvc_soKhung = request.getParameter("soKhung"); //Device chassis number
              String fvc_bienXe = request.getParameter("bienXe"); //License plates
-             
+//             if(!fvc_bienXe.matches("^[1-9][0-9][A-Za-z][1-9][-][0-9]*[1-9][0-9]*$")){
+//                 request.setAttribute("", "Biển số xe sai không bao gồm khoảng trắng và các kí tự hợp lệ, ví dụ: 35B2-01234...");
+//                 request.getRequestDispatcher("Fom")
+//             }
              System.out.println("====================| input data | =======================");
              System.out.println("fvc_brand_id: " + fvc_brand_id);
             System.out.println("fvc_model_id: " + fvc_model_id);
@@ -416,6 +421,19 @@ public class SaveInfoTNDS extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public static boolean validateLicensePlate(String input) {
+        // Biểu thức chính quy
+        String regex = "^[1-9][0-9][A-Za-z][1-9]-[0-9]*[1-9][0-9]*$";
+
+        // Tạo đối tượng Pattern
+        Pattern pattern = Pattern.compile(regex);
+
+        // Tạo đối tượng Matcher
+        Matcher matcher = pattern.matcher(input);
+
+        // Kiểm tra khớp
+        return matcher.matches();
+    }
     public static int removeDotsFromNumber(String numberWithDots) {
         // Remove all dots and then parse the string as an integer
         String withoutDots = numberWithDots.replaceAll("\\.", "");

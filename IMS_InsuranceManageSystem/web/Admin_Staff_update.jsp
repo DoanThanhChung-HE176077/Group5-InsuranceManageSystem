@@ -113,17 +113,19 @@
                                     <span class="input_label">Số điện thoại</span>
                                     <div  class="input-group" style="margin-right: 10px;">
                                         <input value="${detail.getUser_phoneNum()}"  name="input-phoneNum" type="text" id="" class="form-control" placeholder="Nhập số điện thoại" required invalid-message="Vui lòng nhập">
-
+                                        
                                     </div>
-
+                                        <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0px;">
+                                            ${errorMessages["input-phoneNum"]}
+                                        </p>
                                     <span class="input_label">Email</span>
                                     <div class="input-group" >
                                         <input value="${detail.getUser_email()}" name="input-mail" type="text" id="" class="form-control" placeholder="Nhập Mail" required>
-                                        <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 25px; margin-top: -20px;">
-                                            ${errorMessages["input-phoneNum"]} &nbsp&nbsp&nbsp ${errorMessages["input-mail"]}
-                                        </p>
+                                        
                                     </div>
-
+                                        <p style="text-align: start; color: red; font-size: 14px; margin-bottom: 0px;">
+                                            ${errorMessages["input-mail"]}
+                                        </p>
 
 
 
@@ -134,7 +136,7 @@
                                         <input value="${detail.getUser_fullName()}" name="input-fullname" type="text" id="" class="form-control" placeholder="Nhập tên, độ dài 2-64 chữ cái" required>
                                     </div>
 
-                                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                                    <p style="text-align: left; color: red; font-size: 14px; margin-bottom: 0;">
                                         ${errorMessages["input-fullname"]}
                                     </p>
 
@@ -156,7 +158,7 @@
                                     <div class="input-group">
                                         <input value="${detail.getUser_iden()}" name="input-iden" type="text" id="" class="form-control" placeholder="Nhập CMT/CCCD" required>
                                     </div>
-                                    <p style="text-align: center; color: red; font-size: 14px; margin-bottom: 0;">
+                                    <p style="text-align: left; color: red; font-size: 14px; margin-bottom: 0;">
                                         ${errorMessages["input-iden"]}
                                     </p>
 

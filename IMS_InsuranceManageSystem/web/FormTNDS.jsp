@@ -54,7 +54,7 @@
                                         <h1>${msg}</h1>
                                         <input required="" class="form-control" type="text" name="soMay" >
                                     </div>
-                                    <span style="color: hsl(29, 57%, 54%);">Bắt buộc cần nhập số biển kiểm soát</span>
+<span style="color: hsl(29, 57%, 54%);">Bắt buộc cần nhập số biển kiểm soát</span>
                                 </div>
                                 <div class="col-md-6">
                                     <div>
@@ -100,13 +100,12 @@
                                             <div>
                                                 <span>Phí</span>
                                                 <div class="row">
-                                                    <div class="col-md-6">
-                                                        <input name="lv-fee"  class="form-control" type="number" id="lv-fee" placeholder="" hidden>
-                                                        <input name="lv-fee2" value=""  class="form-control" type="number" id="lv-fee2" placeholder="" readonly>
+<div class="col-md-6">
+                                                        <input name="lv-fee"  class="form-control" type="number" id="lv-fee" placeholder="" readonly>
+                                                        
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <input name="tax-fee" class="form-control" type="number" id="tax-fee" placeholder="" hidden>
-                                                        <input name="tax-fee2" class="form-control" type="number" id="tax-fee2" placeholder="" readonly>
+                                                        <input name="tax-fee" class="form-control" type="number" id="tax-fee" placeholder="" readonly>
                                                     </div>
                                                 </div>                                   
                                             </div>
@@ -122,8 +121,7 @@
                                             </div>                            
                                             <div>
                                                 <span>Tổng phí</span>
-                                                <input class="form-control" id="total-fee" type="number" readonly placeholder="" name="total" hidden>
-                                                <input class="form-control" id="total-fee2" type="number" readonly placeholder="" name="total2" >
+                                                <input class="form-control" id="total-fee" type="number" readonly placeholder="" name="total" >
                                                 <input hidden class="form-control" readonly data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount"  name="amount" type="number" value="" />
                                             </div>
                                         </div>
@@ -140,7 +138,7 @@
                                             <span>Tên</span>
                                             <input id="user_fullName" class="form-control" type="text" readonly="" >
                                             <span>Email</span>
-                                            <input id="user_email2" class="form-control" type="email"" readonly="">
+<input id="user_email2" class="form-control" type="email"" readonly="">
                                         </div>
                                         <div class="col-md-6">
                                             <span>Số điện thoại</span>
@@ -183,7 +181,7 @@
                                     </div>
                                     <br>
                                     <div class="d-flex justify-content-center">
-                                        <a type="button" href="User_verify.jsp" class="btn btn-danger">Xác minh tài khoản</a>
+<a type="button" href="User_verify.jsp" class="btn btn-danger">Xác minh tài khoản</a>
                                     </div>
                                 </c:if>
                                 <c:if test="${sessionScope.user.getUser_iden_img() != null && sessionScope.user.getStatus() == 'Chưa xác minh'}">
@@ -195,7 +193,7 @@
                             </c:if>
                             <c:if test="${sessionScope.user.user_role.equals('Nhân viên') }">
                             </c:if>
-
+                                    
                         </div>
                     </div>
                 </div>
@@ -205,9 +203,43 @@
 
     <script>
         $("#frmCreateOrder").submit(function () {
-            var postData = $("#frmCreateOrder").serialize();
-            var submitUrl = $("#frmCreateOrder").attr("action");
-            console.log(postData);
+           var bienXeValue = $("input[name='bienXe']").val();
+            var soKhungValue = $("input[name='soKhung']").val();
+             var soMayValue = $("input[name='soMay']").val();
+
+        // Kiểm tra xem có khoảng trắng trong bienXe hay không
+        if (/\s/.test(soKhungValue)) {
+            alert("Số khung xe không được khoảng trắng.");
+            return false;
+        }
+        if (/\s/.test(soMayValue)) {
+            alert("Số máy không được chứa khoảng trắng .");
+            return false;
+        }
+        if (/\s/.test(bienXeValue)) {
+            alert("Biển số xe không được chứa khoảng trắng .");
+            return false;
+        }
+
+        // Kiểm tra xem có kí hiệu đặc biệt trong bienXe hay không
+        var specialCharacters = /[!@#$%^&*()_+\-=<>?/,.;:'"\\|{}[\]`~]/;
+        if (specialCharacters.test(bienXeValue)) {
+            alert("Biển số xe không được chứa kí hiệu đặc biệt.");
+            return false;
+        }
+        if (specialCharacters.test(soKhungValue)) {
+            alert("Số khung không được chứa kí hiệu đặc biệt.");
+            return false;
+        }
+        if (specialCharacters.test(soMayValue)) {
+            alert("Biển máy không được chứa kí hiệu đặc biệt.");
+            return false;
+        }
+
+        // Nếu không có lỗi, tiếp tục submit form
+        var postData = $("#frmCreateOrder").serialize();
+        var submitUrl = $("#frmCreateOrder").attr("action");
+
             $.ajax({
                 type: "GET",
                 url: submitUrl,
@@ -217,7 +249,7 @@
                     console.log(x);
                     if (x.code === '00') {
                         if (window.vnpay) {
-                            vnpay.open({width: 768, height: 600, url: x.data});
+vnpay.open({width: 768, height: 600, url: x.data});
                         } else {
                             location.href = x.data;
                         }
@@ -251,8 +283,8 @@
                         var formattedLevelFee2 = formatNumberWithDot(levelFee);
                         var formattedTaxFee2 = formatNumberWithDot(taxFee);
                         var formattedAmount2 = formatNumberWithDot(amount);
-
-
+                        
+                        
                         var formattedLevelFee = parseFloat(levelFee).toLocaleString();
                         var formattedTaxFee = parseFloat(taxFee).toLocaleString();
                         var formattedAmount = parseFloat(amount).toLocaleString();
@@ -260,20 +292,20 @@
                         $("#tax-fee").val(formattedTaxFee);
                         $("#total-fee").val(formattedAmount);
                         $("#amount").val(amount);
-                        $("#lv-fee2").val(formattedLevelFee2);
-                        $("#tax-fee2").val(formattedTaxFee2);
-                        $("#total-fee2").val(formattedAmount2);
+//                        $("#lv-fee").val(formattedLevelFee2);
+//                        $("#tax-fee").val(formattedTaxFee2);
+//                        $("#total-fee").val(formattedAmount2);
 //                        $("#amount").val(formattedAmount2);
-                        document.getElementById("a").innerHTML = formattedLevelFee2 + ' ₫';
-                        document.getElementById("b").innerHTML = formattedAmount2 + ' ₫';
-                        document.getElementById("c").innerHTML = formattedTaxFee2 + ' ₫';
+                        document.getElementById("a").innerHTML = formattedLevelFee2+' ₫';
+                        document.getElementById("b").innerHTML = formattedAmount2+' ₫';
+                        document.getElementById("c").innerHTML = formattedTaxFee2+' ₫';
 
                         if (jsonData.msg !== "null") {
                             document.getElementById("msg").innerHTML = jsonData.msg;
                             alert(jsonData.msg);
                             window.location.href = "HandleFormTNDS";
                         }
-                        $("#user_iden2").val(jsonData.user_iden);
+$("#user_iden2").val(jsonData.user_iden);
                         $("#user_fullName").val(jsonData.user_fullName);
                         $("#user_email2").val(jsonData.user_email);
                         $("#user_phoneNum2").val(jsonData.user_phoneNum);

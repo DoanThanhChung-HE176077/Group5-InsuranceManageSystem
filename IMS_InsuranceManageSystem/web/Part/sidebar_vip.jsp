@@ -138,13 +138,15 @@
                         </li>
                     </c:if>
 
+                    <c:if test="${sessionScope.user.getUser_role().equals('Nhân viên')}">
+                        <li class="list-group-item my-btn1">
+                            <a href="blog_list" class="my-sidebar-item">
+                                <i class="fas fa-blog"></i>
+                                <span style="margin-right: 1px">Quản Lý Bài Viết</span>
+                            </a>
+                        </li>
+                    </c:if>
 
-                    <li class="list-group-item my-btn1">
-                        <a href="blog_list" class="my-sidebar-item">
-                            <i class="fas fa-blog"></i>
-                            <span style="margin-right: 1px">Quản Lý Bài Viết</span>
-                        </a>
-                    </li>
                     <!-- Phân quyền admin -->
                     <c:if test="${sessionScope.user.getUser_role().equals('Admin')}">
                         <li class="list-group-item my-btn1">
