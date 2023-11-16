@@ -243,7 +243,7 @@ public class Admin_Staff_add extends HttpServlet {
         }
 
         // Nếu mật khẩu thỏa mãn tất cả các điều kiện, trả về thông báo thành công
-        return "Mật khẩu hợp lệ.";
+        return "";
     }
 
     /** 
