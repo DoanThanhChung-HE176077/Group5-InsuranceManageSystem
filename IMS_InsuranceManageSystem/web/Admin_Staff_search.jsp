@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tìm kiếm nhân viên</title>
-       
+
         <!-- bootstrap5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -79,35 +79,26 @@
 
 
             <!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-
-
-
             <div class="container-fluid">
                 <div class="row">
                     <div class="col min-vh-100 p-4">
                         <div class="container mt-5">
-
                             <div class="my-row row">
-
                                 <!-- Column 1: Blog Post Table -->
                                 <div class="my-column1 col-md-8">
                                     <h2 style="display: inline-block;">Danh sách nhân viên</h2>
-                                    <!--                                    go to blog page-->
-
+                                    <!--go to blog page-->
                                     <a href="admin_Staff_list" class="my-btn btn btn-primary" style="margin-left: 200px;background-color: #076233">Quay lại</a>
                                     <a href="admin_Staff_add" class="my-btn btn btn-primary" style="background-color: #24262b">Thêm nhân viên</a>
-
-                                    
-                                        <form action="Admin_Staff_search" method="post" class="form-inline my-2 my-lg-0">
-                                            <div class="input-group input-group-sm">
-                                                <input value ="${txtname}" name="txtname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                                    <form action="Admin_Staff_search" method="post" class="form-inline my-2 my-lg-0">
+                                        <div class="input-group input-group-sm">
+                                            <input value ="${txtname}" name="txtname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-secondary btn-number">
                                                     <i class="fa fa-search"></i>
                                                 </button>
                                             </div>
                                         </div>
-
                                     </form>
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
@@ -145,16 +136,15 @@
                                             <!-- Repeat rows for each blog post -->
                                         </tbody>
                                     </table>
-                                 <c:set var="txtname" value="${requestScope.txtname}"/>
+                                <c:set var="txtname" value="${requestScope.txtname}"/>
                                 <c:set var="page" value="${requestScope.page}"/>
-<div class="pagination">
-    <c:forEach begin="${1}" end="${requestScope.num}" var="i">
-        <c:set var="currentPage" value="${i == page}"/>
-        <a href="Admin_Staff_search?page=${i}&txtname=${txtname}" class="${currentPage ? 'current-page' : ''}">${i}</a>
-    </c:forEach>
-</div>
+                                <div class="pagination">
+                                    <c:forEach begin="${1}" end="${requestScope.num}" var="i">
+                                        <c:set var="currentPage" value="${i == page}"/>
+                                        <a href="Admin_Staff_search?page=${i}&txtname=${txtname}" class="${currentPage ? 'current-page' : ''}">${i}</a>
+                                    </c:forEach>
+                                </div>
                             </div>
-
                             <!-- Column 2: Edit History Table -->
                             <div class="my-column1 col-md-4">
                                 <h2 style="display: inline-block;">Bài viết mới</h2>
@@ -178,7 +168,6 @@
                                                 <td>${o.getBl_title()}</td>
                                             </tr>
                                         </c:forEach>
-
                                         <!-- Repeat rows for each edit history entry -->
                                     </tbody>
                                 </table>
@@ -188,11 +177,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
 
         <!-- quan trong cua dropdowntable -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

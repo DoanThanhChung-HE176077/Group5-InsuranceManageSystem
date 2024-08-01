@@ -34,10 +34,13 @@ public class Admin_Staff_search extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-         String txtname = request.getParameter("txtname").trim();
+        String txtname = request.getParameter("txtname").trim();
+        
         UserDAO ud = new UserDAO();
         BlogDAO bd = new BlogDAO();
+        
         ArrayList<User> list = ud.searchStaffByName(txtname);
+        
         int page, numberpage=5;
         int size = list.size();
         int num = (size%5==0?(size/5):((size/5))+1);
@@ -52,14 +55,18 @@ public class Admin_Staff_search extends HttpServlet {
         start = (page-1)*numberpage;
         end = Math.min(page*numberpage,size);
         List <User> listU= ud.getListbyPage(list, start, end);
+        
+        request.setAttribute("txtname", txtname);
         request.setAttribute("listU", listU);
         request.setAttribute("page", page);
         request.setAttribute("num", num);
+        
         ArrayList<User> list1 = ud.getNewUser();
-        request.setAttribute("listNU", list1);
-        request.setAttribute("txtname", txtname);
         ArrayList<NewBl> list2 = bd.getNewBlogsWithUserName();
+        
+        request.setAttribute("listNU", list1);
         request.setAttribute("listNB", list2);
+        
         request.getRequestDispatcher("Admin_Staff_search.jsp").forward(request,response);
     } 
 

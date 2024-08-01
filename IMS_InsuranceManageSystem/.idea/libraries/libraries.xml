@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="libraries">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libraries/sqljdbc42.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/jakarta.servlet.jsp.jstl-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/httpclient-4.5.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/javaee-endorsed-api-7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/jakarta.servlet.jsp.jstl-api-2.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/angus-activation-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/commons-fileupload-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/httpcore-4.4.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/jakarta.activation-api-2.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/jakarta.mail-2.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/gson-2.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/json-simple-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libraries/gson-2.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

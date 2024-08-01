@@ -643,7 +643,6 @@ public class UserDAO extends DBContext {
         String strSQL = "select * from Users\n"
                 + "where [user_fullname] like ? and (user_role='staff')";
         try {
-
             PreparedStatement pstm = connection.prepareStatement(strSQL);
             pstm.setString(1, "%" + txtsearch + "%");
             ResultSet rs = pstm.executeQuery();

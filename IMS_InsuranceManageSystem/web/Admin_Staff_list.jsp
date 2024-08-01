@@ -99,8 +99,6 @@
                                     <a href="Admin_Staff_add.jsp" class="my-btn btn btn-primary" style="background-color: #24262b">Thêm nhân viên</a>
 
                                     <form action="Admin_Staff_search" method="post" class="form-inline my-2 my-lg-0">
-
-                                       
                                             <div class="input-group input-group-sm">
                                                 <input value ="${txtname}" name="txtname" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                                             <div class="input-group-append">
@@ -109,7 +107,6 @@
                                                 </button>
                                             </div>
                                         </div>
-
                                     </form>
                                     <!-- Blog Post Table -->
                                     <table class="table table-striped">
@@ -136,10 +133,7 @@
                                                         <a href="admin_Staff_detail?id=${o.getUser_id()} " class="my-btn btn btn-primary">Chi tiết</a>
                                                     </td>
                                                     <td>
-
                                                         <a href="Admin_Staff_load?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: #B78181">Chỉnh sửa</a>
-
-
                                                     </td>
                                                     <td>
                                                         <a href="Admin_Staff_delete?id=${o.getUser_id()} " class="my-btn btn btn-primary" style="background-color: red">Xóa</a>
