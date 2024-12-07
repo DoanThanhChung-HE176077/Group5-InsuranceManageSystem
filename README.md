@@ -4,6 +4,18 @@
 
 ---
 
+## **Project Members**
+
+| **Name**            | **Student ID** | **Role**             |
+| ------------------- | -------------- | -------------------- |
+| Doan Thanh Chung    | HE176077       | Team Lead, Developer |
+| Nguyen Phi Tuan Anh | HE170999       | Developer            |
+| Vuong Viet Nam      | HE172838       | Developer            |
+| Dao Ngoc Minh       | HE176110       | Developer            |
+| Do Duc Thien        | HE176216       | Developer            |
+
+---
+
 ## **Overview**
 
 The **Insurance Management System** is a web-based platform designed to simplify purchasing, managing, and tracking insurance products for users while enabling businesses and staff to handle administrative tasks efficiently. It supports the entire insurance process, including user account verification, claim management, and financial disbursement.
@@ -59,33 +71,25 @@ The **Insurance Management System** is a web-based platform designed to simplify
 
 ---
 
-## **Project Members**
-
-| **Name**            | **Student ID** | **Role**             |
-| ------------------- | -------------- | -------------------- |
-| Doan Thanh Chung    | HE176077       | Team Lead, Developer |
-| Nguyen Phi Tuan Anh | HE170999       | Developer            |
-| Vuong Viet Nam      | HE172838       | Developer            |
-| Dao Ngoc Minh       | HE176110       | Developer            |
-| Do Duc Thien        | HE176216       | Developer            |
-
----
-
 ## **Demo Images**
 
 <details>  
 <summary style="margin-bottom: 10px;"><strong>Some Screens</strong></summary>
 
 1. ![Demo Image 1](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20001739.png?raw=true)
-2. ![Demo Image 2](Screenshot%202024-12-08%20001924.png)
-3. ![Demo Image 3](Screenshot%202024-12-08%20001919.png)
-4. ![Demo Image 4](Screenshot%202024-12-08%20002148.png)
-5. ![Demo Image 5](Screenshot%202024-12-08%20002129.png)
-6. ![Demo Image 6](Screenshot%202024-12-08%20002123.png)
-7. ![Demo Image 7](Screenshot%202024-12-08%20002101.png)
-8. ![Demo Image 8](Screenshot%202024-12-08%20002045.png)
-9. ![Demo Image 9](Screenshot%202024-12-08%20002037.png)
-10. ![Demo Image 10](Screenshot%202024-12-08%20002008.png)
+2. ![Demo Image 2](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20001757.png?raw=true)
+3. ![Demo Image 3](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20001805.png?raw=true)
+4. ![Demo Image 4](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20001852.png?raw=true)
+5. ![Demo Image 5](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20001919.png?raw=true)
+6. ![Demo Image 6](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20001924.png?raw=true)
+7. ![Demo Image 7](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20001954.png?raw=true)
+8. ![Demo Image 8](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20002008.png?raw=true)
+9. ![Demo Image 9](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20002037.png?raw=true)
+10. ![Demo Image 10](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20002045.png?raw=true)
+11. ![Demo Image 11](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20002101.png?raw=true)
+12. ![Demo Image 12](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20002123.png?raw=true)
+13. ![Demo Image 13](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20002129.png?raw=true)
+14. ![Demo Image 14](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20002148.png?raw=true)
 
 </details>
 
