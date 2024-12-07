@@ -76,7 +76,7 @@ The **Insurance Management System** is a web-based platform designed to simplify
 <details>  
 <summary style="margin-bottom: 10px;"><strong>Some Screens</strong></summary>
 
-1. ![Demo Image 1](Screenshot%202024-12-08%20001954.png)
+1. ![Demo Image 1](https://github.com/dnthchung/Group5-InsuranceManageSystem/blob/main/image%20demo/Screenshot%202024-12-08%20001739.png?raw=true)
 2. ![Demo Image 2](Screenshot%202024-12-08%20001924.png)
 3. ![Demo Image 3](Screenshot%202024-12-08%20001919.png)
 4. ![Demo Image 4](Screenshot%202024-12-08%20002148.png)
