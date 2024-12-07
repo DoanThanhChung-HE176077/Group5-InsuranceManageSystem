@@ -1,7 +1,3 @@
-Here’s the updated README file with the images moved to the bottom, inside a collapsible `<details>` section:
-
----
-
 # **Insurance Management System**
 
 **SWP391 - Project Group 5**
@@ -98,5 +94,3 @@ The **Insurance Management System** is a web-based platform designed to simplify
 This project was developed as part of the SWP391 course to gain hands-on experience in building a full-stack web application while applying industry-standard development practices.
 
 ---
-
-Make sure the images are in the same folder as the README file, and verify their filenames for proper rendering.
