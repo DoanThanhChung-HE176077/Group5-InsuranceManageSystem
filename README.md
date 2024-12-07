@@ -1,4 +1,4 @@
-# **Insurance Management System**
+# **Insurance Management System - IMS**
 
 **SWP391 - Project Group 5**
 
